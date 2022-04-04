@@ -66,22 +66,23 @@ public class Smarties extends Application {
         us.supprimerUser(44);
  //*******************************Commande**********************************
    Commande Commande = new Commande();
-        user.setId(44);
-        user.setNom("b");
-        user.setPrenom("b");
-        user.setEmail("a");
-        user.setImage("a");
-        user.setRole("non");
-        user.setAdresse("aaa");
+        Commande.setId(44);
+        Commande.setIdProduit(4);
+        Commande.setIdUser(10);
+        Commande.setNbProduits(14);
         CommandeService cm = new CommandeService();
         cm.ajouterCommande(Commande);
         for (Commande commande : cm.afficherCommande()) {
             System.out.println(Commande.getId() + Commande.getNbProduits());
         }
-        us.modifierUser(user);
-        us.supprimerUser(44);
+        cm.modifierCommande(Commande);
+        cm.supprimerCommande(44);
         launch(args);
 
+ //***************************************Achat******************************
+        
+    
+    
     }
 
 }
