@@ -5,7 +5,9 @@
  */
 package com.smarties.test;
 
+import com.smarties.entities.Commande;
 import com.smarties.entities.Users;
+import com.smarties.services.CommandeService;
 import com.smarties.services.UsersService;
 import com.smarties.tools.MaConnexion;
 import javafx.application.Application;
@@ -62,7 +64,24 @@ public class Smarties extends Application {
         }
         us.modifierUser(user);
         us.supprimerUser(44);
+ //*******************************Commande**********************************
+   Commande Commande = new Commande();
+        user.setId(44);
+        user.setNom("b");
+        user.setPrenom("b");
+        user.setEmail("a");
+        user.setImage("a");
+        user.setRole("non");
+        user.setAdresse("aaa");
+        CommandeService cm = new CommandeService();
+        cm.ajouterCommande(Commande);
+        for (Commande commande : cm.afficherCommande()) {
+            System.out.println(Commande.getId() + Commande.getNbProduits());
+        }
+        us.modifierUser(user);
+        us.supprimerUser(44);
         launch(args);
+
     }
 
 }
