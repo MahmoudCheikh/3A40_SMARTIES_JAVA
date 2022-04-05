@@ -5,10 +5,12 @@
  */
 package com.smarties.test;
 
+import com.smarties.entities.Achat;
 import com.smarties.entities.Commande;
 import com.smarties.services.CommandeService;
 import com.smarties.entities.Produit;
 import com.smarties.entities.Users;
+import com.smarties.services.AchatService;
 import com.smarties.services.ProduitService;
 import com.smarties.services.UsersService;
 import com.smarties.tools.MaConnexion;
@@ -106,7 +108,21 @@ public class Smarties extends Application {
         launch(args);
 
  //***************************************Achat******************************
-        
+         Achat a = new Achat();
+        a.setId(141);
+        a.setIdUser(10);
+        a.setIdProduit(4);
+        a.setDate("b");
+        a.setNomClient("Abcde");
+        a.setNumeroClient(147);
+
+        AchatService ac = new AchatService();
+        ac.ajouterAchat(a);
+        for (Achat achat : ac.afficherAchat()) {
+            System.out.println(achat.getId() + achat.getIdProduit() + achat.getNomClient() + achat.getDate());
+        }
+        ac.modifierAchat(a);
+        ac.supprimerAchat(14);
     
     
     }
