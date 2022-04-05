@@ -6,8 +6,10 @@
 package com.smarties.test;
 
 import com.smarties.entities.Commande;
-import com.smarties.entities.Users;
 import com.smarties.services.CommandeService;
+import com.smarties.entities.Produit;
+import com.smarties.entities.Users;
+import com.smarties.services.ProduitService;
 import com.smarties.services.UsersService;
 import com.smarties.tools.MaConnexion;
 import javafx.application.Application;
@@ -48,7 +50,9 @@ public class Smarties extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-
+        /**
+         * ********************* USER ********************************
+         */
         Users user = new Users();
         user.setId(44);
         user.setNom("b");
@@ -77,6 +81,28 @@ public class Smarties extends Application {
         }
         cm.modifierCommande(Commande);
         cm.supprimerCommande(44);
+
+        /**
+         * ********************* PRODUIT ******************************************
+         */
+        Produit p = new Produit();
+        p.setId(141);
+        p.setLibelle("b");
+        p.setImage("a");
+        p.setDescription("b");
+        p.setPrix(123);
+        p.setType("velo");
+
+        ProduitService pr = new ProduitService();
+        pr.ajouterProduit(p);
+        for (Produit produit : pr.afficherProduit()) {
+            System.out.println(produit.getId() + produit.getLibelle() + produit.getDescription());
+        }
+        pr.modifierProduit(p);
+        pr.supprimerProduit(139);
+        
+        
+        
         launch(args);
 
  //***************************************Achat******************************
