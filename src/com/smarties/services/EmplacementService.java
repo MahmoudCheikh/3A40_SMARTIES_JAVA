@@ -5,7 +5,7 @@
  */
 package com.smarties.services;
 
-import com.smarties.entities.Stock;
+import com.smarties.entities.Emplacement;
 import com.smarties.tools.MaConnexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -19,63 +19,61 @@ import java.util.List;
  *
  * @author PC
  */
-public class StockService {
-     Connection cnx;
+public class EmplacementService {
+         Connection cnx;
 
-    public StockService() {
+    public EmplacementService() {
         cnx = MaConnexion.getInstance().getCnx();
     }
 
-    public void ajouterStock(Stock s) {
-        String query = "insert into stock(libelle,id_produit_id,prix,quantite,disponibilite,emplacement_id) values(?,?,?,?,?,?)";
+    public void ajouterEmplacement(Emplacement s) {
+        String query = "insert into emplacement(lieu,capacite,stock_id) values(?,?,?)";
         try {
             PreparedStatement ste = cnx.prepareStatement(query);
-            ste.setString(1, s.getLibelle());
-            ste.setInt(2, s.getIdProduit());
-            ste.setFloat(3, s.getPrix());
-            ste.setInt(4,  s.getQuantite());
-            ste.setString(5, s.getDisponibilite());
-            ste.setInt(6, s.getEmplacement());
+            ste.setString(1, s.getLieu());
+            ste.setInt(2, s.getCapacite());
+            ste.setInt(3, s.getStock());
+
 
             ste.executeUpdate();
-            System.out.println("Stock Ajouté !!");
+            System.out.println("Emplacement Ajouté !!");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
 
     }
 
-    public List<Stock> afficherStock() {
-        List<Stock> stocks = new ArrayList<>();
-        String sql = "select * from stock";
+    public List<Emplacement> afficherEmplacement() {
+        List<Emplacement> emplacements = new ArrayList<>();
+        String sql = "select * from emplacement";
         Statement ste;
         try {
             ste = cnx.createStatement();
             ResultSet rs = ste.executeQuery(sql);
             while (rs.next()) {
-                Stock s = new Stock();
+                Emplacement s = new Emplacement();
                 s.setId(rs.getInt("id"));
                 System.out.println(s.getId());
-                s.setLibelle(rs.getString("libelle"));
-                s.setDisponibilite(rs.getString("Disponibilite"));
-                stocks.add(s);
+                s.setCapacite(rs.getInt("capacite"));
+                s.setLieu(rs.getString("lieu"));
+                emplacements.add(s);
 
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
 
-        return stocks;
+        return emplacements;
 
     }
 
-    public void modifierStock(Stock s) {
+    public void modifierEmplacement(Emplacement s) {
         try {
-            String req = "UPDATE stock SET libelle= ?, disponibilite = ? WHERE id= ?";
+            String req = "UPDATE emplacement SET libelle= ?, disponibilite = ? WHERE id= ?";
             PreparedStatement ps = cnx.prepareStatement(req);
 
-            ps.setString(1, s.getLibelle());
-            ps.setString(2, s.getDisponibilite());
+            ps.setString(1, s.getLieu());
+            ps.setInt(2, s.getCapacite());
 
             ps.setInt(3, s.getId());
             System.out.println("Modification...");
@@ -88,9 +86,9 @@ public class StockService {
 
     }
 
-    public void supprimerStock(int id) {
+    public void supprimerEmplacement(int id) {
         try {
-            String req = "DELETE FROM produit WHERE id = ?";
+            String req = "DELETE FROM emplacement WHERE id = ?";
             PreparedStatement ps = cnx.prepareStatement(req);
             System.out.println("Suppression...");
             ps.setInt(1, id);
