@@ -5,24 +5,29 @@
  */
 package com.smarties.entities;
 
+// LocalDate localDate = LocalDate.parse("2016-08-16");
+// java.sql.Date sqlDate = java.sql.Date.valueOf( todayLocalDate );
+// LocalDate localDate = sqlDate.toLocalDate();
+import java.time.LocalDate;
+
 /**
  *
  * @author ASUS
  */
 public class Location {
-    
+
     private int id;
-     private String Date;
-     private String Heure;
-    private  float duree;
+    private LocalDate Date;
+    private String Heure;
+    private float duree;
     private int idAbonnement;
-    private  int idUser;
+    private int idUser;
 
     public int getId() {
         return id;
     }
 
-    public String getDate() {
+    public LocalDate getDate() {
         return Date;
     }
 
@@ -46,7 +51,7 @@ public class Location {
         this.id = id;
     }
 
-    public void setDate(String Date) {
+    public void setDate(LocalDate Date) {
         this.Date = Date;
     }
 
@@ -66,7 +71,7 @@ public class Location {
         this.idUser = idUser;
     }
 
-    public Location(int id, String Date, String Heure, float duree, int idAbonnement, int idUser) {
+    public Location(int id, LocalDate Date, String Heure, float duree, int idAbonnement, int idUser) {
         this.id = id;
         this.Date = Date;
         this.Heure = Heure;
@@ -77,7 +82,5 @@ public class Location {
 
     public Location() {
     }
-    
-    
-    
+
 }

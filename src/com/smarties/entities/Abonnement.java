@@ -10,12 +10,13 @@ package com.smarties.entities;
  * @author ASUS
  */
 public class Abonnement {
+
     private int id;
     private int id_user_id;
     private String type;
     private String dateD;
-     private String dateF;
-     private int prix;
+    private String dateF;
+    private int prix;
 
     public int getId() {
         return id;
@@ -48,7 +49,6 @@ public class Abonnement {
     public void setId_user_id(int id_user_id) {
         this.id_user_id = id_user_id;
     }
-    
 
     public void setType(String type) {
         this.type = type;
@@ -75,11 +75,7 @@ public class Abonnement {
         this.prix = prix;
     }
 
-    
-
     public Abonnement() {
     }
-     
-    
-    
+
 }

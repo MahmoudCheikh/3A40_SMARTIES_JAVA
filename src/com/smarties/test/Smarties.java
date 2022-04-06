@@ -20,7 +20,9 @@ import com.smarties.services.StockService;
 import com.smarties.services.SujetService;
 import com.smarties.services.UsersService;
 import com.smarties.entities.Abonnement;
+import com.smarties.entities.Location;
 import com.smarties.services.AbonnementService;
+import com.smarties.services.LocationService;
 import com.smarties.tools.MaConnexion;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -197,6 +199,7 @@ public class Smarties extends Application {
         ss.ajouterSujet(sujet2);
 
         //********************************Abonnement********************//
+        System.out.println("----------------------------------------Abonnement");
         Abonnement ab = new Abonnement();
         ab.setId(100);
         ab.setId_user_id(1);
@@ -212,11 +215,27 @@ public class Smarties extends Application {
         }
         ar.modifierAbonnement(ab);
         ar.supprimerAbonnement(100);
-        
-           launch(args);
+
+        //******************************** Location ********************//
+        System.out.println("----------------------------------------location");
+        Location l = new Location();
+        l.setId(26);
+        l.setIdUser(1);
+        l.setIdAbonnement(1);
+        l.setHeure("5:3:0");
+        l.setDate(LocalDate.parse("2022-12-23"));
+        l.setDuree(45);
+        LocationService lc = new LocationService();
+        lc.ajouterLocation(l);
+        for (Location location : lc.afficherLocation()) {
+            System.out.println(location.getHeure() + location.getDuree() + location.getId() + location.getIdUser()+ location.getIdAbonnement()+ location.getDate());
+
+        }
+        lc.modifierLocation(l);
+        lc.supprimerLocation(15);
+
+        launch(args);
     }
 
     /*launch */
- 
-
 }
