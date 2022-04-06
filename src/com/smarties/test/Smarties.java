@@ -20,8 +20,10 @@ import com.smarties.services.StockService;
 import com.smarties.services.SujetService;
 import com.smarties.services.UsersService;
 import com.smarties.entities.Abonnement;
+import com.smarties.entities.Favoris;
 import com.smarties.entities.Location;
 import com.smarties.services.AbonnementService;
+import com.smarties.services.FavorisService;
 import com.smarties.services.LocationService;
 import com.smarties.tools.MaConnexion;
 import java.time.LocalDate;
@@ -157,6 +159,23 @@ public class Smarties extends Application {
         empl.modifierEmplacement(emp);
         empl.supprimerEmplacement(48);
 
+        /**
+         * FAVORIS
+         */
+        System.out.println("----------------------------------------FAVORIS");
+        Favoris f = new Favoris();
+        f.setId(79);
+        f.setIdProduit(101);
+        f.setIdUser(9);
+
+        FavorisService fav = new FavorisService();
+        fav.ajouterFavoris(f);
+        for (Favoris favoris : fav.afficherFavoris()) {
+            System.out.println(favoris.getId() + favoris.getIdProduit()+ favoris.getIdUser());
+        }
+        fav.modifierFavoris(f);
+        fav.supprimerFavoris(77);
+
         //***************************************Achat******************************
         System.out.println("----------------------------------------ACHAT");
         Achat a = new Achat();
@@ -228,7 +247,7 @@ public class Smarties extends Application {
         LocationService lc = new LocationService();
         lc.ajouterLocation(l);
         for (Location location : lc.afficherLocation()) {
-            System.out.println(location.getHeure() + location.getDuree() + location.getId() + location.getIdUser()+ location.getIdAbonnement()+ location.getDate());
+            System.out.println(location.getHeure() + location.getDuree() + location.getId() + location.getIdUser() + location.getIdAbonnement() + location.getDate());
 
         }
         lc.modifierLocation(l);
