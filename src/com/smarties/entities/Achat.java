@@ -5,6 +5,8 @@
  */
 package com.smarties.entities;
 
+import java.time.LocalDate;
+
 /**
  *
  * @author user
@@ -14,7 +16,7 @@ public class Achat {
     int id;
     int id_user;
     int id_produit;
-    String  date;
+    LocalDate  date;
     String nom_client; 
     int numero_client; 
     
@@ -34,7 +36,7 @@ public class Achat {
         this.id_produit = id_produit;
     }
 
-    public void setDate(String date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
     
@@ -59,7 +61,7 @@ public class Achat {
         return id_produit;
     }
 
-    public String getDate() {
+    public LocalDate getDate() {
         return date;
     }
 

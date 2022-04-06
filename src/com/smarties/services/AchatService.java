@@ -8,6 +8,7 @@ package com.smarties.services;
 import com.smarties.entities.Achat;
 import com.smarties.tools.MaConnexion;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -31,7 +32,7 @@ public class AchatService {
             ste.setInt(1,(int) c.getId());
             ste.setInt(2, (int) c.getIdUser());
             ste.setInt(3,(int) c.getIdProduit());
-            ste.setString(4,c.getDate());
+            ste.setDate(4, Date.valueOf(c.getDate()));
             ste.setString(5,c.getNomClient());
             ste.setInt(6,(int) c.getNumeroClient());
 
@@ -59,8 +60,8 @@ public class AchatService {
                 System.out.println(p.getId());
                 p.setIdProduit(rs.getInt(3));
                 p.setIdProduit(rs.getInt("id_produit_id"));
-                p.setDate(rs.getString(4));
-                p.setDate(rs.getString("date"));
+               Date date = rs.getDate("date");
+                p.setDate(date.toLocalDate());
                 p.setNomClient(rs.getString(5));
                 p.setNomClient(rs.getString("nom_client"));
                 Achats.add(p);

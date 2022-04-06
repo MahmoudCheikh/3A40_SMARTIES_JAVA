@@ -61,7 +61,7 @@ public class Smarties extends Application {
          * ********************* USER ********************************
          */
         Users user = new Users();
-        user.setId(44);
+        user.setId(1);
         user.setNom("b");
         user.setPrenom("b");
         user.setEmail("a");
@@ -79,8 +79,8 @@ public class Smarties extends Application {
         System.out.println("----------------------------------------Commande");
         Commande Commande = new Commande();
         Commande.setId(44);
-        Commande.setIdProduit(4);
-        Commande.setIdUser(10);
+        Commande.setIdProduit(5);
+        Commande.setIdUser(1);
         Commande.setNbProduits(14);
         CommandeService cm = new CommandeService();
         cm.ajouterCommande(Commande);
@@ -113,10 +113,10 @@ public class Smarties extends Application {
         //***************************************Achat******************************
         System.out.println("----------------------------------------ACHAT");
         Achat a = new Achat();
-        a.setId(141);
-        a.setIdUser(10);
+        a.setId(5);
+        a.setIdUser(1);
         a.setIdProduit(4);
-        a.setDate("b");
+        a.setDate(LocalDate.parse("2020-12-12"));
         a.setNomClient("Abcde");
         a.setNumeroClient(147);
 
@@ -126,7 +126,7 @@ public class Smarties extends Application {
             System.out.println(achat.getId() + achat.getIdProduit() + achat.getNomClient() + achat.getDate());
         }
         ac.modifierAchat(a);
-        ac.supprimerAchat(14);
+        ac.supprimerAchat(5);
 
         /* Sujet */
         System.out.println("----------------------------------------SUJET");
