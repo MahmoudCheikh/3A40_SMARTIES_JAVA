@@ -7,12 +7,16 @@ package com.smarties.test;
 
 import com.smarties.entities.Achat;
 import com.smarties.entities.Commande;
+import com.smarties.entities.Emplacement;
 import com.smarties.services.CommandeService;
 import com.smarties.entities.Produit;
+import com.smarties.entities.Stock;
 import com.smarties.entities.Sujet;
 import com.smarties.entities.Users;
 import com.smarties.services.AchatService;
+import com.smarties.services.EmplacementService;
 import com.smarties.services.ProduitService;
+import com.smarties.services.StockService;
 import com.smarties.services.SujetService;
 import com.smarties.services.UsersService;
 import com.smarties.tools.MaConnexion;
@@ -109,7 +113,48 @@ public class Smarties extends Application {
         }
         pr.modifierProduit(p);
         pr.supprimerProduit(139);
+        
+        /**
+         * STOCK
+         */
+        System.out.println("----------------------------------------Stock");
+        Stock s = new Stock();
+        s.setId(49);
+        s.setIdProduit(101);
+        s.setLibelle("b");
+        s.setPrix(200);
+        s.setQuantite(500);
+        s.setDisponibilite("dispo");
+        s.setEmplacement(50);
 
+        StockService st = new StockService();
+        st.ajouterStock(s);
+        for (Stock stock : st.afficherStock()) {
+            System.out.println(stock.getId() + stock.getLibelle() + stock.getDisponibilite());
+        }
+        st.modifierStock(s);
+        st.supprimerStock(48);
+       
+       
+        /**
+         * EMPLACEMENT
+         */
+        System.out.println("----------------------------------------Emplacement");
+        Emplacement emp = new Emplacement();
+        emp.setId(45);
+        emp.setLieu("b");
+        emp.setCapacite(200);
+        emp.setStock(52);
+
+
+        EmplacementService empl = new EmplacementService();
+        empl.ajouterEmplacement(emp);
+        for (Emplacement emplacemement : empl.afficherEmplacement()) {
+            System.out.println(emplacemement.getId() + emplacemement.getLieu()+ emplacemement.getCapacite());
+        }
+        empl.modifierEmplacement(emp);
+        empl.supprimerEmplacement(48);
+       
         //***************************************Achat******************************
         System.out.println("----------------------------------------ACHAT");
         Achat a = new Achat();
