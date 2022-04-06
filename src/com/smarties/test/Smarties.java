@@ -19,6 +19,8 @@ import com.smarties.services.ProduitService;
 import com.smarties.services.StockService;
 import com.smarties.services.SujetService;
 import com.smarties.services.UsersService;
+import com.smarties.entities.Abonnement;
+import com.smarties.services.AbonnementService;
 import com.smarties.tools.MaConnexion;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -113,7 +115,7 @@ public class Smarties extends Application {
         }
         pr.modifierProduit(p);
         pr.supprimerProduit(139);
-        
+
         /**
          * STOCK
          */
@@ -134,8 +136,7 @@ public class Smarties extends Application {
         }
         st.modifierStock(s);
         st.supprimerStock(48);
-       
-       
+
         /**
          * EMPLACEMENT
          */
@@ -146,15 +147,14 @@ public class Smarties extends Application {
         emp.setCapacite(200);
         emp.setStock(52);
 
-
         EmplacementService empl = new EmplacementService();
         empl.ajouterEmplacement(emp);
         for (Emplacement emplacemement : empl.afficherEmplacement()) {
-            System.out.println(emplacemement.getId() + emplacemement.getLieu()+ emplacemement.getCapacite());
+            System.out.println(emplacemement.getId() + emplacemement.getLieu() + emplacemement.getCapacite());
         }
         empl.modifierEmplacement(emp);
         empl.supprimerEmplacement(48);
-       
+
         //***************************************Achat******************************
         System.out.println("----------------------------------------ACHAT");
         Achat a = new Achat();
@@ -196,8 +196,27 @@ public class Smarties extends Application {
         ss.ajouterSujet(sujet);
         ss.ajouterSujet(sujet2);
 
-        /*launch */
-        launch(args);
+        //********************************Abonnement********************//
+        Abonnement ab = new Abonnement();
+        ab.setId(100);
+        ab.setId_user_id(1);
+        ab.setType("VIP");
+        ab.setDateD("1999-5-9");
+        ab.setDateF("2000-8-6");
+        ab.setPrix(50);
+        AbonnementService ar = new AbonnementService();
+        ar.ajouterAbonnement(ab);
+        for (Abonnement abonnement : ar.afficherAbonnement()) {
+            System.out.println(abonnement.getId() + abonnement.getId_user_id() + abonnement.getType() + abonnement.getDateD() + abonnement.getDateF() + abonnement.getPrix());
+
+        }
+        ar.modifierAbonnement(ab);
+        ar.supprimerAbonnement(100);
+        
+           launch(args);
     }
+
+    /*launch */
+ 
 
 }
