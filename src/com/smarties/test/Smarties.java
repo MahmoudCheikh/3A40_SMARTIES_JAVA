@@ -9,14 +9,17 @@ import com.smarties.entities.Achat;
 import com.smarties.entities.Commande;
 import com.smarties.services.CommandeService;
 import com.smarties.entities.Produit;
+import com.smarties.entities.Sujet;
 import com.smarties.entities.Users;
 import com.smarties.services.AchatService;
 import com.smarties.services.ProduitService;
+import com.smarties.services.SujetService;
 import com.smarties.services.UsersService;
 import com.smarties.tools.MaConnexion;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
@@ -52,6 +55,8 @@ public class Smarties extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+
+        System.out.println("----------------------------------------USER");
         /**
          * ********************* USER ********************************
          */
@@ -70,8 +75,9 @@ public class Smarties extends Application {
         }
         us.modifierUser(user);
         us.supprimerUser(44);
- //*******************************Commande**********************************
-   Commande Commande = new Commande();
+        //*******************************Commande**********************************
+        System.out.println("----------------------------------------Commande");
+        Commande Commande = new Commande();
         Commande.setId(44);
         Commande.setIdProduit(4);
         Commande.setIdUser(10);
@@ -85,8 +91,9 @@ public class Smarties extends Application {
         cm.supprimerCommande(44);
 
         /**
-         * ********************* PRODUIT ******************************************
+         * PRODUIT
          */
+        System.out.println("----------------------------------------PRODUIT");
         Produit p = new Produit();
         p.setId(141);
         p.setLibelle("b");
@@ -102,13 +109,10 @@ public class Smarties extends Application {
         }
         pr.modifierProduit(p);
         pr.supprimerProduit(139);
-        
-        
-        
-        launch(args);
 
- //***************************************Achat******************************
-         Achat a = new Achat();
+        //***************************************Achat******************************
+        System.out.println("----------------------------------------ACHAT");
+        Achat a = new Achat();
         a.setId(141);
         a.setIdUser(10);
         a.setIdProduit(4);
@@ -123,8 +127,32 @@ public class Smarties extends Application {
         }
         ac.modifierAchat(a);
         ac.supprimerAchat(14);
-    
-    
+
+        /* Sujet */
+        System.out.println("----------------------------------------SUJET");
+        SujetService ss = new SujetService();
+
+        Sujet sujet = new Sujet();
+        sujet.setContenu("test");
+        sujet.setTitre("test");
+        sujet.setNbReponses(10);
+        sujet.setNbVues(10);
+        sujet.setDate(LocalDate.parse("2020-12-12"));
+        sujet.setUserId(45);
+
+        Sujet sujet2 = new Sujet();
+        sujet2.setContenu("test2");
+        sujet2.setTitre("test2");
+        sujet2.setNbReponses(102);
+        sujet2.setNbVues(102);
+        sujet2.setDate(LocalDate.parse("2020-11-11"));
+        sujet2.setUserId(45);
+
+        ss.ajouterSujet(sujet);
+        ss.ajouterSujet(sujet2);
+
+        /*launch */
+        launch(args);
     }
 
 }
