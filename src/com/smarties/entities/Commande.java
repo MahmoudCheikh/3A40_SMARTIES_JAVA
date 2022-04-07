@@ -15,7 +15,11 @@ public class Commande {
     int id_user;
     int id_produit;
     int nb_produits;
-    
+
+    @Override
+    public String toString() {
+        return "Commande{" + "id=" + id + ", id_user=" + id_user + ", id_produit=" + id_produit + ", nb_produits=" + nb_produits + '}';
+    }
 
     public Commande() {
     }
@@ -35,7 +39,6 @@ public class Commande {
     public void setNbProduits(int nb_produits) {
         this.nb_produits = nb_produits;
     }
-
 
     public int getId() {
         return id;

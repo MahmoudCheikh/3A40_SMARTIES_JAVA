@@ -14,29 +14,27 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 /**
  *
  * @author Lenovo
  */
 public class ActiviteService {
-    
+
     Connection cnx;
 
     public ActiviteService() {
         cnx = MaConnexion.getInstance().getCnx();
     }
-     public void ajouterActivite(Activite e) {
+
+    public void ajouterActivite(Activite e) {
         String query = "insert into Activite(nom,description,image,id_evenement_id) values(?,?,?,?)";
         try {
             PreparedStatement ste = cnx.prepareStatement(query);
             ste.setString(1, e.getNom());
             ste.setString(2, e.getDescription());
             ste.setString(3, e.getImage());
-            ste.setInt(4,(int) e.getId_event());
-            
-           
+            ste.setInt(4, (int) e.getId_event());
 
             ste.executeUpdate();
             System.out.println("Activite Ajouté !!");
@@ -45,8 +43,9 @@ public class ActiviteService {
         }
 
     }
-     public List<Activite> afficherActivite() {
-        List<Activite> activites= new ArrayList<>();
+
+    public List<Activite> afficherActivite() {
+        List<Activite> activites = new ArrayList<>();
         String sql = "select * from activite";
         Statement ste;
         try {
@@ -55,12 +54,11 @@ public class ActiviteService {
             while (rs.next()) {
                 Activite e = new Activite();
                 e.setId(rs.getInt("id"));
-                System.out.println(e.getId());
                 e.setNom(rs.getString("nom"));
                 e.setDescription(rs.getString("description"));
-                e.setImage(rs.getString("image")); 
+                e.setImage(rs.getString("image"));
                 e.setId_event(rs.getInt("id_evenement_id"));
-                
+
                 activites.add(e);
 
             }
@@ -71,9 +69,9 @@ public class ActiviteService {
         return activites;
 
     }
-     
+
     public void modifierActivite(Activite e) {
-        
+
         try {
             String req = "UPDATE activite SET nom= ?, description = ?, image = ?, id_evenement_id = ? WHERE id= ?";
             PreparedStatement ps = cnx.prepareStatement(req);
@@ -81,8 +79,7 @@ public class ActiviteService {
             ps.setString(1, e.getNom());
             ps.setString(2, e.getDescription());
             ps.setString(3, e.getImage());
-            ps.setInt(4,(int) e.getId_event()); 
-        
+            ps.setInt(4, (int) e.getId_event());
 
             ps.setInt(5, e.getId());
             System.out.println("Modification...");
@@ -90,10 +87,11 @@ public class ActiviteService {
 
             System.out.println("Une ligne modifiée dans la table...");
         } catch (SQLException ex) {
-            
+
         }
-  }
-        public void supprimerActivite(int id) {
+    }
+
+    public void supprimerActivite(int id) {
         try {
             String req = "DELETE FROM activite WHERE id = ?";
             PreparedStatement ps = cnx.prepareStatement(req);

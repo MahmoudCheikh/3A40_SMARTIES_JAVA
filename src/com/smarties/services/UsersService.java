@@ -56,9 +56,13 @@ public class UsersService {
             while (rs.next()) {
                 Users p = new Users();
                 p.setId(rs.getInt("id"));
-                System.out.println(p.getId());
                 p.setNom(rs.getString(2));
                 p.setPrenom(rs.getString("prenom"));
+                p.setEmail(rs.getString(2));
+                p.setAdresse(rs.getString(7));
+                p.setImage(rs.getString(8));
+                p.setRole(rs.getString(9));
+
                 personnes.add(p);
 
             }

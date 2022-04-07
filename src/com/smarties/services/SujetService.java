@@ -41,7 +41,7 @@ public class SujetService {
             ste.setString(6, p.getContenu());
 
             ste.executeUpdate();
-            System.out.println("Personne Ajoutée !!");
+            System.out.println("Sujet Ajouté !!");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }

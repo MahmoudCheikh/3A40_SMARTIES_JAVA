@@ -5,9 +5,10 @@
  */
 package com.smarties.services;
 
-import com.smarties.entities.Commande;
+import com.smarties.entities.Message;
 import com.smarties.tools.MaConnexion;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,62 +16,71 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CommandeService {
+/**
+ *
+ * @author user
+ */
+public class MessageService {
 
     Connection cnx;
 
-    public CommandeService() {
+    public MessageService() {
         cnx = MaConnexion.getInstance().getCnx();
     }
 
-    public void ajouterCommande(Commande c) {
-        String query = "insert into commande(id,id_user_id,id_produit_id,nb_produits) values(?,?,?,?)";
+    public void ajouterMessage(Message p) {
+        String query = "insert into message(id_user_id,id_sujet_id,date,contenu) values(?,?,?,?)";
         try {
             PreparedStatement ste = cnx.prepareStatement(query);
-            ste.setInt(1, (int) c.getId());
-            ste.setInt(2, (int) c.getIdUser());
-            ste.setInt(3, (int) c.getIdProduit());
-            ste.setInt(4, (int) c.getNbProduits());
+
+            ste.setInt(1, p.getIdUser());
+            ste.setInt(2, p.getIdSujet());
+            ste.setDate(3, Date.valueOf(p.getDate()));
+            ste.setString(4, p.getContenu());
 
             ste.executeUpdate();
-            System.out.println("Commande Ajoutée !!");
+            System.out.println("Message Ajoutée !!");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
 
     }
 
-    public List<Commande> afficherCommande() {
-        List<Commande> Commandes = new ArrayList<>();
-        String sql = "select * from commande";
+    public List<Message> afficherMessage() {
+        List<Message> sujets = new ArrayList<>();
+        String sql = "select * from message";
         Statement ste;
         try {
             ste = cnx.createStatement();
             ResultSet rs = ste.executeQuery(sql);
             while (rs.next()) {
-                Commande p = new Commande();
-                p.setId(rs.getInt("id"));
-                p.setNbProduits(rs.getInt(4));
-                p.setNbProduits(rs.getInt("nb_produits"));
-                Commandes.add(p);
+                Message p = new Message();
 
+                p.setId(rs.getInt("id"));
+                p.setIdSujet(rs.getInt(3));
+                p.setIdUser(rs.getInt(2));
+                Date date = rs.getDate("date");
+                p.setDate(date.toLocalDate());
+                p.setContenu(rs.getString("contenu"));
+
+                sujets.add(p);
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
 
-        return Commandes;
+        return sujets;
 
     }
 
-    public void modifierCommande(Commande c) {
+    public void modifierMessage(Message c) {
         try {
-            String req = "UPDATE commande SET nb_produits= ? WHERE id= ?";
+            String req = "UPDATE message SET contenu = ? WHERE id= ?";
             PreparedStatement ps = cnx.prepareStatement(req);
 
-            ps.setInt(1, (int) c.getNbProduits());
+            ps.setString(2, c.getContenu());
 
-            ps.setInt(1, c.getId());
+            ps.setInt(3, c.getId());
             System.out.println("Modification...");
             ps.executeUpdate();
 
@@ -81,9 +91,9 @@ public class CommandeService {
 
     }
 
-    public void supprimerCommande(int id) {
+    public void supprimerMessage(int id) {
         try {
-            String req = "DELETE FROM commande WHERE id = ?";
+            String req = "DELETE FROM message WHERE id = ?";
             PreparedStatement ps = cnx.prepareStatement(req);
             System.out.println("Suppression...");
             ps.setInt(1, id);

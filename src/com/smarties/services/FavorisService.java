@@ -20,20 +20,19 @@ import java.util.List;
  * @author PC
  */
 public class FavorisService {
-    
-     Connection cnx;
+
+    Connection cnx;
 
     public FavorisService() {
         cnx = MaConnexion.getInstance().getCnx();
     }
 
-public void ajouterFavoris(Favoris f) {
+    public void ajouterFavoris(Favoris f) {
         String query = "insert into favoris(id_produit_id,id_user_id) values(?,?)";
         try {
             PreparedStatement ste = cnx.prepareStatement(query);
             ste.setInt(1, f.getIdProduit());
             ste.setInt(2, f.getIdUser());
-
 
             ste.executeUpdate();
             System.out.println("Favoris Ajouté !!");
@@ -53,7 +52,6 @@ public void ajouterFavoris(Favoris f) {
             while (rs.next()) {
                 Favoris f = new Favoris();
                 f.setId(rs.getInt("id"));
-                System.out.println(f.getId());
                 f.setIdProduit(rs.getInt("id_produit_id"));
                 f.setIdUser(rs.getInt("id_user_id"));
                 favoris.add(f);
@@ -100,7 +98,5 @@ public void ajouterFavoris(Favoris f) {
         }
 
     }
-    
 
-    
 }

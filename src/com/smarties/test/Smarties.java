@@ -9,6 +9,7 @@ import com.smarties.entities.Achat;
 import com.smarties.entities.Commande;
 import com.smarties.entities.Emplacement;
 import com.smarties.entities.Evenement;
+import com.smarties.entities.Message;
 import com.smarties.services.CommandeService;
 import com.smarties.entities.Produit;
 import com.smarties.entities.Stock;
@@ -17,6 +18,7 @@ import com.smarties.entities.Users;
 import com.smarties.services.AchatService;
 import com.smarties.services.EmplacementService;
 import com.smarties.services.EvenementService;
+import com.smarties.services.MessageService;
 import com.smarties.services.ProduitService;
 import com.smarties.services.StockService;
 import com.smarties.services.SujetService;
@@ -31,7 +33,6 @@ import com.smarties.services.FavorisService;
 import com.smarties.services.LocationService;
 import com.smarties.tools.MaConnexion;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
@@ -84,22 +85,69 @@ public class Smarties extends Application {
         user.setAdresse("aaa");
         UsersService us = new UsersService();
         us.ajouterUser(user);
-        for (Users users : us.afficherUser()) {
-            System.out.println(users.getId() + users.getNom() + users.getPrenom());
-        }
+        us.afficherUser().forEach((_item) -> {
+            System.out.println(user.toString());
+        });
         us.modifierUser(user);
-        us.supprimerUser(44);
+        // us.supprimerUser(44);
+
+        /* Sujet */
+        System.out.println("----------------------------------------SUJET");
+        SujetService ss = new SujetService();
+
+        Sujet sujet = new Sujet();
+        sujet.setContenu("test");
+        sujet.setTitre("test");
+        sujet.setNbReponses(10);
+        sujet.setNbVues(10);
+        sujet.setDate(LocalDate.parse("2020-12-12"));
+        sujet.setUserId(45);
+
+        Sujet sujet2 = new Sujet();
+        sujet2.setContenu("test2");
+        sujet2.setTitre("test2");
+        sujet2.setNbReponses(102);
+        sujet2.setNbVues(102);
+        sujet2.setDate(LocalDate.parse("2020-11-11"));
+        sujet2.setUserId(45);
+
+        ss.ajouterSujet(sujet);
+        ss.ajouterSujet(sujet2);
+
+        ss.afficherSujet().forEach((sujets) -> {
+            System.out.println(sujets);
+        });
+
+        /**
+         * ** Message **
+         */
+        System.out.println("-------------------------------------------------MESSAGE");
+
+        Message m1 = new Message();
+        Message m2 = new Message();
+
+        m1.setIdSujet(40);
+        m1.setIdUser(45);
+        m1.setDate(LocalDate.parse("2020-11-11"));
+        m1.setContenu("test");
+
+        MessageService ms = new MessageService();
+        ms.ajouterMessage(m1);
+
+        ms.afficherMessage().forEach((message) -> {
+            System.out.println(message);
+        });
         //*******************************Commande**********************************
         System.out.println("----------------------------------------Commande");
         Commande Commande = new Commande();
         Commande.setId(44);
-        Commande.setIdProduit(5);
-        Commande.setIdUser(1);
+        Commande.setIdProduit(14);
+        Commande.setIdUser(45);
         Commande.setNbProduits(14);
         CommandeService cm = new CommandeService();
         cm.ajouterCommande(Commande);
         for (Commande commande : cm.afficherCommande()) {
-            System.out.println(Commande.getId() + Commande.getNbProduits());
+            System.out.println(commande.toString());
         }
         cm.modifierCommande(Commande);
         cm.supprimerCommande(44);
@@ -130,12 +178,12 @@ public class Smarties extends Application {
         System.out.println("----------------------------------------Stock");
         Stock s = new Stock();
         s.setId(49);
-        s.setIdProduit(101);
+        s.setIdProduit(14);
         s.setLibelle("b");
         s.setPrix(200);
         s.setQuantite(500);
         s.setDisponibilite("dispo");
-        s.setEmplacement(50);
+        s.setEmplacement(1);
 
         StockService st = new StockService();
         st.ajouterStock(s);
@@ -153,7 +201,7 @@ public class Smarties extends Application {
         emp.setId(45);
         emp.setLieu("b");
         emp.setCapacite(200);
-        emp.setStock(52);
+        emp.setStock(1);
 
         EmplacementService empl = new EmplacementService();
         empl.ajouterEmplacement(emp);
@@ -169,13 +217,13 @@ public class Smarties extends Application {
         System.out.println("----------------------------------------FAVORIS");
         Favoris f = new Favoris();
         f.setId(79);
-        f.setIdProduit(101);
-        f.setIdUser(9);
+        f.setIdProduit(14);
+        f.setIdUser(45);
 
         FavorisService fav = new FavorisService();
         fav.ajouterFavoris(f);
         for (Favoris favoris : fav.afficherFavoris()) {
-            System.out.println(favoris.getId() + favoris.getIdProduit()+ favoris.getIdUser());
+            System.out.println(favoris.getId() + favoris.getIdProduit() + favoris.getIdUser());
         }
         fav.modifierFavoris(f);
         fav.supprimerFavoris(77);
@@ -184,8 +232,8 @@ public class Smarties extends Application {
         System.out.println("----------------------------------------ACHAT");
         Achat a = new Achat();
         a.setId(5);
-        a.setIdUser(1);
-        a.setIdProduit(4);
+        a.setIdUser(45);
+        a.setIdProduit(14);
         a.setDate(LocalDate.parse("2020-12-12"));
         a.setNomClient("Abcde");
         a.setNumeroClient(147);
@@ -198,40 +246,19 @@ public class Smarties extends Application {
         ac.modifierAchat(a);
         ac.supprimerAchat(5);
 
-        /* Sujet */
-        System.out.println("----------------------------------------SUJET");
-        SujetService ss = new SujetService();
-
-        Sujet sujet = new Sujet();
-        sujet.setContenu("test");
-        sujet.setTitre("test");
-        sujet.setNbReponses(10);
-        sujet.setNbVues(10);
-        sujet.setDate(LocalDate.parse("2020-12-12"));
-        sujet.setUserId(45);
-
-        Sujet sujet2 = new Sujet();
-        sujet2.setContenu("test2");
-        sujet2.setTitre("test2");
-        sujet2.setNbReponses(102);
-        sujet2.setNbVues(102);
-        sujet2.setDate(LocalDate.parse("2020-11-11"));
-        sujet2.setUserId(45);
-
-        ss.ajouterSujet(sujet);
-        ss.ajouterSujet(sujet2);
-
         //********************************Abonnement********************//
         System.out.println("----------------------------------------Abonnement");
         Abonnement ab = new Abonnement();
         ab.setId(100);
-        ab.setId_user_id(1);
+        ab.setId_user_id(45);
         ab.setType("VIP");
         ab.setDateD("1999-5-9");
         ab.setDateF("2000-8-6");
         ab.setPrix(50);
         AbonnementService ar = new AbonnementService();
         ar.ajouterAbonnement(ab);
+        ar.ajouterAbonnement(ab);
+
         for (Abonnement abonnement : ar.afficherAbonnement()) {
             System.out.println(abonnement.getId() + abonnement.getId_user_id() + abonnement.getType() + abonnement.getDateD() + abonnement.getDateF() + abonnement.getPrix());
 
@@ -243,7 +270,7 @@ public class Smarties extends Application {
         System.out.println("----------------------------------------location");
         Location l = new Location();
         l.setId(26);
-        l.setIdUser(1);
+        l.setIdUser(45);
         l.setIdAbonnement(1);
         l.setHeure("5:3:0");
         l.setDate(LocalDate.parse("2022-12-23"));
@@ -257,9 +284,7 @@ public class Smarties extends Application {
         lc.modifierLocation(l);
         lc.supprimerLocation(15);
 
-      
-        
-           System.out.println("----------------------------------------ACTIVITE");
+        System.out.println("----------------------------------------ACTIVITE");
         /**
          * ********************* Activite ********************************
          */
@@ -268,7 +293,7 @@ public class Smarties extends Application {
         activite.setNom("b");
         activite.setDescription("b");
         activite.setImage("a");
-        activite.setId_event(114);
+        activite.setId_event(9);
         ActiviteService as = new ActiviteService();
         as.ajouterActivite(activite);
         for (Activite act : as.afficherActivite()) {
@@ -276,7 +301,7 @@ public class Smarties extends Application {
         }
         as.modifierActivite(activite);
         as.supprimerActivite(33);
-         //********************************Evenement********************//
+        //********************************Evenement********************//
         System.out.println("----------------------------------------Evenement");
         Evenement e = new Evenement();
         e.setId(150);
@@ -290,22 +315,15 @@ public class Smarties extends Application {
         EvenementService event = new EvenementService();
         event.ajouterEvenement(e);
         for (Evenement ev : event.afficherEvenement()) {
-            System.out.println(ev.getId() + ev.getNom() + ev.getType() + ev.getLieu() + ev.getDate_d() + ev.getDate_f() + ev.getNb_participants()+ ev.getNb_places());
+            System.out.println(ev.getId() + ev.getNom() + ev.getType() + ev.getLieu() + ev.getDate_d() + ev.getDate_f() + ev.getNb_participants() + ev.getNb_places());
 
         }
         event.modifierEvenement(e);
         event.supprimerEvenement(150);
 
-        
-        
-        
-        
-        
-        
-        
-          launch(args);
+        launch(args);
     }
-    
+
 
     /*launch */
 }

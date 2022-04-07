@@ -16,7 +16,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class AchatService {
 
     Connection cnx;
@@ -24,21 +23,18 @@ public class AchatService {
     public AchatService() {
         cnx = MaConnexion.getInstance().getCnx();
     }
-    
+
     public void ajouterAchat(Achat c) {
         String query = "insert into achat(id,id_user_id,id_produit_id,date,nom_client,numero_client) values(?,?,?,?,?,?)";
         try {
             PreparedStatement ste = cnx.prepareStatement(query);
-            ste.setInt(1,(int) c.getId());
+            ste.setInt(1, (int) c.getId());
             ste.setInt(2, (int) c.getIdUser());
-            ste.setInt(3,(int) c.getIdProduit());
+            ste.setInt(3, (int) c.getIdProduit());
             ste.setDate(4, Date.valueOf(c.getDate()));
-            ste.setString(5,c.getNomClient());
-            ste.setInt(6,(int) c.getNumeroClient());
+            ste.setString(5, c.getNomClient());
+            ste.setInt(6, (int) c.getNumeroClient());
 
-            
-
-       
             ste.executeUpdate();
             System.out.println("Achat Ajoutée !!");
         } catch (SQLException ex) {
@@ -57,10 +53,9 @@ public class AchatService {
             while (rs.next()) {
                 Achat p = new Achat();
                 p.setId(rs.getInt("id"));
-                System.out.println(p.getId());
                 p.setIdProduit(rs.getInt(3));
                 p.setIdProduit(rs.getInt("id_produit_id"));
-               Date date = rs.getDate("date");
+                Date date = rs.getDate("date");
                 p.setDate(date.toLocalDate());
                 p.setNomClient(rs.getString(5));
                 p.setNomClient(rs.getString("nom_client"));
@@ -81,7 +76,6 @@ public class AchatService {
             PreparedStatement ps = cnx.prepareStatement(req);
 
             ps.setString(5, c.getNomClient());
-         
 
             ps.setInt(1, c.getId());
             System.out.println("Modification...");
@@ -96,7 +90,7 @@ public class AchatService {
 
     public void supprimerAchat(int id) {
         try {
-            String req = "DELETE FROM commande WHERE id = ?";
+            String req = "DELETE FROM achat WHERE id = ?";
             PreparedStatement ps = cnx.prepareStatement(req);
             System.out.println("Suppression...");
             ps.setInt(1, id);

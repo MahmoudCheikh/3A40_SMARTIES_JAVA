@@ -20,7 +20,8 @@ import java.util.List;
  * @author PC
  */
 public class StockService {
-     Connection cnx;
+
+    Connection cnx;
 
     public StockService() {
         cnx = MaConnexion.getInstance().getCnx();
@@ -33,7 +34,7 @@ public class StockService {
             ste.setString(1, s.getLibelle());
             ste.setInt(2, s.getIdProduit());
             ste.setFloat(3, s.getPrix());
-            ste.setInt(4,  s.getQuantite());
+            ste.setInt(4, s.getQuantite());
             ste.setString(5, s.getDisponibilite());
             ste.setInt(6, s.getEmplacement());
 
@@ -55,7 +56,6 @@ public class StockService {
             while (rs.next()) {
                 Stock s = new Stock();
                 s.setId(rs.getInt("id"));
-                System.out.println(s.getId());
                 s.setLibelle(rs.getString("libelle"));
                 s.setDisponibilite(rs.getString("Disponibilite"));
                 stocks.add(s);
@@ -102,5 +102,5 @@ public class StockService {
         }
 
     }
-    
+
 }

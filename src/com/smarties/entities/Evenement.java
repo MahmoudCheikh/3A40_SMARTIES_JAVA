@@ -10,15 +10,17 @@ package com.smarties.entities;
  * @author Lenovo
  */
 public class Evenement {
-    int id; 
-    String nom; 
-    String Date_d; 
-    String Date_f; 
-    String lieu; 
-    String type; 
-    int nb_participants; 
-    int nb_places; 
+
+    int id;
+    String nom;
+    String Date_d;
+    String Date_f;
+    String lieu;
+    String type;
+    int nb_participants;
+    int nb_places;
 //****************les getters and setters*****************
+
     public int getId() {
         return id;
     }
@@ -82,7 +84,7 @@ public class Evenement {
     public void setNb_places(int nb_places) {
         this.nb_places = nb_places;
     }
- //***********les constructeurs****************
+    //***********les constructeurs****************
 
     public Evenement(int id, String nom, String Date_d, String Date_f, String lieu, String type, int nb_participants, int nb_places) {
         this.id = id;
@@ -97,6 +99,5 @@ public class Evenement {
 
     public Evenement() {
     }
-    
-    
+
 }

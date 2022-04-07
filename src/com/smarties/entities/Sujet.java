@@ -24,6 +24,11 @@ public class Sujet {
     String titre;
     String contenu;
 
+    @Override
+    public String toString() {
+        return "Sujet{" + "id=" + id + ", userId=" + userId + ", nbReponses=" + nbReponses + ", nbVues=" + nbVues + ", date=" + date + ", titre=" + titre + ", contenu=" + contenu + '}';
+    }
+
     public Sujet() {
     }
 

@@ -19,6 +19,11 @@ public class Users {
     String role;
     String image;
 
+    @Override
+    public String toString() {
+        return "Users{" + "id=" + id + ", email=" + email + ", nom=" + nom + ", prenom=" + prenom + ", adresse=" + adresse + ", role=" + role + ", image=" + image + '}';
+    }
+
     public Users() {
     }
 

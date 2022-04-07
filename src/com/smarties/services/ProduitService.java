@@ -20,7 +20,7 @@ import java.util.List;
  * @author PC
  */
 public class ProduitService {
-    
+
     Connection cnx;
 
     public ProduitService() {
@@ -55,7 +55,6 @@ public class ProduitService {
             while (rs.next()) {
                 Produit p = new Produit();
                 p.setId(rs.getInt("id"));
-                System.out.println(p.getId());
                 p.setLibelle(rs.getString("libelle"));
                 p.setDescription(rs.getString("description"));
                 produits.add(p);
@@ -102,5 +101,5 @@ public class ProduitService {
         }
 
     }
-    
+
 }

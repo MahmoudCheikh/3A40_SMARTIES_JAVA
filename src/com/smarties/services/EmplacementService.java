@@ -20,7 +20,8 @@ import java.util.List;
  * @author PC
  */
 public class EmplacementService {
-         Connection cnx;
+
+    Connection cnx;
 
     public EmplacementService() {
         cnx = MaConnexion.getInstance().getCnx();
@@ -33,7 +34,6 @@ public class EmplacementService {
             ste.setString(1, s.getLieu());
             ste.setInt(2, s.getCapacite());
             ste.setInt(3, s.getStock());
-
 
             ste.executeUpdate();
             System.out.println("Emplacement Ajouté !!");
@@ -53,7 +53,6 @@ public class EmplacementService {
             while (rs.next()) {
                 Emplacement s = new Emplacement();
                 s.setId(rs.getInt("id"));
-                System.out.println(s.getId());
                 s.setCapacite(rs.getInt("capacite"));
                 s.setLieu(rs.getString("lieu"));
                 emplacements.add(s);
@@ -100,5 +99,5 @@ public class EmplacementService {
         }
 
     }
-    
+
 }

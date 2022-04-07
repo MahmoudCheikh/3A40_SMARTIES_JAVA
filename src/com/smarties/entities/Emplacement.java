@@ -10,7 +10,7 @@ package com.smarties.entities;
  * @author PC
  */
 public class Emplacement {
-    
+
     int id;
     String lieu;
     int capacite;
@@ -70,5 +70,5 @@ public class Emplacement {
 
     public Emplacement() {
     }
-    
+
 }

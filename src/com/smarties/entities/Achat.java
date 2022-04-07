@@ -17,9 +17,8 @@ public class Achat {
     int id_user;
     int id_produit;
     LocalDate date;
-    String nom_client; 
-    int numero_client; 
-    
+    String nom_client;
+    int numero_client;
 
     public Achat() {
     }
@@ -39,15 +38,14 @@ public class Achat {
     public void setDate(LocalDate date) {
         this.date = date;
     }
-    
+
     public void setNomClient(String nom_client) {
         this.nom_client = nom_client;
     }
-    
-      public void setNumeroClient(int numero_client) {
+
+    public void setNumeroClient(int numero_client) {
         this.numero_client = numero_client;
     }
-
 
     public int getId() {
         return id;
@@ -68,9 +66,9 @@ public class Achat {
     public String getNomClient() {
         return nom_client;
     }
-    
-    public int getNumeroClient(){
-    
-    return numero_client; 
-        }
+
+    public int getNumeroClient() {
+
+        return numero_client;
+    }
 }

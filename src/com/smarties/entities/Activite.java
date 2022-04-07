@@ -10,13 +10,14 @@ package com.smarties.entities;
  * @author Lenovo
  */
 public class Activite {
-    
-    int id ; 
-    String nom; 
-    String description; 
-    String image; 
-    int id_event ; 
+
+    int id;
+    String nom;
+    String description;
+    String image;
+    int id_event;
 //les getters et setters 
+
     public int getId() {
         return id;
     }
@@ -56,7 +57,7 @@ public class Activite {
     public void setId_event(int id_event) {
         this.id_event = id_event;
     }
- //les constructeurs 
+    //les constructeurs 
 
     public Activite(int id, String nom, String description, String image) {
         this.id = id;
@@ -75,7 +76,5 @@ public class Activite {
 
     public Activite() {
     }
-    
-    
-    
+
 }
