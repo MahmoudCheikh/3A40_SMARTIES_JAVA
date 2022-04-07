@@ -16,7 +16,7 @@ public class Achat {
     int id;
     int id_user;
     int id_produit;
-    LocalDate  date;
+    LocalDate date;
     String nom_client; 
     int numero_client; 
     

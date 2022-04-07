@@ -8,6 +8,7 @@ package com.smarties.test;
 import com.smarties.entities.Achat;
 import com.smarties.entities.Commande;
 import com.smarties.entities.Emplacement;
+import com.smarties.entities.Evenement;
 import com.smarties.services.CommandeService;
 import com.smarties.entities.Produit;
 import com.smarties.entities.Stock;
@@ -15,14 +16,17 @@ import com.smarties.entities.Sujet;
 import com.smarties.entities.Users;
 import com.smarties.services.AchatService;
 import com.smarties.services.EmplacementService;
+import com.smarties.services.EvenementService;
 import com.smarties.services.ProduitService;
 import com.smarties.services.StockService;
 import com.smarties.services.SujetService;
 import com.smarties.services.UsersService;
 import com.smarties.entities.Abonnement;
+import com.smarties.entities.Activite;
 import com.smarties.entities.Favoris;
 import com.smarties.entities.Location;
 import com.smarties.services.AbonnementService;
+import com.smarties.services.ActiviteService;
 import com.smarties.services.FavorisService;
 import com.smarties.services.LocationService;
 import com.smarties.tools.MaConnexion;
@@ -253,8 +257,55 @@ public class Smarties extends Application {
         lc.modifierLocation(l);
         lc.supprimerLocation(15);
 
-        launch(args);
+      
+        
+           System.out.println("----------------------------------------ACTIVITE");
+        /**
+         * ********************* Activite ********************************
+         */
+        Activite activite = new Activite();
+        activite.setId(1);
+        activite.setNom("b");
+        activite.setDescription("b");
+        activite.setImage("a");
+        activite.setId_event(114);
+        ActiviteService as = new ActiviteService();
+        as.ajouterActivite(activite);
+        for (Activite act : as.afficherActivite()) {
+            System.out.println(act.getId() + act.getNom() + act.getDescription() + act.getImage() + act.getId_event());
+        }
+        as.modifierActivite(activite);
+        as.supprimerActivite(33);
+         //********************************Evenement********************//
+        System.out.println("----------------------------------------Evenement");
+        Evenement e = new Evenement();
+        e.setId(150);
+        e.setNom("coursee velo");
+        e.setType("VIP");
+        e.setDate_d("1999-5-9");
+        e.setDate_f("2000-8-6");
+        e.setLieu("carthage");
+        e.setNb_participants(10);
+        e.setNb_places(10);
+        EvenementService event = new EvenementService();
+        event.ajouterEvenement(e);
+        for (Evenement ev : event.afficherEvenement()) {
+            System.out.println(ev.getId() + ev.getNom() + ev.getType() + ev.getLieu() + ev.getDate_d() + ev.getDate_f() + ev.getNb_participants()+ ev.getNb_places());
+
+        }
+        event.modifierEvenement(e);
+        event.supprimerEvenement(150);
+
+        
+        
+        
+        
+        
+        
+        
+          launch(args);
     }
+    
 
     /*launch */
 }
