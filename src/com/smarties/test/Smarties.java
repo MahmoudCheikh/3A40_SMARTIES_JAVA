@@ -45,6 +45,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
@@ -54,38 +56,31 @@ import javafx.stage.Stage;
  */
 public class Smarties extends Application {
 
+    private Stage primaryStage;
+    
+
     @Override
     public void start(Stage primaryStage) throws IOException {
-        //MaConnexion connexion = MaConnexion.getInstance();
-         try {
+        MaConnexion connexion = MaConnexion.getInstance();
 
-        Parent root = FXMLLoader.load(getClass().getResource("GuiCommande.fxml"));
-                    Scene scene = new Scene(root, 1366, 768);
-                    primaryStage.setTitle("GClaim");
-                    primaryStage.setScene(scene);
-                    primaryStage.show();
-                } catch (IOException ex) {
-                    System.out.println(ex.getMessage());
-                }
+        this.primaryStage = primaryStage;
+        this.primaryStage.setTitle("Smarties");
+        showMainView();
+
+    }
+
+    public void showMainView() throws IOException {
+        BorderPane mainLayout = FXMLLoader.load(getClass().getResource("GuiBack.fxml"));
+        Scene scene = new Scene(mainLayout, 1366, 768);
         
-        Button btn = new Button();
-        btn.setText("Say 'Hello World'");
-        btn.setOnAction(new EventHandler<ActionEvent>() {
-            
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("Hello World!");
-            }
-        });
-//        
-//        StackPane root = new StackPane();
-//        root.getChildren().add(btn);
-//        
-//        Scene scene = new Scene(root, 300, 250);
-//        
-//        primaryStage.setTitle("Hello World!");
-//        primaryStage.setScene(scene);
-//        primaryStage.show();
+        primaryStage.setScene(scene);
+        primaryStage.show();
+
+    }
+
+    public void showEventView() throws IOException {
+     //   BorderPane eventpane = FXMLLoader.load(getClass().getResource("GuiEvenement.fxml"));
+     //   mainLayout.setCenter(eventpane);
     }
 
     /**
@@ -93,7 +88,6 @@ public class Smarties extends Application {
      */
     public static void main(String[] args) {
 
-       
         launch(args);
     }
 

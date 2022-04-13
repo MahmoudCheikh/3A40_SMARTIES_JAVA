@@ -75,12 +75,12 @@ public class MessageService {
 
     public void modifierMessage(Message c) {
         try {
-            String req = "UPDATE message SET contenu = ? WHERE id= ?";
+            String req = "UPDATE message SET contenu=? WHERE id=?";
             PreparedStatement ps = cnx.prepareStatement(req);
 
-            ps.setString(2, c.getContenu());
+            ps.setString(1, c.getContenu());
 
-            ps.setInt(3, c.getId());
+            ps.setInt(2, c.getId());
             System.out.println("Modification...");
             ps.executeUpdate();
 

@@ -19,6 +19,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 
 /**
  * FXML Controller class
@@ -72,6 +73,8 @@ public class GuiEvenementController implements Initializable {
     private TextField txtID;
     @FXML
     private Button btnmodif;
+    @FXML
+    private AnchorPane anchorevent;
 
     /**
      * Initializes the controller class.
