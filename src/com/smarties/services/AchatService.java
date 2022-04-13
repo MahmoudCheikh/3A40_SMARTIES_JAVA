@@ -25,15 +25,14 @@ public class AchatService {
     }
 
     public void ajouterAchat(Achat c) {
-        String query = "insert into achat(id,id_user_id,id_produit_id,date,nom_client,numero_client) values(?,?,?,?,?,?)";
+        String query = "insert into achat(id_user_id,id_produit_id,date,nom_client,numero_client) values(?,?,?,?,?)";
         try {
             PreparedStatement ste = cnx.prepareStatement(query);
-            ste.setInt(1, (int) c.getId());
-            ste.setInt(2, (int) c.getIdUser());
-            ste.setInt(3, (int) c.getIdProduit());
-            ste.setDate(4, Date.valueOf(c.getDate()));
-            ste.setString(5, c.getNomClient());
-            ste.setInt(6, (int) c.getNumeroClient());
+            ste.setInt(1, (int) c.getIdUser());
+            ste.setInt(2, (int) c.getIdProduit());
+            ste.setDate(3, Date.valueOf(c.getDate()));
+            ste.setString(4, c.getNomClient());
+            ste.setInt(5, (int) c.getNumeroClient());
 
             ste.executeUpdate();
             System.out.println("Achat Ajoutée !!");
@@ -53,12 +52,14 @@ public class AchatService {
             while (rs.next()) {
                 Achat p = new Achat();
                 p.setId(rs.getInt("id"));
+                p.setIdProduit(rs.getInt("id_produit_id"));               
+               
                 p.setIdProduit(rs.getInt(3));
-                p.setIdProduit(rs.getInt("id_produit_id"));
                 Date date = rs.getDate("date");
                 p.setDate(date.toLocalDate());
-                p.setNomClient(rs.getString(5));
+                
                 p.setNomClient(rs.getString("nom_client"));
+                
                 Achats.add(p);
 
             }

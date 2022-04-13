@@ -55,5 +55,4 @@ public class Commande {
     public int getNbProduits() {
         return nb_produits;
     }
-
 }

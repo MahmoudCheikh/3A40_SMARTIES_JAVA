@@ -71,4 +71,9 @@ public class Achat {
 
         return numero_client;
     }
+
+    @Override
+    public String toString() {
+        return "Achat{" + "id=" + id + ", id_user=" + id_user + ", id_produit=" + id_produit + ", date=" + date + ", nom_client=" + nom_client + ", numero_client=" + numero_client + '}';
+    }
 }

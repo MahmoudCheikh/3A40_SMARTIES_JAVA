@@ -24,13 +24,12 @@ public class CommandeService {
     }
 
     public void ajouterCommande(Commande c) {
-        String query = "insert into commande(id,id_user_id,id_produit_id,nb_produits) values(?,?,?,?)";
+        String query = "insert into commande(id_user_id,id_produit_id,nb_produits) values(?,?,?)";
         try {
             PreparedStatement ste = cnx.prepareStatement(query);
-            ste.setInt(1, (int) c.getId());
-            ste.setInt(2, (int) c.getIdUser());
-            ste.setInt(3, (int) c.getIdProduit());
-            ste.setInt(4, (int) c.getNbProduits());
+            ste.setInt(1, (int) c.getIdUser());
+            ste.setInt(2, (int) c.getIdProduit());
+            ste.setInt(3, (int) c.getNbProduits());
 
             ste.executeUpdate();
             System.out.println("Commande Ajoutée !!");
@@ -50,8 +49,13 @@ public class CommandeService {
             while (rs.next()) {
                 Commande p = new Commande();
                 p.setId(rs.getInt("id"));
-                p.setNbProduits(rs.getInt(4));
                 p.setNbProduits(rs.getInt("nb_produits"));
+                p.setIdProduit(rs.getInt("id_produit_id"));
+                p.setIdUser(rs.getInt("id_user_id"));
+
+                
+
+                
                 Commandes.add(p);
 
             }
@@ -65,12 +69,20 @@ public class CommandeService {
 
     public void modifierCommande(Commande c) {
         try {
-            String req = "UPDATE commande SET nb_produits= ? WHERE id= ?";
+            String req = "UPDATE commande SET nb_produits=? ,id_produit_id=?, id_user_id=? WHERE id= ?";
             PreparedStatement ps = cnx.prepareStatement(req);
 
-            ps.setInt(1, (int) c.getNbProduits());
+            ps.setInt(1, c.getNbProduits());
+            ps.setInt(2, (int) c.getIdProduit());
+            ps.setInt(3, (int) c.getIdUser());
 
-            ps.setInt(1, c.getId());
+
+
+            ps.setInt(4, c.getId());
+            
+            System.out.println(c);
+            System.out.println(ps);
+            
             System.out.println("Modification...");
             ps.executeUpdate();
 

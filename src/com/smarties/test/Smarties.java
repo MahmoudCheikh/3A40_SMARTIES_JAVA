@@ -58,7 +58,8 @@ public class Smarties extends Application {
     public void start(Stage primaryStage) throws IOException {
         //MaConnexion connexion = MaConnexion.getInstance();
          try {
-        Parent root = FXMLLoader.load(getClass().getResource("GuiEvenement.fxml"));
+
+        Parent root = FXMLLoader.load(getClass().getResource("GuiCommande.fxml"));
                     Scene scene = new Scene(root, 1366, 768);
                     primaryStage.setTitle("GClaim");
                     primaryStage.setScene(scene);
