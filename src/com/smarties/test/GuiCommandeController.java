@@ -10,6 +10,7 @@ import com.smarties.services.AchatService;
 import com.smarties.entities.Achat;
 import com.smarties.services.CommandeService;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -17,6 +18,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
@@ -54,8 +56,6 @@ public class GuiCommandeController implements Initializable {
     @FXML
     private TextField txtidUser;
     @FXML
-    private TextField txtDateAchat;
-    @FXML
     private TextField txtnomclient;
     @FXML
     private TextField txtnumclient;
@@ -69,6 +69,8 @@ public class GuiCommandeController implements Initializable {
     private TextField idachat;
     @FXML
     private Button btndeleteachatx;
+    @FXML
+    private DatePicker dateachatpik;
 
     /**
      * Initializes the controller class.
@@ -114,7 +116,7 @@ public class GuiCommandeController implements Initializable {
         c.setNbProduits(x2);
         c.setIdUser(x3);
 
-        int id = Integer.parseInt(txtid.getText());
+         int id = Integer.parseInt(txtid.getText());
         c.setId(id);
 
         System.out.println(c);
@@ -130,10 +132,57 @@ public class GuiCommandeController implements Initializable {
 /*---------------------Achat-----------------------------*/
     @FXML
     private void ajoutachat(ActionEvent event) {
+         Achat a = new Achat();
+            int xx1 = Integer.parseInt(txtidUser.getText());
+            int xx2 = Integer.parseInt(txtidproduit.getText());
+            
+             LocalDate date = dateachatpik.getValue(); 
+            
+             int xx3 = Integer.parseInt(txtnumclient.getText());
+             
+                     a.setNomClient(txtnomclient.getText());
+
+        a.setNumeroClient(xx3);
+        a.setIdProduit(xx2);
+        a.setIdUser(xx1);
+        a.setDate(date);
+             
+                sa.ajouterAchat(a);
+
     }
 
     @FXML
     private void updateachat(ActionEvent event) {
+        
+        Achat a = new Achat();
+
+        int xx1 = Integer.parseInt(txtidproduit.getText());
+
+        int xx2 = Integer.parseInt(txtidUser.getText());
+
+        int xx3 = Integer.parseInt(txtnumclient.getText());
+        
+
+        
+        LocalDate date = dateachatpik.getValue(); 
+
+
+        a.setIdProduit(xx1);
+        a.setIdUser(xx2);
+        a.setNumeroClient(xx3);
+        a.setDate(date);
+        a.setNomClient(txtnomclient.getText());
+
+
+
+        int id = Integer.parseInt(idachat.getText());
+        
+        
+        a.setId(id);
+
+        System.out.println(a);
+
+        sa.modifierAchat(a);
     }
 
     @FXML

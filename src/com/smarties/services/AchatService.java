@@ -73,12 +73,24 @@ public class AchatService {
 
     public void modifierAchat(Achat c) {
         try {
-            String req = "UPDATE achat SET nom_client= ? WHERE id= ?";
+            String req = "UPDATE achat SET nom_client=?, id_user_id=? , date=? ,numero_client=? ,id_produit_id=? WHERE id= ?";
             PreparedStatement ps = cnx.prepareStatement(req);
 
-            ps.setString(5, c.getNomClient());
+            ps.setString(1, c.getNomClient());
+            ps.setInt(2,  c.getIdUser());
+            ps.setDate(3, Date.valueOf(c.getDate()));
+            ps.setInt(4,  c.getNumeroClient());
+            ps.setInt(5,  c.getIdProduit());
 
-            ps.setInt(1, c.getId());
+
+
+
+
+            ps.setInt(6, c.getId());
+            
+             System.out.println(c);
+            System.out.println(ps);
+            
             System.out.println("Modification...");
             ps.executeUpdate();
 

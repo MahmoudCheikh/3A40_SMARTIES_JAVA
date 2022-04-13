@@ -61,17 +61,16 @@ public class Smarties extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        MaConnexion connexion = MaConnexion.getInstance();
-
-        this.primaryStage = primaryStage;
-        this.primaryStage.setTitle("Smarties");
-        showMainView();
-
-    }
-
-    public void showMainView() throws IOException {
-        BorderPane mainLayout = FXMLLoader.load(getClass().getResource("GuiBack.fxml"));
-        Scene scene = new Scene(mainLayout, 1366, 768);
+        //MaConnexion connexion = MaConnexion.getInstance();
+         try {
+        Parent root = FXMLLoader.load(getClass().getResource("GuiProduit.fxml"));
+                    Scene scene = new Scene(root, 1366, 768);
+                    primaryStage.setTitle("SMARTIES");
+                    primaryStage.setScene(scene);
+                    primaryStage.show();
+                } catch (IOException ex) {
+                    System.out.println(ex.getMessage());
+                }
         
         primaryStage.setScene(scene);
         primaryStage.show();

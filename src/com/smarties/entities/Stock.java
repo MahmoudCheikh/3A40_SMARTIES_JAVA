@@ -19,6 +19,11 @@ public class Stock {
     String disponibilite;
     int emplacement;
 
+    @Override
+    public String toString() {
+        return "Stock{" + "id=" + id + ", libelle=" + libelle + ", prix=" + prix + ", quantite=" + quantite + ", IdProduit=" + IdProduit + ", disponibilite=" + disponibilite + ", emplacement=" + emplacement + '}';
+    }
+
     public int getIdProduit() {
         return IdProduit;
     }

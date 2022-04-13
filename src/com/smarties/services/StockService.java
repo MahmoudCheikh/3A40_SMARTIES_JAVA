@@ -57,7 +57,11 @@ public class StockService {
                 Stock s = new Stock();
                 s.setId(rs.getInt("id"));
                 s.setLibelle(rs.getString("libelle"));
-                s.setDisponibilite(rs.getString("Disponibilite"));
+                s.setDisponibilite(rs.getString("disponibilite"));
+                s.setPrix(rs.getInt("prix"));
+                s.setQuantite(rs.getInt("quantite"));
+                s.setIdProduit(rs.getInt("id_produit_id"));
+                s.setEmplacement(rs.getInt("emplacement_id"));
                 stocks.add(s);
 
             }
@@ -71,13 +75,18 @@ public class StockService {
 
     public void modifierStock(Stock s) {
         try {
-            String req = "UPDATE stock SET libelle= ?, disponibilite = ? WHERE id= ?";
+            String req = "UPDATE stock SET libelle = ?,id_produit_id = ?,prix = ?,quantite = ?,disponibilite = ?,emplacement_id = ? WHERE id= ?";
             PreparedStatement ps = cnx.prepareStatement(req);
 
             ps.setString(1, s.getLibelle());
-            ps.setString(2, s.getDisponibilite());
+            ps.setInt(2, s.getIdProduit());
+            ps.setInt(3, s.getPrix());
+            ps.setInt(4, s.getQuantite());
+            ps.setString(5, s.getDisponibilite());
+            ps.setInt(6, s.getEmplacement());
 
-            ps.setInt(3, s.getId());
+            ps.setInt(7, s.getId());
+            
             System.out.println("Modification...");
             ps.executeUpdate();
 
@@ -90,7 +99,7 @@ public class StockService {
 
     public void supprimerStock(int id) {
         try {
-            String req = "DELETE FROM produit WHERE id = ?";
+            String req = "DELETE FROM stock WHERE id = ?";
             PreparedStatement ps = cnx.prepareStatement(req);
             System.out.println("Suppression...");
             ps.setInt(1, id);
