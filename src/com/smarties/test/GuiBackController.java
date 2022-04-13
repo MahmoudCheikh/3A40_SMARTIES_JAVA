@@ -64,7 +64,11 @@ public class GuiBackController implements Initializable {
     }
 
     @FXML
-    private void locations(ActionEvent event) {
+    private void locations(ActionEvent event) throws IOException {
+        AnchorPane xx;
+        xx = FXMLLoader.load(getClass().getResource("GuiAbonnement.fxml"));
+        an2.getChildren().setAll(xx);
+
     }
 
     @FXML
