@@ -13,7 +13,7 @@
    <children>
       <TabPane prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-          <Tab text="Create">
+          <Tab text="Evenement">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -25,25 +25,41 @@
                         <TextField fx:id="txtnbpart" layoutX="81.0" layoutY="216.0" />
                         <TextField fx:id="txtnbplaces" layoutX="81.0" layoutY="256.0" />
                         <Label layoutX="25.0" layoutY="18.0" text="nom" />
-                        <Label layoutX="25.0" layoutY="60.0" text="date" />
-                        <Label layoutX="25.0" layoutY="105.0" text="date" />
-                        <Label layoutX="25.0" layoutY="142.0" text="string" />
-                        <Label layoutX="25.0" layoutY="184.0" text="string" />
-                        <Label layoutX="25.0" layoutY="220.0" text="int" />
-                        <Label layoutX="25.0" layoutY="260.0" text="int" />
+                        <Label layoutX="11.0" layoutY="60.0" text="date debut" />
+                        <Label layoutX="12.0" layoutY="105.0" text="date fin" />
+                        <Label layoutX="25.0" layoutY="142.0" text="Type" />
+                        <Label layoutX="25.0" layoutY="184.0" text="Lieu" />
+                        <Label layoutX="1.0" layoutY="220.0" text="nb participants" />
+                        <Label layoutX="14.0" layoutY="260.0" text="nb places " />
                         <Button fx:id="btnajouter" layoutX="128.0" layoutY="291.0" mnemonicParsing="false" onAction="#ajouter" text="Ajouter" />
                         <ListView fx:id="listevent" layoutX="237.0" layoutY="14.0" prefHeight="290.0" prefWidth="351.0" />
                         <TextField fx:id="txtid" layoutX="81.0" layoutY="324.0" />
-                        <Text layoutX="38.0" layoutY="341.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-                        <Button fx:id="btnupdate" layoutX="248.0" layoutY="324.0" mnemonicParsing="false" onAction="#update" text="upd" />
-                        <Button fx:id="btndelete" layoutX="324.0" layoutY="324.0" mnemonicParsing="false" onAction="#delete" text="del" />
+                        <Text layoutX="38.0" layoutY="341.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID" />
+                        <Button fx:id="btnupdate" layoutX="248.0" layoutY="324.0" mnemonicParsing="false" onAction="#update" text="modifier" />
+                        <Button fx:id="btndelete" layoutX="324.0" layoutY="324.0" mnemonicParsing="false" onAction="#delete" text="supprimer" />
                      </children>
                   </AnchorPane>
             </content>
           </Tab>
-          <Tab text="Untitled Tab 2">
+          <Tab text="Activite">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TextField fx:id="txtname" layoutX="79.0" layoutY="32.0" />
+                        <TextField fx:id="txtdescription" layoutX="79.0" layoutY="88.0" />
+                        <TextField fx:id="txtimage" layoutX="79.0" layoutY="138.0" />
+                        <TextField fx:id="txtidevent" layoutX="79.0" layoutY="186.0" />
+                        <Text layoutX="14.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom" />
+                        <Text layoutX="10.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description" />
+                        <Text layoutX="24.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="image" />
+                        <Text layoutX="16.0" layoutY="203.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Id event" />
+                        <Button fx:id="btnajouterA" layoutX="119.0" layoutY="230.0" mnemonicParsing="false" onAction="#ajouterAct" text="Ajouter" />
+                        <ListView fx:id="listactivite" layoutX="262.0" layoutY="30.0" prefHeight="292.0" prefWidth="330.0" />
+                        <TextField fx:id="txtID" layoutX="70.0" layoutY="279.0" />
+                        <Text layoutX="16.0" layoutY="296.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID" />
+                        <Button fx:id="btnsupprimer" layoutX="174.0" layoutY="310.0" mnemonicParsing="false" onAction="#deleteAct" text="supprimer" />
+                        <Button fx:id="btnmodif" layoutX="102.0" layoutY="310.0" mnemonicParsing="false" onAction="#updateAct" text="modifier" />
+                     </children></AnchorPane>
             </content>
           </Tab>
             <Tab text="Untitled Tab 3">

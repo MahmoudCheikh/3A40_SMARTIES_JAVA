@@ -7,6 +7,8 @@ package com.smarties.test;
 
 import com.smarties.entities.Evenement;
 import com.smarties.services.EvenementService;
+import com.smarties.entities.Activite;
+import com.smarties.services.ActiviteService;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +28,7 @@ import javafx.scene.control.TextField;
 public class GuiEvenementController implements Initializable {
 
     private EvenementService es = new EvenementService();
+    private ActiviteService act = new ActiviteService();
     
     @FXML
     private TextField txtnom;
@@ -51,6 +54,24 @@ public class GuiEvenementController implements Initializable {
     private Button btnupdate;
     @FXML
     private Button btndelete;
+    @FXML
+    private TextField txtname;
+    @FXML
+    private TextField txtdescription;
+    @FXML
+    private TextField txtimage;
+    @FXML
+    private TextField txtidevent;
+    @FXML
+    private Button btnajouterA;
+    @FXML
+    private ListView<?> listactivite;
+    @FXML
+    private Button btnsupprimer;
+    @FXML
+    private TextField txtID;
+    @FXML
+    private Button btnmodif;
 
     /**
      * Initializes the controller class.
@@ -59,6 +80,8 @@ public class GuiEvenementController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
        ArrayList al = (ArrayList) es.afficherEvenement();
         listevent.getItems().addAll(al);
+        ArrayList a2 = (ArrayList) act.afficherActivite();
+        listactivite.getItems().addAll(a2);
     }    
 
     @FXML
@@ -110,5 +133,50 @@ public class GuiEvenementController implements Initializable {
          
          es.modifierEvenement(ev);
     }
+    //********activite*************
+
+    @FXML
+    private void ajouterAct(ActionEvent event) {
+          Activite av = new Activite();
+        
+        av.setNom(txtname.getText());
+        av.setDescription(txtdescription.getText());
+        av.setImage(txtimage.getText());
+        int x3 =  Integer.parseInt(txtidevent.getText());
+        av.setId_event(x3);
+     
+        act.ajouterActivite(av);
+    }
+
+    @FXML
+    private void deleteAct(ActionEvent event) {
+           int id = Integer.parseInt(txtID.getText());
+        act.supprimerActivite(id);
+    }
+
+    @FXML
+    private void updateAct(ActionEvent event) {
+      
+        Activite actt = new Activite();
+        
+        actt.setNom(txtname.getText());
+        actt.setDescription(txtdescription.getText());
+        actt.setImage(txtimage.getText());
     
+        int x1 =  Integer.parseInt(txtidevent.getText());
+       
+
+        actt.setId_event(x1);
+     
+        
+         int id = Integer.parseInt(txtID.getText());
+         actt.setId(id);
+         
+         act.modifierActivite(actt);
+    
+    
+    
+    }
+     
+   
 }

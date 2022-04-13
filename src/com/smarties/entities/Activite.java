@@ -77,4 +77,9 @@ public class Activite {
     public Activite() {
     }
 
+    @Override
+    public String toString() {
+        return "Activite{" + "id=" + id + ", nom=" + nom + ", description=" + description + ", image=" + image + ", id_event=" + id_event + '}';
+    }
+
 }
