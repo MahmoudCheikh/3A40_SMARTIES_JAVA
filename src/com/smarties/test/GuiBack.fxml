@@ -13,8 +13,8 @@
             <Button fx:id="btnproduits" layoutX="26.0" layoutY="104.0" mnemonicParsing="false" onAction="#produit" text="Gestion Produits" />
             <Button fx:id="btnlocation" layoutX="26.0" layoutY="140.0" mnemonicParsing="false" onAction="#locations" text="Gestion Services" />
             <Button layoutX="26.0" layoutY="180.0" mnemonicParsing="false" text="Gestion SAV" />
-            <Button layoutX="24.0" layoutY="215.0" mnemonicParsing="false" text="Gestion Achats" />
-            <Button layoutX="25.0" layoutY="248.0" mnemonicParsing="false" text="Gestion Produits" />
+            <Button layoutX="24.0" layoutY="215.0" mnemonicParsing="false" onAction="#commande" text="Gestion Achats" />
+            <Button layoutX="25.0" layoutY="248.0" mnemonicParsing="false" text="Gestion Users" />
          </children>
       </AnchorPane>
    </left>

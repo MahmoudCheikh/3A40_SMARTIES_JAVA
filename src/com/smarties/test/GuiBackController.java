@@ -25,7 +25,7 @@ public class GuiBackController implements Initializable {
 
     @FXML
     private AnchorPane an1;
-    @FXML       
+    @FXML
     private AnchorPane an2;
     @FXML
     private BorderPane border1;
@@ -33,7 +33,7 @@ public class GuiBackController implements Initializable {
     private Button btnproduits;
     @FXML
     private Button btnlocation;
-    
+
     /**
      * Initializes the controller class.
      */
@@ -43,26 +43,35 @@ public class GuiBackController implements Initializable {
 
     @FXML
     private void evenement(ActionEvent event) throws IOException {
-         AnchorPane xx;
+        AnchorPane xx;
         xx = FXMLLoader.load(getClass().getResource("GuiEvenement.fxml"));
         an2.getChildren().setAll(xx);
     }
 
     @FXML
     private void sujet(ActionEvent event) throws IOException {
-         AnchorPane xx;
+        AnchorPane xx;
         xx = FXMLLoader.load(getClass().getResource("GuiSujet.fxml"));
         an2.getChildren().setAll(xx);
-        
-       
     }
 
     @FXML
-    private void produit(ActionEvent event) {
+    private void produit(ActionEvent event) throws IOException {
+        AnchorPane xx;
+        xx = FXMLLoader.load(getClass().getResource("GuiProduit.fxml"));
+        an2.getChildren().setAll(xx);
+
     }
 
     @FXML
     private void locations(ActionEvent event) {
+    }
+
+    @FXML
+    private void commande(ActionEvent event) throws IOException {
+        AnchorPane xx;
+        xx = FXMLLoader.load(getClass().getResource("GuiCommande.fxml"));
+        an2.getChildren().setAll(xx);
     }
 
 }
