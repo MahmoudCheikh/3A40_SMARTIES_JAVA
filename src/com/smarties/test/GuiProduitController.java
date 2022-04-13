@@ -5,8 +5,10 @@
  */
 package com.smarties.test;
 
+import com.smarties.entities.Emplacement;
 import com.smarties.entities.Produit;
 import com.smarties.entities.Stock;
+import com.smarties.services.EmplacementService;
 import com.smarties.services.ProduitService;
 import com.smarties.services.StockService;
 import java.net.URL;
@@ -28,6 +30,7 @@ public class GuiProduitController implements Initializable {
 
     private ProduitService pr = new ProduitService();
     private StockService st = new StockService();
+    private EmplacementService em = new EmplacementService();
 
     @FXML
     private TextField typeProd;
@@ -71,6 +74,22 @@ public class GuiProduitController implements Initializable {
     private ListView<?> listeS;
     @FXML
     private TextField idEmpalcement;
+    @FXML
+    private TextField idSE;
+    @FXML
+    private TextField capaciteE;
+    @FXML
+    private TextField lieuE;
+    @FXML
+    private Button btnAjoutEmp;
+    @FXML
+    private Button btnModifierEmp;
+    @FXML
+    private Button btnSupprimerEmp;
+    @FXML
+    private TextField idEmp;
+    @FXML
+    private ListView<?> listeEmp;
 
     /**
      * Initializes the controller class.
@@ -83,9 +102,12 @@ public class GuiProduitController implements Initializable {
 
         ArrayList a2 = (ArrayList) st.afficherStock();
         listeS.getItems().addAll(a2);
+
+        ArrayList a3 = (ArrayList) em.afficherEmplacement();
+        listeEmp.getItems().addAll(a3);
     }
 
-   @FXML
+    @FXML
     private void AjoutProd(ActionEvent event) {
         Produit pro = new Produit();
 
@@ -162,19 +184,60 @@ public class GuiProduitController implements Initializable {
         sto.setPrix(q);
         sto.setIdProduit(idPS);
         sto.setEmplacement(empl);
-        
+
         int id = Integer.parseInt(idS.getText());
-         sto.setId(id);
-         
+        sto.setId(id);
+
         st.modifierStock(sto);
-        
-        
+
     }
 
     @FXML
     private void SupprimerStock(ActionEvent event) {
         int id = Integer.parseInt(idS.getText());
         st.supprimerStock(id);
+    }
+
+    /**
+     * ************************************************************************EMPLACEMENT**************************************************************************************
+     */
+    @FXML
+    private void AjouterEmplacement(ActionEvent event) {
+        Emplacement emp = new Emplacement();
+
+        emp.setLieu(lieuE.getText());
+        int cap = Integer.parseInt(capaciteE.getText());
+        int idstock = Integer.parseInt(idSE.getText());
+
+
+        emp.setCapacite(cap);
+        emp.setStock(idstock);
+
+        em.ajouterEmplacement(emp);
+    }
+
+    @FXML
+    private void ModifierEmplacement(ActionEvent event) {
+        Emplacement emp = new Emplacement();
+
+        emp.setLieu(lieuE.getText());
+        int cap = Integer.parseInt(capaciteE.getText());
+        int idstock = Integer.parseInt(idSE.getText());
+
+
+        emp.setCapacite(cap);
+        emp.setStock(idstock);
+
+        int id = Integer.parseInt(idEmp.getText());
+        emp.setId(id);
+
+        em.modifierEmplacement(emp);
+    }
+
+    @FXML
+    private void SupprimerEmplacement(ActionEvent event) {
+        int id = Integer.parseInt(idEmp.getText());
+        em.supprimerEmplacement(id);
     }
 
 }

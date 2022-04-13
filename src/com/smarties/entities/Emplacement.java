@@ -16,6 +16,11 @@ public class Emplacement {
     int capacite;
     int Stock;
 
+    @Override
+    public String toString() {
+        return "Emplacement{" + "id=" + id + ", lieu=" + lieu + ", capacite=" + capacite + ", Stock=" + Stock + '}';
+    }
+
     public int getStock() {
         return Stock;
     }

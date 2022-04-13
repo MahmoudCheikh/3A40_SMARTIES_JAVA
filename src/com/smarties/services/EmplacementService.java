@@ -53,8 +53,9 @@ public class EmplacementService {
             while (rs.next()) {
                 Emplacement s = new Emplacement();
                 s.setId(rs.getInt("id"));
-                s.setCapacite(rs.getInt("capacite"));
                 s.setLieu(rs.getString("lieu"));
+                s.setCapacite(rs.getInt("capacite"));
+                s.setStock(rs.getInt("stock_id"));
                 emplacements.add(s);
 
             }
@@ -68,13 +69,14 @@ public class EmplacementService {
 
     public void modifierEmplacement(Emplacement s) {
         try {
-            String req = "UPDATE emplacement SET libelle= ?, disponibilite = ? WHERE id= ?";
+            String req = "UPDATE emplacement SET lieu= ?, capacite = ?, stock_id=? WHERE id= ?";
             PreparedStatement ps = cnx.prepareStatement(req);
 
             ps.setString(1, s.getLieu());
             ps.setInt(2, s.getCapacite());
+            ps.setInt(3, s.getStock());
 
-            ps.setInt(3, s.getId());
+            ps.setInt(4, s.getId());
             System.out.println("Modification...");
             ps.executeUpdate();
 
