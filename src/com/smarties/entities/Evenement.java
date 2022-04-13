@@ -21,6 +21,11 @@ public class Evenement {
     int nb_places;
 //****************les getters and setters*****************
 
+    @Override
+    public String toString() {
+        return "Evenement{" + "id=" + id + ", nom=" + nom + ", Date_d=" + Date_d + ", Date_f=" + Date_f + ", lieu=" + lieu + ", type=" + type + ", nb_participants=" + nb_participants + ", nb_places=" + nb_places + '}';
+    }
+
     public int getId() {
         return id;
     }
