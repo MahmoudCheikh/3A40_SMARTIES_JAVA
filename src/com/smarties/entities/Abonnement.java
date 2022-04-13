@@ -18,6 +18,11 @@ public class Abonnement {
     private String dateF;
     private int prix;
 
+    
+    
+     public String toString() {
+        return "Abonnement{" + "id=" + id + ", id user=" + id_user_id + ", Date_d=" + dateD + ", Date_f=" + dateF + ", type=" + type + ", prix=" + prix + '}';
+    }
     public int getId() {
         return id;
     }

@@ -29,15 +29,16 @@ public class LocationService {
     }
 
     public void ajouterLocation(Location l) {
-        String query = "insert into location(id_user_id,id_abonnement_id,date,heure,duree) values(?,?,?,?,?)";
+        String query = "insert into location(id,id_user_id,id_abonnement_id,date,heure,duree) values(?,?,?,?,?,?)";
         try {
             PreparedStatement ste = cnx.prepareStatement(query);
 
-            ste.setInt(1, l.getIdUser());
+            ste.setInt(1, (int) l.getId());
+              ste.setInt(3, (int) l.getIdUser());
             ste.setInt(2, l.getIdAbonnement());
-            ste.setDate(3, Date.valueOf(l.getDate()));
-            ste.setString(4, l.getHeure());
-            ste.setFloat(5, l.getDuree());
+            ste.setDate(4, Date.valueOf(l.getDate()));
+            ste.setString(5, l.getHeure());
+            ste.setFloat(6, (int) l.getDuree());
 
             ste.executeUpdate();
             System.out.println("Location Ajoutée !!");
@@ -55,16 +56,14 @@ public class LocationService {
             ste = cnx.createStatement();
             ResultSet rs = ste.executeQuery(sql);
             while (rs.next()) {
-                Location l = new Location();
-
-                l.setId(rs.getInt("id"));
+                 Location l = new Location();
+                 l.setId(rs.getInt("id"));
                 l.setIdUser(rs.getInt(1));
                 l.setIdAbonnement(rs.getInt(1));
                 Date date = rs.getDate("date");
                 l.setDate(date.toLocalDate());
                 l.setHeure(rs.getString("heure"));
                 l.setDuree(rs.getFloat("duree"));
-                //l.setNbVues(rs.getInt(7));
 
                 locations.add(l);
             }
@@ -78,13 +77,16 @@ public class LocationService {
 
     public void modifierLocation(Location l) {
         try {
-            String req = "UPDATE location SET heure= ?, duree = ? WHERE id= ?";
+            String req = "UPDATE location SET heure= ?, duree = ? ,id_abonnement_id=? WHERE id= ?";
             PreparedStatement ps = cnx.prepareStatement(req);
+           
+             //ps.setDate(2,l.getDate(date.toLocalDate()));
+              ps.setString(1, l.getHeure());
+               ps.setFloat(2, l.getDuree());
+             ps.setInt(3, l.getIdAbonnement());
+             ps.setInt(4, l.getId());
+           
 
-            ps.setString(1, l.getHeure());
-            ps.setFloat(2, l.getDuree());
-
-            ps.setInt(3, l.getId());
             System.out.println("Modification...");
             ps.executeUpdate();
 

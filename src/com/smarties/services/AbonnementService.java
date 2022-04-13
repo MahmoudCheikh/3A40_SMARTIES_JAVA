@@ -80,6 +80,7 @@ public class AbonnementService {
             ps.setString(2, a.getDateD());
             ps.setString(3, a.getDateF());
             ps.setInt(4, a.getPrix());
+            ps.setInt(5, a.getId());
             System.out.println("Modification...");
             ps.executeUpdate();
 

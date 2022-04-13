@@ -23,6 +23,9 @@ public class Location {
     private int idAbonnement;
     private int idUser;
 
+      public String toString() {
+        return "Loaction{" + "id=" + id + ", id user=" + idUser + ", Date=" + Date + ", Heure=" + Heure + ", Duree=" + duree + ", id Abonnement=" + idAbonnement + '}';
+    }
     public int getId() {
         return id;
     }
