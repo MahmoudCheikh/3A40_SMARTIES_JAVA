@@ -56,8 +56,12 @@ public class ProduitService {
                 Produit p = new Produit();
                 p.setId(rs.getInt("id"));
                 p.setLibelle(rs.getString("libelle"));
+                p.setImage(rs.getString("image"));
                 p.setDescription(rs.getString("description"));
+                p.setPrix(rs.getFloat("prix"));
+                p.setType(rs.getString("type"));
                 produits.add(p);
+
 
             }
         } catch (SQLException ex) {
@@ -70,13 +74,16 @@ public class ProduitService {
 
     public void modifierProduit(Produit c) {
         try {
-            String req = "UPDATE produit SET libelle= ?, description = ? WHERE id= ?";
+            String req = "UPDATE produit SET libelle= ?, description = ?, image= ?, prix = ?, type= ? WHERE id= ?";
             PreparedStatement ps = cnx.prepareStatement(req);
 
             ps.setString(1, c.getLibelle());
             ps.setString(2, c.getDescription());
-
-            ps.setInt(3, c.getId());
+            ps.setString(3, c.getImage());
+            ps.setFloat(4, (float) c.getPrix());
+            ps.setString(5, c.getType());
+            
+            ps.setInt(6, c.getId());
             System.out.println("Modification...");
             ps.executeUpdate();
 

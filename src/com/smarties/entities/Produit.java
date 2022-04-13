@@ -19,7 +19,13 @@ public class Produit {
     String type;
     Favoris favoris;
     Stock stock;
-
+    
+    
+    public String toString() {
+        return "Produit{" + "id=" + id + ", libelle=" + libelle + ", image=" + image + ", description=" + description + ", prix=" + prix + ", type=" + type + ", type=" + type + '}';
+    }
+    
+    
     public Stock getStock() {
         return stock;
     }
