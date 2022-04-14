@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smarties.test.GuiMaintenanceController">
+   <children>
+      <TextField fx:id="txtid" layoutX="134.0" layoutY="15.0" />
+      <TextField fx:id="txtidprod" layoutX="134.0" layoutY="51.0" />
+      <TextField fx:id="txtrelation" layoutX="134.0" layoutY="88.0" />
+      <TextField fx:id="txtrecid" layoutX="134.0" layoutY="128.0" />
+      <TextField fx:id="textdatedeb" layoutX="134.0" layoutY="159.0" />
+      <TextField fx:id="textdatefi" layoutX="134.0" layoutY="195.0" />
+      <TextField fx:id="textadres" layoutX="134.0" layoutY="234.0" />
+      <TextField fx:id="textdescri" layoutX="134.0" layoutY="267.0" />
+      <ListView fx:id="listmaintenance" layoutX="300.0" layoutY="6.0" prefHeight="284.0" prefWidth="294.0" />
+      <Text layoutX="24.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID" />
+      <Text layoutX="24.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="id_produit_id " />
+      <Text layoutX="24.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="relation_id " />
+      <Text layoutX="24.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="reclamation_id " />
+      <Text layoutX="24.0" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" text="date_debut" />
+      <Text layoutX="24.0" layoutY="211.0" strokeType="OUTSIDE" strokeWidth="0.0" text="date_fin" />
+      <Text layoutX="24.0" layoutY="250.0" strokeType="OUTSIDE" strokeWidth="0.0" text="adresse" />
+      <Text layoutX="24.0" layoutY="284.0" strokeType="OUTSIDE" strokeWidth="0.0" text="description" />
+      <Button fx:id="btnajutermaint" layoutX="46.0" layoutY="351.0" mnemonicParsing="false" onAction="#Ajouter" text="Ajouter" />
+      <Button fx:id="btnmodifmaint" layoutX="253.0" layoutY="351.0" mnemonicParsing="false" onAction="#Modifier1" text="Modifier" />
+      <Button fx:id="btnsuppermaint" layoutX="438.0" layoutY="351.0" mnemonicParsing="false" onAction="#Supprimer" text="Supprimer" />
+      <TextField fx:id="textsupr" layoutX="399.0" layoutY="318.0" />
+      <TextField fx:id="textetat" layoutX="134.0" layoutY="306.0" />
+      <Text layoutX="25.0" layoutY="323.0" strokeType="OUTSIDE" strokeWidth="0.0" text="etat" />
+   </children>
+</AnchorPane>

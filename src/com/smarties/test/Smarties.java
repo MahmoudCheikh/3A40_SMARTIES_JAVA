@@ -60,6 +60,7 @@ public class Smarties extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
+
         MaConnexion connexion = MaConnexion.getInstance();
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("Smarties");
@@ -78,6 +79,37 @@ public class Smarties extends Application {
     public void showEventView() throws IOException {
         //   BorderPane eventpane = FXMLLoader.load(getClass().getResource("GuiEvenement.fxml"));
         //   mainLayout.setCenter(eventpane);
+
+        //MaConnexion connexion = MaConnexion.getInstance();
+         try {
+        Parent root = FXMLLoader.load(getClass().getResource("GuiMaintenance.fxml"));
+                    Scene scene = new Scene(root, 1366, 768);
+                    primaryStage.setTitle("GClaim");
+                    primaryStage.setScene(scene);
+                    primaryStage.show();
+                } catch (IOException ex) {
+                    System.out.println(ex.getMessage());
+                }
+        
+        Button btn = new Button();
+        btn.setText("Say 'Hello World'");
+        btn.setOnAction(new EventHandler<ActionEvent>() {
+            
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("Hello World!");
+            }
+        });
+//        
+//        StackPane root = new StackPane();
+//        root.getChildren().add(btn);
+//        
+//        Scene scene = new Scene(root, 300, 250);
+//        
+//        primaryStage.setTitle("Hello World!");
+//        primaryStage.setScene(scene);
+//        primaryStage.show();
+
     }
 
     /**
