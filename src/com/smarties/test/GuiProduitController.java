@@ -108,6 +108,12 @@ public class GuiProduitController implements Initializable {
     private ListView<?> listefav;
     @FXML
     private Label cds;
+    @FXML
+    private Label cds1;
+    @FXML
+    private Label cds2;
+    @FXML
+    private Label cds3;
 
     /**
      * Initializes the controller class.
@@ -184,7 +190,7 @@ public class GuiProduitController implements Initializable {
         Stock sto = new Stock();
         if(libS.getText().isEmpty()&&prixS.getText().isEmpty()&&quantiteS.getText().isEmpty()&&dispoS.getText().isEmpty()&&idProdS.getText().isEmpty()&&idEmpalcement.getText().isEmpty())
        {
-       cds.setText("Veuillez remplir tous les champs ");
+       cds1.setText("Veuillez remplir tous les champs ");
        }
        else{
         sto.setLibelle(libS.getText());
@@ -241,7 +247,7 @@ public class GuiProduitController implements Initializable {
         
         if(lieuE.getText().isEmpty()&&capaciteE.getText().isEmpty()&&idSE.getText().isEmpty())
        {
-       cds.setText("Veuillez remplir tous les champs ");
+       cds2.setText("Veuillez remplir tous les champs ");
        }
        else{
         emp.setLieu(lieuE.getText());
@@ -287,7 +293,7 @@ public class GuiProduitController implements Initializable {
         Favoris fav = new Favoris();
         if(produitF.getText().isEmpty()&&userF.getText().isEmpty())
        {
-       cds.setText("Veuillez remplir tous les champs ");
+       cds3.setText("Veuillez remplir tous les champs ");
        }
        else{
         int produitFav = Integer.parseInt(produitF.getText());
