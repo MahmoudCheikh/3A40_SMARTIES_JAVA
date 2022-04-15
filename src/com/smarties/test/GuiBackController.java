@@ -13,8 +13,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import com.smarties.*;
 
 /**
  * FXML Controller class
@@ -37,6 +40,7 @@ public class GuiBackController implements Initializable {
     private Button btnbackreclamation;
     @FXML
     private Button bntbackmaintenance;
+    private ImageView logo;
 
     /**
      * Initializes the controller class.
@@ -44,6 +48,11 @@ public class GuiBackController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     }
+    
+    public void displayImage(){
+            Image caroule = new Image(getClass().getResourceAsStream("/images/çaRoule.png"));
+        logo.setImage(caroule);
+        }
 
     @FXML
     private void evenement(ActionEvent event) throws IOException {
