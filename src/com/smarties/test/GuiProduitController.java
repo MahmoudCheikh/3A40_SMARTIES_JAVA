@@ -6,9 +6,11 @@
 package com.smarties.test;
 
 import com.smarties.entities.Emplacement;
+import com.smarties.entities.Favoris;
 import com.smarties.entities.Produit;
 import com.smarties.entities.Stock;
 import com.smarties.services.EmplacementService;
+import com.smarties.services.FavorisService;
 import com.smarties.services.ProduitService;
 import com.smarties.services.StockService;
 import java.net.URL;
@@ -31,6 +33,7 @@ public class GuiProduitController implements Initializable {
     private ProduitService pr = new ProduitService();
     private StockService st = new StockService();
     private EmplacementService em = new EmplacementService();
+    private FavorisService fa = new FavorisService();
 
     @FXML
     private TextField typeProd;
@@ -90,6 +93,18 @@ public class GuiProduitController implements Initializable {
     private TextField idEmp;
     @FXML
     private ListView<?> listeEmp;
+    @FXML
+    private TextField userF;
+    @FXML
+    private TextField produitF;
+    @FXML
+    private Button btnAjoutFav;
+    @FXML
+    private Button btnSupprimerFav;
+    @FXML
+    private TextField idfav;
+    @FXML
+    private ListView<?> listefav;
 
     /**
      * Initializes the controller class.
@@ -105,6 +120,9 @@ public class GuiProduitController implements Initializable {
 
         ArrayList a3 = (ArrayList) em.afficherEmplacement();
         listeEmp.getItems().addAll(a3);
+
+        ArrayList a4 = (ArrayList) fa.afficherFavoris();
+        listefav.getItems().addAll(a4);
     }
 
     @FXML
@@ -209,7 +227,6 @@ public class GuiProduitController implements Initializable {
         int cap = Integer.parseInt(capaciteE.getText());
         int idstock = Integer.parseInt(idSE.getText());
 
-
         emp.setCapacite(cap);
         emp.setStock(idstock);
 
@@ -224,7 +241,6 @@ public class GuiProduitController implements Initializable {
         int cap = Integer.parseInt(capaciteE.getText());
         int idstock = Integer.parseInt(idSE.getText());
 
-
         emp.setCapacite(cap);
         emp.setStock(idstock);
 
@@ -238,6 +254,29 @@ public class GuiProduitController implements Initializable {
     private void SupprimerEmplacement(ActionEvent event) {
         int id = Integer.parseInt(idEmp.getText());
         em.supprimerEmplacement(id);
+    }
+
+    /**
+     * ************************************************************************FAVORIS**************************************************************************************
+     */
+    @FXML
+    private void AjouterFavoris(ActionEvent event) {
+
+        Favoris fav = new Favoris();
+
+        int produitFav = Integer.parseInt(produitF.getText());
+        int userFav = Integer.parseInt(userF.getText());
+
+        fav.setIdProduit(produitFav);
+        fav.setIdUser(userFav);
+
+        fa.ajouterFavoris(fav);
+    }
+
+    @FXML
+    private void SupprimerFavoris(ActionEvent event) {
+        int id = Integer.parseInt(idfav.getText());
+        fa.supprimerFavoris(id);
     }
 
 }

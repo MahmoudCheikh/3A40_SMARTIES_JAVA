@@ -15,6 +15,11 @@ public class Favoris {
     private int IdProduit;
     private int idUser;
 
+    @Override
+    public String toString() {
+        return "Favoris{" + "id=" + id + ", IdProduit=" + IdProduit + ", idUser=" + idUser + '}';
+    }
+    
     public int getId() {
         return id;
     }
