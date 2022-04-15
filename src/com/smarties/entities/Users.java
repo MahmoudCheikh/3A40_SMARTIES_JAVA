@@ -18,6 +18,15 @@ public class Users {
     String adresse;
     String role;
     String image;
+    String password;
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getPassword() {
+        return password;
+    }
 
     @Override
     public String toString() {

@@ -28,15 +28,14 @@ public class UsersService {
     }
 
     public void ajouterUser(Users p) {
-        String query = "insert into users(nom,prenom,adresse,email,image,role) values(?,?,?,?,?,?)";
+        String query = "insert into users(nom,prenom,adresse,email,password) values(?,?,?,?,?)";
         try {
             PreparedStatement ste = cnx.prepareStatement(query);
             ste.setString(1, p.getNom());
             ste.setString(2, p.getPrenom());
             ste.setString(3, p.getAdresse());
             ste.setString(4, p.getEmail());
-            ste.setString(5, p.getImage());
-            ste.setString(6, p.getRole());
+            ste.setString(5, p.getPassword());
 
             ste.executeUpdate();
             System.out.println("Personne Ajoutée !!");
@@ -62,6 +61,7 @@ public class UsersService {
                 p.setAdresse(rs.getString(7));
                 p.setImage(rs.getString(8));
                 p.setRole(rs.getString(9));
+                
 
                 personnes.add(p);
 
@@ -76,13 +76,16 @@ public class UsersService {
 
     public void modifierUser(Users c) {
         try {
-            String req = "UPDATE users SET nom= ?, prenom = ? WHERE id= ?";
+            String req = "UPDATE users SET nom= ?, prenom = ?, email=? , password=? , adresse=?  WHERE id= ?";
             PreparedStatement ps = cnx.prepareStatement(req);
 
             ps.setString(1, c.getNom());
             ps.setString(2, c.getPrenom());
+            ps.setString(3, c.getEmail());
+            ps.setString(4, c.getPassword());
+            ps.setString(5, c.getAdresse());
 
-            ps.setInt(3, c.getId());
+            ps.setInt(6, c.getId());
             System.out.println("Modification...");
             ps.executeUpdate();
 
