@@ -20,6 +20,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
@@ -105,6 +106,8 @@ public class GuiProduitController implements Initializable {
     private TextField idfav;
     @FXML
     private ListView<?> listefav;
+    @FXML
+    private Label cds;
 
     /**
      * Initializes the controller class.
@@ -127,6 +130,13 @@ public class GuiProduitController implements Initializable {
 
     @FXML
     private void AjoutProd(ActionEvent event) {
+        
+        
+        if(libelleProd.getText().isEmpty()&&imageProd.getText().isEmpty()&&descProd.getText().isEmpty()&&prixProd.getText().isEmpty()&&typeProd.getText().isEmpty())
+       {
+       cds.setText("Veuillez remplir tous les champs ");
+       }
+       else{
         Produit pro = new Produit();
 
         pro.setLibelle(libelleProd.getText());
@@ -138,6 +148,7 @@ public class GuiProduitController implements Initializable {
         pro.setPrix(prix);
 
         pr.ajouterProduit(pro);
+        }
     }
 
     @FXML
@@ -171,7 +182,11 @@ public class GuiProduitController implements Initializable {
     private void AjoutStock(ActionEvent event) {
 
         Stock sto = new Stock();
-
+        if(libS.getText().isEmpty()&&prixS.getText().isEmpty()&&quantiteS.getText().isEmpty()&&dispoS.getText().isEmpty()&&idProdS.getText().isEmpty()&&idEmpalcement.getText().isEmpty())
+       {
+       cds.setText("Veuillez remplir tous les champs ");
+       }
+       else{
         sto.setLibelle(libS.getText());
         int prix1 = Integer.parseInt(prixS.getText());
         int q = Integer.parseInt(quantiteS.getText());
@@ -185,6 +200,7 @@ public class GuiProduitController implements Initializable {
         sto.setEmplacement(empl);
 
         st.ajouterStock(sto);
+        }
     }
 
     @FXML
@@ -222,7 +238,12 @@ public class GuiProduitController implements Initializable {
     @FXML
     private void AjouterEmplacement(ActionEvent event) {
         Emplacement emp = new Emplacement();
-
+        
+        if(lieuE.getText().isEmpty()&&capaciteE.getText().isEmpty()&&idSE.getText().isEmpty())
+       {
+       cds.setText("Veuillez remplir tous les champs ");
+       }
+       else{
         emp.setLieu(lieuE.getText());
         int cap = Integer.parseInt(capaciteE.getText());
         int idstock = Integer.parseInt(idSE.getText());
@@ -231,6 +252,7 @@ public class GuiProduitController implements Initializable {
         emp.setStock(idstock);
 
         em.ajouterEmplacement(emp);
+        }
     }
 
     @FXML
@@ -263,7 +285,11 @@ public class GuiProduitController implements Initializable {
     private void AjouterFavoris(ActionEvent event) {
 
         Favoris fav = new Favoris();
-
+        if(produitF.getText().isEmpty()&&userF.getText().isEmpty())
+       {
+       cds.setText("Veuillez remplir tous les champs ");
+       }
+       else{
         int produitFav = Integer.parseInt(produitF.getText());
         int userFav = Integer.parseInt(userF.getText());
 
@@ -271,6 +297,7 @@ public class GuiProduitController implements Initializable {
         fav.setIdUser(userFav);
 
         fa.ajouterFavoris(fav);
+        }
     }
 
     @FXML
