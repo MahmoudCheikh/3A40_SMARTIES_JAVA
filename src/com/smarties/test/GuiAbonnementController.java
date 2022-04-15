@@ -18,6 +18,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
@@ -72,6 +73,10 @@ public class GuiAbonnementController implements Initializable {
     private TextField TextDuree;
     @FXML
     private DatePicker textDatePickLoc;
+    @FXML
+    private Label wrong;
+    @FXML
+    private Label wrong2;
   
 
     /**
@@ -92,7 +97,15 @@ public class GuiAbonnementController implements Initializable {
     private void AjouterAbonnement(ActionEvent event) {
 
         Abonnement ab = new Abonnement();
-
+       /*  else if(username.getText().isEmpty() && password.getText().isEmpty()) {
+            wrongLogIn.setText("Please enter your data.");
+        }*/
+       if(textIDAbonnement.getText().isEmpty()&&textIDUserA.getText().isEmpty()&&textPrixAb.getText().isEmpty())
+       {
+       wrong.setText("Veuillez remplir tous les champs ");
+     
+       }
+       else{
         ab.setDateD(textDateDebAbonnment.getText());
         ab.setDateF(textDateFinAbonnment.getText());
         ab.setType(TextType.getText());
@@ -106,6 +119,14 @@ public class GuiAbonnementController implements Initializable {
         ab.setPrix(x3);
 
         as.ajouterAbonnement(ab);
+         wrong.setText(" Abonnement ajoute avec succces ");
+         textDateDebAbonnment.setText(" ");
+         textDateFinAbonnment.setText(" ");
+         textIDAbonnement.setText(" ");
+         textIDUserA.setText(" ");
+         textPrixAb.setText(" ");
+         textPrixAb.setText(" ");
+       }
 
     }
 
@@ -113,6 +134,7 @@ public class GuiAbonnementController implements Initializable {
     private void SupprimerAbonnement(ActionEvent event) {
         int id = Integer.parseInt(textIDAbonnement.getText());
         as.supprimerAbonnement(id);
+        textIDAbonnement.setText(" ");
     }
 
     @FXML
@@ -140,8 +162,16 @@ public class GuiAbonnementController implements Initializable {
     private void AjouterLoaction(ActionEvent event) {
 
         Location loc1 = new Location();
+        
        LocalDate date = textDatePickLoc.getValue(); 
        loc1.setDate(date);
+       if(textIdLocation.getText().isEmpty()&&TextIdUserLoc.getText().isEmpty()&&TextIdAbonne.getText().isEmpty()&&TextDuree.getText().isEmpty())
+       {
+         wrong2.setText("Veuillez remplir tous les champs ");
+       }
+       else 
+           
+       {  
         
         loc1.setHeure(TextHeureLoc.getText());
 
@@ -154,6 +184,7 @@ public class GuiAbonnementController implements Initializable {
         loc1.setIdAbonnement(x3);
         loc1.setDuree(x4);
         loc.ajouterLocation(loc1);
+       wrong2.setText("location ajoute avec succes ");}
     }
 
     @FXML
