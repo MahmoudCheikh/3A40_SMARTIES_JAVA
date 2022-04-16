@@ -8,21 +8,35 @@
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smarties.test.GuiCommandeController">
    <children>
-      <TabPane prefHeight="420.0" prefWidth="620.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane prefHeight="420.0" prefWidth="653.0" tabClosingPolicy="UNAVAILABLE">
          <tabs>
             <Tab text="Commande">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TextField fx:id="txtProduit" layoutX="236.0" layoutY="50.0" prefHeight="25.0" prefWidth="312.0" />
-                        <TextField fx:id="txtnbrproduit" layoutX="236.0" layoutY="79.0" prefHeight="25.0" prefWidth="312.0" />
-                        <ListView fx:id="listcommande" layoutX="295.0" layoutY="184.0" prefHeight="164.0" prefWidth="253.0" />
-                        <Label layoutX="23.0" layoutY="54.0" prefHeight="17.0" prefWidth="139.0" text="Produit">
+                        <TextField fx:id="txtProduit" layoutX="217.0" layoutY="55.0" prefHeight="25.0" prefWidth="119.0">
+                           <effect>
+                              <InnerShadow />
+                           </effect></TextField>
+                        <TextField fx:id="txtnbrproduit" layoutX="215.0" layoutY="85.0" prefHeight="25.0" prefWidth="123.0">
+                           <effect>
+                              <InnerShadow />
+                           </effect></TextField>
+                        <ListView fx:id="listcommande" layoutX="295.0" layoutY="184.0" prefHeight="164.0" prefWidth="253.0">
+                           <effect>
+                              <DropShadow />
+                           </effect></ListView>
+                        <Label layoutX="25.0" layoutY="56.0" prefHeight="17.0" prefWidth="148.0" text="Produit">
                            <font>
                               <Font name="Barlow Condensed Light" size="17.0" />
                            </font></Label>
@@ -30,81 +44,194 @@
                            <font>
                               <Font name="Barlow Condensed Light" size="16.0" />
                            </font></Label>
-                        <Button fx:id="btnajouterc" layoutX="19.0" layoutY="176.0" mnemonicParsing="false" onAction="#ajouterc" prefHeight="25.0" prefWidth="113.0" text="Ajouter" textAlignment="CENTER" textFill="#f87205">
-                           <font>
-                              <Font name="Barlow Condensed Light" size="14.0" />
-                           </font>
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets></Button>
-                        <Button fx:id="btnupdatec" layoutX="22.0" layoutY="214.0" mnemonicParsing="false" onAction="#update" prefHeight="25.0" prefWidth="107.0" text="Update" textAlignment="CENTER" textFill="#f87205">
-                           <font>
-                              <Font name="Barlow Condensed Light" size="14.0" />
-                           </font>
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets></Button>
-                        <Button fx:id="btndeletec" layoutX="174.0" layoutY="294.0" mnemonicParsing="false" onAction="#deletec" prefHeight="25.0" prefWidth="90.0" text="Delete" textAlignment="CENTER" textFill="#f87205">
-                           <font>
-                              <Font name="Barlow Condensed Light" size="14.0" />
-                           </font>
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets></Button>
-                        <Label layoutX="25.0" layoutY="119.0" prefHeight="17.0" prefWidth="134.0" text="Id User">
-                           <font>
-                              <Font name="Barlow Condensed Light" size="16.0" />
-                           </font></Label>
-                        <TextField fx:id="txtiduser" layoutX="236.0" layoutY="115.0" prefHeight="25.0" prefWidth="313.0" />
-                        <TextField fx:id="txtid" layoutX="19.0" layoutY="254.0" prefHeight="25.0" prefWidth="238.0" />
-                        <Button fx:id="recherche" layoutX="175.0" layoutY="336.0" mnemonicParsing="false" onAction="#Rechercher" prefHeight="25.0" prefWidth="83.0" text="Rechercher" textAlignment="CENTER" textFill="#f87205">
+                        <Button fx:id="btnajouterc" layoutX="19.0" layoutY="156.0" mnemonicParsing="false" onAction="#ajouterc" prefHeight="25.0" prefWidth="113.0" style="-fx-background-color: orange;" text="Ajouter" textAlignment="CENTER" textFill="#f8f8f7">
                            <font>
                               <Font name="Barlow Condensed Light" size="14.0" />
                            </font>
                            <opaqueInsets>
                               <Insets />
                            </opaqueInsets>
+                           <effect>
+                              <DropShadow />
+                           </effect></Button>
+                        <Button fx:id="btnupdatec" layoutX="22.0" layoutY="287.0" mnemonicParsing="false" onAction="#update" prefHeight="25.0" prefWidth="107.0" style="-fx-background-color: orange;" text="Update" textAlignment="CENTER" textFill="#f8f8f7">
+                           <font>
+                              <Font name="Barlow Condensed Light" size="14.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <effect>
+                              <DropShadow />
+                           </effect></Button>
+                        <Button fx:id="btndeletec" layoutX="174.0" layoutY="287.0" mnemonicParsing="false" onAction="#deletec" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: orange;" text="Delete" textAlignment="CENTER" textFill="#f8f8f7">
+                           <font>
+                              <Font name="Barlow Condensed Light" size="14.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <effect>
+                              <DropShadow />
+                           </effect></Button>
+                        <Label layoutX="25.0" layoutY="119.0" prefHeight="17.0" prefWidth="134.0" text="Id User">
+                           <font>
+                              <Font name="Barlow Condensed Light" size="16.0" />
+                           </font></Label>
+                        <TextField fx:id="txtiduser" layoutX="214.0" layoutY="117.0" prefHeight="25.0" prefWidth="126.0">
+                           <effect>
+                              <InnerShadow />
+                           </effect></TextField>
+                        <TextField fx:id="txtid" layoutX="19.0" layoutY="254.0" prefHeight="25.0" prefWidth="238.0">
+                           <effect>
+                              <InnerShadow />
+                           </effect></TextField>
+                        <Button fx:id="recherche" layoutX="175.0" layoutY="336.0" mnemonicParsing="false" onAction="#Rechercher" prefHeight="25.0" prefWidth="83.0" style="-fx-background-color: orange;" text="Rechercher" textAlignment="CENTER" textFill="#f8f8f7">
+                           <font>
+                              <Font name="Barlow Condensed Light" size="14.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <effect>
+                              <DropShadow />
+                           </effect>
                         </Button>
-                        <TextField fx:id="rechc" layoutX="18.0" layoutY="336.0" />
+                        <TextField fx:id="rechc" layoutX="18.0" layoutY="336.0">
+                           <effect>
+                              <InnerShadow />
+                           </effect></TextField>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="435.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/bon-de-commande.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="24.0" fitWidth="25.0" layoutX="25.0" layoutY="158.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/70310.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="25.0" fitWidth="32.0" layoutX="25.0" layoutY="289.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/icone%20modif.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="22.0" fitWidth="23.0" layoutX="175.0" layoutY="290.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/sssssssss.jpg" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="16.0" layoutY="7.0" prefHeight="34.0" prefWidth="244.0" text="Commande " textFill="#ff9500">
+                           <font>
+                              <Font name="Cambria Math" size="35.0" />
+                           </font>
+                           <effect>
+                              <Glow />
+                           </effect>
+                        </Label>
                      </children>
                   </AnchorPane>
                </content>
             </Tab>
             <Tab fx:id="btndeleteachat" text="Achat">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="391.0" prefWidth="686.0">
                      <children>
-                        <Button fx:id="btnajouterachat" layoutX="17.0" layoutY="222.0" mnemonicParsing="false" onAction="#ajoutachat" prefHeight="25.0" prefWidth="78.0" text="Ajouter" textFill="#ff6a00" />
-                        <TextField fx:id="txtidUser" layoutX="204.0" layoutY="27.0" prefHeight="25.0" prefWidth="296.0" />
-                        <Label layoutX="23.0" layoutY="31.0" prefHeight="17.0" prefWidth="125.0" text="Id User ">
+                        <Button fx:id="btnajouterachat" layoutX="14.0" layoutY="209.0" mnemonicParsing="false" onAction="#ajoutachat" prefHeight="25.0" prefWidth="105.0" style="-fx-background-color: orange;" text="Ajouter" textFill="WHITE">
+                           <font>
+                              <Font name="Barlow Condensed Light" size="12.0" />
+                           </font>
+                           <effect>
+                              <DropShadow />
+                           </effect></Button>
+                        <TextField fx:id="txtidUser" layoutX="114.0" layoutY="42.0" prefHeight="25.0" prefWidth="127.0">
+                           <effect>
+                              <InnerShadow />
+                           </effect></TextField>
+                        <Label layoutX="22.0" layoutY="44.0" prefHeight="17.0" prefWidth="125.0" text="Id User ">
                            <font>
                               <Font name="Barlow Condensed Light" size="18.0" />
                            </font></Label>
-                        <Label layoutX="18.0" layoutY="65.0" prefHeight="17.0" prefWidth="81.0" text="Produit">
+                        <Label layoutX="12.0" layoutY="76.0" prefHeight="17.0" prefWidth="81.0" text="Produit">
                            <font>
                               <Font name="Barlow Condensed Light" size="18.0" />
                            </font></Label>
-                        <TextField fx:id="txtidproduit" layoutX="204.0" layoutY="61.0" prefHeight="25.0" prefWidth="297.0" />
+                        <TextField fx:id="txtidproduit" layoutX="115.0" layoutY="73.0" prefHeight="25.0" prefWidth="126.0">
+                           <effect>
+                              <InnerShadow />
+                           </effect></TextField>
                         <Label layoutX="23.0" layoutY="107.0" prefHeight="17.0" prefWidth="43.0" text="Date ">
                            <font>
                               <Font name="Barlow Condensed Light" size="18.0" />
                            </font></Label>
-                        <TextField fx:id="txtnomclient" layoutX="201.0" layoutY="137.0" prefHeight="25.0" prefWidth="305.0" />
+                        <TextField fx:id="txtnomclient" layoutX="110.0" layoutY="140.0" prefHeight="25.0" prefWidth="142.0">
+                           <effect>
+                              <InnerShadow />
+                           </effect></TextField>
                         <Label layoutX="13.0" layoutY="141.0" prefHeight="17.0" prefWidth="90.0" text="Nom Client">
                            <font>
                               <Font name="Barlow Condensed Light" size="18.0" />
                            </font></Label>
-                        <Label layoutX="16.0" layoutY="177.0" prefHeight="17.0" prefWidth="98.0" text="Numero Client">
+                        <Label layoutX="9.0" layoutY="177.0" prefHeight="17.0" prefWidth="98.0" text="Numero Client">
                            <font>
                               <Font name="Barlow Condensed Light" size="18.0" />
                            </font></Label>
-                        <TextField fx:id="txtnumclient" layoutX="204.0" layoutY="175.0" prefHeight="25.0" prefWidth="308.0" />
-                        <ListView fx:id="listachat" layoutX="225.0" layoutY="209.0" prefHeight="141.0" prefWidth="354.0" />
-                        <TextField fx:id="idachat" layoutX="21.0" layoutY="287.0" />
+                        <TextField fx:id="txtnumclient" layoutX="107.0" layoutY="176.0" prefHeight="25.0" prefWidth="153.0">
+                           <effect>
+                              <InnerShadow />
+                           </effect></TextField>
+                        <ListView fx:id="listachat" layoutX="252.0" layoutY="238.0" prefHeight="141.0" prefWidth="354.0">
+                           <effect>
+                              <InnerShadow />
+                           </effect></ListView>
+                        <TextField fx:id="idachat" layoutX="21.0" layoutY="287.0" prefHeight="25.0" prefWidth="199.0">
+                           <effect>
+                              <InnerShadow />
+                           </effect></TextField>
                         <Label layoutX="100.0" layoutY="291.0" prefHeight="17.0" prefWidth="42.0" />
-                        <Button fx:id="btnupdateachat" layoutX="18.0" layoutY="255.0" mnemonicParsing="false" onAction="#updateachat" text="Update" textFill="#ff6a00" />
-                        <Button fx:id="btndeleteachatx" layoutX="102.0" layoutY="255.0" mnemonicParsing="false" onAction="#deleteachat" text="Delete" textFill="#ff6a00" />
-                        <DatePicker fx:id="dateachatpik" layoutX="197.0" layoutY="95.0" prefHeight="25.0" prefWidth="308.0" />
+                        <Button fx:id="btnupdateachat" layoutX="18.0" layoutY="255.0" mnemonicParsing="false" onAction="#updateachat" prefHeight="23.0" prefWidth="79.0" style="-fx-background-color: orange;" text="Update" textFill="#f5eeea">
+                           <font>
+                              <Font name="Barlow Condensed Light" size="12.0" />
+                           </font>
+                           <effect>
+                              <DropShadow />
+                           </effect></Button>
+                        <Button fx:id="btndeleteachatx" layoutX="110.0" layoutY="255.0" mnemonicParsing="false" onAction="#deleteachat" prefHeight="23.0" prefWidth="113.0" style="-fx-background-color: orange;" text="Delete" textFill="#f5eeea">
+                           <font>
+                              <Font name="Barlow Condensed Light" size="12.0" />
+                           </font>
+                           <effect>
+                              <DropShadow />
+                           </effect></Button>
+                        <DatePicker fx:id="dateachatpik" layoutX="117.0" layoutY="106.0" prefHeight="25.0" prefWidth="130.0">
+                           <effect>
+                              <InnerShadow />
+                           </effect></DatePicker>
+                        <ImageView fitHeight="150.0" fitWidth="213.0" layoutX="410.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/pngtree-shopping-mall-logo-image_2235997.jpg" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="22.0" fitWidth="23.0" layoutX="18.0" layoutY="211.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/70310.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="18.0" fitWidth="22.0" layoutX="114.0" layoutY="259.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/sssssssss.jpg" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="20.0" fitWidth="18.0" layoutX="20.0" layoutY="259.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/icone%20modif%201.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="10.0" prefHeight="17.0" prefWidth="427.0" text="Achat" textFill="#f57200">
+                           <font>
+                              <Font name="Cambria Math" size="35.0" />
+                           </font>
+                        </Label>
                      </children>
                   </AnchorPane>
                </content>
