@@ -131,7 +131,7 @@ public class EvenementService {
                 Evenement e = new Evenement();
                 e.setId(rs.getInt(1));
                 e.setNom(rs.getString(2));
-               // e.setDate_d(rs.getDate(3));
+                //e.setDate_d(rs.getDate(3));
                 //e.setDate_f(rs.getDate(4));
              
                 e.setLieu(rs.getString(5));

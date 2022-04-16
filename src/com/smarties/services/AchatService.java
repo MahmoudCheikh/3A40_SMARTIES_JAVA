@@ -52,13 +52,15 @@ public class AchatService {
             while (rs.next()) {
                 Achat p = new Achat();
                 p.setId(rs.getInt("id"));
+                p.setIdUser(rs.getInt("id_user_id"));
                 p.setIdProduit(rs.getInt("id_produit_id"));               
                
-                p.setIdProduit(rs.getInt(3));
                 Date date = rs.getDate("date");
                 p.setDate(date.toLocalDate());
                 
                 p.setNomClient(rs.getString("nom_client"));
+                p.setNumeroClient(rs.getInt("numero_client"));
+
                 
                 Achats.add(p);
 
@@ -116,4 +118,44 @@ public class AchatService {
 
     }
 
+              public List<Achat> Chercher(String titreN) {
+       List<Achat> list = new ArrayList<>();
+        try{
+            String req = "SELECT * FROM achat where id=?";
+             PreparedStatement ps = cnx.prepareStatement(req);
+            System.out.println("RECHERCHE...");
+            ps.setString(1,titreN);
+            ResultSet rs = ps.executeQuery();
+         
+              System.out.println(titreN);
+            while(rs.next()){
+                Achat a = new Achat();
+                  
+                a.setId(rs.getInt(1));
+                a.setIdUser(rs.getInt(2));
+            ps.setDate(3, Date.valueOf(a.getDate()));
+                //e.setDate_f(rs.getDate(4));
+                //a.setDate(Date.valueOf(a.getDate()));
+
+                a.setNomClient(rs.getString(4));
+                a.setNumeroClient(rs.getInt(5));
+               
+               
+                
+                list.add(a);
+            }
+            
+        }
+        catch(SQLException e){
+            
+        }
+        return list ;   
+    }
+
+
+
+
+
 }
+
+

@@ -14,9 +14,13 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.regex.Pattern;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
@@ -38,7 +42,7 @@ public class GuiCommandeController implements Initializable {
     @FXML
     private TextField txtnbrproduit;
     @FXML
-    private ListView<?> listcommande;
+    private ListView<Commande> listcommande;
     @FXML
     private Button btnajouterc;
     @FXML
@@ -64,13 +68,17 @@ public class GuiCommandeController implements Initializable {
     @FXML
     private TextField txtidproduit;
     @FXML
-    private ListView<?> listachat;
+    private ListView<Achat> listachat;
     @FXML
     private TextField idachat;
     @FXML
     private Button btndeleteachatx;
     @FXML
     private DatePicker dateachatpik;
+    @FXML
+    private Button recherche;
+    @FXML
+    private TextField rechc;
 
     /**
      * Initializes the controller class.
@@ -87,6 +95,23 @@ public class GuiCommandeController implements Initializable {
 
     @FXML
     private void ajouterc(ActionEvent event) {
+         if((txtProduit.getText().equals(""))||(txtnbrproduit.getText().equals(""))||(txtiduser.getText().equals(""))){
+     Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("champs manquants !");
+            alert.showAndWait();
+         }
+         else if(!( Pattern.matches("[0-9]*",txtnbrproduit.getText()))){
+           Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("nombre de produit doit etre de type Int !");
+            alert.showAndWait();
+       }
+         
+         
+        else {
         Commande c = new Commande();
 
         int x1 = Integer.parseInt(txtProduit.getText());
@@ -98,12 +123,40 @@ public class GuiCommandeController implements Initializable {
         c.setIdUser(x3);
 
         cs.ajouterCommande(c);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success");
+            alert.setContentText("commande ajoutée!");
+            alert.show();
+             ObservableList<Commande> items =FXCollections.observableArrayList();
+        List<Commande> listcomm = cs.afficherCommande();
+        for(Commande r : listcomm ) {
+            String ch = r.toString();
+            items.add(r);
+        }
+       
+            listcommande.setItems(items);
+         }
 
     }
-
+    
     @FXML
     private void update(ActionEvent event) {
-
+   if((txtProduit.getText().equals(""))||(txtnbrproduit.getText().equals(""))||(txtiduser.getText().equals(""))){
+     Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("champs manquants !");
+            alert.showAndWait();
+         }
+         else if(!( Pattern.matches("[0-9]*",txtnbrproduit.getText()))){
+           Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("nombre de produit doit etre de type Int !");
+            alert.showAndWait();
+       }
+         
+         else{
         Commande c = new Commande();
 
         int x1 = Integer.parseInt(txtProduit.getText());
@@ -122,16 +175,86 @@ public class GuiCommandeController implements Initializable {
         System.out.println(c);
 
         cs.modifierCommande(c);
-    }
-
-    @FXML
+          ObservableList<Commande> items =FXCollections.observableArrayList();
+        List<Commande> listcomm = cs.afficherCommande();
+        for(Commande r : listcomm) {
+            String ch = r.toString();
+            items.add(r);  
+          }
+         Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success");
+            alert.setContentText("modification effectuée!");
+            alert.show();
+        } 
+}
+   
+        @FXML
     private void deletec(ActionEvent event) {
         int id = Integer.parseInt(txtid.getText());
         cs.supprimerCommande(id);
+        
+         
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success");
+            alert.setContentText("Evenement supprimé!");
+            alert.show();
+           ObservableList<Commande> items =FXCollections.observableArrayList();
+        List<Commande> listcomm = cs.afficherCommande();
+        for(Commande r : listcomm) {
+            String ch = r.toString();
+            items.add(r);
+        }
+            listcommande.setItems(items);
+    }
+    
+     @FXML
+    private void Rechercher(ActionEvent event) {
+                
+            CommandeService  n=new CommandeService();
+           List<Commande> R=   n.Chercher(rechc.getText());
+          
+       ObservableList<Commande> datalist = FXCollections.observableArrayList(R);
+
+     
+            listcommande.setItems(datalist);
+
     }
 /*---------------------Achat-----------------------------*/
     @FXML
     private void ajoutachat(ActionEvent event) {
+      LocalDate now = LocalDate.now();
+         if((txtidUser.getText().equals(""))||(txtidproduit.getText().equals(""))||(dateachatpik.getValue().equals(""))||(txtnumclient.getText().equals(""))||(txtnomclient.getText().equals(""))){
+     Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("champs manquants !");
+            alert.showAndWait();
+         }
+         else if(!( Pattern.matches("[a-z,A-Z]*",txtnomclient.getText()))){
+           Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("Nom de Client doit etre de type String !");
+            alert.showAndWait();
+          
+       }
+           else if(!( Pattern.matches("[0-9]*",txtnumclient.getText()))){
+           Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("numero de client doit etre de type Int !");
+            alert.showAndWait();
+       }
+         
+         else if(dateachatpik.getValue().isBefore(now)){
+           Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("la date debut doit etre supérieur a celle d'aujourd'hui ! ");
+            alert.showAndWait();
+       }
+         else {
+         
          Achat a = new Achat();
             int xx1 = Integer.parseInt(txtidUser.getText());
             int xx2 = Integer.parseInt(txtidproduit.getText());
@@ -142,17 +265,64 @@ public class GuiCommandeController implements Initializable {
              
                      a.setNomClient(txtnomclient.getText());
 
-        a.setNumeroClient(xx3);
         a.setIdProduit(xx2);
         a.setIdUser(xx1);
         a.setDate(date);
-             
+        a.setNumeroClient(xx3);
+     
+        
                 sa.ajouterAchat(a);
+        
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success");
+            alert.setContentText("Achat ajouté!");
+            alert.show();        
+        ObservableList<Achat> items =FXCollections.observableArrayList();
+        List<Achat> listachh = sa.afficherAchat();
+        for(Achat r : listachh) {
+            String ch = r.toString();
+            items.add(r);
+        }
+       
+    listachat.setItems(items);
 
     }
-
+ }
     @FXML
     private void updateachat(ActionEvent event) {
+         LocalDate now = LocalDate.now();
+         if((txtidUser.getText().equals(""))||(txtidproduit.getText().equals(""))||(dateachatpik.getValue().equals(""))||(txtnumclient.getText().equals(""))||(txtnomclient.getText().equals(""))){
+     Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("champs manquants !");
+            alert.showAndWait();
+         }
+         else if(!( Pattern.matches("[a-z,A-Z]*",txtnomclient.getText()))){
+           Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("Nom de Client doit etre de type String !");
+            alert.showAndWait();
+          
+       }
+           else if(!( Pattern.matches("[0-9]*",txtnumclient.getText()))){
+           Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("numero de client doit etre de type Int !");
+            alert.showAndWait();
+       }
+         
+         else if(dateachatpik.getValue().isBefore(now)){
+           Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("la date debut doit etre supérieur a celle d'aujourd'hui ! ");
+            alert.showAndWait();
+       }
+       
+         else {
         
         Achat a = new Achat();
 
@@ -183,12 +353,41 @@ public class GuiCommandeController implements Initializable {
         System.out.println(a);
 
         sa.modifierAchat(a);
-    }
-
+     
+        ObservableList<Achat> items =FXCollections.observableArrayList();
+        List<Achat> listachh = sa.afficherAchat();
+        for(Achat r : listachh) {
+            String ch = r.toString();
+            items.add(r);  
+          }
+         Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success");
+            alert.setContentText("modification effectuée!");
+            alert.show();
+    
+        } 
+   }
+   
+    
     @FXML
     private void deleteachat(ActionEvent event) {
           int id = Integer.parseInt(idachat.getText());
         sa.supprimerAchat(id);
+        
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success");
+            alert.setContentText("Evenement supprimé!");
+            alert.show();
+           ObservableList<Achat> items =FXCollections.observableArrayList();
+        List<Achat> listachh = sa.afficherAchat();
+        for(Achat r : listachh) {
+            String ch = r.toString();
+            items.add(r);
+        }
+       
+    listachat.setItems(items);
     }
 
 }
+
+

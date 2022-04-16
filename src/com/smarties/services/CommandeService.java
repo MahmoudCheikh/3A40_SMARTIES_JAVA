@@ -108,4 +108,33 @@ public class CommandeService {
 
     }
 
+    public List<Commande> Chercher(String titreN) {
+       List<Commande> list = new ArrayList<>();
+        try{
+            String req = "SELECT * FROM commande where id=?";
+             PreparedStatement ps = cnx.prepareStatement(req);
+            System.out.println("RECHERCHE...");
+            ps.setString(1,titreN);
+            ResultSet rs = ps.executeQuery();
+         
+              System.out.println(titreN);
+            while(rs.next()){
+                Commande c = new Commande();
+                c.setId(rs.getInt(1));
+                c.setIdUser(rs.getInt(2));
+                c.setIdProduit(rs.getInt(3));
+                c.setNbProduits(rs.getInt(4));
+
+               
+                
+                list.add(c);
+            }
+            
+        }
+        catch(SQLException e){
+            
+        }
+        return list ;   
+    }
+    
 }
