@@ -5,6 +5,10 @@
  */
 package com.smarties.entities;
 
+
+import java.time.LocalDate;
+
+
 /**
  *
  * @author Lenovo
@@ -13,8 +17,8 @@ public class Evenement {
 
     int id;
     String nom;
-    String Date_d;
-    String Date_f;
+   LocalDate Date_d;
+   LocalDate Date_f;
     String lieu;
     String type;
     int nb_participants;
@@ -42,19 +46,19 @@ public class Evenement {
         this.nom = nom;
     }
 
-    public String getDate_d() {
+    public LocalDate getDate_d() {
         return Date_d;
     }
 
-    public void setDate_d(String Date_d) {
+    public void setDate_d(LocalDate Date_d) {
         this.Date_d = Date_d;
     }
 
-    public String getDate_f() {
+    public LocalDate getDate_f() {
         return Date_f;
     }
 
-    public void setDate_f(String Date_f) {
+    public void setDate_f(LocalDate Date_f) {
         this.Date_f = Date_f;
     }
 
@@ -91,7 +95,7 @@ public class Evenement {
     }
     //***********les constructeurs****************
 
-    public Evenement(int id, String nom, String Date_d, String Date_f, String lieu, String type, int nb_participants, int nb_places) {
+    public Evenement(int id, String nom,LocalDate Date_d, LocalDate Date_f, String lieu, String type, int nb_participants, int nb_places) {
         this.id = id;
         this.nom = nom;
         this.Date_d = Date_d;
@@ -104,5 +108,7 @@ public class Evenement {
 
     public Evenement() {
     }
+
+  
 
 }

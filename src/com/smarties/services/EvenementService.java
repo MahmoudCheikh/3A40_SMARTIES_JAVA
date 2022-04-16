@@ -13,6 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.sql.Date;
 import java.util.List;
 
 /**
@@ -30,10 +31,11 @@ public class EvenementService {
     public void ajouterEvenement(Evenement e) {
         String query = "insert into evenement(nom,date_d,date_f,lieu,type,nb_participants,nb_places) values(?,?,?,?,?,?,?)";
         try {
+          
             PreparedStatement ste = cnx.prepareStatement(query);
             ste.setString(1, e.getNom());
-            ste.setString(2, e.getDate_d());
-            ste.setString(3, e.getDate_f());
+            ste.setDate(2, Date.valueOf(e.getDate_d()));
+            ste.setDate(3, Date.valueOf(e.getDate_f()));
             ste.setString(4, e.getLieu());
             ste.setString(5, e.getType());
             ste.setInt(6, (int) e.getNb_participants());
@@ -58,8 +60,10 @@ public class EvenementService {
                 Evenement e = new Evenement();
                 e.setId(rs.getInt("id"));
                 e.setNom(rs.getString("nom"));
-                e.setDate_d(rs.getString("date_d"));
-                e.setDate_f(rs.getString("date_f"));
+                 Date date_d = rs.getDate("date_d");
+                e.setDate_d(date_d.toLocalDate());
+               Date date_f = rs.getDate("date_f");
+                e.setDate_f(date_f.toLocalDate());             
                 e.setLieu(rs.getString("lieu"));
                 e.setType(rs.getString("type"));
                 e.setNb_participants(rs.getInt("nb_participants"));
@@ -82,8 +86,8 @@ public class EvenementService {
             PreparedStatement ps = cnx.prepareStatement(req);
 
             ps.setString(1, e.getNom());
-            ps.setString(2, e.getDate_d());
-            ps.setString(3, e.getDate_f());
+            ps.setDate(2, Date.valueOf(e.getDate_d()));
+            ps.setDate(3, Date.valueOf(e.getDate_f()));
             ps.setString(4, e.getLieu());
             ps.setString(5, e.getType());
             ps.setInt(6, (int) e.getNb_participants());
@@ -113,4 +117,64 @@ public class EvenementService {
         }
 
     }
+    public List<Evenement> Chercher(String titreN) {
+       List<Evenement> list = new ArrayList<>();
+        try{
+            String req = "SELECT * FROM evenement where nom=?";
+             PreparedStatement ps = cnx.prepareStatement(req);
+            System.out.println("RECHERCHE...");
+            ps.setString(1,titreN);
+            ResultSet rs = ps.executeQuery();
+         
+              System.out.println(titreN);
+            while(rs.next()){
+                Evenement e = new Evenement();
+                e.setId(rs.getInt(1));
+                e.setNom(rs.getString(2));
+               // e.setDate_d(rs.getDate(3));
+                //e.setDate_f(rs.getDate(4));
+             
+                e.setLieu(rs.getString(5));
+                e.setType(rs.getString(6));
+                e.setNb_participants(rs.getInt(7));
+                e.setNb_places(rs.getInt(8));
+                
+                list.add(e);
+            }
+            
+        }
+        catch(SQLException e){
+            
+        }
+        return list ;   
+    }
+      /* public List<Evenement> trier() {
+        List<Evenement> list = new ArrayList<>();
+        try{
+            String req = "SELECT * FROM news order by date_d desc";
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+            
+            while(rs.next()){
+                Evenement e = new Evenement();
+                e.setId(rs.getInt(1));
+                e.setNom(rs.getString(2));
+               // e.setDate_d(rs.getDate(3));
+                //e.setDate_f(rs.getDate(4));
+             
+                e.setLieu(rs.getString(5));
+                e.setType(rs.getString(6));
+                e.setNb_participants(rs.getInt(7));
+                e.setNb_places(rs.getInt(8));
+                
+                list.add(e);
+            }
+            
+        }
+        catch(SQLException e){
+            
+        }
+        return list ;
+    }*/
+
 }
