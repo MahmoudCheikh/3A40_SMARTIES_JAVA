@@ -29,16 +29,16 @@ public class LocationService {
     }
 
     public void ajouterLocation(Location l) {
-        String query = "insert into location(id,id_user_id,id_abonnement_id,date,heure,duree) values(?,?,?,?,?,?)";
+        String query = "insert into location(id_user_id,id_abonnement_id,date,heure,duree) values(?,?,?,?,?)";
         try {
             PreparedStatement ste = cnx.prepareStatement(query);
 
-            ste.setInt(1, (int) l.getId());
-              ste.setInt(3, (int) l.getIdUser());
+           // ste.setInt(1, (int) l.getId());
+              ste.setInt(1, (int) l.getIdUser());
             ste.setInt(2, l.getIdAbonnement());
-            ste.setDate(4, Date.valueOf(l.getDate()));
-            ste.setString(5, l.getHeure());
-            ste.setFloat(6, (int) l.getDuree());
+            ste.setDate(3, Date.valueOf(l.getDate()));
+            ste.setString(4, l.getHeure());
+            ste.setFloat(5, (int) l.getDuree());
 
             ste.executeUpdate();
             System.out.println("Location Ajoutée !!");

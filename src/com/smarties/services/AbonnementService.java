@@ -8,6 +8,7 @@ package com.smarties.services;
 import com.smarties.entities.Abonnement;
 import com.smarties.tools.MaConnexion;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -29,15 +30,16 @@ public class AbonnementService {
 
     public void ajouterAbonnement(Abonnement a) {
 
-        String query = "insert into abonnement(id,id_user_id,type,dateD,dateF,prix) values(?,?,?,?,?,?)";
+        String query = "insert into abonnement(id_user_id,type,dateD,dateF,prix) values(?,?,?,?,?)";
         try {
             PreparedStatement ste = cnx.prepareStatement(query);
-            ste.setInt(1, (int) a.getId());
-            ste.setInt(2, (int) a.getId_user_id());
-            ste.setString(3, a.getType());
-            ste.setString(4, a.getDateD());
-            ste.setString(5, a.getDateF());
-            ste.setInt(6, (int) a.getPrix());
+           // ste.setInt(1, (int) a.getId());
+            ste.setInt(1, (int) a.getId_user_id());
+            ste.setString(2, a.getType());
+            // ste.setDate(2, Date.valueOf(e.getDate_d()));
+            ste.setDate(3, Date.valueOf(a.getDateD()));
+            ste.setDate(4, Date.valueOf(a.getDateF()));
+            ste.setInt(5, (int) a.getPrix());
             ste.executeUpdate();
             System.out.println("Abonnement Ajouté !!");
         } catch (SQLException ex) {
@@ -58,8 +60,11 @@ public class AbonnementService {
                 a.setId(rs.getInt("id"));
                 a.setId_user_id(rs.getInt("id_user_id"));
                 a.setType(rs.getString("type"));
-                a.setDateD(rs.getString("dated"));
-                a.setDateF(rs.getString("datef"));
+                Date dateD = rs.getDate("dateD");
+                a.setDateD(dateD.toLocalDate());
+                Date dateF = rs.getDate("dateF");
+                a.setDateF(dateF.toLocalDate());
+
                 a.setPrix(rs.getInt("prix"));
                 abonnements.add(a);
 
@@ -77,10 +82,11 @@ public class AbonnementService {
             String req = "UPDATE abonnement SET type= ?, dateD = ?,dateF = ?,prix = ? WHERE id= ?";
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setString(1, a.getType());
-            ps.setString(2, a.getDateD());
-            ps.setString(3, a.getDateF());
-            ps.setInt(4, a.getPrix());
-            ps.setInt(5, a.getId());
+              ps.setDate(2, Date.valueOf(a.getDateD()));
+            ps.setDate(3, Date.valueOf(a.getDateF()));
+         
+            ps.setInt(4,(int) a.getPrix());
+            ps.setInt(5,(int) a.getId());
             System.out.println("Modification...");
             ps.executeUpdate();
 

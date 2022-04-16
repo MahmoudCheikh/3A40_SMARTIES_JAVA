@@ -8,115 +8,146 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smarties.test.GuiAbonnementController">
+<AnchorPane id="AnchorPane" prefHeight="662.0" prefWidth="1077.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smarties.test.GuiAbonnementController">
    <children>
-      <TabPane layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="481.0" prefWidth="647.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" tabClosingPolicy="UNAVAILABLE">
          <tabs>
             <Tab text="Gestion Abonnements ">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="490.0" prefWidth="700.0">
                      <children>
-                        <TextField fx:id="textIDAbonnement" layoutX="103.0" layoutY="274.0" prefHeight="25.0" prefWidth="89.0">
+                        <TextField fx:id="textIDAbonnement" layoutX="337.0" layoutY="124.0" prefHeight="25.0" prefWidth="89.0">
                            <effect>
                               <InnerShadow />
                            </effect></TextField>
-                        <TextField fx:id="textIDUserA" layoutX="103.0" layoutY="93.0" prefHeight="25.0" prefWidth="90.0">
+                        <TextField fx:id="textIDUserA" layoutX="104.0" layoutY="124.0" prefHeight="25.0" prefWidth="90.0">
                            <effect>
                               <InnerShadow />
                            </effect></TextField>
-                        <TextField fx:id="TextType" layoutX="102.0" layoutY="130.0" prefHeight="25.0" prefWidth="92.0">
+                        <TextField fx:id="TextType" layoutX="102.0" layoutY="167.0" prefHeight="25.0" prefWidth="92.0">
                            <effect>
                               <InnerShadow />
                            </effect></TextField>
-                        <TextField fx:id="textDateDebAbonnment" layoutX="101.0" layoutY="165.0" prefHeight="25.0" prefWidth="94.0">
+                        <TextField fx:id="textPrixAb" layoutX="101.0" layoutY="286.0" prefHeight="25.0" prefWidth="90.0">
                            <effect>
                               <InnerShadow />
                            </effect></TextField>
-                        <TextField fx:id="textDateFinAbonnment" layoutX="100.0" layoutY="201.0" prefWidth="96.0">
-                           <effect>
-                              <InnerShadow />
-                           </effect></TextField>
-                        <TextField fx:id="textPrixAb" layoutX="103.0" layoutY="235.0" prefHeight="25.0" prefWidth="90.0">
-                           <effect>
-                              <InnerShadow />
-                           </effect></TextField>
-                        <Label layoutX="8.0" layoutY="278.0" text="Id Abonnement " textFill="#b9936c" />
-                        <Label layoutX="21.0" layoutY="95.0" text="ID User" textFill="#b9936c">
+                        <Label layoutX="230.0" layoutY="128.0" text="Id Abonnement " textFill="#b9936c" />
+                        <Label layoutX="21.0" layoutY="125.0" text="ID User" textFill="#b9936c">
                            <font>
                               <Font name="Dubai Regular" size="12.0" />
                            </font></Label>
-                        <Label layoutX="27.0" layoutY="132.0" text="Type" textFill="#b9936c">
+                        <Label layoutX="27.0" layoutY="169.0" text="Type" textFill="#b9936c">
                            <font>
                               <Font name="Dubai Regular" size="12.0" />
                            </font></Label>
-                        <Label layoutX="15.0" layoutY="169.0" text="Date debut " textFill="#b9936c" />
-                        <Label layoutX="18.0" layoutY="205.0" text="Date fin" textFill="#b9936c" />
-                        <Label layoutX="29.0" layoutY="239.0" text="Prix" textFill="#b9936c" />
-                        <Button fx:id="btnAjouterAb" layoutX="3.0" layoutY="323.0" mnemonicParsing="false" onAction="#AjouterAbonnement" prefHeight="25.0" prefWidth="86.0" style="-fx-background-color: #ff7f50;" text="Ajouter">
+                        <Label layoutX="8.0" layoutY="208.0" text="Date debut " textFill="#b9936c" />
+                        <Label layoutX="19.0" layoutY="247.0" text="Date fin" textFill="#b9936c" />
+                        <Label layoutX="30.0" layoutY="290.0" text="Prix" textFill="#b9936c" />
+                        <Button fx:id="btnAjouterAb" layoutX="74.0" layoutY="341.0" mnemonicParsing="false" onAction="#AjouterAbonnement" prefHeight="41.0" prefWidth="118.0" style="-fx-background-color: #ff7f50;" text="    Ajouter">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font></Button>
-                        <Button fx:id="btnSupprimerAb" layoutX="202.0" layoutY="274.0" mnemonicParsing="false" onAction="#SupprimerAbonnement" style="-fx-background-color: #ff7f50;" text="Supprimer">
+                        <Button fx:id="btnSupprimerAb" layoutX="232.0" layoutY="178.0" mnemonicParsing="false" onAction="#SupprimerAbonnement" prefHeight="40.0" prefWidth="134.0" style="-fx-background-color: #ff7f50;" text=" Supprimer">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font></Button>
-                        <ListView fx:id="listAb" layoutX="280.0" layoutY="44.0" prefHeight="382.0" prefWidth="344.0" />
-                        <Label layoutX="330.0" layoutY="10.0" text="Liste des Abonnements">
+                        <ListView fx:id="listAb" layoutX="534.0" layoutY="109.0" prefHeight="397.0" prefWidth="445.0" />
+                        <Label layoutX="667.0" layoutY="53.0" text="Liste des Abonnements">
                            <font>
                               <Font name="System Bold Italic" size="18.0" />
                            </font>
                            <effect>
                               <DropShadow color="#ec9113" />
                            </effect></Label>
-                        <Button fx:id="btnModifierAb" layoutX="123.0" layoutY="323.0" mnemonicParsing="false" onAction="#ModifierAbonnement" prefHeight="25.0" prefWidth="79.0" style="-fx-background-color: #ff7f50;" text="Modifier">
+                        <Button fx:id="btnModifierAb" layoutX="397.0" layoutY="179.0" mnemonicParsing="false" onAction="#ModifierAbonnement" prefHeight="38.0" prefWidth="124.0" style="-fx-background-color: #ff7f50;" text="    Modifier">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font></Button>
                         <Label fx:id="wrong" layoutX="23.0" layoutY="44.0" prefHeight="23.0" prefWidth="250.0" textFill="#eb0b0b" />
+                        <DatePicker fx:id="datepickdeb" layoutX="103.0" layoutY="204.0" prefHeight="25.0" prefWidth="91.0" />
+                        <DatePicker fx:id="datepickfin" layoutX="103.0" layoutY="243.0" prefHeight="25.0" prefWidth="90.0" />
+                        <Label layoutX="44.0" layoutY="44.0" prefHeight="28.0" prefWidth="209.0" text="Veuillez remplir ce formulaire ">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <effect>
+                              <Glow />
+                           </effect>
+                        </Label>
+                        <ImageView fx:id="img1" fitHeight="29.0" fitWidth="42.0" layoutX="74.0" layoutY="347.0" opacity="0.62" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/img1.jpg" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="img2" fitHeight="25.0" fitWidth="31.0" layoutX="238.0" layoutY="186.0" opacity="0.92" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/sssssssss.jpg" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="img3" fitHeight="31.0" fitWidth="32.0" layoutX="403.0" layoutY="183.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/icone%20modif.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="img4" fitHeight="51.0" fitWidth="55.0" layoutX="603.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/liste.png" />
+                           </image>
+                        </ImageView>
                      </children>
+                     <effect>
+                        <InnerShadow />
+                     </effect>
                   </AnchorPane>
                </content>
             </Tab>
             <Tab text="Gestion Locations ">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="590.0" prefWidth="1013.0">
                      <children>
-                        <TextField fx:id="textIdLocation" layoutX="98.0" layoutY="297.0" prefHeight="25.0" prefWidth="111.0">
+                        <TextField fx:id="textIdLocation" layoutX="346.0" layoutY="99.0" prefHeight="25.0" prefWidth="111.0">
                            <effect>
                               <InnerShadow />
                            </effect></TextField>
-                        <TextField fx:id="TextHeureLoc" layoutX="101.0" layoutY="147.0" prefHeight="25.0" prefWidth="105.0">
+                        <TextField fx:id="TextHeureLoc" layoutX="102.0" layoutY="135.0" prefHeight="25.0" prefWidth="105.0">
                            <effect>
                               <InnerShadow />
                            </effect></TextField>
-                        <TextField fx:id="TextIdAbonne" layoutX="101.0" layoutY="188.0" prefHeight="25.0" prefWidth="106.0">
+                        <TextField fx:id="TextIdAbonne" layoutX="101.0" layoutY="180.0" prefHeight="25.0" prefWidth="106.0">
                            <effect>
                               <InnerShadow />
                            </effect></TextField>
-                        <TextField fx:id="TextIdUserLoc" layoutX="101.0" layoutY="226.0" prefHeight="25.0" prefWidth="106.0">
+                        <TextField fx:id="TextIdUserLoc" layoutX="101.0" layoutY="218.0" prefHeight="25.0" prefWidth="106.0">
                            <effect>
                               <InnerShadow />
                            </effect></TextField>
-                        <Label layoutX="11.0" layoutY="301.0" text="Id Location " textFill="#b9936c" />
-                        <Label layoutX="29.0" layoutY="114.0" text="Date" textFill="#b9936c" />
-                        <Label layoutX="25.0" layoutY="151.0" text="Heure" textFill="#b9936c" />
-                        <Label layoutX="8.0" layoutY="192.0" prefHeight="17.0" prefWidth="93.0" text="Id Abonnement" textFill="#b9936c" />
+                        <Label layoutX="259.0" layoutY="103.0" text="Id Location " textFill="#b9936c" />
+                        <Label layoutX="29.0" layoutY="94.0" text="Date" textFill="#b9936c" />
+                        <Label layoutX="25.0" layoutY="139.0" text="Heure" textFill="#b9936c" />
+                        <Label layoutX="8.0" layoutY="184.0" prefHeight="17.0" prefWidth="93.0" text="Id Abonnement" textFill="#b9936c" />
                         <Label layoutX="23.0" layoutY="230.0" text="ID User" textFill="#b9936c" />
-                        <Button fx:id="AjoutLoc" layoutX="23.0" layoutY="375.0" mnemonicParsing="false" onAction="#AjouterLoaction" style="-fx-background-color: #ff7f50;" text="Ajouter ">
+                        <Button fx:id="AjoutLoc" layoutX="89.0" layoutY="323.0" mnemonicParsing="false" onAction="#AjouterLoaction" prefHeight="31.0" prefWidth="104.0" style="-fx-background-color: #ff7f50;" text="         Ajouter ">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font></Button>
-                        <Button fx:id="suppLoc" layoutX="215.0" layoutY="297.0" mnemonicParsing="false" onAction="#SupprimerLocation" style="-fx-background-color: #ff7f50;" text="Supprimer">
+                        <Button fx:id="suppLoc" layoutX="290.0" layoutY="168.0" mnemonicParsing="false" onAction="#SupprimerLocation" prefHeight="32.0" prefWidth="111.0" style="-fx-background-color: #ff7f50;" text="       Supprimer">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font></Button>
-                        <Button fx:id="modifLoc" layoutX="133.0" layoutY="375.0" mnemonicParsing="false" onAction="#ModifierLocation" style="-fx-background-color: #ff7f50;" text="Modifier" />
-                        <ListView fx:id="ListLoc" layoutX="298.0" layoutY="46.0" prefHeight="390.0" prefWidth="340.0" />
-                        <Label layoutX="321.0" layoutY="14.0" prefHeight="27.0" prefWidth="237.0" text="      Liste des Locations ">
+                        <Button fx:id="modifLoc" layoutX="418.0" layoutY="168.0" mnemonicParsing="false" onAction="#ModifierLocation" prefHeight="33.0" prefWidth="112.0" style="-fx-background-color: #ff7f50;" text="   Modifier">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Button>
+                        <ListView fx:id="ListLoc" layoutX="537.0" layoutY="76.0" prefHeight="403.0" prefWidth="447.0" />
+                        <Label layoutX="620.0" layoutY="33.0" prefHeight="27.0" prefWidth="237.0" text="      Liste des Locations ">
                            <font>
                               <Font name="System Bold Italic" size="18.0" />
                            </font>
@@ -128,12 +159,34 @@
                            <effect>
                               <InnerShadow />
                            </effect></TextField>
-                        <DatePicker fx:id="textDatePickLoc" layoutX="101.0" layoutY="110.0" prefHeight="25.0" prefWidth="106.0">
+                        <DatePicker fx:id="textDatePickLoc" layoutX="101.0" layoutY="90.0" prefHeight="25.0" prefWidth="106.0">
                            <effect>
                               <InnerShadow />
                            </effect></DatePicker>
-                        <Label fx:id="wrong2" layoutX="5.0" layoutY="46.0" prefHeight="17.0" prefWidth="194.0" textFill="#ed0e0e" />
+                        <ImageView fx:id="img5" fitHeight="27.0" fitWidth="31.0" layoutX="89.0" layoutY="325.0" opacity="0.76" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/img1.jpg" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="img6" fitHeight="27.0" fitWidth="29.0" layoutX="290.0" layoutY="171.0" opacity="0.73" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/sssssssss.jpg" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="img7" fitHeight="29.0" fitWidth="29.0" layoutX="418.0" layoutY="170.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/icone%20modif%201.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="img8" fitHeight="57.0" fitWidth="46.0" layoutX="574.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/liste.png" />
+                           </image>
+                        </ImageView>
                      </children>
+                     <effect>
+                        <InnerShadow />
+                     </effect>
                   </AnchorPane>
                </content>
             </Tab>

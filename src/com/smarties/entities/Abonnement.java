@@ -5,6 +5,8 @@
  */
 package com.smarties.entities;
 
+import java.time.LocalDate;
+
 /**
  *
  * @author ASUS
@@ -14,8 +16,8 @@ public class Abonnement {
     private int id;
     private int id_user_id;
     private String type;
-    private String dateD;
-    private String dateF;
+     LocalDate dateD;
+     LocalDate dateF;
     private int prix;
 
     
@@ -35,11 +37,11 @@ public class Abonnement {
         return type;
     }
 
-    public String getDateD() {
+    public LocalDate getDateD() {
         return dateD;
     }
 
-    public String getDateF() {
+    public LocalDate getDateF() {
         return dateF;
     }
 
@@ -59,11 +61,11 @@ public class Abonnement {
         this.type = type;
     }
 
-    public void setDateD(String dateD) {
+    public void setDateD(LocalDate dateD) {
         this.dateD = dateD;
     }
 
-    public void setDateF(String dateF) {
+    public void setDateF(LocalDate dateF) {
         this.dateF = dateF;
     }
 
@@ -71,7 +73,7 @@ public class Abonnement {
         this.prix = prix;
     }
 
-    public Abonnement(int id, int id_user_id, String type, String dateD, String dateF, int prix) {
+    public Abonnement(int id, int id_user_id, String type, LocalDate dateD, LocalDate dateF, int prix) {
         this.id = id;
         this.id_user_id = id_user_id;
         this.type = type;
