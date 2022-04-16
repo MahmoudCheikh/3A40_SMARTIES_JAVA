@@ -111,5 +111,75 @@ public class AbonnementService {
         }
 
     }
+    
+    
+    
+    public List<Abonnement> ChercherType(String titreN) {
+       List<Abonnement> list = new ArrayList<>();
+        try{
+            String req = "SELECT * FROM abonnement where type=?";
+             PreparedStatement ps = cnx.prepareStatement(req);
+            System.out.println("RECHERCHE en cours ..");
+            ps.setString(1,titreN);
+            ResultSet rs = ps.executeQuery();
+         
+              System.out.println(titreN);
+            while(rs.next()){
+                Abonnement ab = new Abonnement();
+                ab.setId(rs.getInt(1));
+                 ab.setType(rs.getString(2));
+                ab.setId_user_id(rs.getInt(5));
+                ab.setPrix(rs.getInt(6));
+               
 
+               
+                
+                list.add(ab);
+            }
+            
+        }
+        catch(SQLException e){
+            
+        }
+        return list ;   
+   
+
+}
+    
+    
+      public List<Abonnement> ChercherPrix( int price)
+             {
+             
+               List<Abonnement> list = new ArrayList<>();
+        try{
+            String req = "SELECT * FROM abonnement where prix=?";
+             PreparedStatement ps = cnx.prepareStatement(req);
+            System.out.println("RECHERCHE en cours ..");
+            ps.setInt(1,price);
+            ResultSet rs = ps.executeQuery();
+         
+              System.out.println(price);
+            while(rs.next()){
+                Abonnement ab = new Abonnement();
+                ab.setId(rs.getInt(1));
+                 ab.setType(rs.getString(2));
+                ab.setId_user_id(rs.getInt(5));
+                ab.setPrix(rs.getInt(6));
+               
+
+               
+                
+                list.add(ab);
+            }
+            
+        }
+        catch(SQLException e){
+            
+        }
+        return list ;   
+   
+             } 
+              
+              
+              
 }

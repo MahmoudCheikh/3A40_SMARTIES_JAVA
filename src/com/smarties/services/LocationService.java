@@ -111,4 +111,77 @@ public class LocationService {
         }
 
     }
+     public List<Location> ChercherDuree( int Duree)
+             {
+             
+               List<Location> list = new ArrayList<>();
+        try{
+            String req = "SELECT * FROM location where duree=?";
+             PreparedStatement ps = cnx.prepareStatement(req);
+            System.out.println("RECHERCHE en cours ..");
+            ps.setInt(1,Duree);
+            ResultSet rs = ps.executeQuery();
+         
+              System.out.println(Duree);
+            while(rs.next()){
+                Location loc = new Location();
+                loc.setId(rs.getInt(1));
+                 loc.setIdUser(rs.getInt(2));
+                 loc.setHeure(rs.getString(4));
+               
+                loc.setDuree(rs.getInt(5));
+                  
+                loc.setIdAbonnement(rs.getInt(6));
+               
+
+               
+                
+                list.add(loc);
+            }
+            
+        }
+        catch(SQLException e){
+            
+        }
+        return list ;   
+   
+             } 
+     public List<Location> ChercherID( int abon)
+             {
+             
+               List<Location> list = new ArrayList<>();
+        try{
+            String req = "SELECT * FROM location where id_abonnement_id=?";
+             PreparedStatement ps = cnx.prepareStatement(req);
+            System.out.println("RECHERCHE en cours ..");
+            ps.setInt(1,abon);
+            ResultSet rs = ps.executeQuery();
+         
+              System.out.println(abon);
+            while(rs.next()){
+                Location loc = new Location();
+                loc.setId(rs.getInt(1));
+                 loc.setIdUser(rs.getInt(2));
+                 loc.setHeure(rs.getString(4));
+               
+                loc.setDuree(rs.getInt(5));
+                  
+                loc.setIdAbonnement(rs.getInt(6));
+               
+
+               
+                
+                list.add(loc);
+            }
+            
+        }
+        catch(SQLException e){
+            
+        }
+        return list ;   
+   
+             } 
+    
+    
+    
 }

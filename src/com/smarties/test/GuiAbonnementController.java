@@ -6,14 +6,19 @@
 package com.smarties.test;
 
 import com.smarties.entities.Abonnement;
+
 import com.smarties.services.AbonnementService;
 import com.smarties.entities.Location;
+
 import com.smarties.services.LocationService;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.regex.Pattern;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -54,7 +59,7 @@ public class GuiAbonnementController implements Initializable {
     @FXML
     private Button btnModifierAb;
     @FXML
-    private ListView<?> listAb;
+    private ListView<Abonnement> listAb;
     @FXML
     private TextField textIdLocation;
  
@@ -71,7 +76,7 @@ public class GuiAbonnementController implements Initializable {
     @FXML
     private Button modifLoc;
     @FXML
-    private ListView<?> ListLoc;
+    private ListView<Location> ListLoc;
     @FXML
     private TextField TextDuree;
     @FXML
@@ -100,6 +105,18 @@ public class GuiAbonnementController implements Initializable {
     private ImageView img7;
     @FXML
     private ImageView img8;
+    @FXML
+    private TextField findAb;
+    @FXML
+    private Button findType;
+    @FXML
+    private Button findPrix;
+    @FXML
+    private TextField findLoc;
+    @FXML
+    private Button findDuree;
+    @FXML
+    private Button findID;
    
    
         
@@ -116,8 +133,8 @@ public class GuiAbonnementController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        ArrayList al = (ArrayList) as.afficherAbonnement();
-        listAb.getItems().addAll(al);
+       /* ArrayList al = (ArrayList) as.afficherAbonnement();
+        listAb.getItems().addAll(al);*/
 
         ArrayList l = (ArrayList) loc.afficherLocation();
         ListLoc.getItems().addAll(l);
@@ -191,7 +208,9 @@ public class GuiAbonnementController implements Initializable {
           Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Success");
             alert.setContentText("Abonnement ajouté avec succés!");
-            alert.show();        
+            alert.show();    
+             ArrayList al = (ArrayList) as.afficherAbonnement();
+        listAb.getItems().addAll(al);
         
          
        
@@ -207,7 +226,13 @@ public class GuiAbonnementController implements Initializable {
     private void SupprimerAbonnement(ActionEvent event) {
         int id = Integer.parseInt(textIDAbonnement.getText());
         as.supprimerAbonnement(id);
+         Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success");
+            alert.setContentText("Abonnement supprimé avec succés!");
+            alert.show();    
         textIDAbonnement.setText(" ");
+         ArrayList al = (ArrayList) as.afficherAbonnement();
+        listAb.getItems().addAll(al);
     }
 
     @FXML
@@ -230,6 +255,32 @@ public class GuiAbonnementController implements Initializable {
         as.modifierAbonnement(ab);
         
 
+    }
+     @FXML
+    private void ChercherType(ActionEvent event) {
+        
+       AbonnementService  n=new    AbonnementService();
+           List< Abonnement> R=   n.ChercherType(findAb.getText());
+          
+       ObservableList< Abonnement> datalist = FXCollections.observableArrayList(R);
+
+     
+            listAb.setItems(datalist);
+               findAb.setText(" ");
+        
+        
+    }
+    @FXML
+    private void ChercherPrix(ActionEvent event) {
+        AbonnementService  n=new    AbonnementService();
+         int price = Integer.parseInt(findAb.getText());
+           List< Abonnement> R=   n.ChercherPrix(price);
+          
+       ObservableList< Abonnement> datalist = FXCollections.observableArrayList(R);
+
+     
+            listAb.setItems(datalist);
+                findAb.setText(" ");
     }
 
     @FXML
@@ -316,6 +367,37 @@ public class GuiAbonnementController implements Initializable {
       
 
     }
+
+    @FXML
+    private void ChercherDuree(ActionEvent event) {
+        
+          LocationService  n=new LocationService();
+         int Duree = Integer.parseInt(findLoc.getText());
+           List< Location> R=   n.ChercherDuree(Duree);
+          
+       ObservableList< Location> datalist = FXCollections.observableArrayList(R);
+
+     
+            ListLoc.setItems(datalist);
+                findLoc.setText(" ");
+    }
+
+    @FXML
+    private void ChercherID(ActionEvent event) {
+         LocationService  n=new LocationService();
+         int abon = Integer.parseInt(findLoc.getText());
+           List< Location> R=   n.ChercherID(abon);
+          
+       ObservableList< Location> datalist = FXCollections.observableArrayList(R);
+
+     
+            ListLoc.setItems(datalist);
+           findLoc.setText(" ");
+    }
+
+    
+
+   
 
 
 }
