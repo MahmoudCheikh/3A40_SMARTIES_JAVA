@@ -5,6 +5,7 @@
  */
 package com.smarties.services;
 
+import com.smarties.entities.Produit;
 import com.smarties.entities.Stock;
 import com.smarties.tools.MaConnexion;
 import java.sql.Connection;
@@ -13,7 +14,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -73,7 +76,7 @@ public class StockService {
 
     public void modifierStock(Stock s) {
         try {
-            String req = "UPDATE stock SET libelle = ?,id_produit_id = ?,prix = ?,quantite = ?,disponibilite = ?,emplacement_id = ? WHERE id= ?";
+            String req = "UPDATE stock SET libelle = ?,id_produit_id = ?,prix = ?,quantite = ?,disponibilite = ? WHERE id= ?";
             PreparedStatement ps = cnx.prepareStatement(req);
 
             ps.setString(1, s.getLibelle());
@@ -82,8 +85,8 @@ public class StockService {
             ps.setInt(4, s.getQuantite());
             ps.setString(5, s.getDisponibilite());
 
-            ps.setInt(7, s.getId());
-            
+            ps.setInt(6, s.getId());
+
             System.out.println("Modification...");
             ps.executeUpdate();
 
@@ -109,4 +112,20 @@ public class StockService {
 
     }
 
+    public List<Stock> TriQuantite() {
+        Comparator<Stock> comparator = Comparator.comparing(Stock::getQuantite);
+        List<Stock> sto = afficherStock();
+        return sto.stream().sorted(comparator).collect(Collectors.toList());
+    }
+
+    public List<Stock> TriDisponibilite() {
+        Comparator<Stock> comparator = Comparator.comparing(Stock::getDisponibilite);
+        List<Stock> sto = afficherStock();
+        return sto.stream().sorted(comparator).collect(Collectors.toList());
+    }
+
+    public List<Stock> RechercheLibelle(String libelle) {
+
+        return afficherStock().stream().filter(a -> a.getLibelle().equals(libelle)).collect(Collectors.toList());
+    }
 }

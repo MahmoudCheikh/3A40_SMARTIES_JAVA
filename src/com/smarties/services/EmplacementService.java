@@ -6,6 +6,7 @@
 package com.smarties.services;
 
 import com.smarties.entities.Emplacement;
+import com.smarties.entities.Stock;
 import com.smarties.tools.MaConnexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,7 +14,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -101,5 +104,20 @@ public class EmplacementService {
         }
 
     }
+    public List<Emplacement> TriLieu() {
+        Comparator<Emplacement> comparator = Comparator.comparing(Emplacement::getLieu);
+        List<Emplacement> sto = afficherEmplacement();
+        return sto.stream().sorted(comparator).collect(Collectors.toList());
+    }
 
+    public List<Emplacement> TriCapacite() {
+        Comparator<Emplacement> comparator = Comparator.comparing(Emplacement::getCapacite);
+        List<Emplacement> sto = afficherEmplacement();
+        return sto.stream().sorted(comparator).collect(Collectors.toList());
+    }
+
+    public List<Emplacement> RechercheLieu(String libelle) {
+
+        return afficherEmplacement().stream().filter(a -> a.getLieu().equals(libelle)).collect(Collectors.toList());
+    }
 }

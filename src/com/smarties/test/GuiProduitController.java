@@ -58,6 +58,8 @@ public class GuiProduitController implements Initializable {
 
     private int a;
     Produit produit = null;
+    Stock stock = null;
+    Emplacement emplacement = null;
     private boolean verification;
     private File Current_file;
     private String file_image;
@@ -96,8 +98,6 @@ public class GuiProduitController implements Initializable {
     @FXML
     private Button btnSupprimerS;
     @FXML
-    private TextField idS;
-    @FXML
     private ListView<Stock> listeS;
     private TextField idEmpalcement;
     @FXML
@@ -112,10 +112,9 @@ public class GuiProduitController implements Initializable {
     private Button btnModifierEmp;
     @FXML
     private Button btnSupprimerEmp;
-    @FXML
     private TextField idEmp;
     @FXML
-    private ListView<?> listeEmp;
+    private ListView<Emplacement> listeEmp;
     @FXML
     private TextField userF;
     @FXML
@@ -127,12 +126,7 @@ public class GuiProduitController implements Initializable {
     @FXML
     private TextField idfav;
     @FXML
-    private ListView<?> listefav;
-    private Label cds1;
-    private Label cds2;
-    @FXML
-    private Label cds3;
-    private TextField searchPro;
+    private ListView<Favoris> listefav;
     @FXML
     private TextField searchSto;
     @FXML
@@ -150,6 +144,16 @@ public class GuiProduitController implements Initializable {
     private TextField searchProType;
     @FXML
     private Button upload;
+    @FXML
+    private Button triQ;
+    @FXML
+    private Button TriD;
+    @FXML
+    private Label cds3;
+    @FXML
+    private Button triE;
+    @FXML
+    private Button triC;
 
     /**
      * Initializes the controller class.
@@ -169,6 +173,9 @@ public class GuiProduitController implements Initializable {
         ArrayList a4 = (ArrayList) fa.afficherFavoris();
         listefav.getItems().addAll(a4);
         refresh();
+        refresh1();
+        refresh2();
+        refresh3();
 
     }
 
@@ -182,11 +189,28 @@ public class GuiProduitController implements Initializable {
         listeProduit.getItems().addAll(prod);
     }
 
+    private void refresh1() {
+        List<Stock> sto = st.afficherStock();
+        listeS.getItems().clear();
+        listeS.getItems().addAll(sto);
+    }
+
+    private void refresh2() {
+        List<Emplacement> emp = em.afficherEmplacement();
+        listeEmp.getItems().clear();
+        listeEmp.getItems().addAll(emp);
+    }
+
+    private void refresh3() {
+        List<Favoris> fav = fa.afficherFavoris();
+        listefav.getItems().clear();
+        listefav.getItems().addAll(fav);
+    }
+
     /**
      * ****************************************************** Produit
      * ****************************************************
      */
-
     @FXML
     private void uploadImage(ActionEvent event) throws FileNotFoundException {
         JFileChooser chooser = new JFileChooser();
@@ -255,37 +279,6 @@ public class GuiProduitController implements Initializable {
 
     }
 
-    /*private boolean verifChampsajouter() {
-        int verif = 0;
-        String styleP = " -fx-border-color: red;";
-        String styledeL = "-fx-border-color: red;";
-        String styledeD = "-fx-border-color: red;";
-
-        libelleProd.setStyle(styledeL);
-        prixProd.setStyle(styleP);
-        descProd.setStyle(styledeD);
-
-        if (libelleProd.getText().equals("")) {
-            libelleProd.setStyle(styledeL);
-            verif = 1;
-        }
-        if (descProd.getText().equals("")) {
-            descProd.setStyle(styledeD);
-            verif = 1;
-        }
-        if (prixProd.getText().equals("")) {
-            prixProd.setStyle(styleP);
-            verif = 1;
-        }
-
-        if (verif == 0) {
-            return true;
-        }
-
-        JOptionPane.showMessageDialog(null, "Remplir tous les champs!");
-        return false;
-
-    }*/
     @FXML
     private void ModifierProd(ActionEvent event) {
         if (libelleProd.getText().equals("") || imageProd.getText().equals("") || descProd.getText().equals("") || prixProd.getText().equals("") || typeProd.getText().equals("")) {
@@ -357,7 +350,7 @@ public class GuiProduitController implements Initializable {
         alert.setAlertType(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation");
         alert.setHeaderText(null);
-        alert.setContentText("vous-etes sur de supprimer ce PRODUCT !");
+        alert.setContentText("vous-etes sur de supprimer ce PRODUIT !");
 
         Optional<ButtonType> action = alert.showAndWait();
 
@@ -414,9 +407,81 @@ public class GuiProduitController implements Initializable {
     private void AjoutStock(ActionEvent event) {
 
         Stock sto = new Stock();
-        if (libS.getText().isEmpty() || prixS.getText().isEmpty() || quantiteS.getText().isEmpty() || dispoS.getText().isEmpty() || idProdS.getText().isEmpty()) {
-            cds1.setText("Veuillez remplir tous les champs ");
+        if (libS.getText().equals("") || prixS.getText().equals("") || quantiteS.getText().equals("") || dispoS.getText().equals("") || idProdS.getText().equals("")) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("champs manquants !");
+            alert.showAndWait();
+        } else if (!(Pattern.matches("[0.-9.]*", prixS.getText()))) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("le prix doit etre de type Float/Int !");
+            alert.showAndWait();
+        } else if (!(Pattern.matches("[0-9]*", quantiteS.getText()))) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("la quantité doit etre de type Int !");
+            alert.showAndWait();
+        } else if (libS.getText().length() < 5) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("le libelle doit au moin contenir 5 caractéres");
+            alert.showAndWait();
+
         } else {
+            sto.setLibelle(libS.getText());
+            int prix1 = Integer.parseInt(prixS.getText());
+            int q = Integer.parseInt(quantiteS.getText());
+            sto.setDisponibilite(dispoS.getText());
+            int idPS = Integer.parseInt(idProdS.getText());
+
+            sto.setPrix(prix1);
+            sto.setQuantite(q);
+            sto.setIdProduit(idPS);
+
+            st.ajouterStock(sto);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success");
+            alert.setContentText("Stock ajoutée!");
+            alert.show();
+            refresh1();
+        }
+    }
+
+    @FXML
+    private void ModifierStock(ActionEvent event) {
+        if (libS.getText().equals("") || prixS.getText().equals("") || quantiteS.getText().equals("") || dispoS.getText().equals("") || idProdS.getText().equals("")) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("champs manquants !");
+            alert.showAndWait();
+        } else if (!(Pattern.matches("[0.-9.]*", prixS.getText()))) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("le prix doit etre de type Float/Int !");
+            alert.showAndWait();
+        } else if (!(Pattern.matches("[0-9]*", quantiteS.getText()))) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("la quantité doit etre de type Int !");
+            alert.showAndWait();
+        } else if (libS.getText().length() < 5) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("le libelle doit au moin contenir 5 caractéres");
+            alert.showAndWait();
+
+        } else {
+            Stock sto = new Stock();
+            Stock stoID = listeS.getSelectionModel().getSelectedItem();
             sto.setLibelle(libS.getText());
             int prix1 = Integer.parseInt(prixS.getText());
             int q = Integer.parseInt(quantiteS.getText());
@@ -427,35 +492,70 @@ public class GuiProduitController implements Initializable {
             sto.setPrix(q);
             sto.setIdProduit(idPS);
 
-            st.ajouterStock(sto);
+            sto.setId(stoID.getId());
+
+            st.modifierStock(sto);
+            refresh1();
+            libS.setText("");
+            prixS.setText("");
+            quantiteS.setText("");
+            dispoS.setText("");
+            idProdS.setText("");
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success");
+            alert.setContentText("modification effectuée!");
+            alert.show();
         }
     }
 
     @FXML
-    private void ModifierStock(ActionEvent event) {
-        Stock sto = new Stock();
+    private void SupprimerStock(ActionEvent event) {
 
-        sto.setLibelle(libS.getText());
-        int prix1 = Integer.parseInt(prixS.getText());
-        int q = Integer.parseInt(quantiteS.getText());
-        sto.setDisponibilite(dispoS.getText());
-        int idPS = Integer.parseInt(idProdS.getText());
+        alert.setAlertType(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation");
+        alert.setHeaderText(null);
+        alert.setContentText("vous-etes sur de supprimer cet STOCK !");
 
-        sto.setPrix(prix1);
-        sto.setPrix(q);
-        sto.setIdProduit(idPS);
+        Optional<ButtonType> action = alert.showAndWait();
 
-        int id = Integer.parseInt(idS.getText());
-        sto.setId(id);
+        if (action.get() == ButtonType.OK) {
+            Stock sto = new Stock();
 
-        st.modifierStock(sto);
+            sto.setId(listeS.getSelectionModel().getSelectedItem().getId());
+            st.supprimerStock(sto.getId());
 
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success");
+            alert.setContentText("Stock supprimé!");
+            alert.show();
+            refresh1();
+        } else {
+            refresh1();
+
+        }
     }
 
     @FXML
-    private void SupprimerStock(ActionEvent event) {
-        int id = Integer.parseInt(idS.getText());
-        st.supprimerStock(id);
+    private void searchStock(ActionEvent event) {
+        List<Stock> lib = st.RechercheLibelle(searchSto.getText());
+        listeS.getItems().clear();
+        listeS.getItems().removeAll(stock);
+        listeS.getItems().addAll(lib);
+    }
+
+    @FXML
+    private void trierStockQuantite(ActionEvent event) {
+        List<Stock> trieQ = st.TriQuantite();
+        listeS.getItems().clear();
+        listeS.getItems().addAll(trieQ);
+    }
+
+    @FXML
+    private void TrierStockDisponibilite(ActionEvent event) {
+        List<Stock> trieD = st.TriDisponibilite();
+        listeS.getItems().clear();
+        listeS.getItems().addAll(trieD);
     }
 
     /**
@@ -465,8 +565,18 @@ public class GuiProduitController implements Initializable {
     private void AjouterEmplacement(ActionEvent event) {
         Emplacement emp = new Emplacement();
 
-        if (lieuE.getText().isEmpty() && capaciteE.getText().isEmpty() && idSE.getText().isEmpty()) {
-            cds2.setText("Veuillez remplir tous les champs ");
+        if (lieuE.getText().equals("") || capaciteE.getText().equals("") || idSE.getText().equals("")) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("champs manquants !");
+            alert.showAndWait();
+        } else if (!(Pattern.matches("[0-9]*", capaciteE.getText()))) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("la capacité doit etre de type Int !");
+            alert.showAndWait();
         } else {
             emp.setLieu(lieuE.getText());
             int cap = Integer.parseInt(capaciteE.getText());
@@ -476,41 +586,120 @@ public class GuiProduitController implements Initializable {
             emp.setStock(idstock);
 
             em.ajouterEmplacement(emp);
+            refresh2();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success");
+            alert.setContentText("EMPLACEMENT ajoutée!");
+            alert.show();
         }
     }
 
     @FXML
     private void ModifierEmplacement(ActionEvent event) {
         Emplacement emp = new Emplacement();
+        if (lieuE.getText().equals("") || capaciteE.getText().equals("") || idSE.getText().equals("")) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("champs manquants !");
+            alert.showAndWait();
+        } else if (!(Pattern.matches("[0-9]*", capaciteE.getText()))) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("la capacité doit etre de type Int !");
+            alert.showAndWait();
+        } else {
+            emp.setLieu(lieuE.getText());
+            int cap = Integer.parseInt(capaciteE.getText());
+            int idstock = Integer.parseInt(idSE.getText());
 
-        emp.setLieu(lieuE.getText());
-        int cap = Integer.parseInt(capaciteE.getText());
-        int idstock = Integer.parseInt(idSE.getText());
+            emp.setCapacite(cap);
+            emp.setStock(idstock);
 
-        emp.setCapacite(cap);
-        emp.setStock(idstock);
+            int id = Integer.parseInt(idEmp.getText());
+            emp.setId(id);
 
-        int id = Integer.parseInt(idEmp.getText());
-        emp.setId(id);
+            em.modifierEmplacement(emp);
+            refresh2();
 
-        em.modifierEmplacement(emp);
+            lieuE.setText("");
+            capaciteE.setText("");
+            idSE.setText("");
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success");
+            alert.setContentText("modification effectuée!");
+            alert.show();
+        }
     }
 
     @FXML
     private void SupprimerEmplacement(ActionEvent event) {
-        int id = Integer.parseInt(idEmp.getText());
-        em.supprimerEmplacement(id);
+        alert.setAlertType(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation");
+        alert.setHeaderText(null);
+        alert.setContentText("vous-etes sur de supprimer cet STOCK !");
+
+        Optional<ButtonType> action = alert.showAndWait();
+
+        if (action.get() == ButtonType.OK) {
+
+            Emplacement emp = new Emplacement();
+
+            emp.setId(listeEmp.getSelectionModel().getSelectedItem().getId());
+            em.supprimerEmplacement(emp.getId());
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success");
+            alert.setContentText("Stock supprimé!");
+            alert.show();
+            refresh2();
+        } else {
+            refresh2();
+
+        }
+    }
+
+    @FXML
+    private void searchEmplacement(ActionEvent event
+    ) {
+        List<Emplacement> lieu = em.RechercheLieu(searchEmp.getText());
+        listeEmp.getItems().clear();
+        listeEmp.getItems().removeAll(emplacement);
+        listeEmp.getItems().addAll(lieu);
+    }
+
+    @FXML
+    private void TrierEmpLieu(ActionEvent event
+    ) {
+        List<Emplacement> trieL = em.TriLieu();
+        listeEmp.getItems().clear();
+        listeEmp.getItems().addAll(trieL);
+    }
+
+    @FXML
+    private void TrierEmpCapacite(ActionEvent event
+    ) {
+        List<Emplacement> trieC = em.TriCapacite();
+        listeEmp.getItems().clear();
+        listeEmp.getItems().addAll(trieC);
     }
 
     /**
      * ************************************************************************FAVORIS**************************************************************************************
      */
     @FXML
-    private void AjouterFavoris(ActionEvent event) {
+    private void AjouterFavoris(ActionEvent event
+    ) {
 
         Favoris fav = new Favoris();
-        if (produitF.getText().isEmpty() && userF.getText().isEmpty()) {
-            cds3.setText("Veuillez remplir tous les champs ");
+        if (produitF.getText().equals("") || userF.getText().equals("")) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("champs manquants !");
+            alert.showAndWait();
         } else {
             int produitFav = Integer.parseInt(produitF.getText());
             int userFav = Integer.parseInt(userF.getText());
@@ -523,21 +712,15 @@ public class GuiProduitController implements Initializable {
     }
 
     @FXML
-    private void SupprimerFavoris(ActionEvent event) {
+    private void SupprimerFavoris(ActionEvent event
+    ) {
         int id = Integer.parseInt(idfav.getText());
         fa.supprimerFavoris(id);
     }
 
     @FXML
-    private void searchStock(ActionEvent event) {
-    }
-
-    @FXML
-    private void searchEmplacement(ActionEvent event) {
-    }
-
-    @FXML
-    private void searchFavoris(ActionEvent event) {
+    private void searchFavoris(ActionEvent event
+    ) {
     }
 
 }
