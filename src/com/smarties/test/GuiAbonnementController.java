@@ -117,6 +117,28 @@ public class GuiAbonnementController implements Initializable {
     private Button findDuree;
     @FXML
     private Button findID;
+    @FXML
+    private Button triPrix;
+    @FXML
+    private Button triIDUSER;
+    @FXML
+    private Button triDuree;
+    @FXML
+    private Button triIdAb;
+    @FXML
+    private ImageView loop;
+    @FXML
+    private ImageView tri;
+    @FXML
+    private ImageView trii;
+    @FXML
+    private Button actuAB;
+    @FXML
+    private ImageView refresh;
+    @FXML
+    private Button actuLOC;
+    @FXML
+    private ImageView refreesh;
    
    
         
@@ -136,8 +158,8 @@ public class GuiAbonnementController implements Initializable {
        /* ArrayList al = (ArrayList) as.afficherAbonnement();
         listAb.getItems().addAll(al);*/
 
-        ArrayList l = (ArrayList) loc.afficherLocation();
-        ListLoc.getItems().addAll(l);
+       /* ArrayList l = (ArrayList) loc.afficherLocation();
+        ListLoc.getItems().addAll(l);*/
 
     }
  
@@ -209,8 +231,16 @@ public class GuiAbonnementController implements Initializable {
             alert.setTitle("Success");
             alert.setContentText("Abonnement ajouté avec succés!");
             alert.show();    
-             ArrayList al = (ArrayList) as.afficherAbonnement();
-        listAb.getItems().addAll(al);
+            
+             ObservableList<Abonnement> items =FXCollections.observableArrayList();
+        List<Abonnement> listabb = as.afficherAbonnement();
+        for(Abonnement r : listabb) {
+            String ch = r.toString();
+            items.add(r);
+        }
+         listAb.setItems(items);
+            /* ArrayList al = (ArrayList) as.afficherAbonnement();
+        listAb.getItems().addAll(al);*/
         
          
        
@@ -231,8 +261,14 @@ public class GuiAbonnementController implements Initializable {
             alert.setContentText("Abonnement supprimé avec succés!");
             alert.show();    
         textIDAbonnement.setText(" ");
-         ArrayList al = (ArrayList) as.afficherAbonnement();
-        listAb.getItems().addAll(al);
+        
+       ObservableList<Abonnement> items =FXCollections.observableArrayList();
+        List<Abonnement> listabb = as.afficherAbonnement();
+        for(Abonnement r : listabb) {
+            String ch = r.toString();
+            items.add(r);
+        }
+         listAb.setItems(items);
     }
 
     @FXML
@@ -253,6 +289,13 @@ public class GuiAbonnementController implements Initializable {
         ab.setPrix(x3);
 
         as.modifierAbonnement(ab);
+         ObservableList<Abonnement> items =FXCollections.observableArrayList();
+        List<Abonnement> listabb = as.afficherAbonnement();
+        for(Abonnement r : listabb) {
+            String ch = r.toString();
+            items.add(r);
+        }
+         listAb.setItems(items);
         
 
     }
@@ -282,6 +325,50 @@ public class GuiAbonnementController implements Initializable {
             listAb.setItems(datalist);
                 findAb.setText(" ");
     }
+     @FXML
+    private void TrierPrix(ActionEvent event) {
+        
+           AbonnementService  n=new    AbonnementService();
+        // int price = Integer.parseInt(findAb.getText());
+           List< Abonnement> R=   n.trierPrix();
+          
+       ObservableList< Abonnement> datalist = FXCollections.observableArrayList(R);
+
+     
+            listAb.setItems(datalist);
+               // findAb.setText(" ");
+    }
+
+    @FXML
+    private void trierIDUSER(ActionEvent event) {
+        
+          AbonnementService  n=new    AbonnementService();
+        // int price = Integer.parseInt(findAb.getText());
+           List< Abonnement> R=   n.trierIDUSER();
+          
+       ObservableList< Abonnement> datalist = FXCollections.observableArrayList(R);
+
+     
+            listAb.setItems(datalist);
+        
+    }
+@FXML
+    private void ActualiserAb(ActionEvent event) {
+        
+          ObservableList<Abonnement> items =FXCollections.observableArrayList();
+        List<Abonnement> listabb = as.afficherAbonnement();
+        for(Abonnement r : listabb) {
+            String ch = r.toString();
+            items.add(r);
+        }
+         listAb.setItems(items);
+    }
+   
+
+    
+
+   
+//*******************************************************LOCATION*****************************************************************//
 
     @FXML
     private void AjouterLoaction(ActionEvent event) {
@@ -332,7 +419,14 @@ public class GuiAbonnementController implements Initializable {
        Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Success");
             alert.setContentText("Location ajoutée avec succés!");
-            alert.show();        
+            alert.show();   
+             ObservableList<Location> items =FXCollections.observableArrayList();
+        List<Location> listLOC = loc.afficherLocation();
+        for(Location r : listLOC) {
+            String ch = r.toString();
+            items.add(r);
+        }
+         ListLoc.setItems(items);
        }
     }
 
@@ -341,6 +435,13 @@ public class GuiAbonnementController implements Initializable {
 
         int id = Integer.parseInt(textIdLocation.getText());
         loc.supprimerLocation(id);
+         ObservableList<Location> items =FXCollections.observableArrayList();
+        List<Location> listLOC = loc.afficherLocation();
+        for(Location r : listLOC) {
+            String ch = r.toString();
+            items.add(r);
+        }
+         ListLoc.setItems(items);
       
         
     }
@@ -364,6 +465,13 @@ public class GuiAbonnementController implements Initializable {
         loc1.setIdAbonnement(x3);
         loc1.setDuree(x4);
         loc.modifierLocation(loc1);
+         ObservableList<Location> items =FXCollections.observableArrayList();
+        List<Location> listLOC = loc.afficherLocation();
+        for(Location r : listLOC) {
+            String ch = r.toString();
+            items.add(r);
+        }
+         ListLoc.setItems(items);
       
 
     }
@@ -395,9 +503,47 @@ public class GuiAbonnementController implements Initializable {
            findLoc.setText(" ");
     }
 
-    
+    @FXML
+    private void TrierDuree(ActionEvent event) {
+        
+         LocationService  n=new LocationService();
+        
+           List< Location> R=   n.TrierDuree();
+          
+       ObservableList< Location> datalist = FXCollections.observableArrayList(R);
+
+     
+            ListLoc.setItems(datalist);
+               
+    }
+
+    @FXML
+    private void TrierIdAB(ActionEvent event) {
+          LocationService  n=new LocationService();
+        
+           List< Location> R=   n.TrierIdAB();
+          
+       ObservableList< Location> datalist = FXCollections.observableArrayList(R);
+
+     
+            ListLoc.setItems(datalist);
+    }
+
+    @FXML
+    private void ActualiserLoc(ActionEvent event) {
+        
+         ObservableList<Location> items =FXCollections.observableArrayList();
+        List<Location> listLOC = loc.afficherLocation();
+        for(Location r : listLOC) {
+            String ch = r.toString();
+            items.add(r);
+        }
+         ListLoc.setItems(items);
+    }
 
    
 
+   
 
+    
 }

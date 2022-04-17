@@ -179,7 +179,64 @@ public class AbonnementService {
         return list ;   
    
              } 
+      
+      
+       public List<Abonnement>trierPrix() {
+        List<Abonnement> list = new ArrayList<>();
+        try{
+            String req = "SELECT * FROM abonnement order by prix desc";
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+            
+            while(rs.next()){
+              
+                Abonnement ab = new Abonnement();
+                ab.setId(rs.getInt(1));
+                 ab.setType(rs.getString(2));
+                ab.setId_user_id(rs.getInt(5));
+                ab.setPrix(rs.getInt(6));
+                
+                list.add(ab);
+            }
+            
+        }
+        catch(SQLException e){
+            
+        }
+        return list ;
+    
               
               
               
+}
+         public List<Abonnement> trierIDUSER() {
+        List<Abonnement> list = new ArrayList<>();
+        try{
+            String req = "SELECT * FROM abonnement order by id_user_id desc";
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+            
+            while(rs.next()){
+              
+                Abonnement ab = new Abonnement();
+                ab.setId(rs.getInt(1));
+                 ab.setType(rs.getString(2));
+                ab.setId_user_id(rs.getInt(5));
+                ab.setPrix(rs.getInt(6));
+                
+                list.add(ab);
+            }
+            
+        }
+        catch(SQLException e){
+            
+        }
+        return list ;
+    
+              
+              
+              
+}
+       
+      
 }

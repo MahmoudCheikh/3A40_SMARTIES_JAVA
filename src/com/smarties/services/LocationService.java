@@ -33,8 +33,8 @@ public class LocationService {
         try {
             PreparedStatement ste = cnx.prepareStatement(query);
 
-           // ste.setInt(1, (int) l.getId());
-              ste.setInt(1, (int) l.getIdUser());
+            // ste.setInt(1, (int) l.getId());
+            ste.setInt(1, (int) l.getIdUser());
             ste.setInt(2, l.getIdAbonnement());
             ste.setDate(3, Date.valueOf(l.getDate()));
             ste.setString(4, l.getHeure());
@@ -56,8 +56,8 @@ public class LocationService {
             ste = cnx.createStatement();
             ResultSet rs = ste.executeQuery(sql);
             while (rs.next()) {
-                 Location l = new Location();
-                 l.setId(rs.getInt("id"));
+                Location l = new Location();
+                l.setId(rs.getInt("id"));
                 l.setIdUser(rs.getInt(1));
                 l.setIdAbonnement(rs.getInt(1));
                 Date date = rs.getDate("date");
@@ -79,13 +79,12 @@ public class LocationService {
         try {
             String req = "UPDATE location SET heure= ?, duree = ? ,id_abonnement_id=? WHERE id= ?";
             PreparedStatement ps = cnx.prepareStatement(req);
-           
-             //ps.setDate(2,l.getDate(date.toLocalDate()));
-              ps.setString(1, l.getHeure());
-               ps.setFloat(2, l.getDuree());
-             ps.setInt(3, l.getIdAbonnement());
-             ps.setInt(4, l.getId());
-           
+
+            //ps.setDate(2,l.getDate(date.toLocalDate()));
+            ps.setString(1, l.getHeure());
+            ps.setFloat(2, l.getDuree());
+            ps.setInt(3, l.getIdAbonnement());
+            ps.setInt(4, l.getId());
 
             System.out.println("Modification...");
             ps.executeUpdate();
@@ -111,77 +110,124 @@ public class LocationService {
         }
 
     }
-     public List<Location> ChercherDuree( int Duree)
-             {
-             
-               List<Location> list = new ArrayList<>();
-        try{
+
+    public List<Location> ChercherDuree(int Duree) {
+
+        List<Location> list = new ArrayList<>();
+        try {
             String req = "SELECT * FROM location where duree=?";
-             PreparedStatement ps = cnx.prepareStatement(req);
+            PreparedStatement ps = cnx.prepareStatement(req);
             System.out.println("RECHERCHE en cours ..");
-            ps.setInt(1,Duree);
+            ps.setInt(1, Duree);
             ResultSet rs = ps.executeQuery();
-         
-              System.out.println(Duree);
-            while(rs.next()){
+
+            System.out.println(Duree);
+            while (rs.next()) {
                 Location loc = new Location();
                 loc.setId(rs.getInt(1));
-                 loc.setIdUser(rs.getInt(2));
-                 loc.setHeure(rs.getString(4));
-               
-                loc.setDuree(rs.getInt(5));
-                  
-                loc.setIdAbonnement(rs.getInt(6));
-               
+                loc.setIdUser(rs.getInt(2));
+                loc.setHeure(rs.getString(4));
 
-               
-                
+                loc.setDuree(rs.getInt(5));
+
+                loc.setIdAbonnement(rs.getInt(6));
+
                 list.add(loc);
             }
-            
+
+        } catch (SQLException e) {
+
         }
-        catch(SQLException e){
-            
-        }
-        return list ;   
-   
-             } 
-     public List<Location> ChercherID( int abon)
-             {
-             
-               List<Location> list = new ArrayList<>();
-        try{
+        return list;
+
+    }
+
+    public List<Location> ChercherID(int abon) {
+
+        List<Location> list = new ArrayList<>();
+        try {
             String req = "SELECT * FROM location where id_abonnement_id=?";
-             PreparedStatement ps = cnx.prepareStatement(req);
+            PreparedStatement ps = cnx.prepareStatement(req);
             System.out.println("RECHERCHE en cours ..");
-            ps.setInt(1,abon);
+            ps.setInt(1, abon);
             ResultSet rs = ps.executeQuery();
-         
-              System.out.println(abon);
-            while(rs.next()){
+
+            System.out.println(abon);
+            while (rs.next()) {
                 Location loc = new Location();
                 loc.setId(rs.getInt(1));
-                 loc.setIdUser(rs.getInt(2));
-                 loc.setHeure(rs.getString(4));
-               
-                loc.setDuree(rs.getInt(5));
-                  
-                loc.setIdAbonnement(rs.getInt(6));
-               
+                loc.setIdUser(rs.getInt(2));
+                loc.setHeure(rs.getString(4));
 
-               
-                
+                loc.setDuree(rs.getInt(5));
+
+                loc.setIdAbonnement(rs.getInt(6));
+
                 list.add(loc);
             }
-            
+
+        } catch (SQLException e) {
+
         }
-        catch(SQLException e){
-            
+        return list;
+
+    }
+
+    public List<Location> TrierDuree() {
+
+        List<Location> list = new ArrayList<>();
+        try {
+            String req = "SELECT * FROM location order by duree desc";
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+
+            while (rs.next()) {
+
+                Location loc = new Location();
+                loc.setId(rs.getInt(1));
+                loc.setIdUser(rs.getInt(2));
+                loc.setHeure(rs.getString(4));
+
+                loc.setDuree(rs.getInt(5));
+
+                loc.setIdAbonnement(rs.getInt(6));
+
+                list.add(loc);
+
+            }
+
+        } catch (SQLException e) {
+
         }
-        return list ;   
-   
-             } 
-    
-    
-    
+        return list;
+    }
+     public List<Location> TrierIdAB() {
+
+        List<Location> list = new ArrayList<>();
+        try {
+            String req = "SELECT * FROM location order by id_abonnement_id desc";
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+
+            while (rs.next()) {
+
+                Location loc = new Location();
+                loc.setId(rs.getInt(1));
+                loc.setIdUser(rs.getInt(2));
+                loc.setHeure(rs.getString(4));
+
+                loc.setDuree(rs.getInt(5));
+
+                loc.setIdAbonnement(rs.getInt(6));
+
+                list.add(loc);
+
+            }
+
+        } catch (SQLException e) {
+
+        }
+        return list;
+    }
+
 }
