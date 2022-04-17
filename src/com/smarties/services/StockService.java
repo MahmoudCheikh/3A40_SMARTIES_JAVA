@@ -28,7 +28,7 @@ public class StockService {
     }
 
     public void ajouterStock(Stock s) {
-        String query = "insert into stock(libelle,id_produit_id,prix,quantite,disponibilite,emplacement_id) values(?,?,?,?,?,?)";
+        String query = "insert into stock(libelle,id_produit_id,prix,quantite,disponibilite) values(?,?,?,?,?)";
         try {
             PreparedStatement ste = cnx.prepareStatement(query);
             ste.setString(1, s.getLibelle());
@@ -36,7 +36,6 @@ public class StockService {
             ste.setFloat(3, s.getPrix());
             ste.setInt(4, s.getQuantite());
             ste.setString(5, s.getDisponibilite());
-            ste.setInt(6, s.getEmplacement());
 
             ste.executeUpdate();
             System.out.println("Stock Ajouté !!");
@@ -61,7 +60,6 @@ public class StockService {
                 s.setPrix(rs.getInt("prix"));
                 s.setQuantite(rs.getInt("quantite"));
                 s.setIdProduit(rs.getInt("id_produit_id"));
-                s.setEmplacement(rs.getInt("emplacement_id"));
                 stocks.add(s);
 
             }
@@ -83,7 +81,6 @@ public class StockService {
             ps.setInt(3, s.getPrix());
             ps.setInt(4, s.getQuantite());
             ps.setString(5, s.getDisponibilite());
-            ps.setInt(6, s.getEmplacement());
 
             ps.setInt(7, s.getId());
             

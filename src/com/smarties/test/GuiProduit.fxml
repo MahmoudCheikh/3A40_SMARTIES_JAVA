@@ -9,40 +9,52 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smarties.test.GuiProduitController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smarties.test.GuiProduitController">
    <children>
-      <TabPane layoutY="-1.0" prefHeight="600.0" prefWidth="1000.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane layoutY="-1.0" prefHeight="600.0" prefWidth="1100.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="Produit">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="330.0" prefWidth="536.0" style="-fx-background-color: #ffffff;">
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="561.0" prefWidth="1088.0" style="-fx-background-color: #ffffff;">
                      <children>
-                        <TextField fx:id="typeProd" layoutX="169.0" layoutY="221.0" />
-                        <TextField fx:id="prixProd" layoutX="169.0" layoutY="173.0" />
-                        <TextField fx:id="descProd" layoutX="169.0" layoutY="131.0" />
-                        <TextField fx:id="imageProd" layoutX="169.0" layoutY="95.0" />
-                        <TextField fx:id="libelleProd" layoutX="169.0" layoutY="54.0" />
-                        <Label layoutX="78.0" layoutY="59.0" prefHeight="21.0" prefWidth="77.0" text="Libelle :" textFill="CORAL" />
-                        <Button fx:id="btnAjoutProd" layoutX="96.0" layoutY="304.0" mnemonicParsing="false" onAction="#AjoutProd" prefHeight="51.0" prefWidth="333.0" style="-fx-background-color: #ff7f50;" text="+ Ajouter">
+                        <TextField fx:id="typeProd" layoutX="60.0" layoutY="422.0" prefHeight="40.0" prefWidth="290.0" promptText="Type" />
+                        <TextField fx:id="prixProd" layoutX="60.0" layoutY="357.0" prefHeight="40.0" prefWidth="290.0" promptText="Prix" />
+                        <TextField fx:id="descProd" layoutX="60.0" layoutY="186.0" prefHeight="146.0" prefWidth="290.0" promptText="Description" />
+                        <TextField fx:id="imageProd" layoutX="60.0" layoutY="126.0" prefHeight="40.0" prefWidth="290.0" promptText="Image" />
+                        <TextField fx:id="libelleProd" layoutX="60.0" layoutY="56.0" prefHeight="40.0" prefWidth="290.0" promptText="Libelle" />
+                        <Button fx:id="btnAjoutProd" layoutX="55.0" layoutY="479.0" mnemonicParsing="false" onAction="#AjoutProd" prefHeight="50.0" prefWidth="300.0" style="-fx-background-color: #ff7f50;" text="+ Ajouter">
                            <font>
                               <Font name="Bell MT" size="15.0" />
-                           </font></Button>
-                        <Button fx:id="btnModifierProd" layoutX="286.0" layoutY="494.0" mnemonicParsing="false" onAction="#ModifierProd" prefHeight="39.0" prefWidth="206.0" style="-fx-background-color: #ff7f50;" text="Modifier">
+                           </font>
+                        </Button>
+                        <Button fx:id="btnModifierProd" layoutX="763.0" layoutY="425.0" mnemonicParsing="false" onAction="#ModifierProd" prefHeight="50.0" prefWidth="220.0" style="-fx-background-color: #ff7f50;" text="Modifier">
                            <font>
                               <Font name="Bell MT" size="15.0" />
-                           </font></Button>
-                        <Button fx:id="btnSupprimerProd" layoutX="34.0" layoutY="495.0" mnemonicParsing="false" onAction="#SupprimerProd" prefHeight="37.0" prefWidth="207.0" style="-fx-background-color: #ff7f50;" text="Supprimer">
+                           </font>
+                        </Button>
+                        <Button fx:id="btnSupprimerProd" layoutX="501.0" layoutY="426.0" mnemonicParsing="false" onAction="#SupprimerProd" prefHeight="50.0" prefWidth="220.0" style="-fx-background-color: #ff7f50;" text="Supprimer">
                            <font>
                               <Font name="Bell MT" size="15.0" />
-                           </font></Button>
-                        <Label layoutX="78.0" layoutY="178.0" text="Prix :" textFill="CORAL" />
-                        <Label layoutX="78.0" layoutY="136.0" text="Description:" textFill="CORAL" />
-                        <Label layoutX="78.0" layoutY="100.0" text="Image :" textFill="CORAL" />
-                        <Label layoutX="78.0" layoutY="226.0" prefHeight="21.0" prefWidth="50.0" text="Type :" textFill="CORAL" />
-                        <TextField fx:id="idProd" layoutX="160.0" layoutY="427.0" prefHeight="47.0" prefWidth="229.0" />
-                        <Label layoutX="107.0" layoutY="440.0" prefHeight="21.0" prefWidth="30.0" text="Id :" textFill="CORAL" />
-                        <ListView fx:id="listeProduit" layoutX="435.0" layoutY="10.0" prefHeight="470.0" prefWidth="561.0" />
-                        <Label fx:id="cds" layoutX="73.0" layoutY="14.0" prefHeight="35.0" prefWidth="286.0" textFill="#c60000" />
+                           </font>
+                        </Button>
+                        <ListView fx:id="listeProduit" layoutX="390.0" layoutY="86.0" prefHeight="330.0" prefWidth="680.0" />
+                        <TextField fx:id="searchProLib" layoutX="860.0" layoutY="50.0" onAction="#searchProduitLibelle" prefHeight="25.0" prefWidth="210.0" promptText="RECHERCHE PAR LIBELLE" />
+                        <Button fx:id="btnTRI" layoutX="390.0" layoutY="56.0" mnemonicParsing="false" onAction="#TrierProduitPrix" prefHeight="29.0" prefWidth="113.0" style="-fx-background-color: #ff7f50;" text="TRIER PRIX">
+                           <font>
+                              <Font name="Bell MT" size="15.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnTRIType" layoutX="518.0" layoutY="56.0" mnemonicParsing="false" onAction="#TrierProduitType" prefHeight="29.0" prefWidth="117.0" style="-fx-background-color: #ff7f50;" text="TRIER TYPE">
+                           <font>
+                              <Font name="Bell MT" size="15.0" />
+                           </font>
+                        </Button>
+                        <TextField fx:id="searchProType" layoutX="860.0" layoutY="14.0" onAction="#searchProduitType" prefHeight="25.0" prefWidth="210.0" promptText="RECHERCHE PAR TYPE" />
+                        <Button fx:id="upload" layoutX="278.0" layoutY="125.0" mnemonicParsing="false" onAction="#uploadImage" prefHeight="40.0" prefWidth="72.0" style="-fx-background-color: #ff7f50;" text="UpLoad">
+                           <font>
+                              <Font name="Bell MT" size="15.0" />
+                           </font>
+                        </Button>
                      </children>
                   </AnchorPane>
             </content>
@@ -51,25 +63,17 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #ffffff;">
                      <children>
-                        <TextField fx:id="libS" layoutX="133.0" layoutY="56.0" />
-                        <TextField fx:id="idProdS" layoutX="133.0" layoutY="260.0" />
-                        <TextField fx:id="dispoS" layoutX="133.0" layoutY="213.0" />
-                        <TextField fx:id="quantiteS" layoutX="133.0" layoutY="149.0" />
-                        <TextField fx:id="prixS" layoutX="133.0" layoutY="103.0" />
-                        <Label layoutX="41.0" layoutY="61.0" prefHeight="21.0" prefWidth="77.0" text="Libelle :" textFill="CORAL" />
-                        <Button fx:id="btnAjoutS" layoutX="88.0" layoutY="366.0" mnemonicParsing="false" onAction="#AjoutStock" prefHeight="42.0" prefWidth="199.0" style="-fx-background-color: #ff7f50;" text="Ajouter" />
-                        <Button fx:id="btnModifierS" layoutX="297.0" layoutY="483.0" mnemonicParsing="false" onAction="#ModifierStock" prefHeight="40.0" prefWidth="167.0" style="-fx-background-color: #ff7f50;" text="Modifier" />
-                        <Button fx:id="btnSupprimerS" layoutX="121.0" layoutY="484.0" mnemonicParsing="false" onAction="#SupprimerStock" prefHeight="39.0" prefWidth="156.0" style="-fx-background-color: #ff7f50;" text="Supprimer" />
-                        <Label layoutX="47.0" layoutY="108.0" text="Prix :" textFill="CORAL" />
-                        <Label layoutX="30.0" layoutY="154.0" text="Quantite :" textFill="CORAL" />
-                        <Label layoutX="16.0" layoutY="218.0" text="Disponibilite :" textFill="CORAL" />
-                        <Label layoutX="23.0" layoutY="265.0" prefHeight="21.0" prefWidth="78.0" text="Id Produit :" textFill="CORAL" />
-                        <TextField fx:id="idS" layoutX="176.0" layoutY="420.0" prefHeight="34.0" prefWidth="225.0" />
-                        <Label layoutX="130.0" layoutY="428.0" prefHeight="21.0" prefWidth="30.0" text="Id :" textFill="CORAL" />
-                        <ListView fx:id="listeS" layoutX="363.0" layoutY="19.0" prefHeight="275.0" prefWidth="598.0" />
-                        <TextField fx:id="idEmpalcement" layoutX="133.0" layoutY="308.0" />
-                        <Label layoutX="11.0" layoutY="313.0" prefHeight="21.0" prefWidth="114.0" text="Id Emplacment : " textFill="CORAL" />
-                        <Label fx:id="cds1" layoutX="51.0" layoutY="19.0" prefHeight="32.0" prefWidth="300.0" textFill="#bc0000" />
+                        <TextField fx:id="libS" layoutX="41.0" layoutY="55.0" prefHeight="40.0" prefWidth="290.0" promptText="Libelle" />
+                        <TextField fx:id="idProdS" layoutX="41.0" layoutY="272.0" prefHeight="40.0" prefWidth="290.0" promptText="Produit" />
+                        <TextField fx:id="dispoS" layoutX="41.0" layoutY="217.0" prefHeight="40.0" prefWidth="290.0" promptText="Disponinbilité" />
+                        <TextField fx:id="quantiteS" layoutX="41.0" layoutY="165.0" prefHeight="40.0" prefWidth="290.0" promptText="Quantité" />
+                        <TextField fx:id="prixS" layoutX="41.0" layoutY="107.0" prefHeight="40.0" prefWidth="290.0" promptText="Prix" />
+                        <Button fx:id="btnAjoutS" layoutX="23.0" layoutY="347.0" mnemonicParsing="false" onAction="#AjoutStock" prefHeight="50.0" prefWidth="327.0" style="-fx-background-color: #ff7f50;" text="+ Ajouter" />
+                        <Button fx:id="btnModifierS" layoutX="716.0" layoutY="468.0" mnemonicParsing="false" onAction="#ModifierStock" prefHeight="40.0" prefWidth="165.0" style="-fx-background-color: #ff7f50;" text="Modifier" />
+                        <Button fx:id="btnSupprimerS" layoutX="531.0" layoutY="468.0" mnemonicParsing="false" onAction="#SupprimerStock" prefHeight="40.0" prefWidth="165.0" style="-fx-background-color: #ff7f50;" text="Supprimer" />
+                        <TextField fx:id="idS" layoutX="531.0" layoutY="409.0" prefHeight="40.0" prefWidth="350.0" promptText="ID STOCK" />
+                        <ListView fx:id="listeS" layoutX="366.0" layoutY="67.0" prefHeight="330.0" prefWidth="680.0" />
+                        <TextField fx:id="searchSto" layoutX="836.0" layoutY="15.0" onAction="#searchStock" prefHeight="40.0" prefWidth="210.0" promptText="RECHERCHE" />
                      </children></AnchorPane>
             </content>
           </Tab>
@@ -77,19 +81,15 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TextField fx:id="idSE" layoutX="97.0" layoutY="193.0" />
-                        <TextField fx:id="capaciteE" layoutX="97.0" layoutY="140.0" />
-                        <TextField fx:id="lieuE" layoutX="97.0" layoutY="90.0" />
-                        <Label layoutX="23.0" layoutY="95.0" prefHeight="21.0" prefWidth="50.0" text="Lieu : " textFill="CORAL" />
-                        <Button fx:id="btnAjoutEmp" layoutX="57.0" layoutY="271.0" mnemonicParsing="false" onAction="#AjouterEmplacement" prefHeight="46.0" prefWidth="159.0" style="-fx-background-color: #ff7f50;" text="Ajouter" />
-                        <Button fx:id="btnModifierEmp" layoutX="288.0" layoutY="484.0" mnemonicParsing="false" onAction="#ModifierEmplacement" prefHeight="40.0" prefWidth="127.0" style="-fx-background-color: #ff7f50;" text="Modifier" />
-                        <Button fx:id="btnSupprimerEmp" layoutX="111.0" layoutY="484.0" mnemonicParsing="false" onAction="#SupprimerEmplacement" prefHeight="39.0" prefWidth="136.0" style="-fx-background-color: #ff7f50;" text="Supprimer" />
-                        <Label layoutX="14.0" layoutY="145.0" text="Capacite : " textFill="CORAL" />
-                        <Label layoutX="27.0" layoutY="198.0" text="Stock :" textFill="CORAL" />
-                        <TextField fx:id="idEmp" layoutX="169.0" layoutY="429.0" prefHeight="41.0" prefWidth="182.0" />
-                        <Label layoutX="111.0" layoutY="439.0" prefHeight="21.0" prefWidth="30.0" text="Id :" textFill="CORAL" />
-                        <ListView fx:id="listeEmp" layoutX="302.0" prefHeight="407.0" prefWidth="686.0" />
-                        <Label fx:id="cds2" layoutX="27.0" layoutY="14.0" prefHeight="32.0" prefWidth="273.0" textFill="#bc0000" />
+                        <TextField fx:id="idSE" layoutX="27.0" layoutY="186.0" prefHeight="40.0" prefWidth="290.0" promptText="Stock" />
+                        <TextField fx:id="capaciteE" layoutX="27.0" layoutY="133.0" prefHeight="40.0" prefWidth="290.0" promptText="Capacite" />
+                        <TextField fx:id="lieuE" layoutX="27.0" layoutY="83.0" prefHeight="40.0" prefWidth="290.0" promptText="Lieu" />
+                        <Button fx:id="btnAjoutEmp" layoutX="24.0" layoutY="250.0" mnemonicParsing="false" onAction="#AjouterEmplacement" prefHeight="50.0" prefWidth="303.0" style="-fx-background-color: #ff7f50;" text="+ Ajouter" />
+                        <Button fx:id="btnModifierEmp" layoutX="699.0" layoutY="492.0" mnemonicParsing="false" onAction="#ModifierEmplacement" prefHeight="40.0" prefWidth="165.0" style="-fx-background-color: #ff7f50;" text="Modifier" />
+                        <Button fx:id="btnSupprimerEmp" layoutX="514.0" layoutY="492.0" mnemonicParsing="false" onAction="#SupprimerEmplacement" prefHeight="40.0" prefWidth="165.0" style="-fx-background-color: #ff7f50;" text="Supprimer" />
+                        <TextField fx:id="idEmp" layoutX="514.0" layoutY="439.0" prefHeight="40.0" prefWidth="350.0" promptText="ID EMPLACEMENT" />
+                        <ListView fx:id="listeEmp" layoutX="349.0" layoutY="83.0" prefHeight="330.0" prefWidth="680.0" />
+                        <TextField fx:id="searchEmp" layoutX="819.0" layoutY="29.0" onAction="#searchEmplacement" prefHeight="40.0" prefWidth="210.0" promptText="RECHERCHE" />
                      </children>
                   </AnchorPane>
               </content>
@@ -98,16 +98,14 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TextField fx:id="userF" layoutX="101.0" layoutY="150.0" />
-                        <TextField fx:id="produitF" layoutX="101.0" layoutY="97.0" />
-                        <Button fx:id="btnAjoutFav" layoutX="61.0" layoutY="228.0" mnemonicParsing="false" onAction="#AjouterFavoris" prefHeight="46.0" prefWidth="159.0" style="-fx-background-color: #ff7f50;" text="Ajouter" />
-                        <Button fx:id="btnSupprimerFav" layoutX="179.0" layoutY="483.0" mnemonicParsing="false" onAction="#SupprimerFavoris" prefHeight="39.0" prefWidth="136.0" style="-fx-background-color: #ff7f50;" text="Supprimer" />
-                        <Label layoutX="18.0" layoutY="102.0" text="Produit :" textFill="CORAL" />
-                        <Label layoutX="31.0" layoutY="155.0" text="user : " textFill="CORAL" />
-                        <TextField fx:id="idfav" layoutX="169.0" layoutY="429.0" prefHeight="41.0" prefWidth="182.0" />
-                        <Label layoutX="111.0" layoutY="439.0" prefHeight="21.0" prefWidth="30.0" text="Id :" textFill="CORAL" />
-                        <ListView fx:id="listefav" layoutX="300.0" layoutY="6.0" prefHeight="407.0" prefWidth="686.0" />
-                        <Label fx:id="cds3" layoutX="46.0" layoutY="29.0" prefHeight="37.0" prefWidth="220.0" textFill="#bc0000" />
+                        <TextField fx:id="userF" layoutX="35.0" layoutY="138.0" prefHeight="40.0" prefWidth="290.0" promptText="UTILISATEUR" />
+                        <TextField fx:id="produitF" layoutX="35.0" layoutY="85.0" prefHeight="40.0" prefWidth="290.0" promptText="PRODUIT" />
+                        <Button fx:id="btnAjoutFav" layoutX="16.0" layoutY="200.0" mnemonicParsing="false" onAction="#AjouterFavoris" prefHeight="50.0" prefWidth="323.0" style="-fx-background-color: #ff7f50;" text="+ Ajouter" />
+                        <Button fx:id="btnSupprimerFav" layoutX="613.0" layoutY="502.0" mnemonicParsing="false" onAction="#SupprimerFavoris" prefHeight="40.0" prefWidth="165.0" style="-fx-background-color: #ff7f50;" text="Supprimer" />
+                        <TextField fx:id="idfav" layoutX="614.0" layoutY="448.0" prefHeight="40.0" prefWidth="165.0" promptText="ID FAVORIS" />
+                        <ListView fx:id="listefav" layoutX="365.0" layoutY="83.0" prefHeight="330.0" prefWidth="680.0" />
+                        <Label fx:id="cds3" layoutX="15.0" layoutY="14.0" prefHeight="56.0" prefWidth="252.0" textFill="#bc0000" />
+                        <TextField fx:id="searchFav" layoutX="835.0" layoutY="20.0" onAction="#searchFavoris" prefHeight="40.0" prefWidth="210.0" promptText="RECHERCHE" />
                      </children>
                   </AnchorPane>
                </content>

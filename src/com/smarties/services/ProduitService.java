@@ -13,7 +13,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -99,14 +101,54 @@ public class ProduitService {
             String req = "DELETE FROM produit WHERE id = ?";
             PreparedStatement ps = cnx.prepareStatement(req);
             System.out.println("Suppression...");
+            
             ps.setInt(1, id);
-
             ps.executeUpdate();
-            System.out.println("Une ligne SUPPRIMER dans la table...");
+            System.out.println("Une ligne SUPPRIMER dans la table where id = ");
+            System.out.println(id);
+            
         } catch (SQLException e) {
+            System.out.println(e);
+        }
+        
 
+    }
+    
+    
+       public void SupprimerProduit1(int t) {
+        PreparedStatement ps;
+
+        String query = "UPDATE `produit` SET `isDelete`=1 WHERE `id`= " + t;
+
+        try {
+            ps = cnx.prepareStatement(query);
+
+            ps.execute();
+
+        } catch (SQLException e) {
+            System.out.println(e);
         }
 
     }
+    public List<Produit> RechercheLibelle(String libelle) {
 
+        return afficherProduit().stream().filter(a -> a.getLibelle().equals(libelle)).collect(Collectors.toList());
+    }
+    
+        public List<Produit> RechercheType(String type) {
+
+        return afficherProduit().stream().filter(a -> a.getType().equals(type)).collect(Collectors.toList());
+    }
+        public List<Produit> TriPrix() {
+        Comparator<Produit> comparator = Comparator.comparing(Produit::getPrix);
+        List<Produit> prd = afficherProduit();
+        return prd.stream().sorted(comparator).collect(Collectors.toList());
+    }
+        
+        public List<Produit> TriType() {
+        Comparator<Produit> comparator = Comparator.comparing(Produit::getType);
+        List<Produit> prd = afficherProduit();
+        return prd.stream().sorted(comparator).collect(Collectors.toList());
+    }
+    
 }

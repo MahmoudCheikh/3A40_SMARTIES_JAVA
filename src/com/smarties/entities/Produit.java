@@ -17,30 +17,13 @@ public class Produit {
     String description;
     float prix;
     String type;
-    Favoris favoris;
-    Stock stock;
     
     
     public String toString() {
-        return "Produit{" + "id=" + id + ", libelle=" + libelle + ", image=" + image + ", description=" + description + ", prix=" + prix + ", type=" + type + ", type=" + type + '}';
+        return "" + " libelle=" + libelle + " |  image=" + image + " |  description=" + description + " | prix=" + prix + " | type=" + type + "";
     }
     
-    
-    public Stock getStock() {
-        return stock;
-    }
 
-    public void setStock(Stock stock) {
-        this.stock = stock;
-    }
-
-    public Favoris getFavoris() {
-        return favoris;
-    }
-
-    public void setFavoris(Favoris favoris) {
-        this.favoris = favoris;
-    }
 
     //getters & setters
     public float getPrix() {
@@ -109,14 +92,6 @@ public class Produit {
         this.type = type;
     }
 
-    public Produit(String libelle, String image, String description, float prix, String type, Favoris favoris) {
-        this.libelle = libelle;
-        this.image = image;
-        this.description = description;
-        this.prix = prix;
-        this.type = type;
-        this.favoris = favoris;
-    }
 
     public Produit() {
     }

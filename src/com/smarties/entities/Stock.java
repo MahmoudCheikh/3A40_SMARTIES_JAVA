@@ -17,11 +17,10 @@ public class Stock {
     int quantite;
     int IdProduit;
     String disponibilite;
-    int emplacement;
 
     @Override
     public String toString() {
-        return "Stock{" + "id=" + id + ", libelle=" + libelle + ", prix=" + prix + ", quantite=" + quantite + ", IdProduit=" + IdProduit + ", disponibilite=" + disponibilite + ", emplacement=" + emplacement + '}';
+        return "Stock{" + "id=" + id + ", libelle=" + libelle + ", prix=" + prix + ", quantite=" + quantite + ", IdProduit=" + IdProduit + ", disponibilite=" + disponibilite + '}';
     }
 
     public int getIdProduit() {
@@ -70,14 +69,6 @@ public class Stock {
 
     public void setDisponibilite(String disponibilite) {
         this.disponibilite = disponibilite;
-    }
-
-    public int getEmplacement() {
-        return emplacement;
-    }
-
-    public void setEmplacement(int emplacement) {
-        this.emplacement = emplacement;
     }
 
     public Stock(int id, String libelle, int prix, int quantite, int IdProduit, String disponibilite) {
