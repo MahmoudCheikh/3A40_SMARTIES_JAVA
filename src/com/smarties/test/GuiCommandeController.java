@@ -79,6 +79,12 @@ public class GuiCommandeController implements Initializable {
     private Button recherche;
     @FXML
     private TextField rechc;
+    @FXML
+    private Button triid;
+    @FXML
+    private Button actc;
+    @FXML
+    private Button actac;
 
     /**
      * Initializes the controller class.
@@ -211,7 +217,7 @@ public class GuiCommandeController implements Initializable {
     private void Rechercher(ActionEvent event) {
                 
             CommandeService  n=new CommandeService();
-           List<Commande> R=   n.Chercher(rechc.getText());
+           List<Commande> R=   n.Rechercher(rechc.getText());
           
        ObservableList<Commande> datalist = FXCollections.observableArrayList(R);
 
@@ -219,6 +225,33 @@ public class GuiCommandeController implements Initializable {
             listcommande.setItems(datalist);
 
     }
+    
+    @FXML
+    private void triercommande(ActionEvent event) {
+         CommandeService  n=new    CommandeService();
+        // int price = Integer.parseInt(findAb.getText());
+           List< Commande> R=   n.triercommande();
+          
+       ObservableList< Commande> datalist = FXCollections.observableArrayList(R);
+
+     
+            listcommande.setItems(datalist);
+    }
+    
+    
+     @FXML
+    private void actcommande(ActionEvent event) {
+                  ObservableList<Commande> items =FXCollections.observableArrayList();
+        List<Commande> listcomm = cs.afficherCommande();
+        for(Commande r : listcomm) {
+            String ch = r.toString();
+            items.add(r);
+        }
+         listcommande.setItems(items);
+    }
+
+    
+    
 /*---------------------Achat-----------------------------*/
     @FXML
     private void ajoutachat(ActionEvent event) {
@@ -387,6 +420,23 @@ public class GuiCommandeController implements Initializable {
        
     listachat.setItems(items);
     }
+
+    @FXML
+    private void actachat(ActionEvent event) {
+        ObservableList<Achat> items =FXCollections.observableArrayList();
+        List<Achat> listachh = sa.afficherAchat();
+        for(Achat r : listachh) {
+            String ch = r.toString();
+            items.add(r);
+        }
+         listachat.setItems(items);
+    }
+
+    
+
+  
+    
+
 
 }
 

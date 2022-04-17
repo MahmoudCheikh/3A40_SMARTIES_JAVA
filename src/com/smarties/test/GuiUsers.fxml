@@ -4,29 +4,98 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.BoxBlur?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smarties.test.GuiUsersController">
    <children>
-      <ListView fx:id="tableuserslist" layoutX="312.0" layoutY="27.0" prefHeight="257.0" prefWidth="277.0" />
-      <Label layoutX="38.0" layoutY="39.0" text="Mail" />
-      <Label layoutX="23.0" layoutY="69.0" text="Password" />
-      <Label layoutX="38.0" layoutY="104.0" text="Nom" />
-      <Label layoutX="27.0" layoutY="139.0" text="Prenom" />
-      <Label layoutX="30.0" layoutY="172.0" text="Adresse" />
-      <Label layoutX="38.0" layoutY="209.0" text="other1" />
-      <Label layoutX="38.0" layoutY="241.0" text="other2" />
-      <TextField fx:id="txtbackusermail" layoutX="79.0" layoutY="35.0" />
-      <TextField fx:id="txtbackuserpassword" layoutX="79.0" layoutY="65.0" />
-      <TextField fx:id="txtbackusernom" layoutX="79.0" layoutY="100.0" />
-      <TextField fx:id="txtbackuserprenom" layoutX="79.0" layoutY="135.0" />
-      <TextField fx:id="txtbackuseradresse" layoutX="79.0" layoutY="168.0" />
-      <TextField fx:id="txtbackusertoher1" layoutX="79.0" layoutY="205.0" />
-      <TextField fx:id="txtbackuserother2" layoutX="79.0" layoutY="237.0" />
-      <TextField fx:id="txtbackuserid" layoutX="79.0" layoutY="311.0" />
-      <Label layoutX="38.0" layoutY="315.0" text="ID" />
-      <Button layoutX="79.0" layoutY="272.0" mnemonicParsing="false" onAction="#ajouter" text="Ajouter" />
-      <Button layoutX="79.0" layoutY="346.0" mnemonicParsing="false" onAction="#modifier" text="Modifier" />
-      <Button layoutX="156.0" layoutY="346.0" mnemonicParsing="false" onAction="#supprimer" text="Supprimer" />
+      <ListView fx:id="tableuserslist" layoutX="291.0" layoutY="124.0" prefHeight="133.0" prefWidth="277.0">
+         <effect>
+            <DropShadow />
+         </effect></ListView>
+      <Label layoutX="29.0" layoutY="54.0" text="Mail" />
+      <Label layoutX="14.0" layoutY="84.0" text="Password" />
+      <Label layoutX="29.0" layoutY="119.0" text="Nom" />
+      <Label layoutX="18.0" layoutY="154.0" text="Prenom" />
+      <Label layoutX="21.0" layoutY="187.0" text="Adresse" />
+      <Label layoutX="29.0" layoutY="224.0" text="other1" />
+      <Label layoutX="29.0" layoutY="256.0" text="other2" />
+      <TextField fx:id="txtbackusermail" layoutX="70.0" layoutY="50.0">
+         <effect>
+            <DropShadow />
+         </effect></TextField>
+      <TextField fx:id="txtbackuserpassword" layoutX="70.0" layoutY="80.0">
+         <effect>
+            <DropShadow />
+         </effect></TextField>
+      <TextField fx:id="txtbackusernom" layoutX="70.0" layoutY="115.0">
+         <effect>
+            <DropShadow />
+         </effect></TextField>
+      <TextField fx:id="txtbackuserprenom" layoutX="70.0" layoutY="150.0">
+         <effect>
+            <DropShadow />
+         </effect></TextField>
+      <TextField fx:id="txtbackuseradresse" layoutX="70.0" layoutY="183.0">
+         <effect>
+            <DropShadow />
+         </effect></TextField>
+      <TextField fx:id="txtbackusertoher1" layoutX="70.0" layoutY="220.0">
+         <effect>
+            <DropShadow />
+         </effect></TextField>
+      <TextField fx:id="txtbackuserother2" layoutX="70.0" layoutY="252.0">
+         <effect>
+            <DropShadow />
+         </effect></TextField>
+      <TextField fx:id="txtbackuserid" layoutX="70.0" layoutY="326.0">
+         <effect>
+            <DropShadow />
+         </effect></TextField>
+      <Label layoutX="29.0" layoutY="330.0" text="ID" />
+      <Button layoutX="70.0" layoutY="287.0" mnemonicParsing="false" onAction="#ajouter" style="-fx-background-color: orange;" text="Ajouter" textFill="#fff8f8">
+         <effect>
+            <DropShadow />
+         </effect></Button>
+      <Button layoutX="70.0" layoutY="361.0" mnemonicParsing="false" onAction="#modifier" style="-fx-background-color: orange;" text="Modifier" textFill="#fff8f8">
+         <effect>
+            <DropShadow />
+         </effect></Button>
+      <Button layoutX="147.0" layoutY="361.0" mnemonicParsing="false" onAction="#supprimer" style="-fx-background-color: orange;" text="Supprimer" textFill="#fff8f8">
+         <effect>
+            <DropShadow />
+         </effect></Button>
+      <Label layoutX="11.0" layoutY="6.0" prefHeight="36.0" prefWidth="206.0" text="Creation De User" textFill="#ff8c00">
+         <font>
+            <Font name="Cambria Math" size="26.0" />
+         </font>
+         <effect>
+            <Glow />
+         </effect>
+      </Label>
+      <ImageView fitHeight="108.0" fitWidth="132.0" layoutX="377.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/icons-logos-emojis-user-icon-png-transparent-11563566676e32kbvynug.png" />
+         </image>
+         <effect>
+            <BoxBlur />
+         </effect>
+      </ImageView>
+      <TextField fx:id="reuser" layoutX="419.0" layoutY="265.0" />
+      <Button fx:id="search" layoutX="291.0" layoutY="265.0" mnemonicParsing="false" onAction="#searchuser" prefHeight="25.0" prefWidth="123.0" style="-fx-background-color: orange;" text="Rechercher Id User" textFill="WHITE">
+         <font>
+            <Font name="Barlow Condensed Light" size="13.0" />
+         </font></Button>
+      <Button fx:id="actu" layoutX="291.0" layoutY="300.0" mnemonicParsing="false" onAction="#actuser" prefHeight="25.0" prefWidth="123.0" style="-fx-background-color: orange;" text="Actualisation" textFill="WHITE" />
+      <ImageView fitHeight="17.0" fitWidth="23.0" layoutX="294.0" layoutY="303.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/png-transparent-computer-icons-synchronization-encapsulated-postscript-icon-design-update-button-angle-text-logo.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

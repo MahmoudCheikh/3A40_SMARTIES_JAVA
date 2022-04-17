@@ -108,7 +108,7 @@ public class CommandeService {
 
     }
 
-    public List<Commande> Chercher(String titreN) {
+    public List<Commande> Rechercher(String titreN) {
        List<Commande> list = new ArrayList<>();
         try{
             String req = "SELECT * FROM commande where id=?";
@@ -136,5 +136,36 @@ public class CommandeService {
         }
         return list ;   
     }
+    
+    public List<Commande> triercommande() {
+        List<Commande> list = new ArrayList<>();
+        try{
+            String req = "SELECT * FROM commande order by id desc";
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+            
+            while(rs.next()){
+              
+                Commande ab = new Commande();
+                ab.setId(rs.getInt(1));
+                 ab.setIdUser(rs.getInt(2));
+                ab.setIdProduit(rs.getInt(3));
+                ab.setNbProduits(rs.getInt(4));
+                
+                list.add(ab);
+            }
+            
+        }
+        catch(SQLException e){
+            
+        }
+        return list ;
+    
+              
+              
+              
+}
+    
+    
     
 }

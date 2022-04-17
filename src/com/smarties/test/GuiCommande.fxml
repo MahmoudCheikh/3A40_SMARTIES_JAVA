@@ -8,6 +8,7 @@
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Blend?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.effect.InnerShadow?>
@@ -32,7 +33,7 @@
                            <effect>
                               <InnerShadow />
                            </effect></TextField>
-                        <ListView fx:id="listcommande" layoutX="295.0" layoutY="184.0" prefHeight="164.0" prefWidth="253.0">
+                        <ListView fx:id="listcommande" layoutX="270.0" layoutY="184.0" prefHeight="164.0" prefWidth="273.0">
                            <effect>
                               <DropShadow />
                            </effect></ListView>
@@ -110,16 +111,25 @@
                            <image>
                               <Image url="@../images/70310.png" />
                            </image>
+                           <effect>
+                              <DropShadow />
+                           </effect>
                         </ImageView>
                         <ImageView fitHeight="25.0" fitWidth="32.0" layoutX="25.0" layoutY="289.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/icone%20modif.png" />
                            </image>
+                           <effect>
+                              <DropShadow />
+                           </effect>
                         </ImageView>
                         <ImageView fitHeight="22.0" fitWidth="23.0" layoutX="175.0" layoutY="290.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/sssssssss.jpg" />
                            </image>
+                           <effect>
+                              <DropShadow />
+                           </effect>
                         </ImageView>
                         <Label layoutX="16.0" layoutY="7.0" prefHeight="34.0" prefWidth="244.0" text="Commande " textFill="#ff9500">
                            <font>
@@ -129,6 +139,38 @@
                               <Glow />
                            </effect>
                         </Label>
+                        <Button fx:id="triid" layoutX="548.0" layoutY="213.0" mnemonicParsing="false" onAction="#triercommande" prefHeight="25.0" prefWidth="105.0" style="-fx-background-color: orange;" text="      Trier Par Id" textFill="WHITE">
+                           <effect>
+                              <DropShadow />
+                           </effect>
+                           <font>
+                              <Font name="Barlow Condensed Light" size="12.0" />
+                           </font>
+                        </Button>
+                        <ImageView fitHeight="16.0" fitWidth="34.0" layoutX="553.0" layoutY="218.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/tri.png" />
+                           </image>
+                           <effect>
+                              <DropShadow />
+                           </effect>
+                        </ImageView>
+                        <Button fx:id="actc" layoutX="548.0" layoutY="312.0" mnemonicParsing="false" onAction="#actcommande" prefHeight="25.0" prefWidth="103.0" style="-fx-background-color: orange;" text="    Actualsier" textFill="#f8f7f7">
+                           <font>
+                              <Font name="Barlow Condensed Light" size="12.0" />
+                           </font>
+                           <effect>
+                              <DropShadow />
+                           </effect>
+                        </Button>
+                        <ImageView fitHeight="22.0" fitWidth="20.0" layoutX="548.0" layoutY="315.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/png-transparent-computer-icons-synchronization-encapsulated-postscript-icon-design-update-button-angle-text-logo.png" />
+                           </image>
+                           <effect>
+                              <DropShadow />
+                           </effect>
+                        </ImageView>
                      </children>
                   </AnchorPane>
                </content>
@@ -232,6 +274,22 @@
                               <Font name="Cambria Math" size="35.0" />
                            </font>
                         </Label>
+                        <Button fx:id="actac" layoutX="491.0" layoutY="210.0" mnemonicParsing="false" onAction="#actachat" prefHeight="25.0" prefWidth="115.0" style="-fx-background-color: orange;" text="Actualiser" textFill="#fffdfd">
+                           <font>
+                              <Font name="Barlow Condensed Light" size="13.0" />
+                           </font>
+                           <effect>
+                              <DropShadow />
+                           </effect>
+                        </Button>
+                        <ImageView fitHeight="25.0" fitWidth="15.0" layoutX="501.0" layoutY="216.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/png-transparent-computer-icons-synchronization-encapsulated-postscript-icon-design-update-button-angle-text-logo.png" />
+                           </image>
+                           <effect>
+                              <Blend />
+                           </effect>
+                        </ImageView>
                      </children>
                   </AnchorPane>
                </content>

@@ -69,6 +69,13 @@
       <AnchorPane fx:id="an2" prefHeight="810.0" prefWidth="400.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets />
-         </BorderPane.margin></AnchorPane>
+         </BorderPane.margin>
+         <children>
+            <ImageView fitHeight="761.0" fitWidth="895.0" layoutX="119.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/pngegg.png" />
+               </image>
+            </ImageView>
+         </children></AnchorPane>
    </center>
 </BorderPane>

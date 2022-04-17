@@ -111,4 +111,43 @@ public class UsersService {
 
     }
 
+    
+     public List<Users> searchuser(String titreN) {
+       List<Users> list = new ArrayList<>();
+        try{
+            String req = "SELECT * FROM users where id=?";
+             PreparedStatement ps = cnx.prepareStatement(req);
+            System.out.println("RECHERCHE...");
+            ps.setString(1,titreN);
+            ResultSet rs = ps.executeQuery();
+         
+              System.out.println(titreN);
+            while(rs.next()){
+                Users c = new Users();
+                c.setId(rs.getInt(1));
+                c.setEmail(rs.getString(2));
+                c.setAdresse(rs.getString(3));
+                c.setImage(rs.getString(4));
+                c.setNom(rs.getString(5));
+                c.setPassword(rs.getString(6));
+                c.setPrenom(rs.getString(7));
+                c.setRole(rs.getString(8));
+
+
+               
+                
+                list.add(c);
+            }
+            
+        }
+        catch(SQLException e){
+            
+        }
+        return list ;   
+    }
+    
+    
+    
+    
+    
 }
