@@ -124,15 +124,11 @@ public class GuiProduitController implements Initializable {
     @FXML
     private Button btnSupprimerFav;
     @FXML
-    private TextField idfav;
-    @FXML
     private ListView<Favoris> listefav;
     @FXML
     private TextField searchSto;
     @FXML
     private TextField searchEmp;
-    @FXML
-    private TextField searchFav;
     private ImageView img;
     @FXML
     private Button btnTRI;
@@ -154,6 +150,9 @@ public class GuiProduitController implements Initializable {
     private Button triE;
     @FXML
     private Button triC;
+    @FXML
+    private ComboBox<String> comboType;
+    private String[] typeProduit = {"Velo","Piece deRechange","Accesssoire"}; 
 
     /**
      * Initializes the controller class.
@@ -172,10 +171,13 @@ public class GuiProduitController implements Initializable {
 
         ArrayList a4 = (ArrayList) fa.afficherFavoris();
         listefav.getItems().addAll(a4);
+        
         refresh();
         refresh1();
         refresh2();
         refresh3();
+        
+        comboType.getItems().addAll(typeProduit);
 
     }
 
@@ -223,7 +225,7 @@ public class GuiProduitController implements Initializable {
     @FXML
     private void AjoutProd(ActionEvent event) throws IOException {
 
-        if (libelleProd.getText().equals("") || imageProd.getText().equals("") || descProd.getText().equals("") || prixProd.getText().equals("") || typeProd.getText().equals("")) {
+        if (libelleProd.getText().equals("") || imageProd.getText().equals("") || descProd.getText().equals("") || prixProd.getText().equals("") || comboType.getValue().contentEquals("Type")){
 
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Information Dialog");
@@ -264,7 +266,8 @@ public class GuiProduitController implements Initializable {
             pro.setImage(imageProd.getText());
             pro.setDescription(descProd.getText());
             Float prix = Float.parseFloat(prixProd.getText());
-            pro.setType(typeProd.getText());
+            //pro.setType(typeProd.getText());
+            pro.setType(comboType.getValue());
 
             pro.setPrix(prix);
 
@@ -281,7 +284,7 @@ public class GuiProduitController implements Initializable {
 
     @FXML
     private void ModifierProd(ActionEvent event) {
-        if (libelleProd.getText().equals("") || imageProd.getText().equals("") || descProd.getText().equals("") || prixProd.getText().equals("") || typeProd.getText().equals("")) {
+        if (libelleProd.getText().equals("") || imageProd.getText().equals("") || descProd.getText().equals("") || prixProd.getText().equals("") || typeProd.getText().equals("Type")) {
 
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Information Dialog");
@@ -679,8 +682,7 @@ public class GuiProduitController implements Initializable {
     }
 
     @FXML
-    private void TrierEmpCapacite(ActionEvent event
-    ) {
+    private void TrierEmpCapacite(ActionEvent event) {
         List<Emplacement> trieC = em.TriCapacite();
         listeEmp.getItems().clear();
         listeEmp.getItems().addAll(trieC);
@@ -708,19 +710,33 @@ public class GuiProduitController implements Initializable {
             fav.setIdUser(userFav);
 
             fa.ajouterFavoris(fav);
+            refresh3();
         }
     }
 
     @FXML
-    private void SupprimerFavoris(ActionEvent event
-    ) {
-        int id = Integer.parseInt(idfav.getText());
-        fa.supprimerFavoris(id);
-    }
+    private void SupprimerFavoris(ActionEvent even) {
+        alert.setAlertType(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation");
+        alert.setHeaderText(null);
+        alert.setContentText("vous-etes sur de supprimer cet STOCK !");
 
-    @FXML
-    private void searchFavoris(ActionEvent event
-    ) {
+        Optional<ButtonType> action = alert.showAndWait();
+
+        if (action.get() == ButtonType.OK) {
+            Favoris fav = new Favoris();
+
+            fav.setId(listefav.getSelectionModel().getSelectedItem().getId());
+            fa.supprimerFavoris(fav.getId());
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success");
+            alert.setContentText("Favoris supprimé!");
+            alert.show();
+            refresh3();
+        } else {
+            refresh3();
+
+        }
     }
 
 }
