@@ -28,7 +28,7 @@ public class UsersService {
     }
 
     public void ajouterUser(Users p) {
-        String query = "insert into users(nom,prenom,adresse,email,password) values(?,?,?,?,?)";
+        String query = "insert into users(nom,prenom,adresse,email,password,image,role) values(?,?,?,?,?,?,?)";
         try {
             PreparedStatement ste = cnx.prepareStatement(query);
             ste.setString(1, p.getNom());
@@ -36,6 +36,9 @@ public class UsersService {
             ste.setString(3, p.getAdresse());
             ste.setString(4, p.getEmail());
             ste.setString(5, p.getPassword());
+            ste.setString(6, p.getImage());
+            ste.setString(7, p.getRole());
+            
 
             ste.executeUpdate();
             System.out.println("Personne Ajoutée !!");

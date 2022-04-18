@@ -71,9 +71,14 @@
             <Insets />
          </BorderPane.margin>
          <children>
-            <ImageView fitHeight="761.0" fitWidth="895.0" layoutX="119.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="317.0" fitWidth="385.0" layoutX="144.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/pngegg.png" />
+                  <Image url="@../images/pngwing.com.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="194.0" fitWidth="289.0" layoutX="483.0" layoutY="410.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/pngwing.com.png" />
                </image>
             </ImageView>
          </children></AnchorPane>
