@@ -38,6 +38,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -64,8 +65,6 @@ public class GuiProduitController implements Initializable {
     private File Current_file;
     private String file_image;
     @FXML
-    private TextField typeProd;
-    @FXML
     private TextField prixProd;
     @FXML
     private TextField descProd;
@@ -83,8 +82,6 @@ public class GuiProduitController implements Initializable {
     private ListView<Produit> listeProduit;
     @FXML
     private TextField libS;
-    @FXML
-    private TextField idProdS;
     @FXML
     private ComboBox<String> dispoS;
     @FXML
@@ -155,6 +152,10 @@ public class GuiProduitController implements Initializable {
     private String[] typeProduit = {"Velo", "Piece deRechange", "Accesssoire"};
     private String[] disponibilite = {"Disponible", "Indisponible"};
     private String[] lieuEmplacement = {"Ariana", "Béja", "Ben Arous", "Bizerte", "Gabes", "Gafsa", "Jendouba", "Kairouan", "Kasserine", "Kebili", "La Manouba", "Le Kef", "Mahdia", "Médenine", "Monastir", "Nabeul", "Sfax", "Sidi Bouzid", "Siliana", "Sousse", "Tataouine", "Tozeur", "Tunis", "Zaghouan"};
+    @FXML
+    private TextField idProdS;
+    @FXML
+    private TextField typeProd;
 
     /**
      * Initializes the controller class.
@@ -309,7 +310,7 @@ public class GuiProduitController implements Initializable {
         Optional<ButtonType> action = alert.showAndWait();
 
         if (action.get() == ButtonType.OK) {
-            if (libelleProd.getText().equals("") || imageProd.getText().equals("") || descProd.getText().equals("") || prixProd.getText().equals("") || typeProd.getText().equals("Type")) {
+            if (libelleProd.getText().equals("") || imageProd.getText().equals("") || descProd.getText().equals("") || prixProd.getText().equals("") || comboType.getValue().equals("Type")) {
 
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setTitle("Information Dialog");
@@ -351,7 +352,7 @@ public class GuiProduitController implements Initializable {
                 pro.setImage(imageProd.getText());
                 pro.setDescription(descProd.getText());
                 Float prix = Float.parseFloat(prixProd.getText());
-                pro.setType(typeProd.getText());
+                pro.setType(comboType.getValue());
                 pro.setPrix(prix);
 
                 pro.setId(proID.getId());
@@ -363,7 +364,7 @@ public class GuiProduitController implements Initializable {
                 imageProd.setText("");
                 descProd.setText("");
                 prixProd.setText("");
-                typeProd.setText("");
+                comboType.setValue("Type");
 
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Success");
@@ -504,8 +505,7 @@ public class GuiProduitController implements Initializable {
     }
 
     @FXML
-    private void ModifierStock(ActionEvent event
-    ) {
+    private void ModifierStock(ActionEvent event) {
 
         alert.setAlertType(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation");
@@ -548,7 +548,7 @@ public class GuiProduitController implements Initializable {
                 int idPS = Integer.parseInt(idProdS.getText());
 
                 sto.setPrix(prix1);
-                sto.setPrix(q);
+                sto.setQuantite(q);
                 sto.setIdProduit(idPS);
 
                 sto.setId(stoID.getId());
@@ -563,7 +563,7 @@ public class GuiProduitController implements Initializable {
                 libS.setText("");
                 prixS.setText("");
                 quantiteS.setText("");
-                dispoS.setValue("");
+                dispoS.setValue("Disponibilité");
                 idProdS.setText("");
                 refresh1();
 //            Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -711,15 +711,15 @@ public class GuiProduitController implements Initializable {
                 emp.setId(empID.getId());
 
                 em.modifierEmplacement(emp);
-                
+
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Success");
                 alert.setContentText("modification effectuée avec succée!");
                 alert.show();
-                
+
                 refresh2();
 
-                lieuE.setValue("");
+                lieuE.setValue("Lieu");
                 capaciteE.setText("");
                 idSE.setText("");
 
@@ -745,12 +745,12 @@ public class GuiProduitController implements Initializable {
 
             emp.setId(listeEmp.getSelectionModel().getSelectedItem().getId());
             em.supprimerEmplacement(emp.getId());
-            
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Success");
-                alert.setContentText("suppression effectuée avec succée!");
-                alert.show();
-                
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success");
+            alert.setContentText("suppression effectuée avec succée!");
+            alert.show();
+
             refresh2();
         } else {
             refresh2();
@@ -818,8 +818,7 @@ public class GuiProduitController implements Initializable {
     }
 
     @FXML
-    private void SupprimerFavoris(ActionEvent even
-    ) {
+    private void SupprimerFavoris(ActionEvent even) {
         alert.setAlertType(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation");
         alert.setHeaderText(null);
@@ -841,6 +840,61 @@ public class GuiProduitController implements Initializable {
             refresh3();
 
         }
+    }
+
+    /**
+     * *********************************************SET DATA FROM
+     * LISTVIEW**********************************************************
+     */
+    @FXML
+    private void getDataProduit(MouseEvent event) {
+        Produit pro = new Produit();
+        listeProduit.setOnMouseClicked((event1) -> {
+            String selectedDes = listeProduit.getSelectionModel().getSelectedItem().getDescription();
+            String selectedlib = listeProduit.getSelectionModel().getSelectedItem().getLibelle();
+            String selectedIm = listeProduit.getSelectionModel().getSelectedItem().getImage();
+            float selectedPrix = listeProduit.getSelectionModel().getSelectedItem().getPrix();
+            String selectedType = listeProduit.getSelectionModel().getSelectedItem().getType();
+
+            libelleProd.setText(selectedlib);
+            imageProd.setText(selectedIm);
+            descProd.setText(selectedDes);
+            prixProd.setText(String.valueOf(selectedPrix));
+            comboType.setValue(String.valueOf(selectedType));
+        });
+    }
+
+    @FXML
+    private void getDataStock(MouseEvent event) {
+
+        Stock pro = new Stock();
+        listeS.setOnMouseClicked((event2) -> {
+            String selectedLibS = listeS.getSelectionModel().getSelectedItem().getLibelle();
+            String selectedDispo = listeS.getSelectionModel().getSelectedItem().getDisponibilite();
+            int selectedQ = listeS.getSelectionModel().getSelectedItem().getQuantite();
+            int selectedPrix = listeS.getSelectionModel().getSelectedItem().getPrix();
+            int selectedIdP = listeS.getSelectionModel().getSelectedItem().getIdProduit();
+
+            libS.setText(selectedLibS);
+            dispoS.setValue(selectedDispo);
+            quantiteS.setText(String.valueOf(selectedQ));
+            prixS.setText(String.valueOf(selectedPrix));
+            idProdS.setText(String.valueOf(selectedIdP));
+        });
+    }
+
+    @FXML
+    private void getDataEmp(MouseEvent event) {
+        Emplacement pro = new Emplacement();
+        listeEmp.setOnMouseClicked((event3) -> {
+            String selectedLieu = listeEmp.getSelectionModel().getSelectedItem().getLieu();
+            int selectedStockE = listeEmp.getSelectionModel().getSelectedItem().getStock();
+            int selectedCap = listeEmp.getSelectionModel().getSelectedItem().getCapacite();
+
+            lieuE.setValue(selectedLieu);
+            capaciteE.setText(String.valueOf(selectedCap));
+            idSE.setText(String.valueOf(selectedStockE));
+        });
     }
 
 }

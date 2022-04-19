@@ -38,7 +38,7 @@
                               <Font name="Bell MT" size="15.0" />
                            </font>
                         </Button>
-                        <ListView fx:id="listeProduit" layoutX="390.0" layoutY="86.0" prefHeight="330.0" prefWidth="680.0" />
+                        <ListView fx:id="listeProduit" layoutX="390.0" layoutY="86.0" onMouseClicked="#getDataProduit" prefHeight="330.0" prefWidth="680.0" />
                         <TextField fx:id="searchProLib" layoutX="860.0" layoutY="50.0" onAction="#searchProduitLibelle" prefHeight="25.0" prefWidth="210.0" promptText="RECHERCHE PAR LIBELLE" />
                         <Button fx:id="btnTRI" layoutX="390.0" layoutY="56.0" mnemonicParsing="false" onAction="#TrierProduitPrix" prefHeight="29.0" prefWidth="113.0" style="-fx-background-color: #ff7f50;" text="TRIER PRIX">
                            <font>
@@ -72,7 +72,7 @@
                         <Button fx:id="btnAjoutS" layoutX="23.0" layoutY="347.0" mnemonicParsing="false" onAction="#AjoutStock" prefHeight="50.0" prefWidth="327.0" style="-fx-background-color: #ff7f50;" text="+ Ajouter" />
                         <Button fx:id="btnModifierS" layoutX="733.0" layoutY="432.0" mnemonicParsing="false" onAction="#ModifierStock" prefHeight="50.0" prefWidth="220.0" style="-fx-background-color: #ff7f50;" text="Modifier" />
                         <Button fx:id="btnSupprimerS" layoutX="440.0" layoutY="432.0" mnemonicParsing="false" onAction="#SupprimerStock" prefHeight="50.0" prefWidth="220.0" style="-fx-background-color: #ff7f50;" text="Supprimer" />
-                        <ListView fx:id="listeS" layoutX="366.0" layoutY="83.0" prefHeight="330.0" prefWidth="680.0" />
+                        <ListView fx:id="listeS" layoutX="366.0" layoutY="83.0" onMouseClicked="#getDataStock" prefHeight="330.0" prefWidth="680.0" />
                         <TextField fx:id="searchSto" layoutX="836.0" layoutY="39.0" onAction="#searchStock" prefHeight="25.0" prefWidth="210.0" promptText="RECHERCHE PAR LIBELLE" />
                         <Button fx:id="triQ" layoutX="366.0" layoutY="52.0" mnemonicParsing="false" onAction="#trierStockQuantite" style="-fx-background-color: #ff7f50;" text=" TRIER QUANTITE" />
                         <Button fx:id="TriD" layoutX="514.0" layoutY="52.0" mnemonicParsing="false" onAction="#TrierStockDisponibilite" style="-fx-background-color: #ff7f50;" text="TRIER DISPONIBILTE" />
@@ -89,7 +89,7 @@
                         <Button fx:id="btnAjoutEmp" layoutX="24.0" layoutY="250.0" mnemonicParsing="false" onAction="#AjouterEmplacement" prefHeight="50.0" prefWidth="303.0" style="-fx-background-color: #ff7f50;" text="+ Ajouter" />
                         <Button fx:id="btnModifierEmp" layoutX="709.0" layoutY="440.0" mnemonicParsing="false" onAction="#ModifierEmplacement" prefHeight="50.0" prefWidth="220.0" style="-fx-background-color: #ff7f50;" text="Modifier" />
                         <Button fx:id="btnSupprimerEmp" layoutX="403.0" layoutY="440.0" mnemonicParsing="false" onAction="#SupprimerEmplacement" prefHeight="50.0" prefWidth="220.0" style="-fx-background-color: #ff7f50;" text="Supprimer" />
-                        <ListView fx:id="listeEmp" layoutX="349.0" layoutY="83.0" prefHeight="330.0" prefWidth="680.0" />
+                        <ListView fx:id="listeEmp" layoutX="349.0" layoutY="83.0" onMouseClicked="#getDataEmp" prefHeight="330.0" prefWidth="680.0" />
                         <TextField fx:id="searchEmp" layoutX="819.0" layoutY="29.0" onAction="#searchEmplacement" prefHeight="25.0" prefWidth="210.0" promptText="RECHERCHE PAR LIEU" />
                         <Button fx:id="triE" layoutX="349.0" layoutY="52.0" mnemonicParsing="false" onAction="#TrierEmpLieu" style="-fx-background-color: #ff7f50;" text="TRIER LIEU" />
                         <Button fx:id="triC" layoutX="449.0" layoutY="52.0" mnemonicParsing="false" onAction="#TrierEmpCapacite" style="-fx-background-color: #ff7f50;" text="TRIER CAPACITE" />
