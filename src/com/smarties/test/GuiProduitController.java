@@ -149,7 +149,7 @@ public class GuiProduitController implements Initializable {
     private Button triC;
     @FXML
     private ComboBox<String> comboType;
-    private String[] typeProduit = {"Velo", "Piece deRechange", "Accesssoire"};
+    private String[] typeProduit = {"Velo", "Piece de Rechange", "Accesssoire"};
     private String[] disponibilite = {"Disponible", "Indisponible"};
     private String[] lieuEmplacement = {"Ariana", "Béja", "Ben Arous", "Bizerte", "Gabes", "Gafsa", "Jendouba", "Kairouan", "Kasserine", "Kebili", "La Manouba", "Le Kef", "Mahdia", "Médenine", "Monastir", "Nabeul", "Sfax", "Sidi Bouzid", "Siliana", "Sousse", "Tataouine", "Tozeur", "Tunis", "Zaghouan"};
     @FXML
@@ -159,6 +159,13 @@ public class GuiProduitController implements Initializable {
 
     /**
      * Initializes the controller class.
+    */
+    
+    
+    /**
+     * ****************************************************** 
+     * AFFICHAGE / REFRESH / COMBO BOX / IMAGES
+     ********************************************************
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -187,8 +194,9 @@ public class GuiProduitController implements Initializable {
     }
 
     /**
-     * ****************************************************** POUR TT LES
-     * ENTITES ****************************************************
+     * ****************************************************** 
+     * REFRESH
+     ********************************************************
      */
     private void refresh() {
         List<Produit> prod = pr.afficherProduit();
@@ -215,8 +223,9 @@ public class GuiProduitController implements Initializable {
     }
 
     /**
-     * ****************************************************** Produit
-     * ****************************************************
+     * *************************************************** 
+     * GESTION DE PRODUIT
+     * *************************************************
      */
     @FXML
     private void uploadImage(ActionEvent event) throws FileNotFoundException {
@@ -417,7 +426,7 @@ public class GuiProduitController implements Initializable {
     @FXML
     private void searchProduitType(ActionEvent event
     ) {
-        List<Produit> type = pr.RechercheLibelle(searchProLib.getText());
+        List<Produit> type = pr.RechercheType(searchProType.getText());
         listeProduit.getItems().clear();
         listeProduit.getItems().removeAll(produit);
         listeProduit.getItems().addAll(type);
@@ -440,7 +449,9 @@ public class GuiProduitController implements Initializable {
     }
 
     /**
-     * ************************************************************************STOCK**************************************************************************************
+     * ******************************************
+     * GESTION DE STOCK 
+     * ******************************************
      */
     @FXML
     private void AjoutStock(ActionEvent event
@@ -566,10 +577,6 @@ public class GuiProduitController implements Initializable {
                 dispoS.setValue("Disponibilité");
                 idProdS.setText("");
                 refresh1();
-//            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//            alert.setTitle("Success");
-//            alert.setContentText("modification effectuée!");
-//            alert.show();
             }
         } else {
             refresh1();
@@ -630,7 +637,9 @@ public class GuiProduitController implements Initializable {
     }
 
     /**
-     * ************************************************************************EMPLACEMENT**************************************************************************************
+     * **********************************************
+     * GESTION D'EMPLACEMENT 
+     ************************************************
      */
     @FXML
     private void AjouterEmplacement(ActionEvent event
@@ -784,7 +793,9 @@ public class GuiProduitController implements Initializable {
     }
 
     /**
-     * ************************************************************************FAVORIS**************************************************************************************
+     * ***********************************
+     * GESTION DES FAVORIS 
+     *************************************
      */
     @FXML
     private void AjouterFavoris(ActionEvent event) {
@@ -843,8 +854,9 @@ public class GuiProduitController implements Initializable {
     }
 
     /**
-     * *********************************************SET DATA FROM
-     * LISTVIEW**********************************************************
+     * *********************************************
+     * SET DATA FROM LISTVIEW 
+     ***********************************************
      */
     @FXML
     private void getDataProduit(MouseEvent event) {

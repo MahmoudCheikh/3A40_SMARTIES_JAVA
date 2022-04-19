@@ -20,6 +20,11 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="561.0" prefWidth="1088.0" style="-fx-background-color: #ffffff;">
                      <children>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="693.0" layoutY="-9.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/velo.png" />
+                           </image>
+                        </ImageView>
                         <TextField fx:id="typeProd" layoutX="60.0" layoutY="422.0" prefHeight="40.0" prefWidth="290.0" promptText="Type" />
                         <TextField fx:id="prixProd" layoutX="60.0" layoutY="357.0" prefHeight="40.0" prefWidth="290.0" promptText="Prix" />
                         <TextField fx:id="descProd" layoutX="60.0" layoutY="186.0" prefHeight="146.0" prefWidth="290.0" promptText="Description" />
@@ -30,40 +35,35 @@
                               <Font name="Bell MT" size="15.0" />
                            </font>
                         </Button>
-                        <Button fx:id="btnModifierProd" layoutX="762.0" layoutY="478.0" mnemonicParsing="false" onAction="#ModifierProd" prefHeight="50.0" prefWidth="220.0" style="-fx-background-color: #ff7f50;" text="Modifier">
+                        <Button fx:id="btnModifierProd" layoutX="771.0" layoutY="479.0" mnemonicParsing="false" onAction="#ModifierProd" prefHeight="50.0" prefWidth="220.0" style="-fx-background-color: #ff7f50;" text="Modifier">
                            <font>
                               <Font name="Bell MT" size="15.0" />
                            </font>
                         </Button>
-                        <Button fx:id="btnSupprimerProd" layoutX="500.0" layoutY="479.0" mnemonicParsing="false" onAction="#SupprimerProd" prefHeight="50.0" prefWidth="220.0" style="-fx-background-color: #ff7f50;" text="Supprimer">
+                        <Button fx:id="btnSupprimerProd" layoutX="509.0" layoutY="480.0" mnemonicParsing="false" onAction="#SupprimerProd" prefHeight="50.0" prefWidth="220.0" style="-fx-background-color: #ff7f50;" text="Supprimer">
                            <font>
                               <Font name="Bell MT" size="15.0" />
                            </font>
                         </Button>
-                        <ListView fx:id="listeProduit" layoutX="389.0" layoutY="139.0" onMouseClicked="#getDataProduit" prefHeight="330.0" prefWidth="680.0" />
-                        <TextField fx:id="searchProLib" layoutX="859.0" layoutY="114.0" onAction="#searchProduitLibelle" prefHeight="15.0" prefWidth="210.0" promptText="RECHERCHE PAR LIBELLE" />
-                        <Button fx:id="btnTRI" layoutX="389.0" layoutY="109.0" mnemonicParsing="false" onAction="#TrierProduitPrix" prefHeight="29.0" prefWidth="113.0" style="-fx-background-color: #ff7f50;" text="TRIER PRIX">
+                        <ListView fx:id="listeProduit" layoutX="396.0" layoutY="102.0" onMouseClicked="#getDataProduit" prefHeight="330.0" prefWidth="680.0" />
+                        <TextField fx:id="searchProLib" layoutX="866.0" layoutY="30.0" onAction="#searchProduitLibelle" prefHeight="15.0" prefWidth="210.0" promptText="RECHERCHE PAR LIBELLE" />
+                        <Button fx:id="btnTRI" layoutX="396.0" layoutY="72.0" mnemonicParsing="false" onAction="#TrierProduitPrix" prefHeight="29.0" prefWidth="113.0" style="-fx-background-color: #ff7f50;" text="TRIER PRIX">
                            <font>
                               <Font name="Bell MT" size="15.0" />
                            </font>
                         </Button>
-                        <Button fx:id="btnTRIType" layoutX="517.0" layoutY="109.0" mnemonicParsing="false" onAction="#TrierProduitType" prefHeight="29.0" prefWidth="117.0" style="-fx-background-color: #ff7f50;" text="TRIER TYPE">
+                        <Button fx:id="btnTRIType" layoutX="524.0" layoutY="72.0" mnemonicParsing="false" onAction="#TrierProduitType" prefHeight="29.0" prefWidth="117.0" style="-fx-background-color: #ff7f50;" text="TRIER TYPE">
                            <font>
                               <Font name="Bell MT" size="15.0" />
                            </font>
                         </Button>
-                        <TextField fx:id="searchProType" layoutX="649.0" layoutY="114.0" onAction="#searchProduitType" prefHeight="19.0" prefWidth="210.0" promptText="RECHERCHE PAR TYPE" />
+                        <TextField fx:id="searchProType" layoutX="866.0" layoutY="66.0" onAction="#searchProduitType" prefHeight="19.0" prefWidth="210.0" promptText="RECHERCHE PAR TYPE" />
                         <Button fx:id="upload" layoutX="278.0" layoutY="125.0" mnemonicParsing="false" onAction="#uploadImage" prefHeight="40.0" prefWidth="72.0" style="-fx-background-color: #ff7f50;" text="UpLoad">
                            <font>
                               <Font name="Bell MT" size="15.0" />
                            </font>
                         </Button>
                         <ComboBox fx:id="comboType" layoutX="60.0" layoutY="422.0" prefHeight="41.0" prefWidth="289.0" promptText="Type" />
-                        <ImageView fitHeight="90.0" fitWidth="115.0" layoutX="912.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/NicePng_product-icon-png_3048415.png" />
-                           </image>
-                        </ImageView>
                      </children>
                   </AnchorPane>
             </content>
@@ -84,9 +84,9 @@
                         <Button fx:id="triQ" layoutX="366.0" layoutY="52.0" mnemonicParsing="false" onAction="#trierStockQuantite" style="-fx-background-color: #ff7f50;" text=" TRIER QUANTITE" />
                         <Button fx:id="TriD" layoutX="514.0" layoutY="52.0" mnemonicParsing="false" onAction="#TrierStockDisponibilite" style="-fx-background-color: #ff7f50;" text="TRIER DISPONIBILTE" />
                         <ComboBox fx:id="dispoS" layoutX="40.0" layoutY="340.0" prefHeight="41.0" prefWidth="289.0" promptText="Disponibilité" />
-                        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="69.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="98.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../images/kindpng_1126045.png" />
+                              <Image url="@../images/stock.png" />
                            </image>
                         </ImageView>
                      </children></AnchorPane>
@@ -96,19 +96,19 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TextField fx:id="idSE" layoutX="28.0" layoutY="299.0" prefHeight="40.0" prefWidth="290.0" promptText="Stock" />
-                        <TextField fx:id="capaciteE" layoutX="28.0" layoutY="246.0" prefHeight="40.0" prefWidth="290.0" promptText="Capacite" />
-                        <Button fx:id="btnAjoutEmp" layoutX="25.0" layoutY="363.0" mnemonicParsing="false" onAction="#AjouterEmplacement" prefHeight="50.0" prefWidth="303.0" style="-fx-background-color: #ff7f50;" text="+ Ajouter" />
+                        <TextField fx:id="idSE" layoutX="28.0" layoutY="276.0" prefHeight="40.0" prefWidth="290.0" promptText="Stock" />
+                        <TextField fx:id="capaciteE" layoutX="28.0" layoutY="223.0" prefHeight="40.0" prefWidth="290.0" promptText="Capacite" />
+                        <Button fx:id="btnAjoutEmp" layoutX="25.0" layoutY="340.0" mnemonicParsing="false" onAction="#AjouterEmplacement" prefHeight="50.0" prefWidth="303.0" style="-fx-background-color: #ff7f50;" text="+ Ajouter" />
                         <Button fx:id="btnModifierEmp" layoutX="709.0" layoutY="440.0" mnemonicParsing="false" onAction="#ModifierEmplacement" prefHeight="50.0" prefWidth="220.0" style="-fx-background-color: #ff7f50;" text="Modifier" />
                         <Button fx:id="btnSupprimerEmp" layoutX="403.0" layoutY="440.0" mnemonicParsing="false" onAction="#SupprimerEmplacement" prefHeight="50.0" prefWidth="220.0" style="-fx-background-color: #ff7f50;" text="Supprimer" />
                         <ListView fx:id="listeEmp" layoutX="349.0" layoutY="83.0" onMouseClicked="#getDataEmp" prefHeight="330.0" prefWidth="680.0" />
                         <TextField fx:id="searchEmp" layoutX="819.0" layoutY="29.0" onAction="#searchEmplacement" prefHeight="25.0" prefWidth="210.0" promptText="RECHERCHE PAR LIEU" />
                         <Button fx:id="triE" layoutX="349.0" layoutY="52.0" mnemonicParsing="false" onAction="#TrierEmpLieu" style="-fx-background-color: #ff7f50;" text="TRIER LIEU" />
                         <Button fx:id="triC" layoutX="449.0" layoutY="52.0" mnemonicParsing="false" onAction="#TrierEmpCapacite" style="-fx-background-color: #ff7f50;" text="TRIER CAPACITE" />
-                        <ComboBox fx:id="lieuE" layoutX="29.0" layoutY="196.0" prefHeight="41.0" prefWidth="289.0" promptText="Lieu" />
-                        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="66.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
+                        <ComboBox fx:id="lieuE" layoutX="29.0" layoutY="173.0" prefHeight="41.0" prefWidth="289.0" promptText="Lieu" />
+                        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="94.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../images/kindpng_97627.png" />
+                              <Image url="@../images/emp.png" />
                            </image>
                         </ImageView>
                      </children>
@@ -119,15 +119,15 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TextField fx:id="userF" layoutX="25.0" layoutY="265.0" prefHeight="40.0" prefWidth="290.0" promptText="UTILISATEUR" />
-                        <TextField fx:id="produitF" layoutX="25.0" layoutY="212.0" prefHeight="40.0" prefWidth="290.0" promptText="PRODUIT" />
-                        <Button fx:id="btnAjoutFav" layoutX="4.0" layoutY="317.0" mnemonicParsing="false" onAction="#AjouterFavoris" prefHeight="50.0" prefWidth="340.0" style="-fx-background-color: #ff7f50;" text="+ Ajouter" />
-                        <Button fx:id="btnSupprimerFav" layoutX="523.0" layoutY="427.0" mnemonicParsing="false" onAction="#SupprimerFavoris" prefHeight="49.0" prefWidth="364.0" style="-fx-background-color: #ff7f50;" text="Supprimer" />
-                        <ListView fx:id="listefav" layoutX="365.0" layoutY="83.0" prefHeight="330.0" prefWidth="680.0" />
+                        <TextField fx:id="userF" layoutX="36.0" layoutY="206.0" prefHeight="40.0" prefWidth="290.0" promptText="UTILISATEUR" />
+                        <TextField fx:id="produitF" layoutX="36.0" layoutY="153.0" prefHeight="40.0" prefWidth="290.0" promptText="PRODUIT" />
+                        <Button fx:id="btnAjoutFav" layoutX="15.0" layoutY="258.0" mnemonicParsing="false" onAction="#AjouterFavoris" prefHeight="50.0" prefWidth="340.0" style="-fx-background-color: #ff7f50;" text="+ Ajouter" />
+                        <Button fx:id="btnSupprimerFav" layoutX="554.0" layoutY="365.0" mnemonicParsing="false" onAction="#SupprimerFavoris" prefHeight="49.0" prefWidth="364.0" style="-fx-background-color: #ff7f50;" text="Supprimer" />
+                        <ListView fx:id="listefav" layoutX="396.0" layoutY="21.0" prefHeight="330.0" prefWidth="680.0" />
                         <Label fx:id="cds3" layoutX="15.0" layoutY="14.0" prefHeight="56.0" prefWidth="252.0" textFill="#bc0000" />
-                        <ImageView fitHeight="136.0" fitWidth="135.0" layoutX="92.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="136.0" fitWidth="135.0" layoutX="107.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../images/kindpng_3437252.png" />
+                              <Image url="@../images/stock-vector-add-favorite-icon-trendy-style.png" />
                            </image>
                         </ImageView>
                      </children>
