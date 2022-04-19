@@ -8,6 +8,7 @@ package com.smarties.test;
 import com.smarties.entities.Users;
 import com.smarties.services.UsersService;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -21,6 +22,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 
 /**
  * FXML Controller class
@@ -228,5 +230,33 @@ public class GuiUsersController implements Initializable {
         }
         tableuserslist.setItems(items);
     }
+
+    @FXML
+    private void getDataUsers(MouseEvent event) {
+         tableuserslist.setOnMouseClicked((event1) -> {
+            //int selectedIdComm = listcommande.getSelectionModel().getSelectedItem().getId();
+            String selectedusnom = tableuserslist.getSelectionModel().getSelectedItem().getNom();
+            String selecteduspre = tableuserslist.getSelectionModel().getSelectedItem().getPrenom();
+            String selectedmail = tableuserslist.getSelectionModel().getSelectedItem().getEmail();
+            String selectedadr = tableuserslist.getSelectionModel().getSelectedItem().getAdresse();
+            String selectedpass = tableuserslist.getSelectionModel().getSelectedItem().getPassword();
+            String selectedother1 = tableuserslist.getSelectionModel().getSelectedItem().getImage();
+           String selectedother2 = tableuserslist.getSelectionModel().getSelectedItem().getRole();
+
+
+           
+            //txtid.setText(String.valueOf(selectedIdComm));
+            txtbackusernom.setText(selectedusnom);
+            txtbackuserprenom.setText(selecteduspre);
+            txtbackusermail.setText(selectedmail);
+            txtbackuseradresse.setText(selectedadr);
+            txtbackuserpassword.setText(selectedpass);
+            txtbackusertoher1.setText(selectedother1);
+            txtbackuserother2.setText(selectedother2);
+
+
+   });
+
+}
 
 }

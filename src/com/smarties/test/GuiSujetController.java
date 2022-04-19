@@ -33,7 +33,7 @@ public class GuiSujetController implements Initializable {
 
     private TextField txtid;
     @FXML
-    private ListView<?> tableSujetList;
+    private ListView<Sujet> tableSujetList;
     @FXML
     private TextField txtSujetIdUser;
     @FXML
@@ -65,7 +65,7 @@ public class GuiSujetController implements Initializable {
     @FXML
     private TextField txtMessageId;
     @FXML
-    private ListView<?> tableMessagelist;
+    private ListView<Message> tableMessagelist;
     @FXML
     private TextField txtSujetId;
 
@@ -143,5 +143,9 @@ public class GuiSujetController implements Initializable {
         message.setIdUser(Integer.parseInt(txtMessageIdUser.getText()));
         messageService.ajouterMessage(message);
     }
+          
+
+   
+
 
 }
