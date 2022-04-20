@@ -25,6 +25,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.control.TextField;
 
 /**
@@ -85,6 +86,8 @@ public class GuiCommandeController implements Initializable {
     private Button actc;
     @FXML
     private Button actac;
+    @FXML
+    private Button trierachat;
 
     /**
      * Initializes the controller class.
@@ -202,7 +205,7 @@ public class GuiCommandeController implements Initializable {
          
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Success");
-            alert.setContentText("Evenement supprimé!");
+            alert.setContentText("Commande supprimé!");
             alert.show();
            ObservableList<Commande> items =FXCollections.observableArrayList();
         List<Commande> listcomm = cs.afficherCommande();
@@ -250,6 +253,28 @@ public class GuiCommandeController implements Initializable {
          listcommande.setItems(items);
     }
 
+    
+     /* LISTVIEW**********************************************************
+     */
+    @FXML
+    private void getDataCommande(MouseEvent event) {
+    
+     
+        Commande com = new Commande();
+        listcommande.setOnMouseClicked((event1) -> {
+            //int selectedIdComm = listcommande.getSelectionModel().getSelectedItem().getId();
+            int selectedIdProd = listcommande.getSelectionModel().getSelectedItem().getIdProduit();
+            int selectedNbProd = listcommande.getSelectionModel().getSelectedItem().getNbProduits();
+            int selectedIduser = listcommande.getSelectionModel().getSelectedItem().getIdUser();
+           
+            //txtid.setText(String.valueOf(selectedIdComm));
+            txtProduit.setText(String.valueOf(selectedIdProd));
+            txtnbrproduit.setText(String.valueOf(selectedNbProd));
+            txtiduser.setText(String.valueOf(selectedIduser));
+        });
+    }
+
+    
     
     
 /*---------------------Achat-----------------------------*/
@@ -432,12 +457,52 @@ public class GuiCommandeController implements Initializable {
          listachat.setItems(items);
     }
 
+    @FXML
+    private void getDataAchat(MouseEvent event) {
+             listachat.setOnMouseClicked((event1) -> {
+            //int selectedIdComm = listcommande.getSelectionModel().getSelectedItem().getId();
+            int selectedIdProd = listachat.getSelectionModel().getSelectedItem().getIdProduit();
+            int selectedNumCli = listachat.getSelectionModel().getSelectedItem().getNumeroClient();
+            int selectedIduser = listachat.getSelectionModel().getSelectedItem().getIdUser();
+            LocalDate selectedDate = listachat.getSelectionModel().getSelectedItem().getDate();
+            String selectedNomCli = listachat.getSelectionModel().getSelectedItem().getNomClient();
+
+           
+            //txtid.setText(String.valueOf(selectedIdComm));
+            txtidproduit.setText(String.valueOf(selectedIdProd));
+            txtidUser.setText(String.valueOf(selectedIduser));
+            txtnumclient.setText(String.valueOf(selectedNumCli));
+            //dateachatpik.setValue(String.valueOf(selectedDate));
+            txtnomclient.setText(selectedNomCli);
+
+        });
+    }
+
+
+    @FXML
+    private void trierachatid(ActionEvent event) {
+    AchatService  n=new    AchatService();
+        // int price = Integer.parseInt(findAb.getText());
+           List< Achat> R=   n.trierachatid();
+         
+       ObservableList< Achat> datalist = FXCollections.observableArrayList(R);
+
+     
+            listachat.setItems(datalist);
+    }
+    
+      
+}
+    
+
+   
+
     
 
   
     
 
 
-}
+
 
 

@@ -118,9 +118,41 @@ public class AchatService {
 
     }
  
+            public List<Achat> trierachatid() {
+        List<Achat> list = new ArrayList<>();
+        try{
+            String req = "SELECT * FROM achat order by id desc";
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+            
+            while(rs.next()){
+              
+                Achat ab = new Achat();
+                  ab.setId(rs.getInt("id"));
+                ab.setIdUser(rs.getInt("id_user_id"));
+                ab.setIdProduit(rs.getInt("id_produit_id"));               
+               
+               // Date date = rs.getDate("date");
+                //p.setDate(date.toLocalDate());
+                
+                ab.setNomClient(rs.getString("nom_client"));
+                ab.setNumeroClient(rs.getInt("numero_client"));
 
+                
+                list.add(ab);
+            }
+            
+        }
+        catch(SQLException e){
+            
+        }
+        return list ;
+    
+              
+    
 
 
 }
 
 
+}
