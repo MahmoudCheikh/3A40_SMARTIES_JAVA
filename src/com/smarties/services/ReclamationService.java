@@ -8,6 +8,7 @@ package com.smarties.services;
 import com.smarties.entities.Reclamation;
 import com.smarties.tools.MaConnexion;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,26 +16,25 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
  *
  * @author Administrator
  */
 public class ReclamationService {
-    
-        Connection cnx;
+
+    Connection cnx;
 
     public ReclamationService() {
         cnx = MaConnexion.getInstance().getCnx();
     }
 
-    public void ajouterReclamation (Reclamation r) {
+    public void ajouterReclamation(Reclamation r) {
         String query = "insert into reclamation (id_user_id ,description,date,objet) values(?,?,?,?)";
         try {
             PreparedStatement ste = cnx.prepareStatement(query);
             ste.setInt(1, r.getId_user_id());
             ste.setString(2, r.getDescription());
-            ste.setString(3, r.getDate());
+            ste.setDate(3, Date.valueOf(r.getDate()));
             ste.setString(4, r.getObjet());
             ste.executeUpdate();
             System.out.println("Reclamation Ajoutée!");
@@ -43,8 +43,8 @@ public class ReclamationService {
         }
 
     }
-    
-        public List<Reclamation> afficherReclamation() {
+
+    public List<Reclamation> afficherReclamation() {
         List<Reclamation> reclamations = new ArrayList<>();
         String sql = "select * from reclamation";
         Statement ste;
@@ -55,7 +55,8 @@ public class ReclamationService {
                 Reclamation r = new Reclamation();
                 r.setId(rs.getInt("id"));
                 System.out.println(r.getId());
-                r.setDate(rs.getString("date"));
+                Date date = rs.getDate("date");
+                r.setDate(date.toLocalDate());
                 r.setDescription(rs.getString("description"));
                 reclamations.add(r);
 
@@ -67,9 +68,8 @@ public class ReclamationService {
         return reclamations;
 
     }
-    
-    
-        public void modifierReclamation(Reclamation t) {
+
+    public void modifierReclamation(Reclamation t) {
         try {
             String req = "UPDATE reclamation SET objet= ?, description = ? WHERE id= ?";
             PreparedStatement ps = cnx.prepareStatement(req);
@@ -85,8 +85,8 @@ public class ReclamationService {
         }
 
     }
-    
-        public void supprimerReclamation(int id) {
+
+    public void supprimerReclamation(int id) {
         try {
             String req = "DELETE FROM reclamation WHERE id = ?";
             PreparedStatement ps = cnx.prepareStatement(req);
@@ -99,4 +99,32 @@ public class ReclamationService {
         }
 
     }
+
+    public List<Reclamation> Chercher(String titreN) {
+        List<Reclamation> list = new ArrayList<>();
+        try {
+            String req = "SELECT * FROM reclamation where id=?";
+            PreparedStatement ps = cnx.prepareStatement(req);
+            System.out.println("RECHERCHE...");
+            ps.setString(1, titreN);
+            ResultSet rs = ps.executeQuery();
+
+            System.out.println(titreN);
+            while (rs.next()) {
+                Reclamation r = new Reclamation();
+                r.setId(rs.getInt(1));
+                r.setId_user_id(rs.getInt(2));
+              //  r.setDate(rs.getString(3));
+                r.setDescription(rs.getString(4));
+                r.setObjet(rs.getString(5));
+
+                list.add(r);
+            }
+
+        } catch (SQLException r) {
+
+        }
+        return list;
+    }
+
 }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -9,20 +10,17 @@
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smarties.test.GuiReclamationController">
     <children>
         <Button fx:id="btnAjouter" layoutX="73.0" layoutY="361.0" mnemonicParsing="false" onAction="#Ajouter" text="Ajouter" />
-        <ListView fx:id="listreclamationid" layoutX="242.0" layoutY="10.0" prefHeight="294.0" prefWidth="349.0" />
-        <Button fx:id="btndelete" layoutX="476.0" layoutY="361.0" mnemonicParsing="false" onAction="#Supprimer" text="Supprimer" />
-        <TextField fx:id="txtdat" layoutX="81.0" layoutY="134.0" />
-        <TextField fx:id="txtdesc" layoutX="81.0" layoutY="88.0" />
-        <TextField fx:id="txtobjet" layoutX="81.0" layoutY="43.0" />
+        <ListView fx:id="listreclamationid" layoutX="242.0" layoutY="10.0" onMouseClicked="#autofillrec" prefHeight="294.0" prefWidth="736.0" />
+        <Button fx:id="btndelete" layoutX="438.0" layoutY="361.0" mnemonicParsing="false" onAction="#Supprimer" text="Supprimer" />
+        <TextField fx:id="txtdesc" alignment="CENTER" layoutX="41.0" layoutY="210.0" promptText="Description" />
+        <TextField fx:id="txtobjet" alignment="CENTER" layoutX="41.0" layoutY="142.0" promptText="Objet" />
         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-        <Text layoutX="5.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Objet" />
-        <Text layoutX="4.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description" />
-        <Text layoutX="3.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date" />
         <Button fx:id="btnmodify" layoutX="274.0" layoutY="361.0" mnemonicParsing="false" onAction="#Modifier" text="Modifier" />
-        <TextField fx:id="textId" layoutX="81.0" layoutY="188.0" />
-        <TextField fx:id="textiduser" layoutX="81.0" layoutY="240.0" />
-        <Text layoutX="6.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Id" />
-        <Text layoutX="3.0" layoutY="257.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Id User" />
-        <TextField fx:id="txtdeleteid" layoutX="438.0" layoutY="329.0" />
+        <TextField fx:id="textId" alignment="CENTER" layoutX="41.0" layoutY="24.0" promptText="ID" />
+        <TextField fx:id="textiduser" alignment="CENTER" layoutX="41.0" layoutY="76.0" promptText="User" />
+        <TextField fx:id="txtdeleteid" alignment="CENTER" layoutX="438.0" layoutY="329.0" promptText="ID" />
+      <DatePicker fx:id="txtdat" layoutX="42.0" layoutY="266.0" promptText="Date" />
+      <Button fx:id="rechercherec" layoutX="519.0" layoutY="361.0" mnemonicParsing="false" onAction="#chercher" text="recherche" />
+      <Button fx:id="refreshrec" layoutX="676.0" layoutY="361.0" mnemonicParsing="false" onAction="#refreshTable" text="refresh" />
     </children>
 </AnchorPane>

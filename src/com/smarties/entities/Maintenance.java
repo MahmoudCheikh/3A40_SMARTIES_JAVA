@@ -5,6 +5,8 @@
  */
 package com.smarties.entities;
 
+import java.time.LocalDate;
+
 /**
  *
  * @author PC
@@ -15,11 +17,16 @@ public class Maintenance {
      int id_produit_id;
      int relation_id;
      int reclamation_id;
-     String date_debut ;
-     String date_fin ;  
+     LocalDate date_debut ;
+     LocalDate date_fin ;  
      String adresse;
      String etat;
      String description;
+
+    @Override
+    public String toString() {
+        return "Maintenance{" + "id=" + id + ", id_produit_id=" + id_produit_id + ", relation_id=" + relation_id + ", reclamation_id=" + reclamation_id + ", date_debut=" + date_debut + ", date_fin=" + date_fin + ", adresse=" + adresse + ", etat=" + etat + ", description=" + description + '}';
+    }
 
     public int getId() {
         return id;
@@ -53,19 +60,19 @@ public class Maintenance {
         this.reclamation_id = reclamation_id;
     }
 
-    public String getDate_debut() {
+    public LocalDate getDate_debut() {
         return date_debut;
     }
 
-    public void setDate_debut(String date_debut) {
+    public void setDate_debut(LocalDate date_debut) {
         this.date_debut = date_debut;
     }
 
-    public String getDate_fin() {
+    public LocalDate getDate_fin() {
         return date_fin;
     }
 
-    public void setDate_fin(String date_fin) {
+    public void setDate_fin(LocalDate date_fin) {
         this.date_fin = date_fin;
     }
 
@@ -97,7 +104,7 @@ public class Maintenance {
 
 
 
-    public Maintenance(int id, int id_produit_id, int relation_id, int reclamation_id, String date_debut, String date_fin, String adresse, String etat, String description) {
+    public Maintenance(int id, int id_produit_id, int relation_id, int reclamation_id, LocalDate date_debut, LocalDate date_fin, String adresse, String etat, String description) {
         this.id = id;
         this.id_produit_id = id_produit_id;
         this.relation_id = relation_id;
@@ -113,4 +120,5 @@ public class Maintenance {
     public Maintenance(){
         
     }
+
 }

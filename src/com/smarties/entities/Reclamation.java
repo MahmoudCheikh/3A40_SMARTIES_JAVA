@@ -5,6 +5,8 @@
  */
 package com.smarties.entities;
 
+import java.time.LocalDate;
+
 /**
  *
  * @author PC
@@ -14,8 +16,13 @@ public class Reclamation {
      int id;
      int id_user_id ;
      String description ;
-     String date ;
+     LocalDate date ;
      String objet;
+
+    @Override
+    public String toString() {
+        return "Reclamation{" + "id=" + id + ", id_user_id=" + id_user_id + ", description=" + description + ", date=" + date + ", objet=" + objet + '}';
+    }
 
     public int getId() {
         return id;
@@ -41,11 +48,11 @@ public class Reclamation {
         this.description = description;
     }
 
-    public String getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
@@ -57,7 +64,7 @@ public class Reclamation {
         this.objet = objet;
     }
 
-    public Reclamation(int id, int id_user_id, String description, String date, String objet) {
+    public Reclamation(int id, int id_user_id, String description, LocalDate date, String objet) {
         this.id = id;
         this.id_user_id = id_user_id;
         this.description = description;
