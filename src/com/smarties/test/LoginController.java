@@ -5,13 +5,20 @@
  */
 package com.smarties.test;
 
+import com.smarties.entities.Users;
+import com.smarties.services.UsersService;
+import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 
 /**
  * FXML Controller class
@@ -20,25 +27,62 @@ import javafx.scene.control.TextField;
  */
 public class LoginController implements Initializable {
 
+    UsersService us = new UsersService();
+
     @FXML
     private TextField txtemail;
     @FXML
     private TextField txtpass;
     @FXML
     private Button btnLogin;
+    @FXML
+    private Text txterror;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+
+    }
 
     @FXML
-    private void login(ActionEvent event) {
+    private void login(ActionEvent event) throws SQLException, IOException {
         String mail = txtemail.getText();
-        
+        String pass = txtpass.getText();
+        Users user = new Users();
+        user.setEmail(mail);
+        user.setPassword(pass);
+        int test = us.login(user);
+        if (test == 1) {
+
+            user = us.getOne(mail);
+            Smarties.user = user;
+            if (Smarties.user.getId() == 45) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("GuiBack.fxml"));
+                try {
+                    Parent root = loader.load();
+                    txtemail.getScene().setRoot(root);
+                } catch (IOException ex) {
+                    System.out.println(ex.getMessage());
+                }
+            } else {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("GuiFront.fxml"));
+                try {
+                    Parent root = loader.load();
+                    txtemail.getScene().setRoot(root);
+                } catch (IOException ex) {
+                    System.out.println(ex.getMessage());
+                }
+            }
+
+        } else {
+            txterror.setText("Verifiez les champs");
+        }
     }
-    
+
+    @FXML
+    private void resetpass(ActionEvent event) {
+    }
+
 }

@@ -3,12 +3,18 @@ package com.smarties.tools;
 import java.sql.*;
 
 public class MaConnexion {
+    public static MaConnexion ct;
+    public static MaConnexion getInstance() {
+        if (ct == null) {
+            ct = new MaConnexion();
+        }
+        return ct;
+    }
 
     public final String url = "jdbc:mysql://localhost:3306/backup";
     public final String user = "root";
     public final String pwd = "";
     private Connection cnx;
-    public static MaConnexion ct;
 
     private MaConnexion() {
         try {
@@ -20,12 +26,6 @@ public class MaConnexion {
 
     }
 
-    public static MaConnexion getInstance() {
-        if (ct == null) {
-            ct = new MaConnexion();
-        }
-        return ct;
-    }
 
     public Connection getCnx() {
         return cnx;

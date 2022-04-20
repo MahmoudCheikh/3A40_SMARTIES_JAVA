@@ -122,7 +122,6 @@ public class GuiSujetController implements Initializable {
         message.setIdUser(Integer.parseInt(txtMessageIdUser.getText()));
         message.setId(Integer.parseInt(txtMessageId.getText()));
 
-        
         System.out.println(message);
         messageService.modifierMessage(message);
 
@@ -143,9 +142,5 @@ public class GuiSujetController implements Initializable {
         message.setIdUser(Integer.parseInt(txtMessageIdUser.getText()));
         messageService.ajouterMessage(message);
     }
-          
-
-   
-
 
 }

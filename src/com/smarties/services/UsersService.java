@@ -27,6 +27,20 @@ public class UsersService {
         cnx = MaConnexion.getInstance().getCnx();
     }
 
+    public int login(Users u) throws SQLException {
+        String query = "select count(*) as login from users where email=? and password=?";
+        PreparedStatement ste = cnx.prepareStatement(query);
+        ste.setString(1, u.getEmail());
+        ste.setString(2, u.getPassword());
+
+        ResultSet rs;
+        rs = ste.executeQuery();
+        rs.next();
+        int size = rs.getInt("login");
+
+        return size;
+    }
+
     public void ajouterUser(Users p) {
         String query = "insert into users(nom,prenom,adresse,email,password,image,role) values(?,?,?,?,?,?,?)";
         try {
@@ -38,7 +52,6 @@ public class UsersService {
             ste.setString(5, p.getPassword());
             ste.setString(6, p.getImage());
             ste.setString(7, p.getRole());
-            
 
             ste.executeUpdate();
             System.out.println("Personne Ajoutée !!");
@@ -64,7 +77,6 @@ public class UsersService {
                 p.setAdresse(rs.getString(7));
                 p.setImage(rs.getString(8));
                 p.setRole(rs.getString(9));
-                
 
                 personnes.add(p);
 
@@ -114,18 +126,38 @@ public class UsersService {
 
     }
 
-    
-     public List<Users> searchuser(String titreN) {
-       List<Users> list = new ArrayList<>();
-        try{
+    public Users getOne(String mail) throws SQLException {
+        Users c = new Users();
+        String query = "select * from users where email=?";
+        PreparedStatement ste = cnx.prepareStatement(query);
+        ste.setString(1, mail);
+
+        ResultSet rs;
+        rs = ste.executeQuery();
+        rs.next();
+        c.setId(rs.getInt(1));
+        c.setEmail(rs.getString(2));
+        c.setAdresse(rs.getString(3));
+        c.setImage(rs.getString(4));
+        c.setNom(rs.getString(5));
+        c.setPassword(rs.getString(6));
+        c.setPrenom(rs.getString(7));
+        c.setRole(rs.getString(8));
+        return c;
+
+    }
+
+    public List<Users> searchuser(String titreN) {
+        List<Users> list = new ArrayList<>();
+        try {
             String req = "SELECT * FROM users where id=?";
-             PreparedStatement ps = cnx.prepareStatement(req);
+            PreparedStatement ps = cnx.prepareStatement(req);
             System.out.println("RECHERCHE...");
-            ps.setString(1,titreN);
+            ps.setString(1, titreN);
             ResultSet rs = ps.executeQuery();
-         
-              System.out.println(titreN);
-            while(rs.next()){
+
+            System.out.println(titreN);
+            while (rs.next()) {
                 Users c = new Users();
                 c.setId(rs.getInt(1));
                 c.setEmail(rs.getString(2));
@@ -136,21 +168,13 @@ public class UsersService {
                 c.setPrenom(rs.getString(7));
                 c.setRole(rs.getString(8));
 
-
-               
-                
                 list.add(c);
             }
-            
+
+        } catch (SQLException e) {
+
         }
-        catch(SQLException e){
-            
-        }
-        return list ;   
+        return list;
     }
-    
-    
-    
-    
-    
+
 }

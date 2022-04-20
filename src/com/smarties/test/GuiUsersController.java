@@ -8,7 +8,7 @@ package com.smarties.test;
 import com.smarties.entities.Users;
 import com.smarties.services.UsersService;
 import java.net.URL;
-import java.time.LocalDate;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -233,7 +233,7 @@ public class GuiUsersController implements Initializable {
 
     @FXML
     private void getDataUsers(MouseEvent event) {
-         tableuserslist.setOnMouseClicked((event1) -> {
+        tableuserslist.setOnMouseClicked((event1) -> {
             //int selectedIdComm = listcommande.getSelectionModel().getSelectedItem().getId();
             String selectedusnom = tableuserslist.getSelectionModel().getSelectedItem().getNom();
             String selecteduspre = tableuserslist.getSelectionModel().getSelectedItem().getPrenom();
@@ -241,10 +241,8 @@ public class GuiUsersController implements Initializable {
             String selectedadr = tableuserslist.getSelectionModel().getSelectedItem().getAdresse();
             String selectedpass = tableuserslist.getSelectionModel().getSelectedItem().getPassword();
             String selectedother1 = tableuserslist.getSelectionModel().getSelectedItem().getImage();
-           String selectedother2 = tableuserslist.getSelectionModel().getSelectedItem().getRole();
+            String selectedother2 = tableuserslist.getSelectionModel().getSelectedItem().getRole();
 
-
-           
             //txtid.setText(String.valueOf(selectedIdComm));
             txtbackusernom.setText(selectedusnom);
             txtbackuserprenom.setText(selecteduspre);
@@ -254,9 +252,24 @@ public class GuiUsersController implements Initializable {
             txtbackusertoher1.setText(selectedother1);
             txtbackuserother2.setText(selectedother2);
 
+        });
 
-   });
+    }
 
-}
+    @FXML
+    private void test(ActionEvent event) throws SQLException {
+        String email = txtbackusermail.getText();
+//        String pass = txtbackuserpassword.getText();
+//        Users user = new Users();
+//        user.setEmail(email);
+//        user.setPassword(pass);
+//        int x = us.login(user);
+//        if (x == 1) {
+//
+//        }
+        Users u = us.getOne(email);
+        Smarties.user = u;
+        System.out.println(Smarties.user);
+    }
 
 }

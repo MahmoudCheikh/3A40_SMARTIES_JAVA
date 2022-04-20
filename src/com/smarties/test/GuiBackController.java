@@ -17,7 +17,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import com.smarties.*;
+import javafx.scene.Parent;
 
 /**
  * FXML Controller class
@@ -40,19 +40,34 @@ public class GuiBackController implements Initializable {
     private Button btnbackreclamation;
     @FXML
     private Button bntbackmaintenance;
+    @FXML
     private ImageView logo;
+    @FXML
+    private Button logout;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+//        try {
+//            AnchorPane xx;
+//            xx = FXMLLoader.load(getClass().getResource("login.fxml"));
+//            an1.getChildren().setAll(xx);
+//        } catch (IOException ex) {
+//        }
     }
-    
-    public void displayImage(){
-            Image caroule = new Image(getClass().getResourceAsStream("/images/çaRoule.png"));
+
+    public void sidebar() throws IOException {
+        BorderPane xx;
+        xx = FXMLLoader.load(getClass().getResource("GuiBack.fxml"));
+        border1.getChildren().setAll(xx);
+    }
+
+    public void displayImage() {
+        Image caroule = new Image(getClass().getResourceAsStream("/images/çaRoule.png"));
         logo.setImage(caroule);
-        }
+    }
 
     @FXML
     private void evenement(ActionEvent event) throws IOException {
@@ -110,6 +125,17 @@ public class GuiBackController implements Initializable {
         AnchorPane xx;
         xx = FXMLLoader.load(getClass().getResource("GuiUsers.fxml"));
         an2.getChildren().setAll(xx);
+    }
+
+    @FXML
+    private void logout(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
+        try {
+            Parent root = loader.load();
+            bntbackmaintenance.getScene().setRoot(root);
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
 }

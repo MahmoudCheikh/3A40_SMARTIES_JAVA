@@ -125,6 +125,7 @@
                   <Image url="@../images/event_32px.png" />
                </image>
             </ImageView>
+            <Button fx:id="logout" layoutX="67.0" layoutY="684.0" mnemonicParsing="false" onAction="#logout" text="Button" />
          </children>
       </AnchorPane>
    </left>
