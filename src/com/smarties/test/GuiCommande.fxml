@@ -45,7 +45,7 @@
                            <font>
                               <Font name="Barlow Condensed Light" size="16.0" />
                            </font></Label>
-                        <Button fx:id="btnajouterc" layoutX="19.0" layoutY="156.0" mnemonicParsing="false" onAction="#ajouterc" prefHeight="25.0" prefWidth="113.0" style="-fx-background-color: #ff7f50;" stylesheets="@../services/news.css" text="Ajouter" textAlignment="CENTER" textFill="#f8f8f7">
+                        <Button fx:id="btnajouterc" layoutX="19.0" layoutY="156.0" mnemonicParsing="false" onAction="#ajouterc" prefHeight="25.0" prefWidth="113.0" style="-fx-background-color: #ff7f50;" stylesheets="@EvenementStyle.css" text="Ajouter" textAlignment="CENTER" textFill="#f8f8f7">
                            <font>
                               <Font name="Barlow Condensed Light" size="14.0" />
                            </font>
@@ -55,7 +55,7 @@
                            <effect>
                               <DropShadow />
                            </effect></Button>
-                        <Button fx:id="btnupdatec" layoutX="22.0" layoutY="287.0" mnemonicParsing="false" onAction="#update" prefHeight="25.0" prefWidth="107.0" style="-fx-background-color: #ff7f50;" text="Update" textAlignment="CENTER" textFill="#f8f8f7">
+                        <Button fx:id="btnupdatec" layoutX="22.0" layoutY="287.0" mnemonicParsing="false" onAction="#update" prefHeight="25.0" prefWidth="107.0" style="-fx-background-color: #ff7f50;" stylesheets="@EvenementStyle.css" text="Update" textAlignment="CENTER" textFill="#f8f8f7">
                            <font>
                               <Font name="Barlow Condensed Light" size="14.0" />
                            </font>
@@ -65,7 +65,7 @@
                            <effect>
                               <DropShadow />
                            </effect></Button>
-                        <Button fx:id="btndeletec" layoutX="174.0" layoutY="287.0" mnemonicParsing="false" onAction="#deletec" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: #ff7f50;" text="Delete" textAlignment="CENTER" textFill="#f8f8f7">
+                        <Button fx:id="btndeletec" layoutX="174.0" layoutY="287.0" mnemonicParsing="false" onAction="#deletec" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: #ff7f50;" stylesheets="@EvenementStyle.css" text="Delete" textAlignment="CENTER" textFill="#f8f8f7">
                            <font>
                               <Font name="Barlow Condensed Light" size="14.0" />
                            </font>
@@ -87,7 +87,7 @@
                            <effect>
                               <InnerShadow />
                            </effect></TextField>
-                        <Button fx:id="recherche" layoutX="175.0" layoutY="336.0" mnemonicParsing="false" onAction="#Rechercher" prefHeight="25.0" prefWidth="83.0" style="-fx-background-color: #ff7f50;" text="Rechercher" textAlignment="CENTER" textFill="#f8f8f7">
+                        <Button fx:id="recherche" layoutX="175.0" layoutY="336.0" mnemonicParsing="false" onAction="#Rechercher" prefHeight="25.0" prefWidth="83.0" style="-fx-background-color: #ff7f50;" stylesheets="@EvenementStyle.css" text="Rechercher" textAlignment="CENTER" textFill="#f8f8f7">
                            <font>
                               <Font name="Barlow Condensed Light" size="14.0" />
                            </font>
@@ -131,7 +131,7 @@
                               <DropShadow />
                            </effect>
                         </ImageView>
-                        <Button fx:id="triid" layoutX="284.0" layoutY="352.0" mnemonicParsing="false" onAction="#triercommande" prefHeight="25.0" prefWidth="105.0" style="-fx-background-color: #ff7f50;" text="      Trier Par Id" textFill="WHITE">
+                        <Button fx:id="triid" layoutX="284.0" layoutY="352.0" mnemonicParsing="false" onAction="#triercommande" prefHeight="25.0" prefWidth="105.0" style="-fx-background-color: #ff7f50;" stylesheets="@EvenementStyle.css" text="      Trier Par Id" textFill="WHITE">
                            <effect>
                               <DropShadow />
                            </effect>
@@ -147,7 +147,7 @@
                               <DropShadow />
                            </effect>
                         </ImageView>
-                        <Button fx:id="actc" layoutX="418.0" layoutY="353.0" mnemonicParsing="false" onAction="#actcommande" prefHeight="25.0" prefWidth="103.0" style="-fx-background-color: #ff7f50;" text="    Actualsier" textFill="#f8f7f7">
+                        <Button fx:id="actc" layoutX="418.0" layoutY="353.0" mnemonicParsing="false" onAction="#actcommande" prefHeight="25.0" prefWidth="103.0" style="-fx-background-color: #ff7f50;" stylesheets="@EvenementStyle.css" text="    Actualsier" textFill="#f8f7f7">
                            <font>
                               <Font name="Barlow Condensed Light" size="12.0" />
                            </font>
@@ -163,7 +163,7 @@
                               <DropShadow />
                            </effect>
                         </ImageView>
-                        <Label layoutX="14.0" layoutY="9.0" prefHeight="38.0" prefWidth="306.0" style="-fx-border-style: #ff7f50;" text="Commadne" textFill="#bf3c3c">
+                        <Label layoutX="14.0" layoutY="9.0" prefHeight="38.0" prefWidth="306.0" style="-fx-border-style: #ff7f50;" text="Commande" textFill="#bf3c3c">
                            <font>
                               <Font name="Roboto Bold" size="27.0" />
                            </font>
@@ -171,6 +171,15 @@
                               <BoxBlur height="1.96" />
                            </effect>
                         </Label>
+                        <Button fx:id="pdfgen" layoutX="553.0" layoutY="196.0" mnemonicParsing="false" onAction="#pdf" prefHeight="93.0" prefWidth="90.0" style="-fx-background-color: #ff7f50;" stylesheets="@EvenementStyle.css" text="Pdf">
+                           <graphic>
+                              <ImageView fitHeight="54.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/pdf.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
                      </children>
                   </AnchorPane>
                </content>
@@ -179,7 +188,7 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="391.0" prefWidth="686.0">
                      <children>
-                        <Button fx:id="btnajouterachat" layoutX="14.0" layoutY="209.0" mnemonicParsing="false" onAction="#ajoutachat" prefHeight="25.0" prefWidth="105.0" style="-fx-background-color: #ff7f50;" text="Ajouter" textFill="WHITE">
+                        <Button fx:id="btnajouterachat" layoutX="14.0" layoutY="209.0" mnemonicParsing="false" onAction="#ajoutachat" prefHeight="25.0" prefWidth="105.0" style="-fx-background-color: #ff7f50;" stylesheets="@EvenementStyle.css" text="Ajouter" textFill="WHITE">
                            <font>
                               <Font name="Barlow Condensed Light" size="12.0" />
                            </font>
@@ -231,14 +240,14 @@
                               <InnerShadow />
                            </effect></TextField>
                         <Label layoutX="100.0" layoutY="291.0" prefHeight="17.0" prefWidth="42.0" />
-                        <Button fx:id="btnupdateachat" layoutX="18.0" layoutY="255.0" mnemonicParsing="false" onAction="#updateachat" prefHeight="23.0" prefWidth="79.0" style="-fx-background-color: #ff7f50;" text="Update" textFill="#f5eeea">
+                        <Button fx:id="btnupdateachat" layoutX="18.0" layoutY="255.0" mnemonicParsing="false" onAction="#updateachat" prefHeight="23.0" prefWidth="79.0" style="-fx-background-color: #ff7f50;" stylesheets="@EvenementStyle.css" text="Update" textFill="#f5eeea">
                            <font>
                               <Font name="Barlow Condensed Light" size="12.0" />
                            </font>
                            <effect>
                               <DropShadow />
                            </effect></Button>
-                        <Button fx:id="btndeleteachatx" layoutX="110.0" layoutY="255.0" mnemonicParsing="false" onAction="#deleteachat" prefHeight="23.0" prefWidth="113.0" style="-fx-background-color: #ff7f50;" text="Delete" textFill="#f5eeea">
+                        <Button fx:id="btndeleteachatx" layoutX="110.0" layoutY="255.0" mnemonicParsing="false" onAction="#deleteachat" prefHeight="23.0" prefWidth="113.0" style="-fx-background-color: #ff7f50;" stylesheets="@EvenementStyle.css" text="Delete" textFill="#f5eeea">
                            <font>
                               <Font name="Barlow Condensed Light" size="12.0" />
                            </font>
@@ -272,7 +281,7 @@
                               <BoxBlur width="1.96" />
                            </effect>
                         </Label>
-                        <Button fx:id="actac" layoutX="491.0" layoutY="179.0" mnemonicParsing="false" onAction="#actachat" prefHeight="25.0" prefWidth="115.0" style="-fx-background-color: #ff7f50;" text="Actualiser" textFill="#fffdfd">
+                        <Button fx:id="actac" layoutX="491.0" layoutY="179.0" mnemonicParsing="false" onAction="#actachat" prefHeight="25.0" prefWidth="115.0" style="-fx-background-color: #ff7f50;" stylesheets="@EvenementStyle.css" text="Actualiser" textFill="#fffdfd">
                            <font>
                               <Font name="Barlow Condensed Light" size="13.0" />
                            </font>
@@ -293,7 +302,7 @@
                               <Image url="@../images/Panier-Telecharger-PNG.png" />
                            </image>
                         </ImageView>
-                        <Button fx:id="trierachat" layoutX="348.0" layoutY="180.0" mnemonicParsing="false" onAction="#trierachatid" prefHeight="25.0" prefWidth="133.0" style="-fx-background-color: #ff7f50;" text="Trier Par Id ">
+                        <Button fx:id="trierachat" layoutX="348.0" layoutY="180.0" mnemonicParsing="false" onAction="#trierachatid" prefHeight="25.0" prefWidth="133.0" style="-fx-background-color: #ff7f50;" stylesheets="@EvenementStyle.css" text="Trier Par Id " textFill="WHITE">
                            <graphic>
                               <ImageView fitHeight="14.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                                  <image>

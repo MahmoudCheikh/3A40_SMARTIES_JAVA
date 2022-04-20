@@ -5,15 +5,21 @@
  */
 package com.smarties.test;
 
+import com.itextpdf.text.DocumentException;
+
 import com.smarties.entities.Commande;
 import com.smarties.services.AchatService;
 import com.smarties.entities.Achat;
 import com.smarties.services.CommandeService;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Pattern;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -27,6 +33,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.control.TextField;
+import javax.swing.JFileChooser;
 
 /**
  * FXML Controller class
@@ -88,6 +95,8 @@ public class GuiCommandeController implements Initializable {
     private Button actac;
     @FXML
     private Button trierachat;
+    @FXML
+    private Button pdfgen;
 
     /**
      * Initializes the controller class.
@@ -275,7 +284,15 @@ public class GuiCommandeController implements Initializable {
     }
 
     
-    
+  @FXML
+    private void pdf(ActionEvent event) throws DocumentException {
+         cs.Gpdf();
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Information Dialog");
+        alert.setHeaderText(null);
+        alert.setContentText("fichiier importer en pdf   !");
+        alert.showAndWait();
+    }
     
 /*---------------------Achat-----------------------------*/
     @FXML
@@ -490,6 +507,9 @@ public class GuiCommandeController implements Initializable {
      
             listachat.setItems(datalist);
     }
+
+    
+
     
       
 }
@@ -501,7 +521,6 @@ public class GuiCommandeController implements Initializable {
 
   
     
-
 
 
 

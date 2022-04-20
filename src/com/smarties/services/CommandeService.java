@@ -5,8 +5,25 @@
  */
 package com.smarties.services;
 
+import com.itextpdf.text.BadElementException;
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 import com.smarties.entities.Commande;
 import com.smarties.tools.MaConnexion;
+import java.awt.Desktop;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,6 +31,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class CommandeService {
 
@@ -159,12 +178,96 @@ public class CommandeService {
         catch(SQLException e){
             
         }
-        return list ;
-    
-              
-              
-              
+        return list ;               
 }
+   
+     public void Gpdf() throws DocumentException {
+        Document doc = new Document();
+        String sql = "select* from commande";
+
+        try {
+            Statement prepared = cnx.prepareStatement(sql);
+            ResultSet rs = prepared.executeQuery(sql);
+            PdfWriter.getInstance(doc, new FileOutputStream("C:\\Users\\Ahmed Elmoez\\Documents\\Ahmed Pdf\\Commande.pdf"));
+            doc.open();
+            doc.getHtmlStyleClass();
+
+//            Image img = Image.getInstance("C:\\3A40_SMARTIES_JAVA\\src\\com\\smarties\\imagesçaRoule.png");
+           // img.scaleAbsoluteWidth(300);
+          //  img.scaleAbsoluteHeight(92);
+          //  img.setAlignment(Image.ALIGN_CENTER);
+         //   doc.add(img);
+            doc.add(new Paragraph(" "));
+            doc.add(new Paragraph(" "));
+            doc.add(new Paragraph("                                                     Liste des Commande "));
+            doc.add(new Paragraph(" "));
+
+            PdfPTable table = new PdfPTable(4);
+            table.setWidthPercentage(100);
+            PdfPCell cell;
+
+            /////////////////////////////////////////////////////////////////
+            cell = new PdfPCell(new Phrase("ID", FontFactory.getFont("Comic Sans MS", 12)));
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell.setBackgroundColor(BaseColor.GRAY);
+            table.addCell(cell);
+            ////
+            cell = new PdfPCell(new Phrase("ID User", FontFactory.getFont("Comic Sans MS", 12)));
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell.setBackgroundColor(BaseColor.GRAY);
+            table.addCell(cell);
+            ///
+            cell = new PdfPCell(new Phrase("ID Produit", FontFactory.getFont("Comic Sans MS", 12)));
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell.setBackgroundColor(BaseColor.GRAY);
+            table.addCell(cell);
+            ///
+            cell = new PdfPCell(new Phrase("Nombre Produit", FontFactory.getFont("Comic Sans MS", 12)));
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell.setBackgroundColor(BaseColor.GRAY);
+            table.addCell(cell);
+            ///
+            //////////////////////////////////////////////////////////////////////////////
+            while (rs.next()) {
+                cell = new PdfPCell(new Phrase(rs.getString("id").toString(), FontFactory.getFont("Comic Sans MS", 12)));
+                cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cell.setBackgroundColor(BaseColor.GRAY);
+                table.addCell(cell);
+                //////
+                cell = new PdfPCell(new Phrase(rs.getString("id_user_id").toString(), FontFactory.getFont("Comic Sans MS", 12)));
+                cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cell.setBackgroundColor(BaseColor.GRAY);
+                table.addCell(cell);
+                ///////
+                cell = new PdfPCell(new Phrase(rs.getString("id_produit_id").toString(), FontFactory.getFont("Comic Sans MS", 12)));
+                cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cell.setBackgroundColor(BaseColor.GRAY);
+                table.addCell(cell);
+                ///////
+                cell = new PdfPCell(new Phrase(rs.getString("nb_produits").toString(), FontFactory.getFont("Comic Sans MS", 12)));
+                cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cell.setBackgroundColor(BaseColor.GRAY);
+                table.addCell(cell);
+                ////////////
+
+            }
+
+            doc.add(table);
+            doc.close();
+            Desktop.getDesktop().open(new File("C:\\Users\\Ahmed Elmoez\\Documents\\Ahmed Pdf\\Commande.pdf"));
+
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(LocationService.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (BadElementException ex) {
+            Logger.getLogger(LocationService.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(LocationService.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(LocationService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+    
     
     
     
