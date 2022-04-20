@@ -6,6 +6,7 @@
 package com.smarties.services;
 
 import com.smarties.entities.Message;
+import com.smarties.entities.Users;
 import com.smarties.tools.MaConnexion;
 import java.sql.Connection;
 import java.sql.Date;
@@ -15,6 +16,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -104,6 +107,22 @@ public class MessageService {
 
         }
 
+    }
+
+    public ArrayList<String> getCombo() {
+        ArrayList<String> options = new ArrayList<>();
+        String sql = "select * from users";
+        Statement ste;
+        try {
+            ste = cnx.createStatement();
+            ResultSet rs = ste.executeQuery(sql);
+            while (rs.next()) {
+                options.add(rs.getString(2));
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return options;
     }
 
 }

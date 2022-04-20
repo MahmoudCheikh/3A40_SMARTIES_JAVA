@@ -35,7 +35,7 @@ public class GuiFrontController implements Initializable {
 
     @FXML
     private void logout(ActionEvent event) {
-         FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
         try {
             Parent root = loader.load();
             btnlogout.getScene().setRoot(root);

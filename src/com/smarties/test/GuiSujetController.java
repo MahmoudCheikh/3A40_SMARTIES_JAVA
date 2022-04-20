@@ -9,13 +9,19 @@ import com.smarties.entities.Message;
 import com.smarties.entities.Sujet;
 import com.smarties.services.MessageService;
 import com.smarties.services.SujetService;
+import com.smarties.services.UsersService;
 import java.net.URL;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
@@ -30,6 +36,7 @@ public class GuiSujetController implements Initializable {
 
     SujetService sujetsservice = new SujetService();
     MessageService messageService = new MessageService();
+    UsersService usersService = new UsersService();
 
     private TextField txtid;
     @FXML
@@ -68,6 +75,10 @@ public class GuiSujetController implements Initializable {
     private ListView<Message> tableMessagelist;
     @FXML
     private TextField txtSujetId;
+    @FXML
+    private ComboBox<String> messageBox;
+    @FXML
+    private Button test;
 
     /**
      * Initializes the controller class.
@@ -78,6 +89,7 @@ public class GuiSujetController implements Initializable {
         ArrayList arrayListMessage = (ArrayList) messageService.afficherMessage();
         tableMessagelist.getItems().addAll(arrayListMessage);
         tableSujetList.getItems().addAll(arrayListSujet);
+
     }
 
     @FXML
@@ -142,5 +154,13 @@ public class GuiSujetController implements Initializable {
         message.setIdUser(Integer.parseInt(txtMessageIdUser.getText()));
         messageService.ajouterMessage(message);
     }
+
+    @FXML
+    private void test(ActionEvent event) throws SQLException {
+        messageBox.setItems(FXCollections.observableArrayList(messageService.getCombo()));
+        String test2 = messageBox.getValue();
+        txtMessageContenu.setText(test2);
+        System.out.println(usersService.searchByMail(test2));
+   }
 
 }

@@ -37,6 +37,8 @@ public class LoginController implements Initializable {
     private Button btnLogin;
     @FXML
     private Text txterror;
+    @FXML
+    private Button btnRegister;
 
     /**
      * Initializes the controller class.
@@ -83,6 +85,17 @@ public class LoginController implements Initializable {
 
     @FXML
     private void resetpass(ActionEvent event) {
+    }
+
+    @FXML
+    private void register(ActionEvent event) {
+         FXMLLoader loader = new FXMLLoader(getClass().getResource("register.fxml"));
+                try {
+                    Parent root = loader.load();
+                    txtemail.getScene().setRoot(root);
+                } catch (IOException ex) {
+                    System.out.println(ex.getMessage());
+                }
     }
 
 }

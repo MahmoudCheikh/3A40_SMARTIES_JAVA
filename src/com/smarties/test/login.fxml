@@ -30,6 +30,7 @@
                   <Image url="@../images/pngfind.com-login-icon-png-transparent-6202211.png" />
                </image>
             </ImageView>
+            <Button fx:id="btnRegister" layoutX="627.0" layoutY="512.0" mnemonicParsing="false" onAction="#register" prefHeight="25.0" prefWidth="111.0" style="-fx-background-color: #ff7f50;" stylesheets="@EvenementStyle.css" text="Register" />
             </children>
         </AnchorPane>
     </center>

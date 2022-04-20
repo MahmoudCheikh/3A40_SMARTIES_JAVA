@@ -177,4 +177,31 @@ public class UsersService {
         return list;
     }
 
+    public int searchByMail(String mail) throws SQLException {
+        Users user = new Users();
+        String req = "SELECT * FROM users where email=?";
+        PreparedStatement ps = cnx.prepareStatement(req);
+        System.out.println("RECHERCHE...");
+        ps.setString(1, mail);
+        ResultSet rs = ps.executeQuery();
+        rs.next();
+        return rs.getInt(1);
+    }
+    
+    public void register(Users p){
+        String query = "insert into users(nom,prenom,adresse,email,password) values(?,?,?,?,?)";
+        try {
+            PreparedStatement ste = cnx.prepareStatement(query);
+            ste.setString(1, p.getNom());
+            ste.setString(2, p.getPrenom());
+            ste.setString(3, p.getAdresse());
+            ste.setString(4, p.getEmail());
+            ste.setString(5, p.getPassword());
+
+            ste.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
 }
