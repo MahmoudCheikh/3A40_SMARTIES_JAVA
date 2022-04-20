@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -122,18 +123,17 @@ public class EvenementService {
         try{
             String req = "SELECT * FROM evenement where nom=?";
              PreparedStatement ps = cnx.prepareStatement(req);
-            System.out.println("RECHERCHE...");
-            ps.setString(1,titreN);
+             System.out.println("RECHERCHE...");
+             ps.setString(1,titreN);
             ResultSet rs = ps.executeQuery();
-         
-              System.out.println(titreN);
+            System.out.println(titreN);
             while(rs.next()){
                 Evenement e = new Evenement();
                 e.setId(rs.getInt(1));
                 e.setNom(rs.getString(2));
-                //e.setDate_d(rs.getDate(3));
-                //e.setDate_f(rs.getDate(4));
-             
+        
+                e.setDate_d(rs.getDate(3).toLocalDate());
+                e.setDate_f(rs.getDate(4).toLocalDate());
                 e.setLieu(rs.getString(5));
                 e.setType(rs.getString(6));
                 e.setNb_participants(rs.getInt(7));
@@ -148,10 +148,10 @@ public class EvenementService {
         }
         return list ;   
     }
-      /* public List<Evenement> trier() {
+     public List<Evenement> trier() {
         List<Evenement> list = new ArrayList<>();
         try{
-            String req = "SELECT * FROM news order by date_d desc";
+            String req = "SELECT * FROM evenement order by date_d desc";
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             
@@ -159,14 +159,12 @@ public class EvenementService {
                 Evenement e = new Evenement();
                 e.setId(rs.getInt(1));
                 e.setNom(rs.getString(2));
-               // e.setDate_d(rs.getDate(3));
-                //e.setDate_f(rs.getDate(4));
-             
+                e.setDate_d(rs.getDate(3).toLocalDate());
+                e.setDate_f(rs.getDate(4).toLocalDate()); 
                 e.setLieu(rs.getString(5));
                 e.setType(rs.getString(6));
                 e.setNb_participants(rs.getInt(7));
                 e.setNb_places(rs.getInt(8));
-                
                 list.add(e);
             }
             
@@ -175,6 +173,6 @@ public class EvenementService {
             
         }
         return list ;
-    }*/
+    }
 
 }

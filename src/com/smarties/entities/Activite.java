@@ -79,7 +79,7 @@ public class Activite {
 
     @Override
     public String toString() {
-        return "Activite{" + "id=" + id + ", nom=" + nom + ", description=" + description + ", image=" + image + ", id_event=" + id_event + '}';
+        return "Activite"+ id + ":" +"\n nom=" + nom + "\n description=" + description + "\n image=" + image + "\n id_event=" + id_event ;
     }
 
 }

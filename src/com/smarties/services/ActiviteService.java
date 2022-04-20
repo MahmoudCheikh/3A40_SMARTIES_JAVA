@@ -105,4 +105,31 @@ public class ActiviteService {
         }
 
     }
+    public List<Activite> Chercher(String nomact) {
+       List<Activite> list = new ArrayList<>();
+        try{
+            String req = "SELECT * FROM activite where nom=?";
+             PreparedStatement ps = cnx.prepareStatement(req);
+            System.out.println("RECHERCHE...");
+            ps.setString(1,nomact);
+            ResultSet rs = ps.executeQuery();
+              System.out.println(nomact);
+            while(rs.next()){
+                Activite a = new Activite();
+                a.setId(rs.getInt(1));
+                a.setNom(rs.getString(2));  
+                a.setDescription(rs.getString(3));
+                a.setImage(rs.getString(4));
+                a.setId_event(rs.getInt(5));
+                
+                
+                list.add(a);
+            }
+            
+        }
+        catch(SQLException e){
+            
+        }
+        return list ;   
+    }
 }

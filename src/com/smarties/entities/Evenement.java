@@ -27,7 +27,7 @@ public class Evenement {
 
     @Override
     public String toString() {
-        return "Evenement{" + "id=" + id + ", nom=" + nom + ", Date_d=" + Date_d + ", Date_f=" + Date_f + ", lieu=" + lieu + ", type=" + type + ", nb_participants=" + nb_participants + ", nb_places=" + nb_places + '}';
+        return "Evenement "  + id + ":" +"\n nom=" + nom + "\n Date debut=" + Date_d + "\n Date fin=" + Date_f + "\n lieu=" + lieu + "\n type=" + type + "\n nb_participants=" + nb_participants + "\n nb_places=" + nb_places + '}';
     }
 
     public int getId() {
