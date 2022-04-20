@@ -24,7 +24,7 @@ public class Location {
     private int idUser;
 
       public String toString() {
-        return "Loaction{" + "id=" + id + ", id user=" + idUser + ", Date=" + Date + ", Heure=" + Heure + ", Duree=" + duree + ", id Abonnement=" + idAbonnement + '}';
+        return "" + "\n id=" + id + "\n id user=" + idUser + " \n Date=" + Date + " \n Heure=" + Heure + " \n Duree=" + duree + " \n id Abonnement=" + idAbonnement ;
     }
     public int getId() {
         return id;

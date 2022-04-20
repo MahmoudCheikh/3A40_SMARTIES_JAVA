@@ -23,7 +23,7 @@ public class Abonnement {
     
     
      public String toString() {
-        return "Abonnement{" + "id=" + id + ", id user=" + id_user_id + ", Date_d=" + dateD + ", Date_f=" + dateF + ", type=" + type + ", prix=" + prix + '}';
+        return "" + "\n id=" + id + "\n id user=" + id_user_id + "\n Date_d=" + dateD + "\n Date_f=" + dateF + "\n type=" + type + "\n prix=" + prix ;
     }
     public int getId() {
         return id;

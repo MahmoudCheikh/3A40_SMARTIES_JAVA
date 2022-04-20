@@ -5,8 +5,25 @@
  */
 package com.smarties.services;
 
+import com.itextpdf.text.BadElementException;
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 import com.smarties.entities.Location;
 import com.smarties.tools.MaConnexion;
+import java.awt.Desktop;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -15,6 +32,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import static javafx.scene.input.KeyCode.C;
 
 /**
  *
@@ -58,8 +79,8 @@ public class LocationService {
             while (rs.next()) {
                 Location l = new Location();
                 l.setId(rs.getInt("id"));
-                l.setIdUser(rs.getInt(1));
-                l.setIdAbonnement(rs.getInt(1));
+                l.setIdUser(rs.getInt("id_user_id"));
+                l.setIdAbonnement(rs.getInt("id_abonnement_id"));
                 Date date = rs.getDate("date");
                 l.setDate(date.toLocalDate());
                 l.setHeure(rs.getString("heure"));
@@ -111,14 +132,14 @@ public class LocationService {
 
     }
 
-    public List<Location> ChercherDuree(int Duree) {
+    public List<Location> ChercherDuree(float Duree) {
 
         List<Location> list = new ArrayList<>();
         try {
             String req = "SELECT * FROM location where duree=?";
             PreparedStatement ps = cnx.prepareStatement(req);
             System.out.println("RECHERCHE en cours ..");
-            ps.setInt(1, Duree);
+            ps.setFloat(1, Duree);
             ResultSet rs = ps.executeQuery();
 
             System.out.println(Duree);
@@ -126,11 +147,11 @@ public class LocationService {
                 Location loc = new Location();
                 loc.setId(rs.getInt(1));
                 loc.setIdUser(rs.getInt(2));
-                loc.setHeure(rs.getString(4));
+                loc.setHeure(rs.getString(5));
 
-                loc.setDuree(rs.getInt(5));
+                loc.setDuree(rs.getFloat(6));
 
-                loc.setIdAbonnement(rs.getInt(6));
+                loc.setIdAbonnement(rs.getInt(3));
 
                 list.add(loc);
             }
@@ -157,11 +178,11 @@ public class LocationService {
                 Location loc = new Location();
                 loc.setId(rs.getInt(1));
                 loc.setIdUser(rs.getInt(2));
-                loc.setHeure(rs.getString(4));
+                loc.setHeure(rs.getString(5));
 
-                loc.setDuree(rs.getInt(5));
+                loc.setDuree(rs.getInt(6));
 
-                loc.setIdAbonnement(rs.getInt(6));
+                loc.setIdAbonnement(rs.getInt(3));
 
                 list.add(loc);
             }
@@ -186,11 +207,11 @@ public class LocationService {
                 Location loc = new Location();
                 loc.setId(rs.getInt(1));
                 loc.setIdUser(rs.getInt(2));
-                loc.setHeure(rs.getString(4));
+                loc.setHeure(rs.getString(5));
 
-                loc.setDuree(rs.getInt(5));
+                loc.setDuree(rs.getInt(6));
 
-                loc.setIdAbonnement(rs.getInt(6));
+                loc.setIdAbonnement(rs.getInt(3));
 
                 list.add(loc);
 
@@ -201,7 +222,8 @@ public class LocationService {
         }
         return list;
     }
-     public List<Location> TrierIdAB() {
+
+    public List<Location> TrierIdAB() {
 
         List<Location> list = new ArrayList<>();
         try {
@@ -214,11 +236,11 @@ public class LocationService {
                 Location loc = new Location();
                 loc.setId(rs.getInt(1));
                 loc.setIdUser(rs.getInt(2));
-                loc.setHeure(rs.getString(4));
+                loc.setHeure(rs.getString(5));
 
-                loc.setDuree(rs.getInt(5));
+                loc.setDuree(rs.getInt(6));
 
-                loc.setIdAbonnement(rs.getInt(6));
+                loc.setIdAbonnement(rs.getInt(3));
 
                 list.add(loc);
 
@@ -228,6 +250,125 @@ public class LocationService {
 
         }
         return list;
+    }
+
+    /* public String getCaptcha()
+     {
+         char data []= {  'a', 'b','c','d','e','f', 'g','h','i','j', 'k', 'l','m','n','o','p', 'q','r','s','t','u', 'v','w','x','y','z','A', 'B','C','D','E','F', 'G','H','I','J', 'K', 'L','M','N','O','P', 'Q','R','S','T','U', 'V','W','X','Y','Z','0','1','2','3','4','5','6','7','8','9', '#','!','@','$','%','&','*'};
+     
+     char  index[]=new char[6];
+     Random r=new Random();
+     int i =0;
+     for(i=0;i<(index.length);i++)
+     {
+         int ran= r.nextInt(data.length);
+         index[i]=data[ran];
+     }
+     return new String(index);
+     } */
+    public void GeneratePDF() throws DocumentException {
+        Document doc = new Document();
+        String sql = "select* from location";
+
+        try {
+            Statement prepared = cnx.prepareStatement(sql);
+            ResultSet rs = prepared.executeQuery(sql);
+            PdfWriter.getInstance(doc, new FileOutputStream("C:\\Users\\ASUS\\Desktop\\Location.pdf"));
+            doc.open();
+            doc.getHtmlStyleClass();
+
+            Image img = Image.getInstance("C:\\Users\\ASUS\\Desktop\\çaRoule.png");
+            img.scaleAbsoluteWidth(300);
+            img.scaleAbsoluteHeight(92);
+            img.setAlignment(Image.ALIGN_CENTER);
+            doc.add(img);
+            doc.add(new Paragraph(" "));
+            doc.add(new Paragraph(" "));
+            doc.add(new Paragraph("                                                     Liste des locations "));
+            doc.add(new Paragraph(" "));
+
+            PdfPTable table = new PdfPTable(6);
+            table.setWidthPercentage(100);
+            PdfPCell cell;
+
+            /////////////////////////////////////////////////////////////////
+            cell = new PdfPCell(new Phrase("ID Location", FontFactory.getFont("Comic Sans MS", 12)));
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell.setBackgroundColor(BaseColor.GRAY);
+            table.addCell(cell);
+            ////
+            cell = new PdfPCell(new Phrase("ID User", FontFactory.getFont("Comic Sans MS", 12)));
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell.setBackgroundColor(BaseColor.GRAY);
+            table.addCell(cell);
+            ///
+            cell = new PdfPCell(new Phrase("Date", FontFactory.getFont("Comic Sans MS", 12)));
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell.setBackgroundColor(BaseColor.GRAY);
+            table.addCell(cell);
+            ///
+            cell = new PdfPCell(new Phrase("Heure", FontFactory.getFont("Comic Sans MS", 12)));
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell.setBackgroundColor(BaseColor.GRAY);
+            table.addCell(cell);
+            ///
+            cell = new PdfPCell(new Phrase("Durée", FontFactory.getFont("Comic Sans MS", 12)));
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell.setBackgroundColor(BaseColor.GRAY);
+            table.addCell(cell);
+            ///
+            cell = new PdfPCell(new Phrase("ID Abonnements", FontFactory.getFont("Comic Sans MS", 12)));
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell.setBackgroundColor(BaseColor.GRAY);
+            table.addCell(cell);
+            //////////////////////////////////////////////////////////////////////////////
+            while (rs.next()) {
+                cell = new PdfPCell(new Phrase(rs.getString("id").toString(), FontFactory.getFont("Comic Sans MS", 12)));
+                cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cell.setBackgroundColor(BaseColor.GRAY);
+                table.addCell(cell);
+                //////
+                cell = new PdfPCell(new Phrase(rs.getString("id_user_id").toString(), FontFactory.getFont("Comic Sans MS", 12)));
+                cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cell.setBackgroundColor(BaseColor.GRAY);
+                table.addCell(cell);
+                ///////
+                cell = new PdfPCell(new Phrase(rs.getString("date").toString(), FontFactory.getFont("Comic Sans MS", 12)));
+                cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cell.setBackgroundColor(BaseColor.GRAY);
+                table.addCell(cell);
+                ///////
+                cell = new PdfPCell(new Phrase(rs.getString("heure").toString(), FontFactory.getFont("Comic Sans MS", 12)));
+                cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cell.setBackgroundColor(BaseColor.GRAY);
+                table.addCell(cell);
+                ////////////
+                cell = new PdfPCell(new Phrase(rs.getString("duree").toString(), FontFactory.getFont("Comic Sans MS", 12)));
+                cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cell.setBackgroundColor(BaseColor.GRAY);
+                table.addCell(cell);
+                ///////
+                cell = new PdfPCell(new Phrase(rs.getString("id_abonnement_id").toString(), FontFactory.getFont("Comic Sans MS", 12)));
+                cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cell.setBackgroundColor(BaseColor.GRAY);
+                table.addCell(cell);
+
+            }
+
+            doc.add(table);
+            doc.close();
+            Desktop.getDesktop().open(new File("C:\\Users\\ASUS\\Desktop\\Location.pdf"));
+
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(LocationService.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (BadElementException ex) {
+            Logger.getLogger(LocationService.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(LocationService.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(LocationService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
 }
