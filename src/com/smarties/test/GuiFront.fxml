@@ -4,18 +4,29 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-
-<BorderPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smarties.test.GuiFrontController">
+<BorderPane prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smarties.test.GuiFrontController">
     <center>
         <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0">
     
         </AnchorPane>
     </center>
     <top>
-        <AnchorPane prefHeight="23.0" prefWidth="600.0" BorderPane.alignment="CENTER">
-            <children>
-                <Button layoutX="16.0" mnemonicParsing="false" text="Button" />
-            </children>
+        <AnchorPane prefHeight="38.0" prefWidth="1366.0" BorderPane.alignment="CENTER">
+         <children>
+                <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="90.0" text="Produits" />
+            <Button layoutX="90.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="90.0" text="Les Sites" />
+            <Button layoutX="180.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="90.0" text="Evenements" />
+            <Button layoutX="270.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="90.0" text="Forum" />
+            <Button layoutX="360.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="90.0" text="Mon Profil" />
+            <Button layoutX="450.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="90.0" text="Mes Favoris" />
+            <Button layoutX="540.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="109.0" text="Mes Commandes" />
+            <Button layoutX="649.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="90.0" text="Mes Achats" />
+            <Button layoutX="739.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="90.0" text="Abonnement" />
+            <Button layoutX="829.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="90.0" text="Locations" />
+            <Button layoutX="919.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="90.0" text="Reclamation" />
+            <Button layoutX="1009.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="90.0" text="Maintenances" />
+            <Button fx:id="btnlogout" layoutX="1276.0" mnemonicParsing="false" onAction="#logout" prefHeight="36.0" prefWidth="90.0" text="Deconnexion" />
+         </children>
         </AnchorPane>
     </top>
 </BorderPane>
