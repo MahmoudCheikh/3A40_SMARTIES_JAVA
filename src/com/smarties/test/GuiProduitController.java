@@ -187,6 +187,18 @@ public class GuiProduitController implements Initializable {
     private Button statProd;
     @FXML
     private PieChart pieChartProd;
+    @FXML
+    private ImageView veloIm;
+    @FXML
+    private ImageView StockIm;
+    @FXML
+    private ImageView stockImS;
+    @FXML
+    private ImageView veloImS;
+    @FXML
+    private ImageView empIm;
+    @FXML
+    private ImageView favIm;
 
     /**
      * Initializes the controller class.
@@ -223,6 +235,10 @@ public class GuiProduitController implements Initializable {
         idSECombo.setItems(FXCollections.observableArrayList(em.getCombo()));
         userF.setItems(FXCollections.observableArrayList(fa.getComboUser()));
         produitF.setItems(FXCollections.observableArrayList(fa.getComboProd()));
+
+        new animatefx.animation.RollIn(veloIm).play();
+        new animatefx.animation.FadeIn(listeProduit).play();
+
     }
 
     /**
@@ -283,13 +299,6 @@ public class GuiProduitController implements Initializable {
                 alert.setHeaderText(null);
                 alert.setContentText("champs manquants !");
                 alert.showAndWait();
-            } else if (!(Pattern.matches("[a-z,A-Z]*", libelleProd.getText()))) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Information Dialog");
-                alert.setHeaderText(null);
-                alert.setContentText("le libelle doit etre de type String !");
-                alert.showAndWait();
-
             } else if (libelleProd.getText().length() < 4) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Information Dialog");
@@ -331,6 +340,8 @@ public class GuiProduitController implements Initializable {
                 alert.setContentText("PRODUIT ajoutée!");
                 alert.show();
                 refresh();
+                new animatefx.animation.Bounce(veloIm).play();
+                new animatefx.animation.FadeIn(listeProduit).play();
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Information Dialog");
@@ -441,7 +452,7 @@ public class GuiProduitController implements Initializable {
             alert.setTitle("Success");
             alert.setContentText("Produit supprimé!");
             alert.show();
-
+new animatefx.animation.Pulse(listeProduit).play();
             refresh();
         } else {
             refresh();
@@ -544,6 +555,8 @@ public class GuiProduitController implements Initializable {
                 alert.show();
 
                 refresh1();
+                new animatefx.animation.FadeIn(listeS).play();
+                new animatefx.animation.FadeIn(StockIm).play();
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Information Dialog");
@@ -649,7 +662,7 @@ public class GuiProduitController implements Initializable {
             alert.setTitle("Success");
             alert.setContentText("Stock supprimé!");
             alert.show();
-
+new animatefx.animation.Pulse(StockIm).play();
             refresh1();
         } else {
             refresh1();
@@ -723,8 +736,9 @@ public class GuiProduitController implements Initializable {
                 alert.setTitle("Success");
                 alert.setContentText("ajout effectué avec succé!");
                 alert.show();
-
+                new animatefx.animation.Swing(empIm).play();
                 refresh2();
+                
 
             }
         } else {
@@ -806,7 +820,7 @@ public class GuiProduitController implements Initializable {
             alert.setTitle("Success");
             alert.setContentText("suppression effectuée avec succée!");
             alert.show();
-
+new animatefx.animation.Pulse(empIm).play();
             refresh2();
         } else {
             refresh2();
@@ -865,8 +879,10 @@ public class GuiProduitController implements Initializable {
 
                 fa.ajouterFavoris(fav);
                 refresh3();
+                new animatefx.animation.RubberBand(favIm).play();
             }
         } else {
+            
             refresh3();
         }
     }
@@ -890,10 +906,12 @@ public class GuiProduitController implements Initializable {
             alert.setContentText("Favoris supprimé!");
             alert.show();
             refresh3();
+            new animatefx.animation.Jello(favIm).play();
         } else {
             refresh3();
 
         }
+        
     }
 
     /**
@@ -915,6 +933,7 @@ public class GuiProduitController implements Initializable {
             descProd.setText(selectedDes);
             prixProd.setText(String.valueOf(selectedPrix));
             comboType.setValue(String.valueOf(selectedType));
+            new animatefx.animation.Pulse(veloIm).play();
         });
     }
 
@@ -934,6 +953,7 @@ public class GuiProduitController implements Initializable {
             quantiteS.setText(String.valueOf(selectedQ));
             prixS.setText(String.valueOf(selectedPrix));
             idProdSCombo.setValue(String.valueOf(selectedIdP));
+            new animatefx.animation.Pulse(StockIm).play();
         });
     }
 
@@ -948,6 +968,7 @@ public class GuiProduitController implements Initializable {
             lieuE.setValue(selectedLieu);
             capaciteE.setText(String.valueOf(selectedCap));
             idSECombo.setValue(String.valueOf(selectedStockE));
+            new animatefx.animation.Pulse(empIm).play();
         });
     }
 
@@ -1031,18 +1052,26 @@ public class GuiProduitController implements Initializable {
 //    }
     @FXML
     private void generateStat(ActionEvent event) throws IOException {
-
+new animatefx.animation.JackInTheBox(pieChart).play();
         Stock sto = new Stock();
         pieChart.setTitle("Quantite");
         pieChart.getData().setAll(new PieChart.Data("Quantite <20", st.Recherche3()), new PieChart.Data("Quantite [20-50]", st.Recherche1()),
                 new PieChart.Data("Quantite [50-70]", st.Recherche2()), new PieChart.Data("Quantite [70-100]", st.Recherche4()));
+        
+                
+
+        new animatefx.animation.FadeOutDown(stockImS).play();
+        new animatefx.animation.Jello(stockImS).play();
+        
     }
 
     @FXML
     private void generateStatProd(ActionEvent event) {
+        new animatefx.animation.RubberBand(pieChartProd).play();
         pieChartProd.setTitle("Type");
         pieChartProd.getData().setAll(new PieChart.Data("Velo", pr.SearchVelo()), new PieChart.Data("Piece de Rechange", pr.SearchPDR()),
                 new PieChart.Data("Accesssoire", pr.SearchAcc()));
+        new animatefx.animation.FadeOutUp(veloImS).play();
     }
 
 }
