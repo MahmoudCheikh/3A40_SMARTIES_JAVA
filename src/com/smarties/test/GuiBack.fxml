@@ -100,9 +100,9 @@
                   <Image url="@../images/edit_property_16px.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="40.0" fitWidth="37.0" layoutX="27.0" layoutY="260.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="40.0" fitWidth="37.0" layoutX="27.0" layoutY="256.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/player_change_30px.png" />
+                  <Image url="@../images/veloicon.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="36.0" fitWidth="39.0" layoutX="31.0" layoutY="539.0" pickOnBounds="true" preserveRatio="true">
