@@ -268,7 +268,36 @@ public class CommandeService {
 
     }
     
-    
-    
+      public ArrayList<String> comboComm() {
+        ArrayList<String> options = new ArrayList<>();
+        String sql = "select * from users";
+        Statement ste;
+        try {
+            ste = cnx.createStatement();
+            ResultSet rs = ste.executeQuery(sql);
+            while (rs.next()) {
+                options.add(rs.getString("email"));
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return options;
+    }
+
+    public ArrayList<String> comboCommProd() {
+        ArrayList<String> options = new ArrayList<>();
+        String sql = "select * from produit";
+        Statement ste;
+        try {
+            ste = cnx.createStatement();
+            ResultSet rs = ste.executeQuery(sql);
+            while (rs.next()) {
+                options.add(rs.getString("libelle"));
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return options;
+    }
     
 }

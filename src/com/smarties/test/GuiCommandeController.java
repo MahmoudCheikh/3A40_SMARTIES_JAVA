@@ -15,6 +15,7 @@ import com.smarties.services.MessageService;
 import com.smarties.services.ProduitService;
 import com.smarties.services.UsersService;
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,8 +49,6 @@ public class GuiCommandeController implements Initializable {
     ProduitService pr = new ProduitService();
 
     @FXML
-    private TextField txtProduit;
-    @FXML
     private TextField txtnbrproduit;
     @FXML
     private ListView<Commande> listcommande;
@@ -59,7 +58,6 @@ public class GuiCommandeController implements Initializable {
     private Button btnupdatec;
     @FXML
     private Button btndeletec;
-    @FXML
     private TextField txtiduser;
     @FXML
     private TextField txtid;
@@ -67,7 +65,6 @@ public class GuiCommandeController implements Initializable {
     private Tab btndeleteachat;
     @FXML
     private Button btnajouterachat;
-    @FXML
     private TextField txtidUser;
     @FXML
     private TextField txtnomclient;
@@ -75,7 +72,6 @@ public class GuiCommandeController implements Initializable {
     private TextField txtnumclient;
     @FXML
     private Button btnupdateachat;
-    @FXML
     private TextField txtidproduit;
     @FXML
     private ListView<Achat> listachat;
@@ -102,7 +98,12 @@ public class GuiCommandeController implements Initializable {
     @FXML
     private ComboBox<String> comboComm;
     @FXML
-    private ComboBox<?> comboprod;
+    private ComboBox<String> comboCommProd;
+    @FXML
+    private ComboBox<String> comboAchat;
+    @FXML
+    private ComboBox<String> comboAchatProd;
+
 
     /**
      * Initializes the controller class.
@@ -114,33 +115,45 @@ public class GuiCommandeController implements Initializable {
 
         ArrayList a2 = (ArrayList) sa.afficherAchat();
         listachat.getItems().addAll(a2);
+        
+        
+        comboComm.setItems(FXCollections.observableArrayList(cs.comboComm()));
+        comboCommProd.setItems(FXCollections.observableArrayList(cs.comboCommProd()));
+        
+         comboAchat.setItems(FXCollections.observableArrayList(sa.comboAchat()));
+        comboAchatProd.setItems(FXCollections.observableArrayList(sa.comboAchatProd()));
+
+        
+
 // TODO
     }
+    
 
     @FXML
-    private void ajouterc(ActionEvent event) {
-        if ((txtProduit.getText().equals("")) || (txtnbrproduit.getText().equals("")) || (txtiduser.getText().equals(""))) {
+    private void ajouterc(ActionEvent event) throws SQLException {
+        if ((comboComm.getValue().contentEquals("id_user_id")) || (txtnbrproduit.getText().equals(""))|| (comboCommProd.getValue().contentEquals("libelle"))){
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Information Dialog");
             alert.setHeaderText(null);
             alert.setContentText("champs manquants !");
             alert.showAndWait();
-        } else if (!(Pattern.matches("[0-9]*", txtnbrproduit.getText()))) {
+        
+        }  else if (!(Pattern.matches("[0-9]*", txtnbrproduit.getText()))) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Information Dialog");
             alert.setHeaderText(null);
             alert.setContentText("nombre de produit doit etre de type Int !");
             alert.showAndWait();
-        } else {
+        } 
+        else {
             Commande c = new Commande();
 
-            int x1 = Integer.parseInt(txtProduit.getText());
             int x2 = Integer.parseInt(txtnbrproduit.getText());
-            int x3 = Integer.parseInt(txtiduser.getText());
+            
+            c.setIdUser(us.searchByMail(comboComm.getValue()));
+            c.setIdProduit(pr.searchByLib(comboCommProd.getValue()));
 
-            c.setIdProduit(x1);
             c.setNbProduits(x2);
-            c.setIdUser(x3);
 
             cs.ajouterCommande(c);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -160,8 +173,8 @@ public class GuiCommandeController implements Initializable {
     }
 
     @FXML
-    private void update(ActionEvent event) {
-        if ((txtProduit.getText().equals("")) || (txtnbrproduit.getText().equals("")) || (txtiduser.getText().equals(""))) {
+    private void update(ActionEvent event) throws SQLException {
+        if ( (comboComm.getValue().equals("")) || (txtnbrproduit.getText().equals("")) || (comboCommProd.getValue().equals(""))) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Information Dialog");
             alert.setHeaderText(null);
@@ -176,15 +189,12 @@ public class GuiCommandeController implements Initializable {
         } else {
             Commande c = new Commande();
 
-            int x1 = Integer.parseInt(txtProduit.getText());
 
             int x2 = Integer.parseInt(txtnbrproduit.getText());
+            c.setIdUser(us.searchByMail(comboComm.getValue()));
+            c.setIdProduit(pr.searchByLib(comboCommProd.getValue()));
 
-            int x3 = Integer.parseInt(txtiduser.getText());
-
-            c.setIdProduit(x1);
             c.setNbProduits(x2);
-            c.setIdUser(x3);
 
             int id = Integer.parseInt(txtid.getText());
             c.setId(id);
@@ -265,14 +275,14 @@ public class GuiCommandeController implements Initializable {
         Commande com = new Commande();
         listcommande.setOnMouseClicked((event1) -> {
             //int selectedIdComm = listcommande.getSelectionModel().getSelectedItem().getId();
-            int selectedIdProd = listcommande.getSelectionModel().getSelectedItem().getIdProduit();
+            //int selectedIdProd = listcommande.getSelectionModel().getSelectedItem().getIdProduit();
             int selectedNbProd = listcommande.getSelectionModel().getSelectedItem().getNbProduits();
-            int selectedIduser = listcommande.getSelectionModel().getSelectedItem().getIdUser();
+            //int selectedIduser = listcommande.getSelectionModel().getSelectedItem().getIdUser();
 
             //txtid.setText(String.valueOf(selectedIdComm));
-            txtProduit.setText(String.valueOf(selectedIdProd));
+            //txtProduit.setText(String.valueOf(selectedIdProd));
             txtnbrproduit.setText(String.valueOf(selectedNbProd));
-            txtiduser.setText(String.valueOf(selectedIduser));
+            //txtiduser.setText(String.valueOf(selectedIduser));
         });
     }
 
@@ -293,9 +303,9 @@ public class GuiCommandeController implements Initializable {
 
     /*---------------------Achat-----------------------------*/
     @FXML
-    private void ajoutachat(ActionEvent event) {
+    private void ajoutachat(ActionEvent event) throws SQLException {
         LocalDate now = LocalDate.now();
-        if ((txtidUser.getText().equals("")) || (txtidproduit.getText().equals("")) || (dateachatpik.getValue().equals("")) || (txtnumclient.getText().equals("")) || (txtnomclient.getText().equals(""))) {
+        if ((comboAchat.getValue().equals("")) || (comboAchatProd.getValue().equals("")) || (dateachatpik.getValue().equals("")) || (txtnumclient.getText().equals("")) || (txtnomclient.getText().equals(""))) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Information Dialog");
             alert.setHeaderText(null);
@@ -323,17 +333,18 @@ public class GuiCommandeController implements Initializable {
         } else {
 
             Achat a = new Achat();
-            int xx1 = Integer.parseInt(txtidUser.getText());
-            int xx2 = Integer.parseInt(txtidproduit.getText());
+            //int xx1 = Integer.parseInt(txtidUser.getText());
+            //int xx2 = Integer.parseInt(txtidproduit.getText());
 
             LocalDate date = dateachatpik.getValue();
 
             int xx3 = Integer.parseInt(txtnumclient.getText());
 
             a.setNomClient(txtnomclient.getText());
-
-            a.setIdProduit(xx2);
-            a.setIdUser(xx1);
+            a.setIdUser(us.searchByMail(comboAchat .getValue()));
+            a.setIdProduit(pr.searchByLib(comboAchatProd .getValue()));
+            //a.setIdProduit(xx2);
+            //a.setIdUser(xx1);
             a.setDate(date);
             a.setNumeroClient(xx3);
 
@@ -356,9 +367,9 @@ public class GuiCommandeController implements Initializable {
     }
 
     @FXML
-    private void updateachat(ActionEvent event) {
+    private void updateachat(ActionEvent event) throws SQLException {
         LocalDate now = LocalDate.now();
-        if ((txtidUser.getText().equals("")) || (txtidproduit.getText().equals("")) || (dateachatpik.getValue().equals("")) || (txtnumclient.getText().equals("")) || (txtnomclient.getText().equals(""))) {
+        if ((comboAchat.getValue().equals("")) || (comboAchatProd.getValue().equals("")) || (dateachatpik.getValue().equals("")) || (txtnumclient.getText().equals("")) || (txtnomclient.getText().equals(""))) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Information Dialog");
             alert.setHeaderText(null);
@@ -387,16 +398,20 @@ public class GuiCommandeController implements Initializable {
 
             Achat a = new Achat();
 
-            int xx1 = Integer.parseInt(txtidproduit.getText());
+            
+             a.setIdUser(us.searchByMail(comboAchat.getValue()));
+            a.setIdProduit(pr.searchByLib(comboAchatProd.getValue()));
 
-            int xx2 = Integer.parseInt(txtidUser.getText());
+            //int xx1 = Integer.parseInt(txtidproduit.getText());
+
+            //int xx2 = Integer.parseInt(txtidUser.getText());
 
             int xx3 = Integer.parseInt(txtnumclient.getText());
 
             LocalDate date = dateachatpik.getValue();
 
-            a.setIdProduit(xx1);
-            a.setIdUser(xx2);
+            //a.setIdProduit(xx1);
+            //a.setIdUser(xx2);
             a.setNumeroClient(xx3);
             a.setDate(date);
             a.setNomClient(txtnomclient.getText());
@@ -457,15 +472,15 @@ public class GuiCommandeController implements Initializable {
     private void getDataAchat(MouseEvent event) {
         listachat.setOnMouseClicked((event1) -> {
             //int selectedIdComm = listcommande.getSelectionModel().getSelectedItem().getId();
-            int selectedIdProd = listachat.getSelectionModel().getSelectedItem().getIdProduit();
+            //int selectedIdProd = listachat.getSelectionModel().getSelectedItem().getIdProduit();
             int selectedNumCli = listachat.getSelectionModel().getSelectedItem().getNumeroClient();
-            int selectedIduser = listachat.getSelectionModel().getSelectedItem().getIdUser();
+            //int selectedIduser = listachat.getSelectionModel().getSelectedItem().getIdUser();
             LocalDate selectedDate = listachat.getSelectionModel().getSelectedItem().getDate();
             String selectedNomCli = listachat.getSelectionModel().getSelectedItem().getNomClient();
 
             //txtid.setText(String.valueOf(selectedIdComm));
-            txtidproduit.setText(String.valueOf(selectedIdProd));
-            txtidUser.setText(String.valueOf(selectedIduser));
+            //txtidproduit.setText(String.valueOf(selectedIdProd));
+            //txtidUser.setText(String.valueOf(selectedIduser));
             txtnumclient.setText(String.valueOf(selectedNumCli));
             //dateachatpik.setValue(String.valueOf(selectedDate));
             txtnomclient.setText(selectedNomCli);

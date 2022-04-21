@@ -24,24 +24,16 @@
          <tabs>
             <Tab text="Commande">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="420.0" prefWidth="705.0">
                      <children>
-                        <TextField fx:id="txtProduit" layoutX="217.0" layoutY="55.0" prefHeight="25.0" prefWidth="119.0" style="-fx-background-color: #ff7f50;">
-                           <effect>
-                              <InnerShadow />
-                           </effect></TextField>
                         <TextField fx:id="txtnbrproduit" layoutX="215.0" layoutY="85.0" prefHeight="25.0" prefWidth="123.0" style="-fx-background-color: #ff7f50;">
                            <effect>
                               <InnerShadow />
                            </effect></TextField>
-                        <ListView fx:id="listcommande" layoutX="270.0" layoutY="184.0" onMouseClicked="#getDataCommande" prefHeight="164.0" prefWidth="273.0" style="-fx-background-color: #ff7f50;">
+                        <ListView fx:id="listcommande" layoutX="270.0" layoutY="158.0" onMouseClicked="#getDataCommande" prefHeight="190.0" prefWidth="273.0" style="-fx-background-color: #ff7f50;">
                            <effect>
                               <DropShadow />
                            </effect></ListView>
-                        <Label layoutX="25.0" layoutY="56.0" prefHeight="17.0" prefWidth="148.0" text="Produit">
-                           <font>
-                              <Font name="Barlow Condensed Light" size="17.0" />
-                           </font></Label>
                         <Label layoutX="22.0" layoutY="83.0" prefHeight="17.0" prefWidth="197.0" text="Nombre De Produit A Commander">
                            <font>
                               <Font name="Barlow Condensed Light" size="16.0" />
@@ -76,14 +68,6 @@
                            <effect>
                               <DropShadow />
                            </effect></Button>
-                        <Label layoutX="25.0" layoutY="119.0" prefHeight="17.0" prefWidth="134.0" text="Id User">
-                           <font>
-                              <Font name="Barlow Condensed Light" size="16.0" />
-                           </font></Label>
-                        <TextField fx:id="txtiduser" layoutX="214.0" layoutY="117.0" prefHeight="25.0" prefWidth="126.0" style="-fx-background-color: #ff7f50;">
-                           <effect>
-                              <InnerShadow />
-                           </effect></TextField>
                         <TextField fx:id="txtid" layoutX="19.0" layoutY="254.0" prefHeight="25.0" prefWidth="238.0" style="-fx-background-color: #ff7f50;">
                            <effect>
                               <InnerShadow />
@@ -103,7 +87,7 @@
                            <effect>
                               <InnerShadow />
                            </effect></TextField>
-                        <ImageView fitHeight="135.0" fitWidth="136.0" layoutX="454.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="135.0" fitWidth="136.0" layoutX="476.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/kisspng-computer-icons-5b128bedcf20d0.2385564615279421258484.png" />
                            </image>
@@ -181,8 +165,9 @@
                               </ImageView>
                            </graphic>
                         </Button>
-                        <ComboBox fx:id="comboComm" layoutX="195.0" layoutY="16.0" prefWidth="150.0" />
-                        <Button layoutX="345.0" layoutY="16.0" mnemonicParsing="false" onAction="#test" text="Email User" />
+                        <ComboBox fx:id="comboComm" layoutX="25.0" layoutY="110.0" prefWidth="150.0" promptText="Utilisateur" style="-fx-background-color: #ff7f50;" stylesheets="@../services/styleSmarties.css" />
+                        <Button layoutX="175.0" layoutY="110.0" mnemonicParsing="false" onAction="#test" style="-fx-background-color: #ff7f50;" stylesheets="@../services/styleSmarties.css" text="id" />
+                        <ComboBox fx:id="comboCommProd" layoutX="25.0" layoutY="141.0" prefWidth="150.0" promptText="Produits" style="-fx-background-color: #ff7f50;" stylesheets="@../services/styleSmarties.css" />
                      </children>
                   </AnchorPane>
                </content>
@@ -198,22 +183,6 @@
                            <effect>
                               <DropShadow />
                            </effect></Button>
-                        <TextField fx:id="txtidUser" layoutX="114.0" layoutY="42.0" prefHeight="25.0" prefWidth="127.0" style="-fx-background-color: #ff7f50;">
-                           <effect>
-                              <InnerShadow />
-                           </effect></TextField>
-                        <Label layoutX="22.0" layoutY="44.0" prefHeight="17.0" prefWidth="125.0" text="Id User ">
-                           <font>
-                              <Font name="Barlow Condensed Light" size="18.0" />
-                           </font></Label>
-                        <Label layoutX="12.0" layoutY="76.0" prefHeight="17.0" prefWidth="81.0" text="Produit">
-                           <font>
-                              <Font name="Barlow Condensed Light" size="18.0" />
-                           </font></Label>
-                        <TextField fx:id="txtidproduit" layoutX="115.0" layoutY="73.0" prefHeight="25.0" prefWidth="126.0" style="-fx-background-color: #ff7f50;">
-                           <effect>
-                              <InnerShadow />
-                           </effect></TextField>
                         <Label layoutX="23.0" layoutY="107.0" prefHeight="17.0" prefWidth="43.0" text="Date ">
                            <font>
                               <Font name="Barlow Condensed Light" size="18.0" />
@@ -314,6 +283,8 @@
                               </ImageView>
                            </graphic>
                         </Button>
+                        <ComboBox fx:id="comboAchat" layoutX="25.0" layoutY="43.0" prefHeight="25.0" prefWidth="225.0" promptText="Users" style="-fx-background-color: #ff7f50;" />
+                        <ComboBox fx:id="comboAchatProd" layoutX="25.0" layoutY="71.0" prefHeight="25.0" prefWidth="223.0" promptText="Produits" style="-fx-background-color: #ff7f50;" />
                      </children>
                   </AnchorPane>
                </content>

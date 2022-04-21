@@ -18,7 +18,7 @@ public class Commande {
 
     @Override
     public String toString() {
-        return "Commande{" + "id=" + id + ", id_user=" + id_user + ", id_produit=" + id_produit + ", nb_produits=" + nb_produits + '}';
+        return "Commande"        +        "\nid        =        "+        id        +        "\nid_user        =        " +        id_user        +        "\nid_produit        =        "        +        id_produit        +        "\nnb_produits        =        "        +        nb_produits        + "";
     }
 
     public Commande() {
