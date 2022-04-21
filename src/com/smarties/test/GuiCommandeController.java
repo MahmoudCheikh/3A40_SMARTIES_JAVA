@@ -19,6 +19,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 import javafx.collections.FXCollections;
@@ -28,6 +29,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
@@ -47,6 +49,9 @@ public class GuiCommandeController implements Initializable {
     UsersService us = new UsersService();
     MessageService ms = new MessageService();
     ProduitService pr = new ProduitService();
+    
+        Alert alert = new Alert(Alert.AlertType.NONE);
+
 
     @FXML
     private TextField txtnbrproduit;
@@ -128,23 +133,30 @@ public class GuiCommandeController implements Initializable {
 // TODO
     }
     
+    
 
     @FXML
     private void ajouterc(ActionEvent event) throws SQLException {
-        if ((comboComm.getValue().contentEquals("id_user_id")) || (txtnbrproduit.getText().equals(""))|| (comboCommProd.getValue().contentEquals("libelle"))){
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Information Dialog");
-            alert.setHeaderText(null);
-            alert.setContentText("champs manquants !");
-            alert.showAndWait();
-        
-        }  else if (!(Pattern.matches("[0-9]*", txtnbrproduit.getText()))) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Information Dialog");
-            alert.setHeaderText(null);
-            alert.setContentText("nombre de produit doit etre de type Int !");
-            alert.showAndWait();
-        } 
+        alert.setAlertType(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation");
+        alert.setHeaderText(null);
+        alert.setContentText("Voulez-vous vraiment ajouter cet commande Mr Admin");
+        Optional<ButtonType> action = alert.showAndWait();
+        if (action.get() == ButtonType.OK) {
+            if (comboComm.getValue().equals("") || txtnbrproduit.getText().equals("") || comboCommProd.getValue().equals("")) {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Information Dialog");
+                alert.setHeaderText(null);
+                alert.setContentText("champs manquants !");
+                alert.showAndWait();
+            } else if (!(Pattern.matches("[0-9]*", txtnbrproduit.getText()))) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Information Dialog");
+                alert.setHeaderText(null);
+                alert.setContentText("le quantite de porduit doit etre de type Int !");
+                alert.showAndWait();
+            }
+           
         else {
             Commande c = new Commande();
 
@@ -157,21 +169,13 @@ public class GuiCommandeController implements Initializable {
 
             cs.ajouterCommande(c);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Success");
-            alert.setContentText("commande ajoutée!");
-            alert.show();
-            ObservableList<Commande> items = FXCollections.observableArrayList();
-            List<Commande> listcomm = cs.afficherCommande();
-            for (Commande r : listcomm) {
-                String ch = r.toString();
-                items.add(r);
-            }
-
-            listcommande.setItems(items);
-        }
+                alert.setTitle("Success");
+                alert.setContentText("ajout effectué avec succé!");
+                alert.show();
 
     }
-
+    }
+    }
     @FXML
     private void update(ActionEvent event) throws SQLException {
         if ( (comboComm.getValue().equals("")) || (txtnbrproduit.getText().equals("")) || (comboCommProd.getValue().equals(""))) {
