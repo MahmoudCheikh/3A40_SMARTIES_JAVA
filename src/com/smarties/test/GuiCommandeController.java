@@ -110,8 +110,6 @@ public class GuiCommandeController implements Initializable {
     private ComboBox<String> comboAchat;
     @FXML
     private ComboBox<String> comboAchatProd;
-    @FXML
-    private Button notifi;
 
 
     /**
@@ -304,10 +302,6 @@ public class GuiCommandeController implements Initializable {
         alert.showAndWait();
     }
 
-    @FXML
-    private void test(ActionEvent event) {
-        comboComm.setItems(FXCollections.observableArrayList(ms.getCombo()));
-    }
 
     /*---------------------Achat-----------------------------*/
     @FXML
@@ -511,8 +505,5 @@ public class GuiCommandeController implements Initializable {
         listachat.setItems(datalist);
     }
 
-    @FXML
-    private void notification(ActionEvent event) {
-            }
 
 }

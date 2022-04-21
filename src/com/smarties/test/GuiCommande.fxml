@@ -166,7 +166,6 @@
                            </graphic>
                         </Button>
                         <ComboBox fx:id="comboComm" layoutX="25.0" layoutY="110.0" prefWidth="150.0" promptText="Utilisateur" style="-fx-background-color: #ff7f50;" stylesheets="@../services/styleSmarties.css" />
-                        <Button layoutX="175.0" layoutY="110.0" mnemonicParsing="false" onAction="#test" style="-fx-background-color: #ff7f50;" stylesheets="@../services/styleSmarties.css" text="id" />
                         <ComboBox fx:id="comboCommProd" layoutX="25.0" layoutY="141.0" prefWidth="150.0" promptText="Produits" style="-fx-background-color: #ff7f50;" stylesheets="@../services/styleSmarties.css" />
                      </children>
                   </AnchorPane>
