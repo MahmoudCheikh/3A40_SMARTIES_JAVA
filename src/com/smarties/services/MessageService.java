@@ -109,20 +109,19 @@ public class MessageService {
 
     }
 
-    public ArrayList<String> getCombo() {
-        ArrayList<String> options = new ArrayList<>();
-        String sql = "select * from users";
+    public ArrayList<Integer> getCombo() {
+        ArrayList<Integer> options = new ArrayList<>();
+        String sql = "select * from message";
         Statement ste;
         try {
             ste = cnx.createStatement();
             ResultSet rs = ste.executeQuery(sql);
             while (rs.next()) {
-                options.add(rs.getString("email"));
+                options.add(rs.getInt("id"));
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
         return options;
     }
-
 }

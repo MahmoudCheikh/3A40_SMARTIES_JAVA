@@ -31,6 +31,7 @@
                   <Image url="@../images/278528634_666050837797945_9112377982343110414_n.jpg" />
                </image>
             </ImageView>
+            <Button fx:id="btnConfirmer" layoutX="1044.0" layoutY="658.0" mnemonicParsing="false" onAction="#confirmer" prefHeight="25.0" prefWidth="111.0" style="-fx-background-color: #ff7f50;" stylesheets="@EvenementStyle.css" text="Confirmer" />
             </children>
         </AnchorPane>
     </center>

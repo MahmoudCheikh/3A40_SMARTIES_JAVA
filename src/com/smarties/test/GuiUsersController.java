@@ -8,7 +8,6 @@ package com.smarties.test;
 import com.smarties.entities.Users;
 import com.smarties.services.UsersService;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -118,6 +117,7 @@ public class GuiUsersController implements Initializable {
             alert.setTitle("Success");
             alert.setContentText("User ajouté!");
             alert.show();
+
             ObservableList<Users> items = FXCollections.observableArrayList();
             List<Users> listuser = us.afficherUser();
             for (Users r : listuser) {
@@ -127,7 +127,6 @@ public class GuiUsersController implements Initializable {
 
             tableuserslist.setItems(items);
         }
-
     }
 
     @FXML
@@ -189,6 +188,13 @@ public class GuiUsersController implements Initializable {
             alert.show();
 
         }
+        ObservableList<Users> items = FXCollections.observableArrayList();
+        List<Users> listusers = us.afficherUser();
+        for (Users r : listusers) {
+            String ch = r.toString();
+            items.add(r);
+        }
+        tableuserslist.setItems(items);
     }
 
     @FXML
@@ -200,6 +206,7 @@ public class GuiUsersController implements Initializable {
         alert.setTitle("Success");
         alert.setContentText("User supprimé!");
         alert.show();
+
         ObservableList<Users> items = FXCollections.observableArrayList();
         List<Users> listuser = us.afficherUser();
         for (Users r : listuser) {
@@ -213,11 +220,8 @@ public class GuiUsersController implements Initializable {
     private void searchuser(ActionEvent event) {
         UsersService n = new UsersService();
         List<Users> R = n.searchuser(reuser.getText());
-
         ObservableList<Users> datalist = FXCollections.observableArrayList(R);
-
         tableuserslist.setItems(datalist);
-
     }
 
     @FXML
@@ -234,7 +238,7 @@ public class GuiUsersController implements Initializable {
     @FXML
     private void getDataUsers(MouseEvent event) {
         tableuserslist.setOnMouseClicked((event1) -> {
-            //int selectedIdComm = listcommande.getSelectionModel().getSelectedItem().getId();
+            int selectedId = tableuserslist.getSelectionModel().getSelectedItem().getId();
             String selectedusnom = tableuserslist.getSelectionModel().getSelectedItem().getNom();
             String selecteduspre = tableuserslist.getSelectionModel().getSelectedItem().getPrenom();
             String selectedmail = tableuserslist.getSelectionModel().getSelectedItem().getEmail();
@@ -243,7 +247,7 @@ public class GuiUsersController implements Initializable {
             String selectedother1 = tableuserslist.getSelectionModel().getSelectedItem().getImage();
             String selectedother2 = tableuserslist.getSelectionModel().getSelectedItem().getRole();
 
-            //txtid.setText(String.valueOf(selectedIdComm));
+            txtbackuserid.setText(String.valueOf(selectedId));
             txtbackusernom.setText(selectedusnom);
             txtbackuserprenom.setText(selecteduspre);
             txtbackusermail.setText(selectedmail);
@@ -254,22 +258,6 @@ public class GuiUsersController implements Initializable {
 
         });
 
-    }
-
-    @FXML
-    private void test(ActionEvent event) throws SQLException {
-        String email = txtbackusermail.getText();
-//        String pass = txtbackuserpassword.getText();
-//        Users user = new Users();
-//        user.setEmail(email);
-//        user.setPassword(pass);
-//        int x = us.login(user);
-//        if (x == 1) {
-//
-//        }
-        Users u = us.getOne(email);
-        Smarties.user = u;
-        System.out.println(Smarties.user);
     }
 
 }

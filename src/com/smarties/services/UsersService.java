@@ -14,6 +14,14 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 /**
  *
@@ -187,7 +195,8 @@ public class UsersService {
         rs.next();
         return rs.getInt(1);
     }
-        public int searchByNom(String mail) throws SQLException {
+
+    public int searchByNom(String mail) throws SQLException {
         Users user = new Users();
         String req = "SELECT * FROM users where email=?";
         PreparedStatement ps = cnx.prepareStatement(req);
@@ -197,9 +206,9 @@ public class UsersService {
         rs.next();
         return rs.getInt(1);
     }
-    
-    public void register(Users p){
-        String query = "insert into users(nom,prenom,adresse,email,password) values(?,?,?,?,?)";
+
+    public void register(Users p) {
+        String query = "insert into users(nom,prenom,adresse,email,password,role) values(?,?,?,?,?,?)";
         try {
             PreparedStatement ste = cnx.prepareStatement(query);
             ste.setString(1, p.getNom());
@@ -208,10 +217,87 @@ public class UsersService {
             ste.setString(4, p.getEmail());
             ste.setString(5, p.getPassword());
 
+            int code = this.envoyer(p.getEmail());
+
+            ste.setInt(6, code);
+
             ste.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
     }
 
+    public ArrayList<String> getCombo() {
+        ArrayList<String> options = new ArrayList<>();
+        String sql = "select * from users";
+        Statement ste;
+        try {
+            ste = cnx.createStatement();
+            ResultSet rs = ste.executeQuery(sql);
+            while (rs.next()) {
+                options.add(rs.getString("email"));
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return options;
+    }
+
+    private String username = "mahmoud.cheikh@esprit.tn";
+    private String password = "191JMT0005";
+
+    public int envoyer(String email) {
+        int code = (int) (100000000 + (Math.random()) * 100000000);
+        Properties props = new Properties();
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "25");
+        Session session = Session.getInstance(props,
+                new javax.mail.Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(username, password);
+            }
+        });
+        try {
+
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress("mahmoud.cheikh@esprit.tn"));
+            message.setRecipients(Message.RecipientType.TO,
+                    InternetAddress.parse("mahmoud.cheikh@esprit.tn"));
+            message.setSubject("Confirmation message ");
+
+            message.setText(email + " veuiller confirmer votre compte avec le code suivant " + code);
+
+            Transport.send(message);
+        } catch (MessagingException e) {
+            throw new RuntimeException(e);
+        }
+        return code;
+    }
+
+    public void confirmer(String mail, int code) {
+        try {
+            String req = "SELECT id FROM users where email=? and role=?";
+            PreparedStatement ps = cnx.prepareStatement(req);
+            ps.setString(1, mail);
+            ps.setInt(2, code);
+            ResultSet rs = ps.executeQuery();
+
+            int id = 0;
+            while (rs.next()) {
+
+                id = rs.getInt("id");
+            }
+
+            String req2 = "UPDATE users SET role=? WHERE id=?";
+            PreparedStatement ps2 = cnx.prepareStatement(req2);
+            ps2.setString(1, "confirme");
+            ps2.setInt(2, id);
+            ps2.executeUpdate();
+            System.out.println("Une ligne modifiée dans la table...");
+        } catch (SQLException e) {
+
+        }
+    }
 }

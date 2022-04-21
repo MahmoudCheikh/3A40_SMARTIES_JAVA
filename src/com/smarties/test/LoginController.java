@@ -39,6 +39,8 @@ public class LoginController implements Initializable {
     private Text txterror;
     @FXML
     private Button btnRegister;
+    @FXML
+    private Button btnConfirmer;
 
     /**
      * Initializes the controller class.
@@ -89,13 +91,24 @@ public class LoginController implements Initializable {
 
     @FXML
     private void register(ActionEvent event) {
-         FXMLLoader loader = new FXMLLoader(getClass().getResource("register.fxml"));
-                try {
-                    Parent root = loader.load();
-                    txtemail.getScene().setRoot(root);
-                } catch (IOException ex) {
-                    System.out.println(ex.getMessage());
-                }
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("register.fxml"));
+        try {
+            Parent root = loader.load();
+            txtemail.getScene().setRoot(root);
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    @FXML
+    private void confirmer(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("confirmer.fxml"));
+        try {
+            Parent root = loader.load();
+            txtemail.getScene().setRoot(root);
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
 }

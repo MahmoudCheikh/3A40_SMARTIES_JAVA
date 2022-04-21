@@ -12,20 +12,24 @@ import com.smarties.services.SujetService;
 import com.smarties.services.UsersService;
 import java.net.URL;
 import java.sql.SQLException;
-import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.regex.Pattern;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 
 /**
  * FXML Controller class
@@ -41,7 +45,6 @@ public class GuiSujetController implements Initializable {
     private TextField txtid;
     @FXML
     private ListView<Sujet> tableSujetList;
-    @FXML
     private TextField txtSujetIdUser;
     @FXML
     private TextField txtSujetTitre;
@@ -62,23 +65,23 @@ public class GuiSujetController implements Initializable {
     @FXML
     private Button btnMessageDelete;
     @FXML
-    private TextField txtMessageIdUser;
-    @FXML
-    private TextField txtMessageIdSujet;
-    @FXML
     private TextArea txtMessageContenu;
     @FXML
     private DatePicker txtMessageDate;
     @FXML
-    private TextField txtMessageId;
-    @FXML
     private ListView<Message> tableMessagelist;
-    @FXML
-    private TextField txtSujetId;
     @FXML
     private ComboBox<String> messageBox;
     @FXML
-    private Button test;
+    private Button acts;
+    @FXML
+    private ComboBox<String> comboSujetUser;
+    @FXML
+    private ComboBox<Integer> comboSujetId;
+    @FXML
+    private ComboBox<Integer> messageComboSujetId;
+    @FXML
+    private ComboBox<Integer> messageComboId;
 
     /**
      * Initializes the controller class.
@@ -89,78 +92,213 @@ public class GuiSujetController implements Initializable {
         ArrayList arrayListMessage = (ArrayList) messageService.afficherMessage();
         tableMessagelist.getItems().addAll(arrayListMessage);
         tableSujetList.getItems().addAll(arrayListSujet);
+        comboSujetUser.setItems(FXCollections.observableArrayList(usersService.getCombo()));
+        comboSujetId.setItems(FXCollections.observableArrayList(sujetsservice.getCombo()));
+        messageComboId.setItems(FXCollections.observableArrayList(messageService.getCombo()));
+        messageComboSujetId.setItems(FXCollections.observableArrayList(sujetsservice.getCombo()));
+        messageBox.setItems(FXCollections.observableArrayList(usersService.getCombo()));
 
     }
 
+    public void refresh() {
+        ArrayList arrayListSujet = (ArrayList) sujetsservice.afficherSujet();
+        ArrayList arrayListMessage = (ArrayList) messageService.afficherMessage();
+        tableMessagelist.getItems().setAll(arrayListMessage);
+        tableSujetList.getItems().setAll(arrayListSujet);
+        comboSujetUser.setItems(FXCollections.observableArrayList(usersService.getCombo()));
+        comboSujetId.setItems(FXCollections.observableArrayList(sujetsservice.getCombo()));
+        messageComboId.setItems(FXCollections.observableArrayList(messageService.getCombo()));
+        messageComboSujetId.setItems(FXCollections.observableArrayList(sujetsservice.getCombo()));
+        messageBox.setItems(FXCollections.observableArrayList(usersService.getCombo()));
+    }
+
     @FXML
-    private void SujetAdd(ActionEvent event) {
-        Sujet sujet = new Sujet();
+    private void SujetAdd(ActionEvent event) throws SQLException {
+        LocalDate now = LocalDate.now();
+        if ((txtSujetContenu.getText().equals("")) || (txtSujetDate.getValue().equals("")) || (txtSujetTitre.getText().equals(""))) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("champs manquants !");
+            alert.showAndWait();
+        } else if (!(Pattern.matches("[a-z,A-Z]*", txtSujetContenu.getText()))) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("Conetnu doit etre de type String !");
+            alert.showAndWait();
+        } else if (txtSujetDate.getValue().isBefore(now)) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("la date debut doit etre supérieur a celle d'aujourd'hui ! ");
+            alert.showAndWait();
+        } else if (!(Pattern.matches("[a-z,A-Z]*", txtSujetTitre.getText()))) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("Titre doit etre de type String !");
+            alert.showAndWait();
+        } else {
 
-        sujet.setContenu(txtSujetContenu.getText());
-        sujet.setTitre(txtSujetTitre.getText());
-        sujet.setUserId(Integer.parseInt(txtSujetIdUser.getText()));
-        sujet.setDate(txtSujetDate.getValue());
+            Sujet sujet = new Sujet();
 
-        sujetsservice.ajouterSujet(sujet);
+            int id = usersService.searchByMail(comboSujetUser.getValue());
+            sujet.setUserId(id);
+            sujet.setContenu(txtSujetContenu.getText());
+            sujet.setTitre(txtSujetTitre.getText());
+            sujet.setDate(txtSujetDate.getValue());
+
+            sujetsservice.ajouterSujet(sujet);
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success");
+            alert.setContentText("Sujet ajouté!");
+            alert.show();
+            ObservableList<Sujet> items = FXCollections.observableArrayList();
+            List<Sujet> lists = sujetsservice.afficherSujet();
+            for (Sujet r : lists) {
+                String ch = r.toString();
+                items.add(r);
+            }
+
+            tableSujetList.setItems(items);
+
+        }
     }
 
     @FXML
     private void SujetUpdate(ActionEvent event) {
 
-        Sujet sujet = new Sujet();
-        sujet.setId(Integer.parseInt(txtSujetId.getText()));
-        sujet.setContenu(txtSujetContenu.getText());
-        sujet.setTitre(txtSujetTitre.getText());
-        sujet.setUserId(Integer.parseInt(txtSujetIdUser.getText()));
-        sujet.setDate(txtSujetDate.getValue());
+        LocalDate now = LocalDate.now();
+        if ((txtSujetContenu.getText().equals("")) || (txtSujetTitre.getText().equals(""))) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("champs manquants !");
+            alert.showAndWait();
+        } else if (!(Pattern.matches("[a-z,A-Z]*", txtSujetContenu.getText()))) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("Contenu doit etre de type String !");
+            alert.showAndWait();
+        } else if (!(Pattern.matches("[a-z,A-Z]*", txtSujetTitre.getText()))) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("Titre doit etre de type String !");
+            alert.showAndWait();
+        } else {
+            Sujet sujet = new Sujet();
+            sujet.setContenu(txtSujetContenu.getText());
+            sujet.setTitre(txtSujetTitre.getText());
+            sujet.setId(comboSujetId.getValue());
+            sujetsservice.modifierSujet(sujet);
+            ObservableList<Sujet> items = FXCollections.observableArrayList();
+            List<Sujet> lists = sujetsservice.afficherSujet();
+            for (Sujet r : lists) {
+                String ch = r.toString();
+                items.add(r);
+            }
+            tableSujetList.setItems(items);
 
-        sujetsservice.modifierSujet(sujet);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success");
+            alert.setContentText("modification effectuée!");
+            alert.show();
+
+        }
     }
 
     @FXML
     private void SujetDelete(ActionEvent event) {
-        int id = Integer.parseInt(txtSujetId.getText());
+        int id = comboSujetId.getValue();
         sujetsservice.supprimerSujet(id);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Success");
+        alert.setContentText("Evenement supprimé!");
+        alert.show();
+
+        ObservableList<Sujet> items = FXCollections.observableArrayList();
+        List<Sujet> lists = sujetsservice.afficherSujet();
+        for (Sujet r : lists) {
+            String ch = r.toString();
+            items.add(r);
+        }
+        tableSujetList.setItems(items);
     }
 
     @FXML
-    private void MessageUpdate(ActionEvent event) {
+    private void actuas(ActionEvent event) {
+        ObservableList<Sujet> items = FXCollections.observableArrayList();
+        List<Sujet> lists = sujetsservice.afficherSujet();
+        for (Sujet r : lists) {
+            String ch = r.toString();
+            items.add(r);
+        }
+        tableSujetList.setItems(items);
+    }
+
+    @FXML
+    private void getDataSujet(MouseEvent event) {
+        tableSujetList.setOnMouseClicked((event1) -> {
+            int selectedId = tableSujetList.getSelectionModel().getSelectedItem().getId();
+            String selectedContenu = tableSujetList.getSelectionModel().getSelectedItem().getContenu();
+            String selectedTitre = tableSujetList.getSelectionModel().getSelectedItem().getTitre();
+            LocalDate selectedDate = tableSujetList.getSelectionModel().getSelectedItem().getDate();
+
+            comboSujetId.setValue(selectedId);
+            //dateachatpik.setValue(String.valueOf(selectedDate));
+            txtSujetContenu.setText(selectedContenu);
+            txtSujetTitre.setText(selectedTitre);
+
+        });
+    }
+
+///////////////////////////////Message///////////////////////
+    @FXML
+    private void MessageUpdate(ActionEvent event) throws SQLException {
 
         Message message = new Message();
 
         message.setContenu(txtMessageContenu.getText());
-        message.setDate(txtMessageDate.getValue());
-        message.setIdSujet(Integer.parseInt(txtMessageIdSujet.getText()));
-        message.setIdUser(Integer.parseInt(txtMessageIdUser.getText()));
-        message.setId(Integer.parseInt(txtMessageId.getText()));
+        message.setId(messageComboId.getValue());
 
         System.out.println(message);
         messageService.modifierMessage(message);
+        this.refresh();
 
     }
 
     @FXML
     private void MessageDelete(ActionEvent event) {
-        messageService.supprimerMessage(Integer.parseInt(txtMessageId.getText()));
+        messageService.supprimerMessage(messageComboId.getValue());
+        this.refresh();
     }
 
     @FXML
-    private void MessageAdd(ActionEvent event) {
+    private void MessageAdd(ActionEvent event) throws SQLException {
         Message message = new Message();
 
         message.setContenu(txtMessageContenu.getText());
         message.setDate(txtMessageDate.getValue());
-        message.setIdSujet(Integer.parseInt(txtMessageIdSujet.getText()));
-        message.setIdUser(Integer.parseInt(txtMessageIdUser.getText()));
+        message.setIdSujet(messageComboSujetId.getValue());
+        message.setIdUser(usersService.searchByMail(messageBox.getValue()));
         messageService.ajouterMessage(message);
+        this.refresh();
     }
 
     @FXML
-    private void test(ActionEvent event) throws SQLException {
-        messageBox.setItems(FXCollections.observableArrayList(messageService.getCombo()));
-        String test2 = messageBox.getValue();
-        txtMessageContenu.setText(test2);
-        System.out.println(usersService.searchByMail(test2));
-   }
+    private void getDataMessage(MouseEvent event) {
+        tableMessagelist.setOnMouseClicked((event1) -> {
+            int selectedId = tableMessagelist.getSelectionModel().getSelectedItem().getId();
+            String selectedContenu = tableMessagelist.getSelectionModel().getSelectedItem().getContenu();
+
+            messageComboId.setValue(selectedId);
+            txtMessageContenu.setText(selectedContenu);
+
+        });
+    }
 
 }
