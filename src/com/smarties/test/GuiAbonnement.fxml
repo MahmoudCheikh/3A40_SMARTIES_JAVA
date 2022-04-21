@@ -139,7 +139,7 @@
                               <Image url="@../images/png-transparent-computer-icons-synchronization-encapsulated-postscript-icon-design-update-button-angle-text-logo.png" />
                            </image>
                         </ImageView>
-                        <Button fx:id="excel" layoutX="843.0" layoutY="75.0" mnemonicParsing="false" onAction="#generExcel" text="Generer un Fichier Excel" visible="false" />
+                        <Button fx:id="excel" layoutX="843.0" layoutY="75.0" mnemonicParsing="false" onAction="#generExcel" text="Generer un Fichier Excel" />
                         <ImageView fx:id="imgg" fitHeight="31.0" fitWidth="29.0" layoutX="25.0" layoutY="492.0" opacity="0.83" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/sssssssss.jpg" />
@@ -288,14 +288,14 @@
                      <children>
                         <AnchorPane layoutX="76.0" layoutY="76.0" prefHeight="484.0" prefWidth="649.0">
                            <children>
-                              <PieChart fx:id="pieChartt" layoutX="60.0" layoutY="38.0" prefHeight="393.0" prefWidth="515.0">
+                              <PieChart fx:id="pieChartt" layoutX="54.0" layoutY="41.0" prefHeight="415.0" prefWidth="521.0">
                                  <effect>
                                     <InnerShadow />
                                  </effect>
                               </PieChart>
                            </children>
                         </AnchorPane>
-                        <Button fx:id="sttat" layoutX="308.0" layoutY="51.0" mnemonicParsing="false" onAction="#StatiistiqueAB" text="Stat" />
+                        <Button fx:id="sttat" layoutX="307.0" layoutY="36.0" mnemonicParsing="false" onAction="#StatiistiqueAB" text="Stat" />
                      </children>
                   </AnchorPane>
               </content>

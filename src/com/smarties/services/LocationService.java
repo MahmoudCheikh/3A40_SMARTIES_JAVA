@@ -361,8 +361,6 @@ public class LocationService {
 
         } catch (FileNotFoundException ex) {
             Logger.getLogger(LocationService.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (BadElementException ex) {
-            Logger.getLogger(LocationService.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(LocationService.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {

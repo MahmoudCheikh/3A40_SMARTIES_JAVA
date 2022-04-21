@@ -203,14 +203,7 @@ public class GuiAbonnementController implements Initializable {
             alert.setContentText("Veuillez remplir tous les champs  !");
             alert.showAndWait();
 
-        } else if (!(Pattern.matches("[a-z,A-Z]*", TextType.getText()))) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Information Dialog");
-            alert.setHeaderText(null);
-            alert.setContentText("Le type de l'abonnement  doit etre de type String !");
-            alert.showAndWait();
-
-        } else if (!(Pattern.matches("[0-9]*", textPrixAb.getText()))) {
+        }  else if (!(Pattern.matches("[0-9]*", textPrixAb.getText()))) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Information Dialog");
             alert.setHeaderText(null);
@@ -352,7 +345,7 @@ public class GuiAbonnementController implements Initializable {
         List< Abonnement> R = n.ChercherType(findAb.getText());
         if (R.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Success");
+            alert.setTitle("Erreur");
             alert.setContentText("  Desole !!  l'abonnement que vous cherchez ayant ce type   n'existe pas!");
             alert.show();
         } else {

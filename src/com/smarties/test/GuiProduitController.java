@@ -104,7 +104,7 @@ public class GuiProduitController implements Initializable {
     @FXML
     private ComboBox<String> lieuE;
     @FXML
-    private Button btnAjoutEmp;
+    private Button btnAjoutEmp;           
     @FXML
     private Button btnModifierEmp;
     @FXML
