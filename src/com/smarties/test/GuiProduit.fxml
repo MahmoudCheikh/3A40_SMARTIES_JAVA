@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -10,6 +11,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smarties.test.GuiProduitController">
@@ -88,16 +90,27 @@
                               <Image url="@../images/stock.png" />
                            </image>
                         </ImageView>
-                        <Button fx:id="stat" layoutX="630.0" layoutY="520.0" mnemonicParsing="false" onAction="#generateStat" prefHeight="42.0" prefWidth="152.0" style="-fx-background-color: #ff7f50;" text="Generer Statistique" />
                         <ComboBox fx:id="idProdSCombo" layoutX="39.0" layoutY="395.0" prefHeight="40.0" prefWidth="294.0" promptText="Produit" />
                      </children></AnchorPane>
             </content>
           </Tab>
+            <Tab text="Statistiques">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <PieChart fx:id="pieChart" layoutX="557.0" layoutY="92.0" prefHeight="420.0" prefWidth="520.0" />
+                        <Button fx:id="stat" layoutX="716.0" layoutY="24.0" mnemonicParsing="false" onAction="#generateStat" prefHeight="42.0" prefWidth="152.0" style="-fx-background-color: #ff7f50;" text="Generer Statistique" />
+                        <Button fx:id="statProd" layoutX="144.0" layoutY="24.0" mnemonicParsing="false" onAction="#generateStatProd" prefHeight="42.0" prefWidth="152.0" style="-fx-background-color: #ff7f50;" text="Generer Statistique" />
+                        <PieChart fx:id="pieChartProd" layoutX="14.0" layoutY="92.0" prefHeight="420.0" prefWidth="520.0" />
+                        <Line endX="-100.0" endY="417.0" layoutX="643.0" layoutY="78.0" startX="-100.0" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
             <Tab text="Emplacement">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TextField fx:id="idSE" layoutX="28.0" layoutY="276.0" prefHeight="40.0" prefWidth="290.0" promptText="Stock" />
                         <TextField fx:id="capaciteE" layoutX="28.0" layoutY="223.0" prefHeight="40.0" prefWidth="290.0" promptText="Capacite" />
                         <Button fx:id="btnAjoutEmp" layoutX="25.0" layoutY="340.0" mnemonicParsing="false" onAction="#AjouterEmplacement" prefHeight="50.0" prefWidth="303.0" style="-fx-background-color: #ff7f50;" text="+ Ajouter" />
                         <Button fx:id="btnModifierEmp" layoutX="709.0" layoutY="440.0" mnemonicParsing="false" onAction="#ModifierEmplacement" prefHeight="50.0" prefWidth="220.0" style="-fx-background-color: #ff7f50;" text="Modifier" />
@@ -112,7 +125,7 @@
                               <Image url="@../images/emp.png" />
                            </image>
                         </ImageView>
-                        <ComboBox fx:id="idSECombo" layoutX="28.0" layoutY="315.0" prefHeight="40.0" prefWidth="294.0" promptText="Stock" />
+                        <ComboBox fx:id="idSECombo" layoutX="25.0" layoutY="276.0" prefHeight="40.0" prefWidth="294.0" promptText="Stock" />
                      </children>
                   </AnchorPane>
               </content>
@@ -121,9 +134,7 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TextField fx:id="userF" layoutX="36.0" layoutY="206.0" prefHeight="40.0" prefWidth="290.0" promptText="UTILISATEUR" />
-                        <TextField fx:id="produitF" layoutX="36.0" layoutY="153.0" prefHeight="40.0" prefWidth="290.0" promptText="PRODUIT" />
-                        <Button fx:id="btnAjoutFav" layoutX="15.0" layoutY="258.0" mnemonicParsing="false" onAction="#AjouterFavoris" prefHeight="50.0" prefWidth="340.0" style="-fx-background-color: #ff7f50;" text="+ Ajouter" />
+                        <Button fx:id="btnAjoutFav" layoutX="25.0" layoutY="301.0" mnemonicParsing="false" onAction="#AjouterFavoris" prefHeight="50.0" prefWidth="340.0" style="-fx-background-color: #ff7f50;" text="+ Ajouter" />
                         <Button fx:id="btnSupprimerFav" layoutX="554.0" layoutY="365.0" mnemonicParsing="false" onAction="#SupprimerFavoris" prefHeight="49.0" prefWidth="364.0" style="-fx-background-color: #ff7f50;" text="Supprimer" />
                         <ListView fx:id="listefav" layoutX="396.0" layoutY="21.0" prefHeight="330.0" prefWidth="680.0" />
                         <Label fx:id="cds3" layoutX="15.0" layoutY="14.0" prefHeight="56.0" prefWidth="252.0" textFill="#bc0000" />
@@ -132,6 +143,8 @@
                               <Image url="@../images/stock-vector-add-favorite-icon-trendy-style.png" />
                            </image>
                         </ImageView>
+                        <ComboBox fx:id="produitF" layoutX="50.0" layoutY="166.0" prefHeight="40.0" prefWidth="290.0" promptText="PRODUIT " />
+                        <ComboBox fx:id="userF" layoutX="50.0" layoutY="229.0" prefHeight="40.0" prefWidth="290.0" promptText="UTILISATEUR" />
                      </children>
                   </AnchorPane>
                </content>

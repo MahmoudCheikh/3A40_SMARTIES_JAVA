@@ -187,6 +187,16 @@ public class UsersService {
         rs.next();
         return rs.getInt(1);
     }
+        public int searchByNom(String mail) throws SQLException {
+        Users user = new Users();
+        String req = "SELECT * FROM users where email=?";
+        PreparedStatement ps = cnx.prepareStatement(req);
+        System.out.println("RECHERCHE...");
+        ps.setString(1, mail);
+        ResultSet rs = ps.executeQuery();
+        rs.next();
+        return rs.getInt(1);
+    }
     
     public void register(Users p){
         String query = "insert into users(nom,prenom,adresse,email,password) values(?,?,?,?,?)";

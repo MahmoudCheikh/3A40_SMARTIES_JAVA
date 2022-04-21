@@ -161,4 +161,43 @@ public class ProduitService {
         rs.next();
         return rs.getInt(1);
     }
+
+    public boolean getIgnoreRepetetion(String libelle) {
+        boolean exist = false;
+
+        try {
+            String sql = "SELECT * FROM produit where libelle= ? ";
+            PreparedStatement ste = cnx.prepareStatement(sql);
+            ste.setString(1, libelle);
+
+            ResultSet rs = ste.executeQuery();//resultat requete sql
+            if (rs.first()) {
+                exist = true;
+            }
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+        return exist;
+
+    }
+     public long SearchVelo() {
+            List<Produit> prod = afficherProduit();
+        return prod.stream().filter(b -> b.getType().equalsIgnoreCase("Velo")).count();
+
+    }
+
+    public long SearchPDR() {
+
+         List<Produit> prod = afficherProduit();
+        return prod.stream().filter(b -> b.getType().equalsIgnoreCase("Piece de Rechange")).count();
+
+    }
+
+    public long SearchAcc() {
+
+          List<Produit> prod = afficherProduit();
+        return prod.stream().filter(b -> b.getType().equalsIgnoreCase("Accesssoire")).count();
+
+    }
 }

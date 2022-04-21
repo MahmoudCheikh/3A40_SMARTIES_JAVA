@@ -53,6 +53,7 @@ import javax.swing.JOptionPane;
 //import com.itextpdf.text.Document;
 //import com.itextpdf.text.Font;
 import com.lowagie.text.Element;
+import com.smarties.services.UsersService;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -75,6 +76,7 @@ public class GuiProduitController implements Initializable {
     private StockService st = new StockService();
     private EmplacementService em = new EmplacementService();
     private FavorisService fa = new FavorisService();
+    private UsersService us = new UsersService();
 
     Alert alert = new Alert(Alert.AlertType.NONE);
 
@@ -123,7 +125,7 @@ public class GuiProduitController implements Initializable {
     @FXML
     private ComboBox<String> lieuE;
     @FXML
-    private Button btnAjoutEmp;           
+    private Button btnAjoutEmp;
     @FXML
     private Button btnModifierEmp;
     @FXML
@@ -132,9 +134,9 @@ public class GuiProduitController implements Initializable {
     @FXML
     private ListView<Emplacement> listeEmp;
     @FXML
-    private TextField userF;
+    private ComboBox<String> userF;
     @FXML
-    private TextField produitF;
+    private ComboBox<String> produitF;
     @FXML
     private Button btnAjoutFav;
     @FXML
@@ -179,6 +181,12 @@ public class GuiProduitController implements Initializable {
     private ComboBox<String> idProdSCombo;
     @FXML
     private ComboBox<String> idSECombo;
+    @FXML
+    private PieChart pieChart;
+    @FXML
+    private Button statProd;
+    @FXML
+    private PieChart pieChartProd;
 
     /**
      * Initializes the controller class.
@@ -213,6 +221,8 @@ public class GuiProduitController implements Initializable {
         lieuE.getItems().addAll(lieuEmplacement);
         idProdSCombo.setItems(FXCollections.observableArrayList(st.getCombo()));
         idSECombo.setItems(FXCollections.observableArrayList(em.getCombo()));
+        userF.setItems(FXCollections.observableArrayList(fa.getComboUser()));
+        produitF.setItems(FXCollections.observableArrayList(fa.getComboProd()));
     }
 
     /**
@@ -300,7 +310,7 @@ public class GuiProduitController implements Initializable {
                 alert.setHeaderText(null);
                 alert.setContentText("le prix doit etre de type Float/Int !");
                 alert.showAndWait();
-            } else {
+            } else if (pr.getIgnoreRepetetion(libelleProd.getText()) == false) {
                 Produit pro = new Produit();
 
                 pro.setLibelle(libelleProd.getText());
@@ -321,6 +331,12 @@ public class GuiProduitController implements Initializable {
                 alert.setContentText("PRODUIT ajoutée!");
                 alert.show();
                 refresh();
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Information Dialog");
+                alert.setHeaderText(null);
+                alert.setContentText("le produit deja existant !");
+                alert.showAndWait();
             }
 
         } else {
@@ -346,13 +362,6 @@ public class GuiProduitController implements Initializable {
                 alert.setHeaderText(null);
                 alert.setContentText("champs manquants !");
                 alert.showAndWait();
-            } else if (!(Pattern.matches("[a-z,A-Z]*", libelleProd.getText()))) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Information Dialog");
-                alert.setHeaderText(null);
-                alert.setContentText("le libelle doit etre de type String !");
-                alert.showAndWait();
-
             } else if (libelleProd.getText().length() < 4) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Information Dialog");
@@ -373,7 +382,7 @@ public class GuiProduitController implements Initializable {
                 alert.setHeaderText(null);
                 alert.setContentText("le prix doit etre de type Float/Int !");
                 alert.showAndWait();
-            } else {
+            } else if (pr.getIgnoreRepetetion(libelleProd.getText()) == false) {
                 Produit pro = new Produit();
                 Produit proID = listeProduit.getSelectionModel().getSelectedItem();
 
@@ -399,6 +408,12 @@ public class GuiProduitController implements Initializable {
                 alert.setTitle("Success");
                 alert.setContentText("modification effectuée!");
                 alert.show();
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Information Dialog");
+                alert.setHeaderText(null);
+                alert.setContentText("le produit deja existant !");
+                alert.showAndWait();
             }
         } else {
             refresh();
@@ -509,7 +524,7 @@ public class GuiProduitController implements Initializable {
                 alert.setContentText("le libelle doit au moin contenir 5 caractéres");
                 alert.showAndWait();
 
-            } else {
+            } else if (st.getIgnoreRepetetion(libS.getText()) == false) {
                 sto.setLibelle(libS.getText());
                 int prix1 = Integer.parseInt(prixS.getText());
                 int q = Integer.parseInt(quantiteS.getText());
@@ -529,8 +544,13 @@ public class GuiProduitController implements Initializable {
                 alert.show();
 
                 refresh1();
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Information Dialog");
+                alert.setHeaderText(null);
+                alert.setContentText("le stock deja existant !");
+                alert.showAndWait();
             }
-
         } else {
             refresh1();
         }
@@ -570,7 +590,7 @@ public class GuiProduitController implements Initializable {
                 alert.setContentText("le libelle doit au moin contenir 5 caractéres");
                 alert.showAndWait();
 
-            } else {
+            } else if (st.getIgnoreRepetetion(libS.getText()) == false) {
                 Stock sto = new Stock();
                 Stock stoID = listeS.getSelectionModel().getSelectedItem();
                 sto.setLibelle(libS.getText());
@@ -597,6 +617,12 @@ public class GuiProduitController implements Initializable {
                 dispoS.setValue("Disponibilité");
                 idProdSCombo.setValue("Produit");
                 refresh1();
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Information Dialog");
+                alert.setHeaderText(null);
+                alert.setContentText("le stock deja existant !");
+                alert.showAndWait();
             }
         } else {
             refresh1();
@@ -685,9 +711,8 @@ public class GuiProduitController implements Initializable {
             } else {
                 emp.setLieu(lieuE.getValue());
                 int cap = Integer.parseInt(capaciteE.getText());
-                
-                ///////////////////////////////////////combo id
 
+                ///////////////////////////////////////combo id
                 emp.setStock(st.searchByLibS(idSECombo.getValue()));
 
                 emp.setCapacite(cap);
@@ -819,27 +844,24 @@ public class GuiProduitController implements Initializable {
      * GESTION DES FAVORIS ************************************
      */
     @FXML
-    private void AjouterFavoris(ActionEvent event) {
+    private void AjouterFavoris(ActionEvent event) throws SQLException {
 
         Favoris fav = new Favoris();
         alert.setAlertType(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation");
         alert.setHeaderText(null);
-        alert.setContentText("Voulez-vous vraiment ajouter cet emplacement");
+        alert.setContentText("Voulez-vous vraiment ajouter ce Produit aux Favoris");
         Optional<ButtonType> action = alert.showAndWait();
         if (action.get() == ButtonType.OK) {
-            if (produitF.getText().equals("") || userF.getText().equals("")) {
+            if (produitF.getValue().equals("") || userF.getValue().equals("")) {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setTitle("Information Dialog");
                 alert.setHeaderText(null);
                 alert.setContentText("champs manquants !");
                 alert.showAndWait();
             } else {
-                int produitFav = Integer.parseInt(produitF.getText());
-                int userFav = Integer.parseInt(userF.getText());
-
-                fav.setIdProduit(produitFav);
-                fav.setIdUser(userFav);
+                fav.setIdProduit(pr.searchByLib(produitF.getValue()));
+                fav.setIdUser(us.searchByNom(userF.getValue()));
 
                 fa.ajouterFavoris(fav);
                 refresh3();
@@ -854,7 +876,7 @@ public class GuiProduitController implements Initializable {
         alert.setAlertType(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation");
         alert.setHeaderText(null);
-        alert.setContentText("vous-etes sur de supprimer cet STOCK !");
+        alert.setContentText("vous-etes sur de supprimer cet Element Favoris !");
 
         Optional<ButtonType> action = alert.showAndWait();
 
@@ -1009,9 +1031,18 @@ public class GuiProduitController implements Initializable {
 //    }
     @FXML
     private void generateStat(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("StatProducts.fxml"));
-        Stage window = (Stage) stat.getScene().getWindow();
-        window.setScene(new Scene(root));
+
+        Stock sto = new Stock();
+        pieChart.setTitle("Quantite");
+        pieChart.getData().setAll(new PieChart.Data("Quantite <20", st.Recherche3()), new PieChart.Data("Quantite [20-50]", st.Recherche1()),
+                new PieChart.Data("Quantite [50-70]", st.Recherche2()), new PieChart.Data("Quantite [70-100]", st.Recherche4()));
+    }
+
+    @FXML
+    private void generateStatProd(ActionEvent event) {
+        pieChartProd.setTitle("Type");
+        pieChartProd.getData().setAll(new PieChart.Data("Velo", pr.SearchVelo()), new PieChart.Data("Piece de Rechange", pr.SearchPDR()),
+                new PieChart.Data("Accesssoire", pr.SearchAcc()));
     }
 
 }

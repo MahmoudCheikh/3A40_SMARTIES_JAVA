@@ -156,6 +156,7 @@ public class StockService {
         List<Stock> Stock = afficherStock();
         return Stock.stream().filter(b -> b.getQuantite() > 70).filter(b -> b.getQuantite() < 100).count();
     }
+    
 
     public ArrayList<String> getCombo() {
         ArrayList<String> options = new ArrayList<>();
@@ -181,5 +182,25 @@ public class StockService {
         ResultSet rs = ps.executeQuery();
         rs.next();
         return rs.getInt(1);
+    }
+    
+        public boolean getIgnoreRepetetion(String libelle) {
+        boolean exist = false;
+
+        try {
+            String sql = "SELECT * FROM stock where libelle= ? ";
+            PreparedStatement ste = cnx.prepareStatement(sql);
+            ste.setString(1, libelle);
+
+            ResultSet rs = ste.executeQuery();//resultat requete sql
+            if (rs.first()) {
+                exist = true;
+            }
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+        return exist;
+
     }
 }
