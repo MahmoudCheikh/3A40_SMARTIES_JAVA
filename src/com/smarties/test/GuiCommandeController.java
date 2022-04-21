@@ -27,6 +27,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -36,6 +37,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.control.TextField;
+import org.controlsfx.control.Notifications;
 
 /**
  * FXML Controller class
@@ -108,6 +110,8 @@ public class GuiCommandeController implements Initializable {
     private ComboBox<String> comboAchat;
     @FXML
     private ComboBox<String> comboAchatProd;
+    @FXML
+    private Button notifi;
 
 
     /**
@@ -353,6 +357,10 @@ public class GuiCommandeController implements Initializable {
             a.setNumeroClient(xx3);
 
             sa.ajouterAchat(a);
+       
+        System.out.println(" Achat Effecute !");
+        Notifications.create().title("Bonne Nouvelle").text("Votre Achat a été passé avec succes félicitation").darkStyle().position(Pos.BOTTOM_CENTER).showWarning();
+        
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Success");
@@ -379,7 +387,7 @@ public class GuiCommandeController implements Initializable {
             alert.setHeaderText(null);
             alert.setContentText("champs manquants !");
             alert.showAndWait();
-        } else if (!(Pattern.matches("[a-z,A-Z]*", txtnomclient.getText()))) {
+        } else if (!(Pattern.matches("[a-z, ,A-Z]*", txtnomclient.getText()))) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Information Dialog");
             alert.setHeaderText(null);
@@ -449,7 +457,7 @@ public class GuiCommandeController implements Initializable {
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Success");
-        alert.setContentText("Evenement supprimé!");
+        alert.setContentText("Achat supprimé!");
         alert.show();
         ObservableList<Achat> items = FXCollections.observableArrayList();
         List<Achat> listachh = sa.afficherAchat();
@@ -502,5 +510,9 @@ public class GuiCommandeController implements Initializable {
 
         listachat.setItems(datalist);
     }
+
+    @FXML
+    private void notification(ActionEvent event) {
+            }
 
 }
