@@ -338,6 +338,26 @@ public class AbonnementService {
         }
         return null;
     }
+           public long Search1() {
+
+        List<Abonnement> Abon = afficherAbonnement();
+        return Abon.stream().filter(b -> b.getType().equalsIgnoreCase("VIP")).count();
+
+    }
+
+    public long Search2() {
+
+          List<Abonnement> Abon = afficherAbonnement();
+        return Abon.stream().filter(b -> b.getType().equalsIgnoreCase("Silver")).count();
+
+    }
+
+    public long Search3() {
+
+          List<Abonnement> Abon = afficherAbonnement();
+        return Abon.stream().filter(b -> b.getType().equalsIgnoreCase("Gold")).count();
+
+    }
          
 }
 

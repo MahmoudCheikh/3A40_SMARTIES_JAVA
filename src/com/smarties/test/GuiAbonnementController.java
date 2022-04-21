@@ -687,6 +687,10 @@ public class GuiAbonnementController implements Initializable {
 
     @FXML
     private void StatiistiqueAB(ActionEvent event) {
+      
+               pieChartt.setTitle("Type"); 
+        pieChartt.getData().setAll(new PieChart.Data("VIP", as.Search1()), new PieChart.Data("Silver", as.Search2()),
+                new PieChart.Data("Gold", as.Search3()));
     }
 
 }
