@@ -146,6 +146,11 @@
                            </image>
                         </ImageView>
                         <ComboBox fx:id="TypeAbonCombo" layoutX="105.0" layoutY="168.0" prefHeight="25.0" prefWidth="92.0" />
+                        <ImageView fitHeight="30.0" fitWidth="36.0" layoutX="797.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/excelFadwa.jpeg" />
+                           </image>
+                        </ImageView>
                      </children>
                      <effect>
                         <InnerShadow />
@@ -162,10 +167,6 @@
                               <InnerShadow />
                            </effect></TextField>
                         <TextField fx:id="TextHeureLoc" layoutX="102.0" layoutY="135.0" prefHeight="25.0" prefWidth="105.0">
-                           <effect>
-                              <InnerShadow />
-                           </effect></TextField>
-                        <TextField fx:id="TextIdAbonne" layoutX="101.0" layoutY="180.0" prefHeight="25.0" prefWidth="106.0">
                            <effect>
                               <InnerShadow />
                            </effect></TextField>
@@ -275,6 +276,12 @@
                            </image>
                         </ImageView>
                         <Button fx:id="pdf" layoutX="825.0" layoutY="91.0" mnemonicParsing="false" onAction="#generatePDF" text="Generer un fichier PDF" />
+                        <ImageView fitHeight="32.0" fitWidth="42.0" layoutX="788.0" layoutY="88.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/pdfFadwa.png" />
+                           </image>
+                        </ImageView>
+                        <ComboBox fx:id="ComboIDAb" layoutX="101.0" layoutY="180.0" prefHeight="25.0" prefWidth="109.0" />
                      </children>
                      <effect>
                         <InnerShadow />
@@ -282,20 +289,25 @@
                   </AnchorPane>
                </content>
             </Tab>
-            <Tab text="Untitled Tab">
+            <Tab text="Statistiques">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <AnchorPane layoutX="76.0" layoutY="76.0" prefHeight="484.0" prefWidth="649.0">
                            <children>
-                              <PieChart fx:id="pieChartt" layoutX="54.0" layoutY="41.0" prefHeight="415.0" prefWidth="521.0">
+                              <PieChart fx:id="pieChartt" layoutX="73.0" layoutY="48.0" prefHeight="415.0" prefWidth="521.0">
                                  <effect>
                                     <InnerShadow />
                                  </effect>
                               </PieChart>
                            </children>
                         </AnchorPane>
-                        <Button fx:id="sttat" layoutX="307.0" layoutY="36.0" mnemonicParsing="false" onAction="#StatiistiqueAB" text="Stat" />
+                        <Button fx:id="sttat" layoutX="262.0" layoutY="34.0" mnemonicParsing="false" onAction="#StatiistiqueAB" text="Afficher les Statstiques " />
+                        <ImageView fitHeight="26.0" fitWidth="37.0" layoutX="225.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/statttfadwa.png" />
+                           </image>
+                        </ImageView>
                      </children>
                   </AnchorPane>
               </content>

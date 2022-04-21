@@ -86,7 +86,6 @@ public class GuiAbonnementController implements Initializable {
 
     @FXML
     private TextField TextHeureLoc;
-    @FXML
     private TextField TextIdAbonne;
     @FXML
     private TextField TextIdUserLoc;
@@ -170,6 +169,8 @@ public class GuiAbonnementController implements Initializable {
     private PieChart pieChartt;
     @FXML
     private Button sttat;
+    @FXML
+    private ComboBox<String> ComboIDAb;
 
 
     /*  Image myImage= new Image(getClass().getResourceAsStream("img1.jpg"));
@@ -188,6 +189,7 @@ public class GuiAbonnementController implements Initializable {
  /* ArrayList l = (ArrayList) loc.afficherLocation();
         ListLoc.getItems().addAll(l);*/
         TypeAbonCombo.getItems().addAll(typeAbonnement);
+        ComboIDAb.setItems(FXCollections.observableArrayList(loc.getCombo()));
     }
 
     @FXML
@@ -236,11 +238,11 @@ public class GuiAbonnementController implements Initializable {
             ab.setDateD(datedeb);
             ab.setDateF(datefin);
             ab.setType(TypeAbonCombo.getValue());
-
+           
             as.ajouterAbonnement(ab);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Success");
-            alert.setContentText("Abonnement ajouté avec succés!");
+            alert.setContentText("Abonnement ajouté avec succés et un mail vous sera envoye!");
             alert.show();
             as.sendMail("fadwa.berrich@esprit.tn");
 
@@ -418,12 +420,12 @@ public class GuiAbonnementController implements Initializable {
 
 //*******************************************************LOCATION*****************************************************************//
     @FXML
-    private void AjouterLoaction(ActionEvent event) {
+    private void AjouterLoaction(ActionEvent event) throws SQLException {
 
         Location loc1 = new Location();
         LocalDate today = LocalDate.now();
 
-        if (TextIdUserLoc.getText().isEmpty() || TextIdAbonne.getText().isEmpty() || TextDuree.getText().isEmpty() || (textDatePickLoc.getValue().equals(""))) {
+        if (TextIdUserLoc.getText().isEmpty() || ComboIDAb.getValue().isEmpty() || TextDuree.getText().isEmpty() || (textDatePickLoc.getValue().equals(""))) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Information Dialog");
             alert.setHeaderText(null);
@@ -448,12 +450,13 @@ public class GuiAbonnementController implements Initializable {
 
             //  int x1 = Integer.parseInt(textIdLocation.getText());
             int x2 = Integer.parseInt(TextIdUserLoc.getText());
-            int x3 = Integer.parseInt(TextIdAbonne.getText());
+           // int x3 = Integer.parseInt(TextIdAbonne.getText());
             Float x4 = Float.parseFloat(TextDuree.getText());
             //loc1.setId(x1);
             loc1.setIdUser(x2);
-            loc1.setIdAbonnement(x3);
+            //loc1.setIdAbonnement(x3);
             loc1.setDuree(x4);
+             loc1.setIdAbonnement(as.searchByID(ComboIDAb.getValue()));
             //  System.out.println(loc.getCaptcha());
             loc.ajouterLocation(loc1);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -501,7 +504,7 @@ public class GuiAbonnementController implements Initializable {
     }
 
     @FXML
-    private void ModifierLocation(ActionEvent event) {
+    private void ModifierLocation(ActionEvent event) throws SQLException {
         alert.setAlertType(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation");
         alert.setHeaderText(null);
@@ -519,10 +522,10 @@ public class GuiAbonnementController implements Initializable {
             int x2 = Integer.parseInt(TextIdUserLoc.getText());
             int x3 = Integer.parseInt(TextIdAbonne.getText());
             Float x4 = Float.parseFloat(TextDuree.getText());
-
+            loc1.setIdAbonnement(as.searchByID(ComboIDAb.getValue()));
             loc1.setId(x1);
             loc1.setIdUser(x2);
-            loc1.setIdAbonnement(x3);
+           // loc1.setIdAbonnement(x3);
             loc1.setDuree(x4);
             loc.modifierLocation(loc1);
             ObservableList<Location> items = FXCollections.observableArrayList();
@@ -672,12 +675,12 @@ public class GuiAbonnementController implements Initializable {
             int selectedIDABON = ListLoc.getSelectionModel().getSelectedItem().getIdAbonnement();
             int selectedId = ListLoc.getSelectionModel().getSelectedItem().getId();
 
-           
+             ComboIDAb.setValue(String.valueOf(selectedIDABON));
             TextIdUserLoc.setText(String.valueOf(selectedIdUser));
             textIdLocation.setText(String.valueOf(selectedId));
              textDatePickLoc.setValue(selectedDate);
              TextDuree.setText(String.valueOf(selectedDuree));
-              TextIdAbonne.setText(String.valueOf(selectedIDABON));
+              
               TextHeureLoc.setText(selectedHeure);
               
         });
@@ -688,7 +691,7 @@ public class GuiAbonnementController implements Initializable {
     @FXML
     private void StatiistiqueAB(ActionEvent event) {
       
-               pieChartt.setTitle("Type"); 
+               pieChartt.setTitle("Les statistiques sur les Types des Abonnements "); 
         pieChartt.getData().setAll(new PieChart.Data("VIP", as.Search1()), new PieChart.Data("Silver", as.Search2()),
                 new PieChart.Data("Gold", as.Search3()));
     }

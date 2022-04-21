@@ -368,5 +368,20 @@ public class LocationService {
         }
 
     }
+      public ArrayList<String> getCombo() {
+        ArrayList<String> options = new ArrayList<>();
+        String sql = "select * from abonnement";
+        Statement ste;
+        try {
+            ste = cnx.createStatement();
+            ResultSet rs = ste.executeQuery(sql);
+            while (rs.next()) {
+                options.add(rs.getString(1));
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return options;
+    }
 
 }

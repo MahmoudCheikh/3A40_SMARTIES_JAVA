@@ -6,6 +6,7 @@
 package com.smarties.services;
 
 import com.smarties.entities.Abonnement;
+import com.smarties.entities.Location;
 import com.smarties.tools.MaConnexion;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -358,6 +359,22 @@ public class AbonnementService {
         return Abon.stream().filter(b -> b.getType().equalsIgnoreCase("Gold")).count();
 
     }
+    
+    
+    
+    
+    
+       public int searchByID(String iid) throws SQLException {
+       Location loc = new Location();
+        String req = "SELECT * FROM abonnement  where id=?";
+        PreparedStatement ps = cnx.prepareStatement(req);
+        System.out.println("RECHERCHE...");
+        ps.setString(1, iid);
+        ResultSet rs = ps.executeQuery();
+        rs.next();
+        return rs.getInt(1);
+    }
+
          
 }
 
