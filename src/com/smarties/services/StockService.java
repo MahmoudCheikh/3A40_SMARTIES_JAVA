@@ -7,6 +7,7 @@ package com.smarties.services;
 
 import com.smarties.entities.Produit;
 import com.smarties.entities.Stock;
+import com.smarties.entities.Users;
 import com.smarties.tools.MaConnexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -127,5 +128,58 @@ public class StockService {
     public List<Stock> RechercheLibelle(String libelle) {
 
         return afficherStock().stream().filter(a -> a.getLibelle().equals(libelle)).collect(Collectors.toList());
+    }
+
+    public long Recherche1() {
+
+        List<Stock> Stock = afficherStock();
+        return Stock.stream().filter(b -> b.getQuantite() > 20).filter(b -> b.getQuantite() < 50).count();
+
+    }
+
+    public long Recherche2() {
+
+        List<Stock> Stock = afficherStock();
+        return Stock.stream().filter(b -> b.getQuantite() > 50).filter(b -> b.getQuantite() < 70).count();
+
+    }
+
+    public long Recherche3() {
+
+        List<Stock> Stock = afficherStock();
+        return Stock.stream().filter(b -> b.getQuantite() < 20).count();
+
+    }
+
+    public long Recherche4() {
+
+        List<Stock> Stock = afficherStock();
+        return Stock.stream().filter(b -> b.getQuantite() > 70).filter(b -> b.getQuantite() < 100).count();
+    }
+
+    public ArrayList<String> getCombo() {
+        ArrayList<String> options = new ArrayList<>();
+        String sql = "select * from produit";
+        Statement ste;
+        try {
+            ste = cnx.createStatement();
+            ResultSet rs = ste.executeQuery(sql);
+            while (rs.next()) {
+                options.add(rs.getString(2));
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return options;
+    }
+    public int searchByLibS(String libelle) throws SQLException {
+        Stock sto = new Stock();
+        String req = "SELECT * FROM stock where id=?";
+        PreparedStatement ps = cnx.prepareStatement(req);
+        System.out.println("RECHERCHE...");
+        ps.setString(1, libelle);
+        ResultSet rs = ps.executeQuery();
+        rs.next();
+        return rs.getInt(1);
     }
 }

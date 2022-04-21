@@ -73,7 +73,6 @@
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #ffffff;">
                      <children>
                         <TextField fx:id="libS" layoutX="39.0" layoutY="178.0" prefHeight="40.0" prefWidth="290.0" promptText="Libelle" />
-                        <TextField fx:id="idProdS" layoutX="39.0" layoutY="395.0" prefHeight="40.0" prefWidth="290.0" promptText="Produit" />
                         <TextField fx:id="quantiteS" layoutX="39.0" layoutY="288.0" prefHeight="40.0" prefWidth="290.0" promptText="Quantité" />
                         <TextField fx:id="prixS" layoutX="39.0" layoutY="230.0" prefHeight="40.0" prefWidth="290.0" promptText="Prix" />
                         <Button fx:id="btnAjoutS" layoutX="21.0" layoutY="470.0" mnemonicParsing="false" onAction="#AjoutStock" prefHeight="50.0" prefWidth="327.0" style="-fx-background-color: #ff7f50;" text="+ Ajouter" />
@@ -89,6 +88,8 @@
                               <Image url="@../images/stock.png" />
                            </image>
                         </ImageView>
+                        <Button fx:id="stat" layoutX="630.0" layoutY="520.0" mnemonicParsing="false" onAction="#generateStat" prefHeight="42.0" prefWidth="152.0" style="-fx-background-color: #ff7f50;" text="Generer Statistique" />
+                        <ComboBox fx:id="idProdSCombo" layoutX="39.0" layoutY="395.0" prefHeight="40.0" prefWidth="294.0" promptText="Produit" />
                      </children></AnchorPane>
             </content>
           </Tab>
@@ -111,6 +112,7 @@
                               <Image url="@../images/emp.png" />
                            </image>
                         </ImageView>
+                        <ComboBox fx:id="idSECombo" layoutX="28.0" layoutY="315.0" prefHeight="40.0" prefWidth="294.0" promptText="Stock" />
                      </children>
                   </AnchorPane>
               </content>

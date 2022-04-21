@@ -16,16 +16,21 @@ import com.smarties.services.StockService;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.regex.Pattern;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -42,6 +47,22 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+//import com.itextpdf.text.BaseColor;
+//import com.itextpdf.text.Paragraph;
+//import com.itextpdf.text.pdf.PdfWriter;
+//import com.itextpdf.text.Document;
+//import com.itextpdf.text.Font;
+import com.lowagie.text.Element;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -98,8 +119,6 @@ public class GuiProduitController implements Initializable {
     private ListView<Stock> listeS;
     private TextField idEmpalcement;
     @FXML
-    private TextField idSE;
-    @FXML
     private TextField capaciteE;
     @FXML
     private ComboBox<String> lieuE;
@@ -153,19 +172,21 @@ public class GuiProduitController implements Initializable {
     private String[] disponibilite = {"Disponible", "Indisponible"};
     private String[] lieuEmplacement = {"Ariana", "Béja", "Ben Arous", "Bizerte", "Gabes", "Gafsa", "Jendouba", "Kairouan", "Kasserine", "Kebili", "La Manouba", "Le Kef", "Mahdia", "Médenine", "Monastir", "Nabeul", "Sfax", "Sidi Bouzid", "Siliana", "Sousse", "Tataouine", "Tozeur", "Tunis", "Zaghouan"};
     @FXML
-    private TextField idProdS;
-    @FXML
     private TextField typeProd;
+    @FXML
+    private Button stat;
+    @FXML
+    private ComboBox<String> idProdSCombo;
+    @FXML
+    private ComboBox<String> idSECombo;
 
     /**
      * Initializes the controller class.
-    */
-    
-    
+     */
     /**
-     * ****************************************************** 
-     * AFFICHAGE / REFRESH / COMBO BOX / IMAGES
-     ********************************************************
+     * ******************************************************
+     * AFFICHAGE / REFRESH / COMBO BOX / IMAGES / PIE CHART
+     * *******************************************************
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -190,13 +211,13 @@ public class GuiProduitController implements Initializable {
         comboType.getItems().addAll(typeProduit);
         dispoS.getItems().addAll(disponibilite);
         lieuE.getItems().addAll(lieuEmplacement);
-
+        idProdSCombo.setItems(FXCollections.observableArrayList(st.getCombo()));
+        idSECombo.setItems(FXCollections.observableArrayList(em.getCombo()));
     }
 
     /**
-     * ****************************************************** 
-     * REFRESH
-     ********************************************************
+     * ******************************************************
+     * REFRESH *******************************************************
      */
     private void refresh() {
         List<Produit> prod = pr.afficherProduit();
@@ -223,9 +244,8 @@ public class GuiProduitController implements Initializable {
     }
 
     /**
-     * *************************************************** 
-     * GESTION DE PRODUIT
-     * *************************************************
+     * ***************************************************
+     * GESTION DE PRODUIT ****************************************************
      */
     @FXML
     private void uploadImage(ActionEvent event) throws FileNotFoundException {
@@ -450,12 +470,11 @@ public class GuiProduitController implements Initializable {
 
     /**
      * ******************************************
-     * GESTION DE STOCK 
-     * ******************************************
+     * GESTION DE STOCK *******************************************
      */
     @FXML
     private void AjoutStock(ActionEvent event
-    ) {
+    ) throws SQLException {
 
         Stock sto = new Stock();
 
@@ -465,7 +484,7 @@ public class GuiProduitController implements Initializable {
         alert.setContentText("Voulez-vous vraiment ajouter ce stock");
         Optional<ButtonType> action = alert.showAndWait();
         if (action.get() == ButtonType.OK) {
-            if (libS.getText().equals("") || prixS.getText().equals("") || quantiteS.getText().equals("") || dispoS.getValue().equals("") || idProdS.getText().equals("")) {
+            if (libS.getText().equals("") || prixS.getText().equals("") || quantiteS.getText().equals("") || dispoS.getValue().equals("")) {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setTitle("Information Dialog");
                 alert.setHeaderText(null);
@@ -495,11 +514,13 @@ public class GuiProduitController implements Initializable {
                 int prix1 = Integer.parseInt(prixS.getText());
                 int q = Integer.parseInt(quantiteS.getText());
                 sto.setDisponibilite(dispoS.getValue());
-                int idPS = Integer.parseInt(idProdS.getText());
+                ///////////////////////////////////////combo id
+
+                sto.setIdProduit(pr.searchByLib(idProdSCombo.getValue()));
 
                 sto.setPrix(prix1);
                 sto.setQuantite(q);
-                sto.setIdProduit(idPS);
+                // sto.setIdProduit(idPS);
 
                 st.ajouterStock(sto);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -516,7 +537,7 @@ public class GuiProduitController implements Initializable {
     }
 
     @FXML
-    private void ModifierStock(ActionEvent event) {
+    private void ModifierStock(ActionEvent event) throws SQLException {
 
         alert.setAlertType(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation");
@@ -524,7 +545,7 @@ public class GuiProduitController implements Initializable {
         alert.setContentText("Voulez-vous vraiment modifier ce stock");
         Optional<ButtonType> action = alert.showAndWait();
         if (action.get() == ButtonType.OK) {
-            if (libS.getText().equals("") || prixS.getText().equals("") || quantiteS.getText().equals("") || dispoS.getValue().equals("") || idProdS.getText().equals("")) {
+            if (libS.getText().equals("") || prixS.getText().equals("") || quantiteS.getText().equals("") || dispoS.getValue().equals("") || idProdSCombo.getValue().equals("Produit")) {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setTitle("Information Dialog");
                 alert.setHeaderText(null);
@@ -556,11 +577,10 @@ public class GuiProduitController implements Initializable {
                 int prix1 = Integer.parseInt(prixS.getText());
                 int q = Integer.parseInt(quantiteS.getText());
                 sto.setDisponibilite(dispoS.getValue());
-                int idPS = Integer.parseInt(idProdS.getText());
 
+                sto.setIdProduit(pr.searchByLib(idProdSCombo.getValue()));
                 sto.setPrix(prix1);
                 sto.setQuantite(q);
-                sto.setIdProduit(idPS);
 
                 sto.setId(stoID.getId());
 
@@ -575,7 +595,7 @@ public class GuiProduitController implements Initializable {
                 prixS.setText("");
                 quantiteS.setText("");
                 dispoS.setValue("Disponibilité");
-                idProdS.setText("");
+                idProdSCombo.setValue("Produit");
                 refresh1();
             }
         } else {
@@ -638,12 +658,11 @@ public class GuiProduitController implements Initializable {
 
     /**
      * **********************************************
-     * GESTION D'EMPLACEMENT 
-     ************************************************
+     * GESTION D'EMPLACEMENT ***********************************************
      */
     @FXML
     private void AjouterEmplacement(ActionEvent event
-    ) {
+    ) throws SQLException {
         Emplacement emp = new Emplacement();
         alert.setAlertType(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation");
@@ -651,7 +670,7 @@ public class GuiProduitController implements Initializable {
         alert.setContentText("Voulez-vous vraiment ajouter cet emplacement");
         Optional<ButtonType> action = alert.showAndWait();
         if (action.get() == ButtonType.OK) {
-            if (lieuE.getValue().equals("") || capaciteE.getText().equals("") || idSE.getText().equals("")) {
+            if (lieuE.getValue().equals("") || capaciteE.getText().equals("") || idSECombo.getValue().equals("")) {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setTitle("Information Dialog");
                 alert.setHeaderText(null);
@@ -666,10 +685,12 @@ public class GuiProduitController implements Initializable {
             } else {
                 emp.setLieu(lieuE.getValue());
                 int cap = Integer.parseInt(capaciteE.getText());
-                int idstock = Integer.parseInt(idSE.getText());
+                
+                ///////////////////////////////////////combo id
+
+                emp.setStock(st.searchByLibS(idSECombo.getValue()));
 
                 emp.setCapacite(cap);
-                emp.setStock(idstock);
 
                 em.ajouterEmplacement(emp);
 
@@ -688,7 +709,7 @@ public class GuiProduitController implements Initializable {
 
     @FXML
     private void ModifierEmplacement(ActionEvent event
-    ) {
+    ) throws SQLException {
         Emplacement emp = new Emplacement();
         alert.setAlertType(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation");
@@ -696,7 +717,7 @@ public class GuiProduitController implements Initializable {
         alert.setContentText("Voulez-vous vraiment modifier cet Emplacement");
         Optional<ButtonType> action = alert.showAndWait();
         if (action.get() == ButtonType.OK) {
-            if (lieuE.getValue().equals("") || capaciteE.getText().equals("") || idSE.getText().equals("")) {
+            if (lieuE.getValue().equals("") || capaciteE.getText().equals("") || idSECombo.getValue().equals("")) {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setTitle("Information Dialog");
                 alert.setHeaderText(null);
@@ -711,10 +732,11 @@ public class GuiProduitController implements Initializable {
             } else {
                 emp.setLieu(lieuE.getValue());
                 int cap = Integer.parseInt(capaciteE.getText());
-                int idstock = Integer.parseInt(idSE.getText());
+                ///////////////////////////////////////combo id
+
+                emp.setStock(st.searchByLibS(idSECombo.getValue()));
 
                 emp.setCapacite(cap);
-                emp.setStock(idstock);
 
                 Emplacement empID = listeEmp.getSelectionModel().getSelectedItem();
                 emp.setId(empID.getId());
@@ -730,7 +752,7 @@ public class GuiProduitController implements Initializable {
 
                 lieuE.setValue("Lieu");
                 capaciteE.setText("");
-                idSE.setText("");
+                idSECombo.setValue("Stock");
 
             }
         } else {
@@ -794,8 +816,7 @@ public class GuiProduitController implements Initializable {
 
     /**
      * ***********************************
-     * GESTION DES FAVORIS 
-     *************************************
+     * GESTION DES FAVORIS ************************************
      */
     @FXML
     private void AjouterFavoris(ActionEvent event) {
@@ -855,8 +876,7 @@ public class GuiProduitController implements Initializable {
 
     /**
      * *********************************************
-     * SET DATA FROM LISTVIEW 
-     ***********************************************
+     * SET DATA FROM LISTVIEW **********************************************
      */
     @FXML
     private void getDataProduit(MouseEvent event) {
@@ -891,7 +911,7 @@ public class GuiProduitController implements Initializable {
             dispoS.setValue(selectedDispo);
             quantiteS.setText(String.valueOf(selectedQ));
             prixS.setText(String.valueOf(selectedPrix));
-            idProdS.setText(String.valueOf(selectedIdP));
+            idProdSCombo.setValue(String.valueOf(selectedIdP));
         });
     }
 
@@ -905,8 +925,93 @@ public class GuiProduitController implements Initializable {
 
             lieuE.setValue(selectedLieu);
             capaciteE.setText(String.valueOf(selectedCap));
-            idSE.setText(String.valueOf(selectedStockE));
+            idSECombo.setValue(String.valueOf(selectedStockE));
         });
+    }
+
+//    private void genererPDF(ActionEvent event) {
+//                 OutputStream file = null;
+//        try {
+//            file = new FileOutputStream(new File("Stock_çaRoule.pdf"));
+// 
+//            // Create a new Document object
+//          Document document=new Document();
+// 
+//            // You need PdfWriter to generate PDF document
+//            PdfWriter.getInstance(document, file);
+// 
+//            // Opening document for writing PDF
+//            document.open();
+//            Stock sto=new Stock();
+//   //int mm= Integer.parseInt(idProdS.getText());
+//            // Writing content
+//            
+////List<News> lr= tt.afficherId(id1);
+//           List<Stock> stock = st.afficherStock();
+//            
+//             // System.out.println("hhhh");
+//             //ajouter titre
+//             Paragraph p=new Paragraph(); 
+//
+//             p.setAlignment(Element.ALIGN_CENTER);
+//              Font f=new Font();
+//             f.setStyle(Font.BOLD);
+//             f.setSize(20);
+//             f.setColor(BaseColor.RED);
+//                        p.setFont(f);
+//               p.add(sto.getLibelle());
+//            document.add(p);
+//            
+//            //ajouter desc
+//            document.add(new Paragraph("*******************************************************************************************************"));
+//            document.add(new Paragraph(sto.getQuantite()));
+//            document.add(new Paragraph("*******************************************************************************************************"));
+//             
+//              Paragraph p2=new Paragraph(); 
+//             f.setStyle(Font.BOLDITALIC);
+//             f.setSize(13);
+//             f.setColor(BaseColor.DARK_GRAY);
+//                        p2.setFont(f);
+//           p2.add("ajouter par: "+sto.getLibelle()+"  le "+sto.getDisponibilite());
+//            document.add(p2);
+//          //  Image img=Image.getInstance("");
+//// document.add(Image.getInstance("C:\\Users\\Admin\\Desktop\\valorantESport(front)\\src\\images.logo.png"));
+//                   // Add meta data information to PDF file
+//            document.addCreationDate();
+//            document.addAuthor("Javarevisited");
+//            document.addTitle("How to create PDF document in Java");
+//            document.addCreator("Thanks to iText, writing into PDF is easy");
+// 
+//  Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+//            alert.setTitle("Success");
+//            alert.setContentText("voulez vous vraiment télecharger un pdf?!");
+//            alert.show();
+//            // close the document
+//            document.close();
+// 
+//            System.out.println("Your PDF File is succesfully created");
+// 
+//        } catch (Exception e) {
+//            e.printStackTrace();
+// 
+//        } finally {
+// 
+//            // closing FileOutputStream
+//            try {
+//                if (file != null) {
+//                    file.close();
+//                }
+//            } catch (IOException io) {/*Failed to close*/
+// 
+//            }
+// 
+//        }   
+//    }
+    @FXML
+    private void generateStat(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("StatProducts.fxml"));
+        Stage window = (Stage) stat.getScene().getWindow();
+        window.setScene(new Scene(root));
     }
 
 }

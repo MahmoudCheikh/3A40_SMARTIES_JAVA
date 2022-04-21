@@ -20,7 +20,7 @@ public class Produit {
     
     
     public String toString() {
-        return "" + " libelle=" + libelle + " |  image=" + image + " |  description=" + description + " | prix=" + prix + " | type=" + type + "";
+        return "" + "Libelle         =     "+ libelle + "\nImage         =     "+ image + "\nDescription =     "+ description + "\nPrix             =     "+ prix + "\nType           =     "+ type + "";
     }
     
 
