@@ -3,28 +3,41 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-
 <BorderPane prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smarties.test.RegisterController">
    <center>
-      <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0">
+      <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #BF3C3C;">
          <children>
-            <Label layoutX="579.0" layoutY="269.0" text="Email" />
-            <Label layoutX="536.0" layoutY="305.0" text="Mot de passe" />
-            <Label layoutX="582.0" layoutY="340.0" text="Nom" />
-            <Label layoutX="574.0" layoutY="376.0" text="Prenom" />
-            <Label layoutX="573.0" layoutY="414.0" text="Adresse" />
-            <Label layoutX="573.0" layoutY="449.0" text="Captcha" />
+            <Label layoutX="579.0" layoutY="269.0" text="Email" textFill="WHITE" />
+            <Label layoutX="536.0" layoutY="305.0" text="Mot de passe" textFill="WHITE" />
+            <Label layoutX="582.0" layoutY="340.0" text="Nom" textFill="WHITE" />
+            <Label layoutX="574.0" layoutY="376.0" text="Prenom" textFill="WHITE" />
+            <Label layoutX="573.0" layoutY="414.0" text="Adresse" textFill="WHITE" />
+            <Label layoutX="573.0" layoutY="449.0" text="Captcha" textFill="WHITE" />
             <TextField fx:id="txtRegisterCaptcha" layoutX="625.0" layoutY="445.0" />
             <TextField fx:id="txtRegisterMail" layoutX="625.0" layoutY="265.0" />
             <TextField fx:id="txtRegisterPass" layoutX="625.0" layoutY="301.0" />
             <TextField fx:id="txtRegisterNom" layoutX="625.0" layoutY="336.0" />
             <TextField fx:id="txtRegisterPrenom" layoutX="625.0" layoutY="372.0" />
             <TextField fx:id="txtRegisterAdresse" layoutX="625.0" layoutY="410.0" />
-            <Button layoutX="625.0" layoutY="479.0" mnemonicParsing="false" onAction="#register" text="Créer" />
-            <Button layoutX="722.0" layoutY="479.0" mnemonicParsing="false" onAction="#retour" text="Retour" />
+            <Button layoutX="482.0" layoutY="479.0" mnemonicParsing="false" onAction="#register" prefHeight="25.0" prefWidth="190.0" stylesheets="@../services/styleSmarties.css" text="Créer">
+               <effect>
+                  <DropShadow color="#b9a7a7" />
+               </effect></Button>
+            <Button layoutX="728.0" layoutY="479.0" mnemonicParsing="false" onAction="#retour" prefHeight="25.0" prefWidth="190.0" stylesheets="@../services/styleSmarties.css" text="Retour">
+               <effect>
+                  <DropShadow color="#a48383" />
+               </effect></Button>
+            <ImageView fitHeight="128.0" fitWidth="360.0" layoutX="516.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/çaRoule.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </center>

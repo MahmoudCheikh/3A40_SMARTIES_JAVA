@@ -117,7 +117,7 @@ public class MessageService {
             ste = cnx.createStatement();
             ResultSet rs = ste.executeQuery(sql);
             while (rs.next()) {
-                options.add(rs.getString(2));
+                options.add(rs.getString("email"));
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());

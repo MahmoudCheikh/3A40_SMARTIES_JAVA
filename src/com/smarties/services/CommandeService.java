@@ -159,7 +159,7 @@ public class CommandeService {
     public List<Commande> triercommande() {
         List<Commande> list = new ArrayList<>();
         try{
-            String req = "SELECT * FROM commande order by id desc";
+            String req = "SELECT * FROM commande order by id asc";
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             
