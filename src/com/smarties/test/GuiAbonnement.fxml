@@ -28,15 +28,15 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="1014.0">
                      <children>
-                        <TextField fx:id="textIDAbonnement" layoutX="104.0" layoutY="419.0" prefHeight="25.0" prefWidth="89.0">
+                        <TextField fx:id="textIDAbonnement" layoutX="101.0" layoutY="419.0" prefHeight="25.0" prefWidth="121.0">
                            <effect>
                               <InnerShadow />
                            </effect></TextField>
-                        <TextField fx:id="textIDUserA" layoutX="104.0" layoutY="124.0" prefHeight="25.0" prefWidth="90.0">
+                        <TextField fx:id="textIDUserA" layoutX="104.0" layoutY="124.0" prefHeight="25.0" prefWidth="120.0">
                            <effect>
                               <InnerShadow />
                            </effect></TextField>
-                        <TextField fx:id="textPrixAb" layoutX="101.0" layoutY="286.0" prefHeight="25.0" prefWidth="90.0">
+                        <TextField fx:id="textPrixAb" layoutX="101.0" layoutY="286.0" prefHeight="25.0" prefWidth="121.0">
                            <effect>
                               <InnerShadow />
                            </effect></TextField>
@@ -52,7 +52,7 @@
                         <Label layoutX="8.0" layoutY="208.0" text="Date debut " textFill="#b9936c" />
                         <Label layoutX="19.0" layoutY="247.0" text="Date fin" textFill="#b9936c" />
                         <Label layoutX="30.0" layoutY="290.0" text="Prix" textFill="#b9936c" />
-                        <Button fx:id="btnAjouterAb" layoutX="74.0" layoutY="341.0" mnemonicParsing="false" onAction="#AjouterAbonnement" prefHeight="41.0" prefWidth="118.0" style="-fx-background-color: #ff7f50;" text="    Ajouter">
+                        <Button fx:id="btnAjouterAb" layoutX="104.0" layoutY="341.0" mnemonicParsing="false" onAction="#AjouterAbonnement" prefHeight="41.0" prefWidth="118.0" style="-fx-background-color: #ff7f50;" text="    Ajouter">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font></Button>
@@ -73,8 +73,8 @@
                               <Font name="System Bold" size="12.0" />
                            </font></Button>
                         <Label fx:id="wrong" layoutX="23.0" layoutY="44.0" prefHeight="23.0" prefWidth="250.0" textFill="#eb0b0b" />
-                        <DatePicker fx:id="datepickdeb" layoutX="103.0" layoutY="204.0" prefHeight="25.0" prefWidth="91.0" />
-                        <DatePicker fx:id="datepickfin" layoutX="103.0" layoutY="243.0" prefHeight="25.0" prefWidth="90.0" />
+                        <DatePicker fx:id="datepickdeb" layoutX="103.0" layoutY="204.0" prefHeight="25.0" prefWidth="118.0" />
+                        <DatePicker fx:id="datepickfin" layoutX="103.0" layoutY="243.0" prefHeight="25.0" prefWidth="119.0" />
                         <Label layoutX="42.0" layoutY="61.0" prefHeight="28.0" prefWidth="209.0" text="Veuillez remplir ce formulaire ">
                            <font>
                               <Font name="System Bold" size="14.0" />
@@ -83,7 +83,7 @@
                               <Glow />
                            </effect>
                         </Label>
-                        <ImageView fx:id="img1" fitHeight="29.0" fitWidth="42.0" layoutX="74.0" layoutY="347.0" opacity="0.62" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="img1" fitHeight="29.0" fitWidth="42.0" layoutX="110.0" layoutY="347.0" opacity="0.62" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/img1.jpg" />
                            </image>
@@ -98,12 +98,15 @@
                               <Image url="@../images/liste.png" />
                            </image>
                         </ImageView>
-                        <TextField fx:id="findAb" layoutX="500.0" layoutY="483.0" prefHeight="31.0" prefWidth="98.0" />
+                        <TextField fx:id="findAb" layoutX="500.0" layoutY="483.0" prefHeight="31.0" prefWidth="132.0" />
                         <Button fx:id="findType" layoutX="357.0" layoutY="531.0" mnemonicParsing="false" onAction="#ChercherType" prefHeight="32.0" prefWidth="89.0" text="Type">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font></Button>
-                        <Button fx:id="findPrix" layoutX="356.0" layoutY="589.0" mnemonicParsing="false" onAction="#ChercherPrix" prefHeight="30.0" prefWidth="91.0" text=" Prix" />
+                        <Button fx:id="findPrix" layoutX="356.0" layoutY="589.0" mnemonicParsing="false" onAction="#ChercherPrix" prefHeight="30.0" prefWidth="91.0" text=" Prix">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Button>
                         <Button fx:id="triPrix" layoutX="675.0" layoutY="534.0" mnemonicParsing="false" onAction="#TrierPrix" prefHeight="25.0" prefWidth="76.0" text=" Prix">
                            <font>
                               <Font name="System Bold" size="12.0" />
@@ -146,7 +149,7 @@
                               <Image url="@../images/sssssssss.jpg" />
                            </image>
                         </ImageView>
-                        <ComboBox fx:id="TypeAbonCombo" layoutX="105.0" layoutY="168.0" prefHeight="25.0" prefWidth="92.0" />
+                        <ComboBox fx:id="TypeAbonCombo" layoutX="103.0" layoutY="168.0" prefHeight="25.0" prefWidth="120.0" />
                         <ImageView fitHeight="30.0" fitWidth="36.0" layoutX="797.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/excelFadwa.jpeg" />
@@ -230,7 +233,7 @@
                               <Font name="System Bold Italic" size="12.0" />
                            </font>
                         </Button>
-                        <Button fx:id="findID" layoutX="438.0" layoutY="516.0" mnemonicParsing="false" onAction="#ChercherID" text="Id Abonnement" />
+                        <Button fx:id="findID" layoutX="438.0" layoutY="516.0" mnemonicParsing="false" onAction="#ChercherID" prefHeight="25.0" prefWidth="89.0" text="Location" />
                         <Text layoutX="304.0" layoutY="484.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rechercher par :" wrappingWidth="112.8568115234375">
                            <font>
                               <Font name="System Bold" size="14.0" />
