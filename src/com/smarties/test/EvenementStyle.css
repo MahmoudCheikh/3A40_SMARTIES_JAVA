@@ -25,3 +25,10 @@
     -fx-background-color: #00f; /* 2 */
     -fx-text-fill: white; /* 5 */
 }
+
+.choice-box {
+  -fx-background-color: black;
+  -fx-mark-color: orange;
+}
+
+.choice-box > .label { -fx-text-fill: white; }

@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
@@ -86,7 +88,7 @@
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font></Button>
-                        <ImageView fitHeight="75.0" fitWidth="169.0" layoutX="404.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="56.0" fitWidth="125.0" layoutX="25.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/evenement.png" />
                            </image>
@@ -115,11 +117,16 @@
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="CORAL" height="128.0" layoutX="-3.0" layoutY="479.0" stroke="BLACK" strokeType="INSIDE" width="1007.0" />
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="200.0" layoutX="918.0" layoutY="451.0" nodeOrientation="RIGHT_TO_LEFT" rotate="-35.1" stroke="WHITE" strokeType="INSIDE" width="19.0" />
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="200.0" layoutX="953.0" layoutY="451.0" rotate="-35.1" stroke="WHITE" strokeType="INSIDE" width="19.0" />
+                        <Label layoutX="167.0" layoutY="13.0" text="┏━━━━━━┛ Evenements┗━━━━━━┓" textFill="#ee891e">
+                           <font>
+                              <Font name="Arial Bold" size="30.0" />
+                           </font>
+                        </Label>
                      </children>
                   </AnchorPane>
             </content>
           </Tab>
-          <Tab style="-fx-background-color: #ff7f50;" text="                                                         Activite                                          ">
+          <Tab style="-fx-background-color: #ff7f50;" text="                                           Activite                                             ">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" onMouseClicked="#recupdonneesAct" prefHeight="426.0" prefWidth="600.0">
                      <children>
@@ -160,7 +167,12 @@
                                  </font>
                               </Button>
                               <ImageView fx:id="img" fitHeight="89.0" fitWidth="196.0" layoutX="59.0" layoutY="173.0" pickOnBounds="true" preserveRatio="true" />
-                              <TextField fx:id="txtidevent" layoutX="83.0" layoutY="264.0" />
+                              <ChoiceBox fx:id="idlist" layoutX="100.0" layoutY="264.0" prefWidth="150.0" stylesheets="@EvenementStyle.css">
+                                 <styleClass>
+                                    <String fx:value="choice-box" />
+                                    <String fx:value="label" />
+                                 </styleClass>
+                              </ChoiceBox>
                            </children>
                         </AnchorPane>
                         <ListView fx:id="listactivite" layoutX="585.0" layoutY="114.0" onMouseClicked="#recupdonneesAct" prefHeight="354.0" prefWidth="401.0" style="-fx-background-color: #1a1717;" styleClass="list-cell" stylesheets="@EvenementStyle.css" />
@@ -214,6 +226,95 @@
                      </children></AnchorPane>
             </content>
           </Tab>
+            <Tab style="-fx-background-color: #ff7f50;" text="                                           Participation                   ">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="-37.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/participer.png" />
+                           </image>
+                        </ImageView>
+                        <AnchorPane layoutX="63.0" layoutY="137.0" prefHeight="151.0" prefWidth="283.0" style="-fx-background-color: #FFF; -fx-border-color: #000; -fx-border-radius: 20;" />
+                        <Label layoutX="170.0" layoutY="112.0" stylesheets="@EvenementStyle.css" text="Formulaire :">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="83.0" layoutY="182.0" text="Id User " textFill="CORAL">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="83.0" layoutY="226.0" text="Id Event" textFill="CORAL">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <ChoiceBox fx:id="listiduser" layoutX="151.0" layoutY="180.0" prefWidth="150.0" stylesheets="@EvenementStyle.css">
+                           <styleClass>
+                              <String fx:value="label" />
+                              <String fx:value="choice-box" />
+                           </styleClass>
+                        </ChoiceBox>
+                        <ChoiceBox fx:id="listidevent" layoutX="151.0" layoutY="224.0" prefWidth="150.0" stylesheets="@EvenementStyle.css">
+                           <styleClass>
+                              <String fx:value="choice-box" />
+                              <String fx:value="label" />
+                           </styleClass>
+                        </ChoiceBox>
+                        <Button fx:id="ajouterP" layoutX="172.0" layoutY="288.0" mnemonicParsing="false" onAction="#AjouterPart" stylesheets="@EvenementStyle.css" text="Ajouter" textFill="CORAL">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Button>
+                        <Label layoutX="593.0" layoutY="56.0" stylesheets="@EvenementStyle.css" text="Liste des participations : ">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" cache="true" fill="CORAL" height="74.0" layoutX="374.0" layoutY="121.0" stroke="BLACK" strokeType="INSIDE" width="203.0" />
+                        <TextField fx:id="idpart" layoutX="444.0" layoutY="146.0" prefHeight="25.0" prefWidth="113.0" />
+                        <Text fill="WHITE" layoutX="406.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Text>
+                        <Button fx:id="supprimerp" layoutX="486.0" layoutY="212.0" mnemonicParsing="false" onAction="#SupprimerPart" prefHeight="30.0" prefWidth="91.0" stylesheets="@EvenementStyle.css" text="Supprimer" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="modifierp" layoutX="380.0" layoutY="212.0" mnemonicParsing="false" onAction="#ModifierPart" prefHeight="29.0" prefWidth="81.0" stylesheets="@EvenementStyle.css" text="Modifier" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Button>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="CORAL" height="128.0" layoutX="-3.0" layoutY="454.0" stroke="BLACK" strokeType="INSIDE" width="1007.0" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="200.0" layoutX="936.0" layoutY="428.0" nodeOrientation="RIGHT_TO_LEFT" rotate="-35.1" stroke="WHITE" strokeType="INSIDE" width="19.0" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="200.0" layoutX="897.0" layoutY="428.0" nodeOrientation="RIGHT_TO_LEFT" rotate="-35.1" stroke="WHITE" strokeType="INSIDE" width="19.0" />
+                        <Label layoutX="188.0" layoutY="14.0" text="┏━━━━━━┛ Participations┗━━━━━━┓" textFill="#ee891e">
+                           <font>
+                              <Font name="Arial Bold" size="30.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="cherP" layoutX="738.0" layoutY="78.0" />
+                        <Button fx:id="recherchep" layoutX="898.0" layoutY="75.0" mnemonicParsing="false" onAction="#rechercheP" prefHeight="30.0" prefWidth="90.0" stylesheets="@EvenementStyle.css" text="recherche" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Button>
+                        <ListView fx:id="listpart" layoutX="593.0" layoutY="104.0" onMouseClicked="#recupdonneespart" prefHeight="344.0" prefWidth="400.0" style="-fx-background-color: #1a1717;" styleClass="list-cell" stylesheets="@EvenementStyle.css" />
+                        <Label fx:id="lab" layoutX="462.0" layoutY="318.0" />
+                        <Label fx:id="lab" layoutX="485.0" layoutY="464.0" prefHeight="20.0" prefWidth="338.0" textFill="RED">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
             <Tab style="-fx-background-color: #ff7f50;" text="Impression">
               <content>
                 <AnchorPane fx:id="noimagefound" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
@@ -242,6 +343,11 @@
                               <Font name="System Bold" size="24.0" />
                            </font>
                         </Label>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="118.0" layoutY="309.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/imprimer.jpg" />
+                           </image>
+                        </ImageView>
                      </children>
                   </AnchorPane>
               </content>

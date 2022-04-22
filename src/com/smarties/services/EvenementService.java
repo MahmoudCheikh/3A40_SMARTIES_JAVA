@@ -23,6 +23,8 @@ import java.util.List;
  */
 public class EvenementService {
 
+   
+
     Connection cnx;
 
     public EvenementService() {
@@ -151,7 +153,7 @@ public class EvenementService {
      public List<Evenement> trier() {
         List<Evenement> list = new ArrayList<>();
         try{
-            String req = "SELECT * FROM evenement order by date_d desc";
+            String req = "SELECT * FROM evenement order by date_d asc";
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             
@@ -174,5 +176,53 @@ public class EvenementService {
         }
         return list ;
     }
-
+   
+      public ArrayList<Integer> getCombo() {
+        ArrayList<Integer> options = new ArrayList<>();
+        String sql = "select id from evenement";
+        Statement ste;
+        try {
+            ste = cnx.createStatement();
+            ResultSet rs = ste.executeQuery(sql);
+            while (rs.next()) {
+                options.add(rs.getInt(1));
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return options;
+    }
+      public ArrayList<Integer> getCombo1() {
+        ArrayList<Integer> options = new ArrayList<>();
+        String sql = "select id from users";
+        Statement ste;
+        try {
+            ste = cnx.createStatement();
+            ResultSet rs = ste.executeQuery(sql);
+            while (rs.next()) {
+                options.add(rs.getInt(1));
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return options;
+    }
+       public Evenement Chercher1 (int id) throws SQLException {
+  Evenement ess = new Evenement();
+    
+            String req = "SELECT nb_participants FROM evenement where id=?";
+             PreparedStatement ps = cnx.prepareStatement(req);
+             System.out.println("RECHERCHE...");
+             ps.setInt(1,id);
+            ResultSet rs = ps.executeQuery();
+            System.out.println(id);
+            while(rs.next()){
+               
+                ess.setNb_participants(rs.getInt(1)-1);
+               
+               
+            }
+      
+      return ess ;  
+    }
 }

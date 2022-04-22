@@ -6,6 +6,7 @@
 package com.smarties.services;
 
 import com.smarties.entities.Activite;
+import com.smarties.entities.Evenement;
 import com.smarties.tools.MaConnexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,6 +15,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -105,10 +108,10 @@ public class ActiviteService {
         }
 
     }
-    public List<Activite> Chercher(String nomact) {
+    public List<Activite> ChercherA(String nomact) {
        List<Activite> list = new ArrayList<>();
         try{
-            String req = "SELECT * FROM activite where nom=?";
+            String req = "SELECT * FROM activite where nom=? ";
              PreparedStatement ps = cnx.prepareStatement(req);
             System.out.println("RECHERCHE...");
             ps.setString(1,nomact);
@@ -117,19 +120,18 @@ public class ActiviteService {
             while(rs.next()){
                 Activite a = new Activite();
                 a.setId(rs.getInt(1));
-                a.setNom(rs.getString(2));  
-                a.setDescription(rs.getString(3));
-                a.setImage(rs.getString(4));
-                a.setId_event(rs.getInt(5));
-                
-                
-                list.add(a);
+                a.setNom(rs.getString(3));  
+                a.setDescription(rs.getString(4));
+                a.setImage(rs.getString(5));
+                a.setId_event(rs.getInt(2));
+                list.add(a);  
             }
             
         }
-        catch(SQLException e){
-            
+        catch(SQLException e){      
         }
         return list ;   
     }
+  
+
 }

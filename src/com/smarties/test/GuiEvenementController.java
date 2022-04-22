@@ -8,8 +8,10 @@ package com.smarties.test;
 import com.smarties.entities.Evenement;
 import com.smarties.services.EvenementService;
 import com.smarties.entities.Activite;
+import com.smarties.entities.Participation;
 import com.smarties.services.ActiviteService;
 import com.smarties.services.EnvoyerEmail;
+import com.smarties.services.ParticipationService;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -53,8 +55,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import static javafx.collections.FXCollections.observableList;
+import javafx.scene.control.ChoiceBox;
 /**
  * FXML Controller class
  *
@@ -64,6 +69,7 @@ public class GuiEvenementController implements Initializable {
 
     private EvenementService es = new EvenementService();
     private ActiviteService act = new ActiviteService();
+    private ParticipationService part= new ParticipationService();
    private EnvoyerEmail mail= new EnvoyerEmail();
       Connection cnx;
 
@@ -97,8 +103,6 @@ public class GuiEvenementController implements Initializable {
     private TextField txtdescription;
     @FXML
     private TextField txtimage;
-    @FXML
-    private TextField txtidevent;
     @FXML
     private Button btnajouterA;
     @FXML
@@ -135,7 +139,29 @@ public class GuiEvenementController implements Initializable {
     private ImageView afficheview;
     @FXML
     private AnchorPane noimagefound;
- 
+    @FXML
+    private ChoiceBox<Integer> idlist;
+    @FXML
+    private ChoiceBox<Integer> listiduser;
+    @FXML
+    private ChoiceBox<Integer> listidevent;
+    @FXML
+    private Button ajouterP;
+    @FXML
+    private ListView<Participation> listpart;
+    @FXML
+    private TextField idpart;
+    @FXML
+    private Button supprimerp;
+    @FXML
+    private Button modifierp;
+    @FXML
+    private TextField cherP;
+    @FXML
+    private Button recherchep;
+    @FXML
+    private Label lab;
+  
    
 
     /**
@@ -148,24 +174,31 @@ public class GuiEvenementController implements Initializable {
             listevent.getItems().addAll(a1);
             ArrayList a2 = (ArrayList) act.afficherActivite();
             listactivite.getItems().addAll(a2);
+            ArrayList a3 = (ArrayList) part.afficherP(); 
+            listpart.getItems().addAll(a3);
+       ObservableList<Integer> langs = FXCollections.observableArrayList(es.getCombo());
+        idlist.setItems(langs);    
+        listidevent.setItems(langs);
+        ObservableList<Integer> langs2 = FXCollections.observableArrayList(es.getCombo1());
+        listiduser.setItems(langs2);
     
-            
-       /* String query = "select id from evenement ";
-            Statement ste = cnx.createStatement();
-            ResultSet rs = ste.executeQuery(query);
-            ObservableList<Integer> list1 = FXCollections.observableArrayList (rs.getInt(query));
-            while(rs.next()){
-                txtidevent.setItems(list1);} */    
 }
+ 
    private void refresh() {
         List<Evenement> event = es.afficherEvenement();
         listevent.getItems().clear();
         listevent.getItems().addAll(event);
+        
     }
    private void refresh1() {
         List<Activite> actt = act.afficherActivite();
         listactivite.getItems().clear();
         listactivite.getItems().addAll(actt);
+    }
+   private void refresh2() {
+        List<Participation> partt = part.afficherP();
+        listpart.getItems().clear();
+        listpart.getItems().addAll(partt);
     }
     @FXML
     private void ajouter(ActionEvent event) {
@@ -262,7 +295,9 @@ public class GuiEvenementController implements Initializable {
             String ch = r.toString();
             items.add(r);
         }
-      
+      ObservableList<Integer> langs = FXCollections.observableArrayList(es.getCombo());
+        idlist.setItems(langs);
+        listidevent.setItems(langs);
     listevent.setItems(items);
      mail.envoyer(txtnom.getText());
        }
@@ -271,7 +306,14 @@ public class GuiEvenementController implements Initializable {
 
     @FXML
     private void delete(ActionEvent event) {
-        
+ if(!( Pattern.matches("[0-9]*",txtid.getText()))){
+           Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("entrez un type String !");
+            alert.showAndWait();
+          
+       }else{
        int id = Integer.parseInt(txtid.getText());
         es.supprimerEvenement(id);
           Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -286,7 +328,7 @@ public class GuiEvenementController implements Initializable {
         }
        
     listevent.setItems(items);
-    }
+    }}
 
     @FXML
     private void update(ActionEvent event) {
@@ -411,8 +453,7 @@ public class GuiEvenementController implements Initializable {
         av.setNom(txtname.getText());
         av.setDescription(txtdescription.getText());
         av.setImage(txtimage.getText());
-       int x3 =  Integer.parseInt(txtidevent.getText());
-       av.setId_event(x3);
+       av.setId_event(idlist.getValue());
    
    
 
@@ -436,6 +477,14 @@ public class GuiEvenementController implements Initializable {
 
     @FXML
     private void deleteAct(ActionEvent event) {
+        if(!( Pattern.matches("[0-9]*",txtID.getText()))){
+           Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("doit etre de type int !");
+            alert.showAndWait();
+          
+       } else{
            int id = Integer.parseInt(txtID.getText());
         act.supprimerActivite(id);
           Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -451,7 +500,7 @@ public class GuiEvenementController implements Initializable {
        
     listactivite.setItems(items);
     }
-
+    }
     @FXML
     private void updateAct(ActionEvent event) {
       if((txtname.getText().equals(""))||(txtdescription.getText().equals(""))||(txtimage.getText().equals(""))){
@@ -483,11 +532,8 @@ public class GuiEvenementController implements Initializable {
         actt.setNom(txtname.getText());
         actt.setDescription(txtdescription.getText());
         actt.setImage(txtimage.getText());
-    
-        int x1 =  Integer.parseInt(txtidevent.getText());
-       
 
-        actt.setId_event(x1);
+        actt.setId_event(idlist.getValue());
      
         
          int id = Integer.parseInt(txtID.getText());
@@ -505,16 +551,28 @@ public class GuiEvenementController implements Initializable {
 //chercher evenement
     @FXML
     private void chercher(ActionEvent event) {
+        if(!( Pattern.matches("[a-z,A-Z]*",rech.getText()))){
+           Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("entrez un type String !");
+            alert.showAndWait();
+          
+       }else{
            EvenementService  n=new EvenementService();
            List<Evenement> R=  n.Chercher(rech.getText());
-          
-       ObservableList<Evenement> datalist = FXCollections.observableArrayList(R);
-
+           if(R.isEmpty())
+           { Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success");
+            alert.setContentText("Evenement n'existe pas !!");
+            alert.show();
+           }
+           else {
+            ObservableList<Evenement> datalist = FXCollections.observableArrayList(R);
             listevent.setItems(datalist);
-        
-        
+          }
     }
-
+    }
 
 //recupération des données evenement
     @FXML
@@ -561,7 +619,7 @@ public class GuiEvenementController implements Initializable {
         image = listactivite.getSelectionModel().getSelectedItem().getImage();
 	txtimage.setText(image);
          idE = listactivite.getSelectionModel().getSelectedItem().getId_event();
-      //  txtidevent.setText(String.valueOf(idE));
+        idlist.setValue(idE);
     }
 
     @FXML
@@ -574,12 +632,26 @@ public class GuiEvenementController implements Initializable {
    //chercher Activite
      @FXML
     private void chercherA(ActionEvent event) {
-            ActiviteService  n=new ActiviteService();
-           List<Activite> R=  n.Chercher(cherA.getText());
-          ObservableList<Activite> items =FXCollections.observableArrayList(R);
-
-            listactivite.setItems(items);
-    }
+         if(!( Pattern.matches("[a-z,A-Z]*",cherA.getText()))){
+           Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("entrez un type String !");
+            alert.showAndWait();
+          
+       }else{
+          ActiviteService  a=new ActiviteService();
+          List<Activite> actt=  a.ChercherA(cherA.getText());
+           if(actt.isEmpty())
+           { Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success");
+            alert.setContentText("activite n'existe pas !!");
+            alert.show();
+           }
+           else {
+          ObservableList<Activite> oo =FXCollections.observableArrayList(actt);
+          listactivite.setItems(oo);}
+    }}
 
     @FXML
     private void uploadimage(ActionEvent event) throws FileNotFoundException {
@@ -626,8 +698,132 @@ public class GuiEvenementController implements Initializable {
                     }                
       }
     }         
+//CRUD entite participation
+    @FXML
+    private void AjouterPart(ActionEvent event) throws SQLException {
+        
+        if((listiduser.getItems().isEmpty())||(listidevent.getItems().isEmpty())){
+     Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("champs manquants !");
+            alert.showAndWait();
+         }
+        else{ 
+        Participation p = new Participation();
+       
+       p.setId_user(listiduser.getValue());
+       p.setId_event(listidevent.getValue());
+       part.ajouterP(p);
+      
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success");
+            alert.setContentText("Participation ajoutée!");
+            alert.show();
+      ObservableList<Participation> items =FXCollections.observableArrayList();
+        List<Participation> listpartt = part.afficherP();
+        for(Participation r : listpartt) {
+            String ch = r.toString();
+            items.add(r);
+        }
+     listpart.setItems(items);
+}
+    }
 
-    
+    @FXML
+    private void SupprimerPart(ActionEvent event) {
+         if(!( Pattern.matches("[0-9]*",idpart.getText()))){
+           Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("entrez un type String !");
+            alert.showAndWait();
+          
+       }else{
+          int id = Integer.parseInt(idpart.getText());
+        part.supprimerP(id);
+          Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success");
+            alert.setContentText("Participation Supprimée!");
+            alert.show();
+        ObservableList<Participation> items =FXCollections.observableArrayList();
+        List<Participation> listact = part.afficherP();
+        for(Participation r : listact) {
+            String ch = r.toString();
+            items.add(r);
+        }
+       
+    listpart.setItems(items);
+    }}
+
+    @FXML
+    private void recupdonneespart(MouseEvent event) {
+      
+         int id; 
+         int idU;
+         int idE;
+       
+        id = listpart.getSelectionModel().getSelectedItem().getId();
+        idpart.setText(String.valueOf(id));
+        idU = listpart.getSelectionModel().getSelectedItem().getId_user();
+	listiduser.setValue(idU); 
+        idE = listpart.getSelectionModel().getSelectedItem().getId_event();
+        listidevent.setValue(idE);
+    }
+
+    @FXML
+    private void ModifierPart(ActionEvent event) {
+          Participation actt = new Participation();
+        
+        
+          actt.setId_user(listiduser.getValue());
+        actt.setId_event(listidevent.getValue());
+     
+        
+         int id = Integer.parseInt(idpart.getText());
+         actt.setId(id);
+         
+         part.modifierP(actt);
+    refresh2();
+         Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success");
+            alert.setContentText("modification effectuée!");
+            alert.show();
+    }
+
+    @FXML
+    private void rechercheP(ActionEvent event) {
+         if(!( Pattern.matches("[0-9]*",cherP.getText()))){
+           Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("entrez un type int !");
+            alert.showAndWait();
+          
+       }else{
+           ParticipationService  n=new ParticipationService();
+           int i = Integer.parseInt(cherP.getText());
+           List<Participation> R=  n.Chercher(i);
+           int a =R.size();
+           lab.setText("Il y a "+a+" participants a cet evenement!" );
+           if(R.isEmpty())
+           { Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success");
+            alert.setContentText("cet evenement n'existe pas !!");
+            alert.show();
+           }
+           else {
+            ObservableList<Participation> datalist = FXCollections.observableArrayList(R);
+            listpart.setItems(datalist);
+          }
+    }
+    }
+
+  
+
+
+
+
             
    
     
