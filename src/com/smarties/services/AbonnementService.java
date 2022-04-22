@@ -4,7 +4,11 @@
  * and open the template in the editor.
  */
 package com.smarties.services;
-
+import javafx.fxml.FXML;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import java.io.File;
 import com.smarties.entities.Abonnement;
 import com.smarties.entities.Location;
 import com.smarties.tools.MaConnexion;
@@ -172,7 +176,7 @@ public class AbonnementService {
 }
     
     
-      public List<Abonnement> ChercherPrix( int price)
+      public List<Abonnement> ChercherPrix( float price)
              {
              
                List<Abonnement> list = new ArrayList<>();
@@ -180,7 +184,7 @@ public class AbonnementService {
             String req = "SELECT * FROM abonnement where prix=?";
              PreparedStatement ps = cnx.prepareStatement(req);
             System.out.println("RECHERCHE en cours ..");
-            ps.setInt(1,price);
+            ps.setFloat(1,price);
             ResultSet rs = ps.executeQuery();
          
               System.out.println(price);
@@ -360,6 +364,25 @@ public class AbonnementService {
 
     }
     
+     public long Recherche1() {
+
+        List<Abonnement> abon = afficherAbonnement();
+        return abon.stream().filter(b -> b.getPrix()>= 50).filter(b -> b.getPrix() <=100).count();
+
+    }
+     public long Recherche2() {
+
+        List<Abonnement> abon = afficherAbonnement();
+        return abon.stream().filter(b -> b.getPrix()>= 100).count();
+
+    }
+    
+     public long Recherche3() {
+
+        List<Abonnement> abon = afficherAbonnement();
+        return abon.stream().filter(b -> b.getPrix()<= 50).count();
+
+    }
     
     
     
@@ -374,7 +397,52 @@ public class AbonnementService {
         rs.next();
         return rs.getInt(1);
     }
+        public ArrayList<String> getCombo1() {
+        ArrayList<String> options = new ArrayList<>();
+        String sql = "select * from users";
+        Statement ste;
+        try {
+            ste = cnx.createStatement();
+            ResultSet rs = ste.executeQuery(sql);
+            while (rs.next()) {
+                options.add(rs.getString(1));
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return options;
+    }
 
-         
+       public void playHitSound(String fileName){
+             MediaPlayer mediaPlayer;
+         String path = getClass().getResource(fileName).getPath();
+        Media media = new Media(new File(path).toURI().toString());
+        mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+        mediaPlayer.play();
+    }
 }
 
+/*
+
+
+
+
+    MediaPlayer mediaPlayer;
+
+    @FXML
+    void play(MouseEvent event) {
+        String fileName = "SurvivetheMontageRKVC.mp3";
+        playHitSound(fileName);
+    }
+
+
+    private void playHitSound(String fileName){
+        String path = getClass().getResource(fileName).getPath();
+        Media media = new Media(new File(path).toURI().toString());
+        mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+        mediaPlayer.play();
+    }
+
+}*/

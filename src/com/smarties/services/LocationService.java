@@ -163,17 +163,17 @@ public class LocationService {
 
     }
 
-    public List<Location> ChercherID(int abon) {
+    public List<Location> ChercherID(int ID) {
 
         List<Location> list = new ArrayList<>();
         try {
-            String req = "SELECT * FROM location where id_abonnement_id=?";
+            String req = "SELECT * FROM location where id=?";
             PreparedStatement ps = cnx.prepareStatement(req);
             System.out.println("RECHERCHE en cours ..");
-            ps.setInt(1, abon);
+            ps.setInt(1, ID);
             ResultSet rs = ps.executeQuery();
 
-            System.out.println(abon);
+            System.out.println(ID);
             while (rs.next()) {
                 Location loc = new Location();
                 loc.setId(rs.getInt(1));
@@ -383,5 +383,20 @@ public class LocationService {
         }
         return options;
     }
+      /* public ArrayList<String> getCombo1() {
+        ArrayList<String> options = new ArrayList<>();
+        String sql = "select * from users";
+        Statement ste;
+        try {
+            ste = cnx.createStatement();
+            ResultSet rs = ste.executeQuery(sql);
+            while (rs.next()) {
+                options.add(rs.getString(1));
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return options;
+    }*/
 
 }

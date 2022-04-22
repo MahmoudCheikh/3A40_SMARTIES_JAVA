@@ -4,14 +4,26 @@
  * and open the template in the editor.
  */
 package com.smarties.test;
-
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;   
+import java.io.File;
+import javafx.fxml.FXML;
 import com.itextpdf.text.DocumentException;
 import com.smarties.entities.Abonnement;
+import java.util.Scanner;
+import javax.sound.sampled.*;
 
 import com.smarties.services.AbonnementService;
 import com.smarties.entities.Location;
 
 import com.smarties.services.LocationService;
+import com.smarties.services.UsersService;
 import com.smarties.tools.MaConnexion;
 import java.net.URL;
 import java.time.LocalDate;
@@ -64,6 +76,10 @@ public class GuiAbonnementController implements Initializable {
 
     private AbonnementService as = new AbonnementService();
     private LocationService loc = new LocationService();
+    private UsersService us = new UsersService();
+      String path = "C:\\java\\3A40_SMARTIES_JAVA\\src\\com\\smarties\\services\\musique.mp3";  
+     Media media = new Media(new File(path).toURI().toString()); 
+   MediaPlayer mediaPlayer = new MediaPlayer(media);  
     Alert alert = new Alert(Alert.AlertType.NONE);
     @FXML
     private TextField textIDAbonnement;
@@ -171,6 +187,10 @@ public class GuiAbonnementController implements Initializable {
     private Button sttat;
     @FXML
     private ComboBox<String> ComboIDAb;
+    @FXML
+    private PieChart piechaaart2;
+    @FXML
+    private ImageView chaaart;
 
 
     /*  Image myImage= new Image(getClass().getResourceAsStream("img1.jpg"));
@@ -190,6 +210,10 @@ public class GuiAbonnementController implements Initializable {
         ListLoc.getItems().addAll(l);*/
         TypeAbonCombo.getItems().addAll(typeAbonnement);
         ComboIDAb.setItems(FXCollections.observableArrayList(loc.getCombo()));
+       String path = "C:\\java\\3A40_SMARTIES_JAVA\\src\\com\\smarties\\services\\musique.mp3";  
+     Media media = new Media(new File(path).toURI().toString()); 
+   MediaPlayer mediaPlayer = new MediaPlayer(media);  
+
     }
 
     @FXML
@@ -205,11 +229,17 @@ public class GuiAbonnementController implements Initializable {
             alert.setContentText("Veuillez remplir tous les champs  !");
             alert.showAndWait();
 
-        }  else if (!(Pattern.matches("[0-9]*", textPrixAb.getText()))) {
+        } else if (!(Pattern.matches("[0-9]*", textPrixAb.getText())) || Integer.parseInt(textPrixAb.getText()) < 0) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Information Dialog");
             alert.setHeaderText(null);
             alert.setContentText("Le prix de l'abonnement  doit etre un entier  !");
+            alert.showAndWait();
+        } else if (Integer.parseInt(textPrixAb.getText()) < 0) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("Le prix de l'abonnement  doit etre un nombre positive  !");
             alert.showAndWait();
         } else if ((datepickdeb.getValue().getYear() > datepickfin.getValue().getYear()) || (datepickdeb.getValue().getMonthValue() > datepickfin.getValue().getMonthValue()) || (datepickdeb.getValue().getDayOfMonth() > datepickfin.getValue().getDayOfMonth())) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -238,7 +268,7 @@ public class GuiAbonnementController implements Initializable {
             ab.setDateD(datedeb);
             ab.setDateF(datefin);
             ab.setType(TypeAbonCombo.getValue());
-           
+
             as.ajouterAbonnement(ab);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Success");
@@ -256,9 +286,10 @@ public class GuiAbonnementController implements Initializable {
             /* ArrayList al = (ArrayList) as.afficherAbonnement();
         listAb.getItems().addAll(al);*/
 
-            //textIDUserA.setText(" ");
-            // textPrixAb.setText(" ");
-            // TextType.setText(" ");
+             textIDUserA.setText(" ");
+             textPrixAb.setText(" ");
+          
+           
         }
 
     }
@@ -295,75 +326,114 @@ public class GuiAbonnementController implements Initializable {
             }
             listAb.setItems(items);
         }
+         textIDUserA.setText(" ");
+             textPrixAb.setText(" ");
     }
 
     @FXML
     private void ModifierAbonnement(ActionEvent event) {
-        alert.setAlertType(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Confirmation");
-        alert.setHeaderText(null);
-        alert.setContentText("Voulez-vous vraiment modifier cet abonnement ?");
-        Optional<ButtonType> action = alert.showAndWait();
-        if (action.get() == ButtonType.OK) {
-            Abonnement ab = new Abonnement();
-            LocalDate datedeb = datepickdeb.getValue();
-            LocalDate datefin = datepickfin.getValue();
-            ab.setDateD(datedeb);
-            ab.setDateF(datefin);
-            ab.setType(TypeAbonCombo.getValue());
+        if (textIDUserA.getText().isEmpty() || textPrixAb.getText().isEmpty() || TypeAbonCombo.getValue().isEmpty() || (datepickdeb.getValue().equals("")) || (datepickfin.getValue().equals(""))) {
 
-            int x1 = Integer.parseInt(textIDAbonnement.getText());
-            int x2 = Integer.parseInt(textIDUserA.getText());
-            int x3 = Integer.parseInt(textPrixAb.getText());
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("Veuillez remplir tous les champs  !");
+            alert.showAndWait();
 
-            ab.setId(x1);
-            ab.setId_user_id(x2);
-            ab.setPrix(x3);
-
-            as.modifierAbonnement(ab);
-            ObservableList<Abonnement> items = FXCollections.observableArrayList();
-            List<Abonnement> listabb = as.afficherAbonnement();
-            for (Abonnement r : listabb) {
-                String ch = r.toString();
-                items.add(r);
-            }
-            listAb.setItems(items);
         } else {
-            ObservableList<Abonnement> items = FXCollections.observableArrayList();
-            List<Abonnement> listabb = as.afficherAbonnement();
-            for (Abonnement r : listabb) {
-                String ch = r.toString();
-                items.add(r);
-            }
-            listAb.setItems(items);
-        }
 
+            alert.setAlertType(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation");
+            alert.setHeaderText(null);
+            alert.setContentText("Voulez-vous vraiment modifier cet abonnement ?");
+            Optional<ButtonType> action = alert.showAndWait();
+            if (action.get() == ButtonType.OK) {
+                Abonnement ab = new Abonnement();
+                LocalDate datedeb = datepickdeb.getValue();
+                LocalDate datefin = datepickfin.getValue();
+                ab.setDateD(datedeb);
+                ab.setDateF(datefin);
+                ab.setType(TypeAbonCombo.getValue());
+
+                int x1 = Integer.parseInt(textIDAbonnement.getText());
+                int x2 = Integer.parseInt(textIDUserA.getText());
+                int x3 = Integer.parseInt(textPrixAb.getText());
+
+                ab.setId(x1);
+                ab.setId_user_id(x2);
+                ab.setPrix(x3);
+
+                as.modifierAbonnement(ab);
+                ObservableList<Abonnement> items = FXCollections.observableArrayList();
+                List<Abonnement> listabb = as.afficherAbonnement();
+                for (Abonnement r : listabb) {
+                    String ch = r.toString();
+                    items.add(r);
+                }
+                listAb.setItems(items);
+            } else {
+                ObservableList<Abonnement> items = FXCollections.observableArrayList();
+                List<Abonnement> listabb = as.afficherAbonnement();
+                for (Abonnement r : listabb) {
+                    String ch = r.toString();
+                    items.add(r);
+                }
+                listAb.setItems(items);
+            }
+        }
+             textIDUserA.setText(" ");
+             textPrixAb.setText(" ");
+             
+            /* TypeAbonCombo.setValue(" ");
+             textIDAbonnement.setText("");*/
+             
     }
 
     @FXML
     private void ChercherType(ActionEvent event) {
-
-        AbonnementService n = new AbonnementService();
-        List< Abonnement> R = n.ChercherType(findAb.getText());
-        if (R.isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Erreur");
-            alert.setContentText("  Desole !!  l'abonnement que vous cherchez ayant ce type   n'existe pas!");
-            alert.show();
+        if (findAb.getText().isEmpty()) {
+            
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("Veuillez remplir  le champs  !");
+            alert.showAndWait();
+            
+            
         } else {
+            AbonnementService n = new AbonnementService();
 
-            ObservableList< Abonnement> datalist = FXCollections.observableArrayList(R);
+            List< Abonnement> R = n.ChercherType(findAb.getText());
+            if (R.isEmpty()) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Erreur");
+                alert.setContentText("  Desole !!  l'abonnement que vous cherchez ayant ce type   n'existe pas!");
+                alert.show();
+            } else {
 
-            listAb.setItems(datalist);
-            findAb.setText(" ");
+                ObservableList< Abonnement> datalist = FXCollections.observableArrayList(R);
+
+                listAb.setItems(datalist);
+                findAb.setText("");
+            }
+
         }
-
     }
 
     @FXML
     private void ChercherPrix(ActionEvent event) {
+          if (findAb.getText().isEmpty()) {
+            
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("Veuillez remplir  le champs  !");
+            alert.showAndWait();
+            
+            
+        } else {
         AbonnementService n = new AbonnementService();
-        int price = Integer.parseInt(findAb.getText());
+       float price = Float.parseFloat(findAb.getText());
         List< Abonnement> R = n.ChercherPrix(price);
         if (R.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -375,9 +445,9 @@ public class GuiAbonnementController implements Initializable {
             ObservableList< Abonnement> datalist = FXCollections.observableArrayList(R);
 
             listAb.setItems(datalist);
-            findAb.setText(" ");
+            findAb.setText("");
         }
-
+          }
     }
 
     @FXML
@@ -450,13 +520,13 @@ public class GuiAbonnementController implements Initializable {
 
             //  int x1 = Integer.parseInt(textIdLocation.getText());
             int x2 = Integer.parseInt(TextIdUserLoc.getText());
-           // int x3 = Integer.parseInt(TextIdAbonne.getText());
+            // int x3 = Integer.parseInt(TextIdAbonne.getText());
             Float x4 = Float.parseFloat(TextDuree.getText());
             //loc1.setId(x1);
             loc1.setIdUser(x2);
             //loc1.setIdAbonnement(x3);
             loc1.setDuree(x4);
-             loc1.setIdAbonnement(as.searchByID(ComboIDAb.getValue()));
+            loc1.setIdAbonnement(as.searchByID(ComboIDAb.getValue()));
             //  System.out.println(loc.getCaptcha());
             loc.ajouterLocation(loc1);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -471,6 +541,12 @@ public class GuiAbonnementController implements Initializable {
             }
             ListLoc.setItems(items);
         }
+           TextDuree.setText("");
+         TextHeureLoc.setText("");
+         TextIdUserLoc.setText("");
+         TypeAbonCombo.setValue("");
+         TextIdUserLoc.setText("");
+         textIdLocation.setText("");
     }
 
     @FXML
@@ -500,11 +576,25 @@ public class GuiAbonnementController implements Initializable {
             }
             ListLoc.setItems(items);
         }
+           TextDuree.setText("");
+         TextHeureLoc.setText("");
+         TextIdUserLoc.setText("");
+         TypeAbonCombo.setValue("");
+         TextIdUserLoc.setText("");
+         textIdLocation.setText("");
 
     }
 
     @FXML
     private void ModifierLocation(ActionEvent event) throws SQLException {
+         if (TextIdUserLoc.getText().isEmpty() || ComboIDAb.getValue().isEmpty() || TextDuree.getText().isEmpty() || (textDatePickLoc.getValue().equals(""))) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("veuillez remplir le champs !");
+            alert.showAndWait();
+        } else{
+        
         alert.setAlertType(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation");
         alert.setHeaderText(null);
@@ -520,12 +610,12 @@ public class GuiAbonnementController implements Initializable {
 
             int x1 = Integer.parseInt(textIdLocation.getText());
             int x2 = Integer.parseInt(TextIdUserLoc.getText());
-            int x3 = Integer.parseInt(TextIdAbonne.getText());
+           // int x3 = Integer.parseInt(TextIdAbonne.getText());
             Float x4 = Float.parseFloat(TextDuree.getText());
             loc1.setIdAbonnement(as.searchByID(ComboIDAb.getValue()));
             loc1.setId(x1);
             loc1.setIdUser(x2);
-           // loc1.setIdAbonnement(x3);
+            // loc1.setIdAbonnement(x3);
             loc1.setDuree(x4);
             loc.modifierLocation(loc1);
             ObservableList<Location> items = FXCollections.observableArrayList();
@@ -544,14 +634,27 @@ public class GuiAbonnementController implements Initializable {
             }
             ListLoc.setItems(items);
         }
+         }
+         TextDuree.setText("");
+         TextHeureLoc.setText("");
+         TextIdUserLoc.setText("");
+         TypeAbonCombo.setValue("");
+         TextIdUserLoc.setText("");
+         textIdLocation.setText("");
 
     }
 
     @FXML
     private void ChercherDuree(ActionEvent event) {
-
+if (findLoc.getText().isEmpty())
+{  Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("veuillez remplir le champs !");
+            alert.showAndWait();}
+else {
         LocationService n = new LocationService();
-      float Duree = Float.parseFloat(findLoc.getText());
+        float Duree = Float.parseFloat(findLoc.getText());
         List< Location> R = n.ChercherDuree(Duree);
         if (R.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -563,15 +666,24 @@ public class GuiAbonnementController implements Initializable {
             ObservableList< Location> datalist = FXCollections.observableArrayList(R);
 
             ListLoc.setItems(datalist);
-            findLoc.setText(" ");
+            findLoc.setText("");
         }
+}
     }
 
     @FXML
     private void ChercherID(ActionEvent event) {
+        
+        if (findLoc.getText().isEmpty())
+{  Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("veuillez remplir le champs !");
+            alert.showAndWait();}
+else {
         LocationService n = new LocationService();
-        int abon = Integer.parseInt(findLoc.getText());
-        List< Location> R = n.ChercherID(abon);
+        int ID = Integer.parseInt(findLoc.getText());
+        List< Location> R = n.ChercherID(ID);
         if (R.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Success");
@@ -581,7 +693,8 @@ public class GuiAbonnementController implements Initializable {
             ObservableList< Location> datalist = FXCollections.observableArrayList(R);
 
             ListLoc.setItems(datalist);
-            findLoc.setText(" ");
+            findLoc.setText("");
+        }
         }
     }
 
@@ -628,9 +741,8 @@ public class GuiAbonnementController implements Initializable {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Information Dialog");
         alert.setHeaderText(null);
-        alert.setContentText("fichiier importer   !");
+        alert.setContentText("Votre Fichier  est importé en Excel avec succeés   !");
         alert.showAndWait();
-      
 
     }
 
@@ -640,14 +752,14 @@ public class GuiAbonnementController implements Initializable {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Information Dialog");
         alert.setHeaderText(null);
-        alert.setContentText("fichiier importer en pdf   !");
+        alert.setContentText("Votre Fichier  est importé en PDF avec succeés  !");
         alert.showAndWait();
     }
 
     @FXML
     private void getListeAb(MouseEvent event) {
-          Abonnement abo = new Abonnement();
-          listAb.setOnMouseClicked((event1) -> {
+        Abonnement abo = new Abonnement();
+        listAb.setOnMouseClicked((event1) -> {
             int selectedIdUser = listAb.getSelectionModel().getSelectedItem().getId_user_id();
             String selectedType = listAb.getSelectionModel().getSelectedItem().getType();
             LocalDate selectedDated = listAb.getSelectionModel().getSelectedItem().getDateD();
@@ -666,34 +778,116 @@ public class GuiAbonnementController implements Initializable {
 
     @FXML
     private void GetListLoc(MouseEvent event) {
-           Location loc = new Location();
-          ListLoc.setOnMouseClicked((event1) -> {
+        Location loc = new Location();
+        ListLoc.setOnMouseClicked((event1) -> {
             int selectedIdUser = ListLoc.getSelectionModel().getSelectedItem().getIdUser();
             String selectedHeure = ListLoc.getSelectionModel().getSelectedItem().getHeure();
             LocalDate selectedDate = ListLoc.getSelectionModel().getSelectedItem().getDate();
-             float selectedDuree = ListLoc.getSelectionModel().getSelectedItem().getDuree();
+            float selectedDuree = ListLoc.getSelectionModel().getSelectedItem().getDuree();
             int selectedIDABON = ListLoc.getSelectionModel().getSelectedItem().getIdAbonnement();
             int selectedId = ListLoc.getSelectionModel().getSelectedItem().getId();
 
-             ComboIDAb.setValue(String.valueOf(selectedIDABON));
+            ComboIDAb.setValue(String.valueOf(selectedIDABON));
             TextIdUserLoc.setText(String.valueOf(selectedIdUser));
             textIdLocation.setText(String.valueOf(selectedId));
-             textDatePickLoc.setValue(selectedDate);
-             TextDuree.setText(String.valueOf(selectedDuree));
-              
-              TextHeureLoc.setText(selectedHeure);
-              
+            textDatePickLoc.setValue(selectedDate);
+            TextDuree.setText(String.valueOf(selectedDuree));
+
+            TextHeureLoc.setText(selectedHeure);
+
         });
-        
-        
+
     }
 
     @FXML
     private void StatiistiqueAB(ActionEvent event) {
-      
-               pieChartt.setTitle("Les statistiques sur les Types des Abonnements "); 
+
+        pieChartt.setTitle("Les statistiques sur les Types des Abonnements ");
         pieChartt.getData().setAll(new PieChart.Data("VIP", as.Search1()), new PieChart.Data("Silver", as.Search2()),
                 new PieChart.Data("Gold", as.Search3()));
+    }
+
+    @FXML
+    private void sattistiquePrix(ActionEvent event) {
+        
+           piechaaart2.setTitle("Les statistiques sur les Prix des Abonnements ");
+        piechaaart2.getData().setAll(new PieChart.Data("Prix<50dt", as.Recherche3()), new PieChart.Data("50< Prix <100", as.Recherche1()),
+                new PieChart.Data("Prix >100", as.Recherche2()));
+    }
+
+    @FXML
+    private void PlaySound(ActionEvent event) {
+            
+       
+       
+  /*           
+  
+  //Scanner scanner = new Scanner(System.in);
+  
+  File file = new File("C:\\Users\\ASUS\\Desktop\\musique.mp3");
+  AudioInputStream audioStream = null;
+        try {
+            audioStream = AudioSystem.getAudioInputStream(file);
+        } catch (UnsupportedAudioFileException ex) {
+            Logger.getLogger(GuiAbonnementController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(GuiAbonnementController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+  Clip clip = null;
+        try {
+            clip = AudioSystem.getClip();
+        } catch (LineUnavailableException ex) {
+            Logger.getLogger(GuiAbonnementController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            clip.open(audioStream);
+        } catch (LineUnavailableException ex) {
+            Logger.getLogger(GuiAbonnementController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(GuiAbonnementController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+  clip.start();
+        
+  Media buzzer;
+        buzzer = new Media(getClass().getResource("C:\\java\\3A40_SMARTIES_JAVA\\src\\com\\smarties\\services\\musique.mp3").toExternalForm());
+  MediaPlayer mediaPlayer = new MediaPlayer(buzzer);
+  mediaPlayer.setAutoPlay(true);  
+*/
+  //  String path = "C:\\Users\\ASUS\\Desktop\\musique.mp3";  
+   /* String path = "C:\\java\\3A40_SMARTIES_JAVA\\src\\com\\smarties\\services\\musique.mp3";  
+     Media media = new Media(new File(path).toURI().toString()); 
+       MediaPlayer mediaPlayer = new MediaPlayer(media);  */
+           mediaPlayer.play();
+            mediaPlayer.setVolume(1);
+    }
+
+    @FXML
+    private void stopSound(ActionEvent event) {
+        
+          
+           mediaPlayer.stop();
+         
+          
+    }
+
+    @FXML
+    private void PauseSound(ActionEvent event) {
+        mediaPlayer.pause();
+    }
+
+    @FXML
+    private void volumeBas(ActionEvent event) {
+        mediaPlayer.setVolume(0.1);
+    }
+
+    @FXML
+    private void volumemoyen(ActionEvent event) {
+         mediaPlayer.setVolume(0.5);
+    }
+
+    @FXML
+    private void volumeHaut(ActionEvent event) {
+         mediaPlayer.setVolume(1);
     }
 
 }
