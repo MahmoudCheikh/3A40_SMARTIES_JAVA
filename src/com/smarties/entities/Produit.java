@@ -73,7 +73,16 @@ public class Produit {
     public void setDescription(String description) {
         this.description = description;
     }
+private static int id_courant;
 
+    public static int getId_courant() {
+        return id_courant;
+    }
+ 
+
+    public static void setId_courant(int id_courant) {
+        Produit.id_courant = id_courant;
+    }
     //constructeurs 
     public Produit(int id, String libelle, String image, String description, float prix, String type) {
         this.id = id;

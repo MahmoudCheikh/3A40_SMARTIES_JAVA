@@ -7,13 +7,13 @@
 <BorderPane prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smarties.test.GuiFrontController">
     <center>
         <AnchorPane id="AnchorPane" fx:id="a1" prefHeight="672.0" prefWidth="1366.0">
-    
-        </AnchorPane>
+            </AnchorPane>
+
     </center>
     <top>
         <AnchorPane prefHeight="38.0" prefWidth="1366.0" BorderPane.alignment="CENTER">
          <children>
-                <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="90.0" text="Produits" />
+                <Button fx:id="btnproduitsF" mnemonicParsing="false" onAction="#GestionProduit" prefHeight="36.0" prefWidth="90.0" text="Produits" />
             <Button layoutX="90.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="90.0" text="Les Sites" />
             <Button fx:id="evenement" layoutX="180.0" mnemonicParsing="false" onAction="#evenement" prefHeight="36.0" prefWidth="90.0" text="Evenements" />
             <Button layoutX="270.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="90.0" text="Forum" />

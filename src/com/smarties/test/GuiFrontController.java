@@ -28,7 +28,10 @@ public class GuiFrontController implements Initializable {
     @FXML
     private Button evenement;
     @FXML
-     AnchorPane a1;
+    AnchorPane a1;
+    private Button btnproduitsF;
+    @FXML
+    private AnchorPane anp1;
 
     /**
      * Initializes the controller class.
@@ -51,8 +54,15 @@ public class GuiFrontController implements Initializable {
 
     @FXML
     private void evenement(ActionEvent event) throws IOException {
-         AnchorPane xx;
+        AnchorPane xx;
         xx = FXMLLoader.load(getClass().getResource("AfficherEvent.fxml"));
+        a1.getChildren().setAll(xx);
+    }
+
+    @FXML
+    private void GestionProduit(ActionEvent event) throws IOException {
+        AnchorPane xx;
+        xx = FXMLLoader.load(getClass().getResource("GuiProduitFront.fxml"));
         a1.getChildren().setAll(xx);
     }
 

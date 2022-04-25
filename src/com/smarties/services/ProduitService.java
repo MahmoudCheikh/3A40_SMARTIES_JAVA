@@ -16,6 +16,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 /**
@@ -181,23 +183,88 @@ public class ProduitService {
         return exist;
 
     }
-     public long SearchVelo() {
-            List<Produit> prod = afficherProduit();
+
+    public long SearchVelo() {
+        List<Produit> prod = afficherProduit();
         return prod.stream().filter(b -> b.getType().equalsIgnoreCase("Velo")).count();
 
     }
 
     public long SearchPDR() {
 
-         List<Produit> prod = afficherProduit();
+        List<Produit> prod = afficherProduit();
         return prod.stream().filter(b -> b.getType().equalsIgnoreCase("Piece de Rechange")).count();
 
     }
 
     public long SearchAcc() {
 
-          List<Produit> prod = afficherProduit();
+        List<Produit> prod = afficherProduit();
         return prod.stream().filter(b -> b.getType().equalsIgnoreCase("Accesssoire")).count();
 
     }
+
+    public Produit GetProdbyid(int b) throws SQLException {
+
+        //-------------------- Update ----------//
+        Produit pr = new Produit();
+
+        String query = "select * from produit where id = ? ";
+        PreparedStatement ps;
+        try {
+            ps = MaConnexion.getInstance().getCnx().prepareCall(query);
+            ps.setInt(1, b);
+            ResultSet rest = ps.executeQuery();
+
+            while (rest.next()) {
+                pr.setId(rest.getInt("id"));
+                pr.setLibelle(rest.getString("libelle"));
+                pr.setPrix(rest.getFloat("prix"));
+                pr.setImage(rest.getString("image"));
+                pr.setDescription(rest.getString("description"));
+                pr.setType(rest.getString("type"));
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ProduitService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return pr;
+
+    }
+
+    public void showActual() {
+        PreparedStatement ste;
+        ResultSet result;
+        String sql = "select count (*) from produit  ";
+        int i = 0;
+        Produit pr = new Produit();
+        try {
+            ste = cnx.prepareStatement(sql);
+            result = ste.executeQuery();
+            if (result.next()) {
+                i = result.getInt(1);
+            }
+        } catch (SQLException e) {
+
+        }
+
+        String sql2 = "select * from produit  ";
+        try {
+            ste = cnx.prepareStatement(sql2);
+            result = ste.executeQuery();
+            if (result.next()) {
+                pr.setId(result.getInt("id"));
+                pr.setLibelle(result.getString("libelle"));
+                pr.setPrix(result.getFloat("prix"));
+                pr.setImage(result.getString("image"));
+                pr.setDescription(result.getString("description"));
+                pr.setType(result.getString("type"));
+            }
+
+        } catch (SQLException ex) {
+        }
+
+    }
+
 }
