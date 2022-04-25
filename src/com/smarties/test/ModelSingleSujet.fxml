@@ -1,17 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="200.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smarties.test.ModelSingleSujetController">
    <children>
-      <Label fx:id="txtTitre" layoutX="55.0" layoutY="69.0" text="Titre" />
-      <Label fx:id="txtContent" layoutX="56.0" layoutY="104.0" text="Contenu" />
-      <Label fx:id="txtDate" layoutX="180.0" layoutY="23.0" text="Date" />
-      <Label fx:id="txtUser" layoutX="300.0" layoutY="23.0" text="User" />
-      <Button fx:id="afficher" layoutX="510.0" layoutY="28.0" mnemonicParsing="false" onAction="#afficher" text="Afficher" />
-      <Button fx:id="modifier" layoutX="510.0" layoutY="65.0" mnemonicParsing="false" onAction="#modifier" text="Modifier" />
-      <Button fx:id="supprimer" layoutX="510.0" layoutY="100.0" mnemonicParsing="false" onAction="#supprimer" text="Supprimer" />
+      <Label fx:id="txtTitre" layoutX="55.0" layoutY="69.0" text="Titre" textFill="#e40707">
+         <stylesheets>
+            <URL value="@../services/styleSmarties.css" />
+            <URL value="@../services/news.css" />
+         </stylesheets>
+         <font>
+            <Font name="Barlow Condensed Light" size="16.0" />
+         </font></Label>
+      <Label fx:id="txtContent" layoutX="56.0" layoutY="104.0" text="Contenu" textFill="#e40707">
+         <stylesheets>
+            <URL value="@../services/styleSmarties.css" />
+            <URL value="@../services/news.css" />
+         </stylesheets>
+         <font>
+            <Font name="Barlow Condensed Light" size="16.0" />
+         </font></Label>
+      <Label fx:id="txtDate" layoutX="180.0" layoutY="23.0" text="Date" textFill="#e40707">
+         <stylesheets>
+            <URL value="@../services/styleSmarties.css" />
+            <URL value="@../services/news.css" />
+         </stylesheets>
+         <font>
+            <Font name="Barlow Condensed Light" size="16.0" />
+         </font></Label>
+      <Label fx:id="txtUser" layoutX="300.0" layoutY="23.0" text="User" textFill="#e40707">
+         <stylesheets>
+            <URL value="@../services/styleSmarties.css" />
+            <URL value="@../services/news.css" />
+         </stylesheets>
+         <font>
+            <Font name="Barlow Condensed Light" size="16.0" />
+         </font></Label>
+      <Button fx:id="afficher" layoutX="510.0" layoutY="28.0" mnemonicParsing="false" onAction="#afficher" text="Afficher">
+         <stylesheets>
+            <URL value="@EvenementStyle.css" />
+            <URL value="@../services/styleSmarties.css" />
+         </stylesheets></Button>
+      <Button fx:id="modifier" layoutX="510.0" layoutY="65.0" mnemonicParsing="false" onAction="#modifier" text="Modifier">
+         <stylesheets>
+            <URL value="@EvenementStyle.css" />
+            <URL value="@../services/styleSmarties.css" />
+         </stylesheets></Button>
+      <Button fx:id="supprimer" layoutX="510.0" layoutY="100.0" mnemonicParsing="false" onAction="#supprimer" text="Supprimer">
+         <stylesheets>
+            <URL value="@EvenementStyle.css" />
+            <URL value="@../services/styleSmarties.css" />
+         </stylesheets></Button>
    </children>
+   <stylesheets>
+      <URL value="@../services/styleSmarties.css" />
+      <URL value="@../services/news.css" />
+   </stylesheets>
+   <effect>
+      <DropShadow />
+   </effect>
 </AnchorPane>

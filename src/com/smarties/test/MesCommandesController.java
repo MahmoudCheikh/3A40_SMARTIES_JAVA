@@ -5,36 +5,36 @@
  */
 package com.smarties.test;
 
+import com.itextpdf.text.DocumentException;
 import com.smarties.entities.Achat;
 import com.smarties.entities.Commande;
-import com.smarties.entities.Sujet;
 import com.smarties.services.AchatService;
 import com.smarties.services.CommandeService;
+import com.smarties.services.MessageService;
 import com.smarties.services.ProduitService;
-import java.io.IOException;
+import com.smarties.services.UsersService;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
+import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.VBox;
-import jdk.nashorn.internal.runtime.UserAccessorProperty;
+import javafx.scene.input.MouseEvent;
+import org.controlsfx.control.Notifications;
 
 /**
  * FXML Controller class
@@ -45,112 +45,149 @@ public class MesCommandesController implements Initializable {
 
     private CommandeService cs = new CommandeService();
     private AchatService sa = new AchatService();
+    UsersService us = new UsersService();
+    MessageService ms = new MessageService();
     ProduitService pr = new ProduitService();
+
     Alert alert = new Alert(Alert.AlertType.NONE);
 
     @FXML
-    private Button modifercomm;
+    private TextField txtnbrproduitfront;
     @FXML
-    private Button supprcomm;
-    private ListView<Commande> Mycommandeclient;
+    private ListView<Commande> listcommandefront;
     @FXML
-    private TextField idcommande;
+    private Button btnajouterc;
     @FXML
-    private ComboBox<String> BoxCommProd;
+    private Button btnupdatec;
     @FXML
-    private TextField nbrprd;
+    private Button btndeletec;
     @FXML
-    private ListView<Achat> myachatclient;
+    private TextField txtidfront;
     @FXML
-    private VBox contenu;
+    private Button recherche;
     @FXML
-    private ScrollPane scroll;
+    private TextField rechcfront;
     @FXML
-    private Button Act;
+    private Button triid;
+    @FXML
+    private Button actc;
+    @FXML
+    private Button pdfgen;
+    @FXML
+    private ComboBox<String> comboCommProdfront;
+    @FXML
+    private Tab btndeleteachat;
+    @FXML
+    private ListView<Achat> listachatfront;
+    @FXML
+    private Button actac;
+    @FXML
+    private Button trierachat;
+    @FXML
+    private Button versachat;
+    @FXML
+    private TextField txtidcom;
+    @FXML
+    private TextField txtidprod;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //My Commande Client
-       /* ArrayList al = (ArrayList) cs.afficherCommande();
-        Mycommandeclient.getItems().addAll(al);
-        BoxCommProd.setItems(FXCollections.observableArrayList(cs.comboCommProd()));
+        ArrayList al = (ArrayList) cs.afficherCommande();
+        listcommandefront.getItems().addAll(al);
 
-        //My Achat Client
         ArrayList a2 = (ArrayList) sa.afficherAchat();
-        myachatclient.getItems().addAll(al);*/
-
-        List<Commande> listCom = cs.afficherCommande();
-
-        if (!listCom.isEmpty()) {
-            for (Commande commande : listCom) {
-                
-                System.out.println(commande);
-                contenu.getChildren().add(makeCommande(commande));
-            }
-        } else {
-
-        }
-        scroll.setContent(contenu);
-
-    }
-
-    public Parent makeCommande(Commande commande) {
-        Parent innerContainer = null;
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("ModelCommande.fxml"));
-            innerContainer = loader.load();
-      if(commande.getIdUser()==Smarties.user.getId()){
-            //  HBox innerContainer = ((HBox) ((AnchorPane) ((AnchorPane) parent).getChildren().get(0)).getChildren().get(0));
-            ((Label) innerContainer.lookup("#txtIdComm")).setText("Numero de commande: " + commande.getId());
-             ((Label) innerContainer.lookup("#txtNbrProd")).setText("Nombre Produit : " + commande.getNbProduits());                                       
-            ((Label) innerContainer.lookup("#txtProd")).setText("Produit : " + commande.getIdProduit());
-            ((Label) innerContainer.lookup("#txtIdUser")).setText("Id Client : " + Smarties.user.getId());}
-      
-      else{((Label) innerContainer.lookup("#txtIdComm")).setText("");
-             ((Label) innerContainer.lookup("#txtNbrProd")).setText("");                                             
-            ((Label) innerContainer.lookup("#txtProd")).setText("");
-            ((Label) innerContainer.lookup("#txtIdUser")).setText("");
-            innerContainer.lookup("#img").setVisible(false);
-      }
-
-           //((Label) innerContainer.lookup("#txtPrixProd")).setText("Titre : " + commande.get);
-           //((Button) innerContainer.lookup("#supprimer")).setOnAction((event) -> afficherSujet(sujet));
-         //   ((Button) innerContainer.lookup("#modifier")).setOnAction((event) -> supprimerSujet(sujet));
-
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
-        return innerContainer;
-
+        listachatfront.getItems().addAll(a2);
+        // TODO
+        comboCommProdfront.setItems(FXCollections.observableArrayList(cs.comboCommProd()));
     }
 
     @FXML
-    private void updatecomm(ActionEvent event) throws SQLException {
-        if ((BoxCommProd.getValue().equals("")) || (nbrprd.getText().equals(""))) {
+    private void getDataCommande(MouseEvent event) {
+        Commande com = new Commande();
+        listcommandefront.setOnMouseClicked((event1) -> {
+
+            int selectedNbProd = listcommandefront.getSelectionModel().getSelectedItem().getNbProduits();
+             int selectedidcom = listcommandefront.getSelectionModel().getSelectedItem().getIdUser();
+              int selectedidprod = listcommandefront.getSelectionModel().getSelectedItem().getIdProduit();
+
+
+            txtnbrproduitfront.setText(String.valueOf(selectedNbProd));
+            txtidcom.setText(String.valueOf(selectedidcom));
+            txtidprod.setText(String.valueOf(selectedidprod));
+        });
+    }
+
+    @FXML
+    private void ajouterc(ActionEvent event) throws SQLException {
+        alert.setAlertType(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation");
+        alert.setHeaderText(null);
+        alert.setContentText("Voulez-vous vraiment ajouter cet commande Monsieur/Mme");
+        Optional<ButtonType> action = alert.showAndWait();
+        if (action.get() == ButtonType.OK) {
+            if (txtnbrproduitfront.getText().equals("") || comboCommProdfront.getValue().equals("")) {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Information Dialog");
+                alert.setHeaderText(null);
+                alert.setContentText("champs manquants !");
+                alert.showAndWait();
+            } else if (!(Pattern.matches("[0-9]*", txtnbrproduitfront.getText()))) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Information Dialog");
+                alert.setHeaderText(null);
+                alert.setContentText("le quantite de porduit doit etre de type Int !");
+                alert.showAndWait();
+            } else {
+                Commande c = new Commande();
+                    
+                int x2 = Integer.parseInt(txtnbrproduitfront.getText());
+ System.out.println(" Achat Effecute !");
+        Notifications.create().title("Bonne Nouvelle").text("Votre Achat a été passé avec succes félicitation").darkStyle().position(Pos.BOTTOM_CENTER).showWarning();
+        
+                //c.setIdUser(us.searchByMail(comboComm.getValue()));
+                c.setIdProduit(pr.searchByLib(comboCommProdfront.getValue()));
+
+                c.setNbProduits(x2);
+                c.setIdUser(Smarties.user.getId());
+                cs.ajouterCommande(c);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Success");
+                alert.setContentText("ajout effectué avec succé!");
+                alert.show();
+
+            }
+        }
+    }
+
+    @FXML
+    private void update(ActionEvent event) throws SQLException {
+        if ((txtnbrproduitfront.getText().equals("")) || (comboCommProdfront.getValue().equals(""))) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Information Dialog");
             alert.setHeaderText(null);
             alert.setContentText("champs manquants !");
             alert.showAndWait();
-        } else if (!(Pattern.matches("[0-9]*", nbrprd.getText()))) {
+        } else if (!(Pattern.matches("[0-9]*", txtnbrproduitfront.getText()))) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Information Dialog");
             alert.setHeaderText(null);
-            alert.setContentText("nombre de produit doit etre Superieur a 1 Mr Le Client Merci !");
+            alert.setContentText("nombre de produit doit etre de type Int !");
             alert.showAndWait();
         } else {
             Commande c = new Commande();
 
-            int qtnprod = Integer.parseInt(nbrprd.getText());
-            c.setIdProduit(pr.searchByLib(BoxCommProd.getValue()));
+            int x2 = Integer.parseInt(txtnbrproduitfront.getText());
+            //c.setIdUser(us.searchByMail(comboComm.getValue()));
+            c.setIdProduit(pr.searchByLib(comboCommProdfront.getValue()));
 
-            c.setNbProduits(qtnprod);
+            c.setNbProduits(x2);
 
-            int id = Integer.parseInt(idcommande.getText());
+            int id = Integer.parseInt(txtidfront.getText());
             c.setId(id);
+            c.setIdUser(Smarties.user.getId());
 
             System.out.println(c);
 
@@ -169,13 +206,13 @@ public class MesCommandesController implements Initializable {
     }
 
     @FXML
-    private void deletecomm(ActionEvent event) {
-        int id = Integer.parseInt(idcommande.getText());
+    private void deletec(ActionEvent event) {
+        int id = Integer.parseInt(txtidfront.getText());
         cs.supprimerCommande(id);
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Success");
-        alert.setContentText("Commande supprimé Mr Le Client !");
+        alert.setContentText("Commande supprimé!");
         alert.show();
         ObservableList<Commande> items = FXCollections.observableArrayList();
         List<Commande> listcomm = cs.afficherCommande();
@@ -183,20 +220,82 @@ public class MesCommandesController implements Initializable {
             String ch = r.toString();
             items.add(r);
         }
-        Mycommandeclient.setItems(items);
-
+        listcommandefront.setItems(items);
     }
 
-//Achat 
+    @FXML
+    private void Rechercher(ActionEvent event) {
+        CommandeService n = new CommandeService();
+        List<Commande> R = n.Rechercher(rechcfront.getText());
+
+        ObservableList<Commande> datalist = FXCollections.observableArrayList(R);
+
+        listcommandefront.setItems(datalist);
+    }
 
     @FXML
-    private void act(ActionEvent event) {
-         ObservableList<Commande> items = FXCollections.observableArrayList();
+    private void triercommande(ActionEvent event) {
+        CommandeService n = new CommandeService();
+        // int price = Integer.parseInt(findAb.getText());
+        List< Commande> R = n.triercommande();
+
+        ObservableList< Commande> datalist = FXCollections.observableArrayList(R);
+
+        listcommandefront.setItems(datalist);
+    }
+
+    @FXML
+    private void actcommande(ActionEvent event) {
+        ObservableList<Commande> items = FXCollections.observableArrayList();
         List<Commande> listcomm = cs.afficherCommande();
         for (Commande r : listcomm) {
             String ch = r.toString();
             items.add(r);
         }
-        Mycommandeclient.setItems(items);
+        listcommandefront.setItems(items);
     }
+
+    @FXML
+    private void pdf(ActionEvent event) throws DocumentException {
+        cs.Gpdf();
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Information Dialog");
+        alert.setHeaderText(null);
+        alert.setContentText("fichiier importer en pdf   !");
+        alert.showAndWait();
+    }
+
+    @FXML
+    private void getDataAchat(MouseEvent event) {
+        ObservableList<Achat> items = FXCollections.observableArrayList();
+        List<Achat> listachh = sa.afficherAchat();
+        for (Achat r : listachh) {
+            String ch = r.toString();
+            items.add(r);
+        }
+        listachatfront.setItems(items);
+    }
+
+    @FXML
+    private void actachat(ActionEvent event) {
+    }
+
+    @FXML
+    private void trierachatid(ActionEvent event) {
+        AchatService n = new AchatService();
+        // int price = Integer.parseInt(findAb.getText());
+        List< Achat> R = n.trierachatid();
+
+        ObservableList< Achat> datalist = FXCollections.observableArrayList(R);
+
+        listachatfront.setItems(datalist);
+    }
+
+    @FXML
+    private void commachat(ActionEvent event) {
+        int id = Integer.parseInt(txtidcom.getText());
+        int idprod = Integer.parseInt(txtidprod.getText());
+        sa.ajouterAchat(id , idprod);
+    }
+
 }

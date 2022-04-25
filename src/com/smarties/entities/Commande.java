@@ -5,11 +5,18 @@
  */
 package com.smarties.entities;
 
+import com.smarties.services.ProduitService;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author user
  */
 public class Commande {
+
+    ProduitService produitService = new ProduitService();
 
     int id;
     int id_user;
@@ -18,7 +25,15 @@ public class Commande {
 
     @Override
     public String toString() {
-        return "Commande"        +        "\nid        =        "+        id        +        "\nid_user        =        " +        id_user        +        "\nid_produit        =        "        +        id_produit        +        "\nnb_produits        =        "        +        nb_produits        + "";
+        Produit p;
+        try {
+            p = produitService.GetProdbyid(this.id_produit);
+            return "Commande" + "\n Numero De Commande          :         " + id + "\n Identifiant D'Utilisateur        :        " + id_user + "\n Identifiant Du Produit        :        " + id_produit + "\n Quantite Du Produit       :        " + nb_produits +         "\nNom Du Produit          :              "+  p.getLibelle() +         "\nPrix Du ¨Produit             :       "  +    p.getPrix();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Commande.class.getName()).log(Level.SEVERE, null, ex);
+            return "";
+        }
     }
 
     public Commande() {

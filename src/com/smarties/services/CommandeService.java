@@ -11,7 +11,6 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.FontFactory;
-import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
@@ -57,6 +56,7 @@ public class CommandeService {
         }
 
     }
+  
 
     public List<Commande> afficherCommande() {
         List<Commande> Commandes = new ArrayList<>();
@@ -72,9 +72,6 @@ public class CommandeService {
                 p.setIdProduit(rs.getInt("id_produit_id"));
                 p.setIdUser(rs.getInt("id_user_id"));
 
-                
-
-                
                 Commandes.add(p);
 
             }
@@ -95,13 +92,11 @@ public class CommandeService {
             ps.setInt(2, (int) c.getIdProduit());
             ps.setInt(3, (int) c.getIdUser());
 
-
-
             ps.setInt(4, c.getId());
-            
+
             System.out.println(c);
             System.out.println(ps);
-            
+
             System.out.println("Modification...");
             ps.executeUpdate();
 
@@ -128,62 +123,60 @@ public class CommandeService {
     }
 
     public List<Commande> Rechercher(String titreN) {
-       List<Commande> list = new ArrayList<>();
-        try{
+        List<Commande> list = new ArrayList<>();
+        try {
             String req = "SELECT * FROM commande where id=?";
-             PreparedStatement ps = cnx.prepareStatement(req);
+            PreparedStatement ps = cnx.prepareStatement(req);
             System.out.println("RECHERCHE...");
-            ps.setString(1,titreN);
+            ps.setString(1, titreN);
             ResultSet rs = ps.executeQuery();
-         
-              System.out.println(titreN);
-            while(rs.next()){
+
+            System.out.println(titreN);
+            while (rs.next()) {
                 Commande c = new Commande();
                 c.setId(rs.getInt(1));
                 c.setIdUser(rs.getInt(2));
                 c.setIdProduit(rs.getInt(3));
                 c.setNbProduits(rs.getInt(4));
 
-               
-                
                 list.add(c);
             }
-            
+
+        } catch (SQLException e) {
+
         }
-        catch(SQLException e){
-            
-        }
-        return list ;   
+        return list;
     }
-    
+
     public List<Commande> triercommande() {
         List<Commande> list = new ArrayList<>();
-        try{
+        try {
             String req = "SELECT * FROM commande order by id asc";
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
-            
-            while(rs.next()){
-              
+
+            while (rs.next()) {
+
                 Commande ab = new Commande();
                 ab.setId(rs.getInt(1));
-                 ab.setIdUser(rs.getInt(2));
+                ab.setIdUser(rs.getInt(2));
                 ab.setIdProduit(rs.getInt(3));
                 ab.setNbProduits(rs.getInt(4));
-                
+
                 list.add(ab);
             }
-            
+
+        } catch (SQLException e) {
+
         }
-        catch(SQLException e){
-            
-        }
-        return list ;               
-}
-   
-     public void Gpdf() throws DocumentException {
+        return list;
+    }
+
+    public void Gpdf() throws DocumentException {
         Document doc = new Document();
-        String sql = "select* from commande";
+        String sql = "select* from commande,"
+                + "produit";
+       
 
         try {
             Statement prepared = cnx.prepareStatement(sql);
@@ -193,36 +186,43 @@ public class CommandeService {
             doc.getHtmlStyleClass();
 
 //            Image img = Image.getInstance("C:\\3A40_SMARTIES_JAVA\\src\\com\\smarties\\imagesçaRoule.png");
-           // img.scaleAbsoluteWidth(300);
-          //  img.scaleAbsoluteHeight(92);
-          //  img.setAlignment(Image.ALIGN_CENTER);
-         //   doc.add(img);
+            // img.scaleAbsoluteWidth(300);
+            //  img.scaleAbsoluteHeight(92);
+            //  img.setAlignment(Image.ALIGN_CENTER);
+            //   doc.add(img);
             doc.add(new Paragraph(" "));
             doc.add(new Paragraph(" "));
             doc.add(new Paragraph("                                                     Liste des Commande "));
             doc.add(new Paragraph(" "));
 
-            PdfPTable table = new PdfPTable(4);
+
+            PdfPTable table = new PdfPTable(5);
             table.setWidthPercentage(100);
             PdfPCell cell;
 
             /////////////////////////////////////////////////////////////////
-            cell = new PdfPCell(new Phrase("ID", FontFactory.getFont("Comic Sans MS", 12)));
+            cell = new PdfPCell(new Phrase("Numero De Commande", FontFactory.getFont("Comic Sans MS", 12)));
             cell.setHorizontalAlignment(Element.ALIGN_CENTER);
             cell.setBackgroundColor(BaseColor.GRAY);
             table.addCell(cell);
             ////
-            cell = new PdfPCell(new Phrase("ID User", FontFactory.getFont("Comic Sans MS", 12)));
+            cell = new PdfPCell(new Phrase("Identifiant D'Utilisateur", FontFactory.getFont("Comic Sans MS", 12)));
             cell.setHorizontalAlignment(Element.ALIGN_CENTER);
             cell.setBackgroundColor(BaseColor.GRAY);
             table.addCell(cell);
             ///
-            cell = new PdfPCell(new Phrase("ID Produit", FontFactory.getFont("Comic Sans MS", 12)));
+            cell = new PdfPCell(new Phrase("Identifiant Du Produit", FontFactory.getFont("Comic Sans MS", 12)));
             cell.setHorizontalAlignment(Element.ALIGN_CENTER);
             cell.setBackgroundColor(BaseColor.GRAY);
             table.addCell(cell);
             ///
-            cell = new PdfPCell(new Phrase("Nombre Produit", FontFactory.getFont("Comic Sans MS", 12)));
+            cell = new PdfPCell(new Phrase("Quantite Du Produit", FontFactory.getFont("Comic Sans MS", 12)));
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell.setBackgroundColor(BaseColor.GRAY);
+            table.addCell(cell);
+            
+            
+             cell = new PdfPCell(new Phrase("Prix", FontFactory.getFont("Comic Sans MS", 12)));
             cell.setHorizontalAlignment(Element.ALIGN_CENTER);
             cell.setBackgroundColor(BaseColor.GRAY);
             table.addCell(cell);
@@ -249,7 +249,12 @@ public class CommandeService {
                 cell.setBackgroundColor(BaseColor.GRAY);
                 table.addCell(cell);
                 ////////////
-
+                cell = new PdfPCell(new Phrase(rs.getString("prix").toString(), FontFactory.getFont("Comic Sans MS", 12)));
+                cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cell.setBackgroundColor(BaseColor.GRAY);
+                table.addCell(cell);
+                
+                
             }
 
             doc.add(table);
@@ -266,9 +271,10 @@ public class CommandeService {
             Logger.getLogger(LocationService.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+        
     }
-    
-      public ArrayList<String> comboComm() {
+
+    public ArrayList<String> comboComm() {
         ArrayList<String> options = new ArrayList<>();
         String sql = "select * from users";
         Statement ste;
@@ -299,5 +305,5 @@ public class CommandeService {
         }
         return options;
     }
-    
+
 }
