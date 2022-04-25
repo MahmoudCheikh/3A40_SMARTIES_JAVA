@@ -28,7 +28,6 @@ public class GuiFrontController implements Initializable {
     private Button btnlogout;
     @FXML
     private Button evenement;
-    AnchorPane affichage;
     @FXML
     private Button btnproduitsF;
     @FXML
@@ -57,24 +56,24 @@ public class GuiFrontController implements Initializable {
     private void evenement(ActionEvent event) throws IOException {
         AnchorPane xx;
         xx = FXMLLoader.load(getClass().getResource("AfficherEvent.fxml"));
-        affichage.getChildren().setAll(xx);
+        a1.getChildren().setAll(xx);
     }
 
     @FXML
     private void forum(ActionEvent event) throws IOException {
         ScrollPane xx;
         xx = FXMLLoader.load(getClass().getResource("GuiForumFront.fxml"));
-        affichage.getChildren().setAll(xx);
+        a1.getChildren().setAll(xx);
     }
 
     @FXML
     private void GestionProduit(ActionEvent event) throws IOException {
         AnchorPane xx;
         xx = FXMLLoader.load(getClass().getResource("GuiProduitFront.fxml"));
-        affichage.getChildren().setAll(xx);
+        a1.getChildren().setAll(xx);
     }
 
-    @FXML
+    @FXML   
     private void GestionSites(ActionEvent event) {
     }
 
