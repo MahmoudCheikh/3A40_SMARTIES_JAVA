@@ -11,6 +11,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -26,9 +28,9 @@ import javafx.scene.layout.VBox;
  * @author user
  */
 public class GuiForumFrontController implements Initializable {
-    
+
     SujetService sujetService = new SujetService();
-    
+
     @FXML
     private VBox mainVbox;
     @FXML
@@ -40,17 +42,17 @@ public class GuiForumFrontController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         List<Sujet> listSujet = sujetService.afficherSujet();
-        
+
         if (!listSujet.isEmpty()) {
             for (Sujet sujet : listSujet) {
                 mainVbox.getChildren().add(makeSujet(sujet));
             }
         } else {
-            
+
         }
         scroll.setContent(mainVbox);
     }
-    
+
     public Parent makeSujet(Sujet sujet) {
         Parent innerContainer = null;
         try {
@@ -62,31 +64,41 @@ public class GuiForumFrontController implements Initializable {
             ((Label) innerContainer.lookup("#txtUser")).setText("User : " + sujet.getUserId());
             ((Label) innerContainer.lookup("#txtTitre")).setText("Titre : " + sujet.getTitre());
             ((Label) innerContainer.lookup("#txtContent")).setText("Contenu : " + sujet.getContenu());
-            
-            ((Button) innerContainer.lookup("#afficher")).setOnAction((event) -> afficherSujet(sujet));
+
+            ((Button) innerContainer.lookup("#afficher")).setOnAction((event) -> {
+                try {
+                    afficherSujet(sujet);
+                } catch (IOException ex) {
+                    Logger.getLogger(GuiForumFrontController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            });
             if (Smarties.user.getId() == sujet.getUserId()) {
-                ((Button) innerContainer.lookup("#modifier")).setOnAction((event) -> supprimerSujet(sujet));
+                ((Button) innerContainer.lookup("#modifier")).setOnAction((event) -> modifierSujet(sujet));
                 ((Button) innerContainer.lookup("#supprimer")).setOnAction((event) -> supprimerSujet(sujet));
-                
+
             } else {
                 ((Button) innerContainer.lookup("#modifier")).setVisible(false);
                 ((Button) innerContainer.lookup("#supprimer")).setVisible(false);
             }
-            
+
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
         return innerContainer;
-        
+
     }
-    
-    public void afficherSujet(Sujet sujet) {
+
+    public void afficherSujet(Sujet sujet) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("GuiSujetFront.fxml"));
+        GuiSujetFrontController.sujet = sujet;
+        VBox vbox = loader.load();
+        mainVbox.getChildren().setAll(vbox);
     }
-    
+
     public void modifierSujet(Sujet sujet) {
     }
-    
+
     public void supprimerSujet(Sujet sujet) {
     }
-    
+
 }

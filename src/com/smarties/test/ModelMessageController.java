@@ -7,7 +7,11 @@ package com.smarties.test;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 
 /**
  * FXML Controller class
@@ -16,6 +20,17 @@ import javafx.fxml.Initializable;
  */
 public class ModelMessageController implements Initializable {
 
+    @FXML
+    private Label txtMsgUser;
+    @FXML
+    private Label txtMsgContent;
+    @FXML
+    private Label txtMsgDate;
+    @FXML
+    private Button btnMsgModifier;
+    @FXML
+    private Button btnMsgSupp;
+
     /**
      * Initializes the controller class.
      */
@@ -23,5 +38,13 @@ public class ModelMessageController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+
+    @FXML
+    private void modifier(ActionEvent event) {
+    }
+
+    @FXML
+    private void supprimer(ActionEvent event) {
+    }
     
 }
