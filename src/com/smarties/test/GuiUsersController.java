@@ -11,13 +11,11 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.regex.Pattern;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -32,22 +30,6 @@ public class GuiUsersController implements Initializable {
 
     UsersService us = new UsersService();
 
-    @FXML
-    private TextField txtbackusermail;
-    @FXML
-    private TextField txtbackuserpassword;
-    @FXML
-    private TextField txtbackusernom;
-    @FXML
-    private TextField txtbackuserprenom;
-    @FXML
-    private TextField txtbackuseradresse;
-    @FXML
-    private TextField txtbackusertoher1;
-    @FXML
-    private TextField txtbackuserother2;
-    @FXML
-    private TextField txtbackuserid;
     @FXML
     private ListView<Users> tableuserslist;
     @FXML
@@ -64,156 +46,6 @@ public class GuiUsersController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         ArrayList al = (ArrayList) us.afficherUser();
         tableuserslist.getItems().addAll(al);
-    }
-
-    @FXML
-    private void ajouter(ActionEvent event) {
-        if ((txtbackusernom.getText().equals("")) || (txtbackuserprenom.getText().equals("")) || (txtbackusermail.getText().equals("")) || (txtbackuseradresse.getText().equals("")) || (txtbackuserpassword.getText().equals(""))) {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Information Dialog");
-            alert.setHeaderText(null);
-            alert.setContentText("champs manquants !");
-            alert.showAndWait();
-        } else if (!(Pattern.matches("[a-z,A-Z]*", txtbackusernom.getText()))) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Information Dialog");
-            alert.setHeaderText(null);
-            alert.setContentText("Nom de l'user doit etre de type String !");
-            alert.showAndWait();
-
-        } else if (!(Pattern.matches("[a-z,A-Z]*", txtbackuserprenom.getText()))) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Information Dialog");
-            alert.setHeaderText(null);
-            alert.setContentText("pernom doit etre de type String !");
-            alert.showAndWait();
-
-        } else if (!(Pattern.matches("[a-z,A-Z]*", txtbackuseradresse.getText()))) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Information Dialog");
-            alert.setHeaderText(null);
-            alert.setContentText("Adresse de l'user doit etre de type String !");
-            alert.showAndWait();
-
-        } else if (!(Pattern.matches("[a-z,A-Z]*", txtbackuserpassword.getText()))) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Information Dialog");
-            alert.setHeaderText(null);
-            alert.setContentText("Password Invalid !");
-            alert.showAndWait();
-
-        } else {
-            Users user = new Users();
-            user.setNom(txtbackusernom.getText());
-            user.setPrenom(txtbackuserprenom.getText());
-            user.setEmail(txtbackusermail.getText());
-            user.setAdresse(txtbackuseradresse.getText());
-            user.setPassword(txtbackuserpassword.getText());
-            user.setRole(txtbackusertoher1.getText());
-            user.setImage(txtbackuserother2.getText());
-
-            us.ajouterUser(user);
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Success");
-            alert.setContentText("User ajouté!");
-            alert.show();
-
-            ObservableList<Users> items = FXCollections.observableArrayList();
-            List<Users> listuser = us.afficherUser();
-            for (Users r : listuser) {
-                String ch = r.toString();
-                items.add(r);
-            }
-
-            tableuserslist.setItems(items);
-        }
-    }
-
-    @FXML
-    private void modifier(ActionEvent event) {
-        if ((txtbackusernom.getText().equals("")) || (txtbackuserprenom.getText().equals("")) || (txtbackusermail.getText().equals("")) || (txtbackuseradresse.getText().equals("")) || (txtbackuserpassword.getText().equals(""))) {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Information Dialog");
-            alert.setHeaderText(null);
-            alert.setContentText("champs manquants !");
-            alert.showAndWait();
-        } else if (!(Pattern.matches("[a-z,A-Z]*", txtbackusernom.getText()))) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Information Dialog");
-            alert.setHeaderText(null);
-            alert.setContentText("Nom de l'user doit etre de type String !");
-            alert.showAndWait();
-
-        } else if (!(Pattern.matches("[a-z,A-Z]*", txtbackuserprenom.getText()))) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Information Dialog");
-            alert.setHeaderText(null);
-            alert.setContentText("pernom doit etre de type String !");
-            alert.showAndWait();
-
-        } else if (!(Pattern.matches("[a-z,A-Z]*", txtbackuseradresse.getText()))) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Information Dialog");
-            alert.setHeaderText(null);
-            alert.setContentText("Adresse de l'user doit etre de type String !");
-            alert.showAndWait();
-
-        } else if (!(Pattern.matches("[a-z,A-Z]*", txtbackuserpassword.getText()))) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Information Dialog");
-            alert.setHeaderText(null);
-            alert.setContentText("Password Invalid !");
-            alert.showAndWait();
-
-        } else {
-            Users user = new Users();
-            user.setNom(txtbackusernom.getText());
-            user.setPrenom(txtbackuserprenom.getText());
-            user.setEmail(txtbackusermail.getText());
-            user.setAdresse(txtbackuseradresse.getText());
-            user.setPassword(txtbackuserpassword.getText());
-            user.setRole(txtbackusertoher1.getText());
-            user.setImage(txtbackuserother2.getText());
-            user.setId(Integer.parseInt(txtbackuserid.getText()));
-            us.modifierUser(user);
-            ObservableList<Users> items = FXCollections.observableArrayList();
-            List<Users> listuser = us.afficherUser();
-            for (Users r : listuser) {
-                String ch = r.toString();
-                items.add(r);
-            }
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Success");
-            alert.setContentText("modification effectuée!");
-            alert.show();
-
-        }
-        ObservableList<Users> items = FXCollections.observableArrayList();
-        List<Users> listusers = us.afficherUser();
-        for (Users r : listusers) {
-            String ch = r.toString();
-            items.add(r);
-        }
-        tableuserslist.setItems(items);
-    }
-
-    @FXML
-    private void supprimer(ActionEvent event) {
-        int id = Integer.parseInt(txtbackuserid.getText());
-        us.supprimerUser(id);
-
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Success");
-        alert.setContentText("User supprimé!");
-        alert.show();
-
-        ObservableList<Users> items = FXCollections.observableArrayList();
-        List<Users> listuser = us.afficherUser();
-        for (Users r : listuser) {
-            String ch = r.toString();
-            items.add(r);
-        }
-        tableuserslist.setItems(items);
     }
 
     @FXML
@@ -234,30 +66,40 @@ public class GuiUsersController implements Initializable {
         }
         tableuserslist.setItems(items);
     }
+    
+    private void actualiser() {
+        ObservableList<Users> items = FXCollections.observableArrayList();
+        List<Users> listusers = us.afficherUser();
+        for (Users r : listusers) {
+            String ch = r.toString();
+            items.add(r);
+        }
+        tableuserslist.setItems(items);
+    }
 
     @FXML
     private void getDataUsers(MouseEvent event) {
         tableuserslist.setOnMouseClicked((event1) -> {
             int selectedId = tableuserslist.getSelectionModel().getSelectedItem().getId();
-            String selectedusnom = tableuserslist.getSelectionModel().getSelectedItem().getNom();
-            String selecteduspre = tableuserslist.getSelectionModel().getSelectedItem().getPrenom();
-            String selectedmail = tableuserslist.getSelectionModel().getSelectedItem().getEmail();
-            String selectedadr = tableuserslist.getSelectionModel().getSelectedItem().getAdresse();
-            String selectedpass = tableuserslist.getSelectionModel().getSelectedItem().getPassword();
-            String selectedother1 = tableuserslist.getSelectionModel().getSelectedItem().getImage();
-            String selectedother2 = tableuserslist.getSelectionModel().getSelectedItem().getRole();
-
-            txtbackuserid.setText(String.valueOf(selectedId));
-            txtbackusernom.setText(selectedusnom);
-            txtbackuserprenom.setText(selecteduspre);
-            txtbackusermail.setText(selectedmail);
-            txtbackuseradresse.setText(selectedadr);
-            txtbackuserpassword.setText(selectedpass);
-            txtbackusertoher1.setText(selectedother1);
-            txtbackuserother2.setText(selectedother2);
-
+            reuser.setText(String.valueOf(selectedId));
         });
 
+    }
+
+    @FXML
+    private void ban(ActionEvent event) {
+        Users user = new Users();
+        user.setId(Integer.parseInt(reuser.getText()));
+        us.ban(user);
+        actualiser();
+    }
+
+    @FXML
+    private void unban(ActionEvent event) {
+        Users user = new Users();
+        user.setId(Integer.parseInt(reuser.getText()));
+        us.unban(user);
+        actualiser();
     }
 
 }

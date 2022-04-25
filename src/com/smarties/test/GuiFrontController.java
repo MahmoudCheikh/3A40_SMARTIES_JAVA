@@ -14,6 +14,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 
 /**
@@ -27,11 +28,11 @@ public class GuiFrontController implements Initializable {
     private Button btnlogout;
     @FXML
     private Button evenement;
+    AnchorPane affichage;
     @FXML
-    AnchorPane a1;
     private Button btnproduitsF;
     @FXML
-    private AnchorPane anp1;
+    private AnchorPane a1;
 
     /**
      * Initializes the controller class.
@@ -56,14 +57,53 @@ public class GuiFrontController implements Initializable {
     private void evenement(ActionEvent event) throws IOException {
         AnchorPane xx;
         xx = FXMLLoader.load(getClass().getResource("AfficherEvent.fxml"));
-        a1.getChildren().setAll(xx);
+        affichage.getChildren().setAll(xx);
+    }
+
+    @FXML
+    private void forum(ActionEvent event) throws IOException {
+        ScrollPane xx;
+        xx = FXMLLoader.load(getClass().getResource("GuiForumFront.fxml"));
+        affichage.getChildren().setAll(xx);
     }
 
     @FXML
     private void GestionProduit(ActionEvent event) throws IOException {
         AnchorPane xx;
         xx = FXMLLoader.load(getClass().getResource("GuiProduitFront.fxml"));
-        a1.getChildren().setAll(xx);
+        affichage.getChildren().setAll(xx);
+    }
+
+    @FXML
+    private void GestionSites(ActionEvent event) {
+    }
+
+    @FXML
+    private void GestionProfil(ActionEvent event) {
+    }
+
+    @FXML
+    private void GestionFavoris(ActionEvent event) {
+    }
+
+    @FXML
+    private void FrontCommandes(ActionEvent event) {
+    }
+
+    @FXML
+    private void FrontAbonnement(ActionEvent event) {
+    }
+
+    @FXML
+    private void FrontLocation(ActionEvent event) {
+    }
+
+    @FXML
+    private void FrontReclamation(ActionEvent event) {
+    }
+
+    @FXML
+    private void FrontMaintenance(ActionEvent event) {
     }
 
 }

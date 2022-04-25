@@ -300,4 +300,27 @@ public class UsersService {
 
         }
     }
+
+    public void ban(Users c) {
+        try {
+            String req = "UPDATE users SET image=\"ban\" WHERE id=?";
+            PreparedStatement ps = cnx.prepareStatement(req);
+            ps.setInt(1, c.getId());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+
+        }
+    }
+
+    public void unban(Users c) {
+        try {
+            String req = "UPDATE users SET image=\"confirme\" WHERE id=?";
+            PreparedStatement ps = cnx.prepareStatement(req);
+            ps.setInt(1, c.getId());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+
+        }
+    }
+
 }

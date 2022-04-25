@@ -124,4 +124,58 @@ public class MessageService {
         }
         return options;
     }
+
+    public List<Message> searchByUser(int id) throws SQLException {
+        List<Message> messages = new ArrayList<>();
+        String sql = "select * from message where id_user_id=?";
+        PreparedStatement pre = cnx.prepareStatement(sql);
+        try {
+            pre.setInt(1, id);
+            ResultSet rs = pre.executeQuery();
+            while (rs.next()) {
+                Message p = new Message();
+
+                p.setId(rs.getInt("id"));
+                p.setIdUser(rs.getInt(2));
+                p.setIdSujet(rs.getInt(3));
+                Date date = rs.getDate("date");
+                p.setDate(date.toLocalDate());
+                p.setContenu(rs.getString("contenu"));
+
+                messages.add(p);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return messages;
+
+    }
+    
+    public List<Message> searchBySujet(int id) throws SQLException {
+        List<Message> messages = new ArrayList<>();
+        String sql = "select * from message where id_sujet_id=?";
+        PreparedStatement pre = cnx.prepareStatement(sql);
+        try {
+            pre.setInt(1, id);
+            ResultSet rs = pre.executeQuery();
+            while (rs.next()) {
+                Message p = new Message();
+
+                p.setId(rs.getInt("id"));
+                p.setIdUser(rs.getInt(2));
+                p.setIdSujet(rs.getInt(3));
+                Date date = rs.getDate("date");
+                p.setDate(date.toLocalDate());
+                p.setContenu(rs.getString("contenu"));
+
+                messages.add(p);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return messages;
+
+    }
 }

@@ -127,4 +127,33 @@ public class SujetService {
         return options;
     }
 
+    public List<Sujet> searchByUser(int id) throws SQLException {
+        List<Sujet> sujets = new ArrayList<>();
+        String sql = "select * from sujet where id_user_id=?";
+        PreparedStatement pre = cnx.prepareStatement(sql);
+        try {
+            pre.setInt(1, id);
+            ResultSet rs = pre.executeQuery();
+            while (rs.next()) {
+                Sujet p = new Sujet();
+
+                p.setId(rs.getInt("id"));
+                p.setUserId(rs.getInt(2));
+                p.setNbReponses(rs.getInt(3));
+                Date date = rs.getDate("date");
+                p.setDate(date.toLocalDate());
+                p.setTitre(rs.getString("titre"));
+                p.setContenu(rs.getString("contenu"));
+                p.setNbVues(rs.getInt(7));
+
+                sujets.add(p);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return sujets;
+
+    }
+
 }
