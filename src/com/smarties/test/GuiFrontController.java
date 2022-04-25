@@ -73,7 +73,7 @@ public class GuiFrontController implements Initializable {
         a1.getChildren().setAll(xx);
     }
 
-    @FXML   
+    @FXML
     private void GestionSites(ActionEvent event) {
     }
 
@@ -86,7 +86,10 @@ public class GuiFrontController implements Initializable {
     }
 
     @FXML
-    private void FrontCommandes(ActionEvent event) {
+    private void FrontCommandes(ActionEvent event) throws IOException {
+        AnchorPane xx;
+        xx = FXMLLoader.load(getClass().getResource("MesCommandes.fxml"));
+        a1.getChildren().setAll(xx);
     }
 
     @FXML

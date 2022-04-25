@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="192.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smarties.test.ModelCommandeController">
+   <children>
+      <Label fx:id="txtIdComm" layoutX="41.0" layoutY="47.0" prefHeight="17.0" prefWidth="157.0" text="Numero De Commande : " />
+      <Label fx:id="txtNbrProd" layoutX="41.0" layoutY="88.0" prefHeight="17.0" prefWidth="125.0" text="Nombre De Produit : " />
+      <Label fx:id="txtPrixProd" layoutX="41.0" layoutY="133.0" prefHeight="17.0" prefWidth="105.0" text="Prix De Produit  : " />
+      <Label fx:id="txtProd" layoutX="41.0" layoutY="110.0" prefHeight="17.0" prefWidth="113.0" text="Produit : " />
+      <ImageView fx:id="img" fitHeight="163.0" fitWidth="157.0" layoutX="314.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/sdsd.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="txtIdUser" layoutX="41.0" layoutY="68.0" prefHeight="17.0" prefWidth="74.0" text="Id User" />
+   </children>
+</AnchorPane>
