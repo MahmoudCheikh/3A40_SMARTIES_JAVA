@@ -14,6 +14,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
 
 /**
  * FXML Controller class
@@ -24,6 +25,10 @@ public class GuiFrontController implements Initializable {
 
     @FXML
     private Button btnlogout;
+    @FXML
+    private Button evenement;
+    @FXML
+     AnchorPane a1;
 
     /**
      * Initializes the controller class.
@@ -42,6 +47,13 @@ public class GuiFrontController implements Initializable {
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
+    }
+
+    @FXML
+    private void evenement(ActionEvent event) throws IOException {
+         AnchorPane xx;
+        xx = FXMLLoader.load(getClass().getResource("AfficherEvent.fxml"));
+        a1.getChildren().setAll(xx);
     }
 
 }

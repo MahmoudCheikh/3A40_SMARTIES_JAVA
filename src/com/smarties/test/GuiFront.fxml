@@ -6,7 +6,7 @@
 
 <BorderPane prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smarties.test.GuiFrontController">
     <center>
-        <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0">
+        <AnchorPane id="AnchorPane" fx:id="a1" prefHeight="672.0" prefWidth="1366.0">
     
         </AnchorPane>
     </center>
@@ -15,7 +15,7 @@
          <children>
                 <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="90.0" text="Produits" />
             <Button layoutX="90.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="90.0" text="Les Sites" />
-            <Button layoutX="180.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="90.0" text="Evenements" />
+            <Button fx:id="evenement" layoutX="180.0" mnemonicParsing="false" onAction="#evenement" prefHeight="36.0" prefWidth="90.0" text="Evenements" />
             <Button layoutX="270.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="90.0" text="Forum" />
             <Button layoutX="360.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="90.0" text="Mon Profil" />
             <Button layoutX="450.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="90.0" text="Mes Favoris" />
