@@ -6,12 +6,15 @@
 package com.smarties.services;
 
 import com.smarties.entities.Favoris;
+import com.smarties.test.Smarties;
 import com.smarties.tools.MaConnexion;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -127,5 +130,42 @@ public class FavorisService {
             System.out.println(ex.getMessage());
         }
         return options;
+    }
+        
+            public void ajouterFavoris( int idProd) {
+        String query = "insert into favoris(id_produit_id,id_user_id) values(?,?)";
+        try {
+            PreparedStatement ste = cnx.prepareStatement(query);
+            ste.setInt(1, (int) idProd);
+            ste.setInt(2, (int) Smarties.user.getId());
+            //ste.setString(4, Smarties.user.getNom() + " " + Smarties.user.getPrenom());
+            //ste.setInt(5, 1);
+
+            ste.executeUpdate();
+            System.out.println("Favoris Ajoutée !!");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        //FavorisService.supprimerCommande(idCommande);
+    }
+            
+                public boolean getIgnoreRepetetion(String id) {
+        boolean exist = false;
+
+        try {
+            String sql = "SELECT * FROM favoris where id_produit_id= ? ";
+            PreparedStatement ste = cnx.prepareStatement(sql);
+            ste.setString(1, id);
+
+            ResultSet rs = ste.executeQuery();//resultat requete sql
+            if (rs.first()) {
+                exist = true;
+            }
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+        return exist;
+
     }
 }

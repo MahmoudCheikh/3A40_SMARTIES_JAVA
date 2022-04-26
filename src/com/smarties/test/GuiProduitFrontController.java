@@ -8,6 +8,7 @@ package com.smarties.test;
 import com.smarties.entities.Evenement;
 import com.smarties.entities.Produit;
 import com.smarties.services.EvenementService;
+import com.smarties.services.FavorisService;
 import com.smarties.services.ProduitService;
 import java.io.File;
 import java.io.FileInputStream;
@@ -30,6 +31,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -50,6 +52,10 @@ import javafx.scene.text.Text;
  */
 public class GuiProduitFrontController implements Initializable {
 
+    public Produit currentproduit;
+    FavorisService fa = new FavorisService();
+    ProduitService pr = new ProduitService();
+    Produit prod = new Produit();
     @FXML
     private AnchorPane a1;
     @FXML
@@ -83,31 +89,63 @@ public class GuiProduitFrontController implements Initializable {
         try {
             parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("ModelProduit.fxml")));
             HBox innerContainer = ((HBox) ((AnchorPane) ((AnchorPane) parent).getChildren().get(0)).getChildren().get(0));
-            ((Text) innerContainer.lookup("#libellePF")).setText("Nom du Produit:" + prod.getLibelle());
-            ((Text) innerContainer.lookup("#prixPF")).setText("Prix en Dt:" + prod.getPrix() + "DT");
-            //((Text) innerContainer.lookup("#imagePF")).setText(prod.getImage());
+            ((Text) innerContainer.lookup("#libellePF")).setText("Nom du Produit: " + prod.getLibelle());
+            ((Text) innerContainer.lookup("#prixPF")).setText("Prix en Dt: " + prod.getPrix() + " .DT");
             Image img = new Image(new FileInputStream(prod.getImage()));
             ((ImageView) innerContainer.lookup("#imagePF")).setImage(img);
-            ((Text) innerContainer.lookup("#typePF")).setText("Type du Produit:" + prod.getType());
-            ((TextArea) innerContainer.lookup("#descPF")).setText("Description:" + prod.getDescription());
-            //((Text) innerContainer.lookup("#descPF")).setText("Description:" + prod.getDescription());
+            ((Text) innerContainer.lookup("#typePF")).setText("Type du Produit: " + prod.getType());
+            ((Text) innerContainer.lookup("#descPF")).setText("Description: " + prod.getDescription());
+            //button QRcode 
+            ((Button) innerContainer.lookup("#generateQr")).setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    try {
 
-            // ((Text) innerContainer.lookup("#createdAtText")).setText("CreatedAt : " + rdv.getCreatedAt());
-            // ((Text) innerContainer.lookup("#updatedAtText")).setText("UpdatedAt : " + rdv.getUpdatedAt());
-            /* ((Button) innerContainer.lookup("#afficherAct")).setOnAction(new EventHandler<ActionEvent>() {
-                 @Override
-                 public void handle(ActionEvent event) {
-                     try {
-                         AfficherAct(a,e);
-                     } catch (IOException ex) {
-                         Logger.getLogger(AfficherEventController.class.getName()).log(Level.SEVERE, null, ex);
-                     }
-                 }
-             });*/
+                        String AllInfo = " Libelle: " + prod.getLibelle() + "\n Prix: " + prod.getPrix() + "\n Type: " + prod.getType() + "\n Description:  " + prod.getDescription() + prod.getId() + "";
+                        System.out.println(AllInfo);
+                        generateQr(prod);
+
+                    } catch (IOException ex) {
+                        Logger.getLogger(QrCodeController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            });
+            //fin button QrCode
+            //button favoris
+            ((Button) innerContainer.lookup("#favorisFront")).setOnAction(new EventHandler<ActionEvent>() {
+                public void handle(ActionEvent event) {
+
+                    System.out.println(prod.getId());
+                    String id = null ;
+                    id = String.valueOf(prod.getId());
+                    if (fa.getIgnoreRepetetion(id)== false) {
+                        fa.ajouterFavoris(prod.getId());
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Success");
+                        alert.setContentText("Favoris Ajouté avec succés!");
+                        alert.show();
+                    } else {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Information Dialog");
+                        alert.setHeaderText(null);
+                        alert.setContentText("le produit deja favoris !");
+                        alert.showAndWait();
+                    }
+                }
+            });
+            //fin favoris
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
         return parent;
+    }
+
+    private void generateQr(Produit prod) throws IOException {
+        currentproduit = prod;
+        AnchorPane xx;
+        xx = FXMLLoader.load(getClass().getResource("QrCode.fxml"));
+        a1.getChildren().setAll(xx);
+
     }
 
 }
