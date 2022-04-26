@@ -5,6 +5,7 @@
  */
 package com.smarties.test;
 
+import com.smarties.entities.Message;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -20,6 +21,8 @@ import javafx.scene.control.Label;
  */
 public class ModelMessageController implements Initializable {
 
+    static Message message;
+    
     @FXML
     private Label txtMsgUser;
     @FXML

@@ -55,6 +55,8 @@ public class GuiSujetFrontController implements Initializable {
     private VBox mainVbox;
     @FXML
     private AnchorPane ap;
+    @FXML
+    private Button ajouter;
 
     /**
      * Initializes the controller class.
@@ -97,7 +99,13 @@ public class GuiSujetFrontController implements Initializable {
             ((Label) innerContainer.lookup("#txtMsgContent")).setText("Contenu : " + message.getContenu());
 
             if (Smarties.user.getId() == message.getIdUser()) {
-                ((Button) innerContainer.lookup("#btnMsgModifier")).setOnAction((event) -> modifierMessage(message));
+                ((Button) innerContainer.lookup("#btnMsgModifier")).setOnAction((event) -> {
+                    try {
+                        modifierMessage(message);
+                    } catch (IOException ex) {
+                        Logger.getLogger(GuiSujetFrontController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                });
                 ((Button) innerContainer.lookup("#btnMsgSupp")).setOnAction((event) -> {
                     try {
                         supprimerMessage(message);
@@ -118,15 +126,19 @@ public class GuiSujetFrontController implements Initializable {
 
     }
 
-    public void modifierMessage(Message message) {
-
+    public void modifierMessage(Message message) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("GuiMessageFrontUpdate.fxml"));
+        GuiMessageFrontUpdateController.sujet = this.sujet;
+        GuiMessageFrontUpdateController.message = message;
+        AnchorPane vbox = loader.load();
+        ap.getChildren().setAll(vbox);
     }
 
     public void supprimerMessage(Message message) throws IOException {
         messageService.supprimerMessage(message.getId());
         FXMLLoader loader = new FXMLLoader(getClass().getResource("GuiSujetFront.fxml"));
-        ScrollPane vbox = loader.load();
-        mainVbox.getChildren().setAll(vbox);
+        AnchorPane vbox = loader.load();
+        ap.getChildren().setAll(vbox);
 
     }
 
@@ -134,6 +146,14 @@ public class GuiSujetFrontController implements Initializable {
     private void retour(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("GuiForumFront.fxml"));
         GuiSujetFrontController.sujet = sujet;
+        AnchorPane vbox = loader.load();
+        ap.getChildren().setAll(vbox);
+    }
+
+    @FXML
+    private void ajouter(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("GuiMessageFrontAjouter.fxml"));
+        GuiMessageFrontAjouterController.sujet = this.sujet;
         AnchorPane vbox = loader.load();
         ap.getChildren().setAll(vbox);
     }

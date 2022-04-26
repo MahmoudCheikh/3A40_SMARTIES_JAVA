@@ -6,7 +6,6 @@
 package com.smarties.services;
 
 import com.smarties.entities.Message;
-import com.smarties.entities.Users;
 import com.smarties.tools.MaConnexion;
 import java.sql.Connection;
 import java.sql.Date;
@@ -16,8 +15,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 
 /**
  *
@@ -151,7 +148,7 @@ public class MessageService {
         return messages;
 
     }
-    
+
     public List<Message> searchBySujet(int id) throws SQLException {
         List<Message> messages = new ArrayList<>();
         String sql = "select * from message where id_sujet_id=?";

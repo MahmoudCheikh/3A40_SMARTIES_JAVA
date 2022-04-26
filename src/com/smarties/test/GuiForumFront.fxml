@@ -12,9 +12,9 @@
             <VBox fx:id="mainVbox" />
          </content>
       </ScrollPane>
-      <AnchorPane prefHeight="33.0" prefWidth="156.0">
+      <AnchorPane prefHeight="24.0" prefWidth="1046.0">
          <children>
-            <Button layoutY="4.0" mnemonicParsing="false" onAction="#ajouter" text="Ajouter" />
+            <Button layoutY="1.0" mnemonicParsing="false" onAction="#ajouter" text="Ajouter" />
          </children>
       </AnchorPane>
    </children>
