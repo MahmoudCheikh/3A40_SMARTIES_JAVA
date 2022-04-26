@@ -16,14 +16,15 @@ import java.util.ArrayList;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import com.smarties.entities.Users;
 
 /**
  *
  * @author Lenovo
  */
 public class EvenementService {
-
-    
 
     Connection cnx;
 
@@ -34,7 +35,7 @@ public class EvenementService {
     public void ajouterEvenement(Evenement e) {
         String query = "insert into evenement(nom,date_d,date_f,lieu,type,nb_participants,nb_places) values(?,?,?,?,?,?,?)";
         try {
-          
+
             PreparedStatement ste = cnx.prepareStatement(query);
             ste.setString(1, e.getNom());
             ste.setDate(2, Date.valueOf(e.getDate_d()));
@@ -63,10 +64,10 @@ public class EvenementService {
                 Evenement e = new Evenement();
                 e.setId(rs.getInt("id"));
                 e.setNom(rs.getString("nom"));
-                 Date date_d = rs.getDate("date_d");
+                Date date_d = rs.getDate("date_d");
                 e.setDate_d(date_d.toLocalDate());
-               Date date_f = rs.getDate("date_f");
-                e.setDate_f(date_f.toLocalDate());             
+                Date date_f = rs.getDate("date_f");
+                e.setDate_f(date_f.toLocalDate());
                 e.setLieu(rs.getString("lieu"));
                 e.setType(rs.getString("type"));
                 e.setNb_participants(rs.getInt("nb_participants"));
@@ -120,64 +121,64 @@ public class EvenementService {
         }
 
     }
+
     public List<Evenement> Chercher(String titreN) {
-       List<Evenement> list = new ArrayList<>();
-        try{
+        List<Evenement> list = new ArrayList<>();
+        try {
             String req = "SELECT * FROM evenement where nom=?";
-             PreparedStatement ps = cnx.prepareStatement(req);
-             System.out.println("RECHERCHE...");
-             ps.setString(1,titreN);
+            PreparedStatement ps = cnx.prepareStatement(req);
+            System.out.println("RECHERCHE...");
+            ps.setString(1, titreN);
             ResultSet rs = ps.executeQuery();
             System.out.println(titreN);
-            while(rs.next()){
+            while (rs.next()) {
                 Evenement e = new Evenement();
                 e.setId(rs.getInt(1));
                 e.setNom(rs.getString(2));
-        
+
                 e.setDate_d(rs.getDate(3).toLocalDate());
                 e.setDate_f(rs.getDate(4).toLocalDate());
                 e.setLieu(rs.getString(5));
                 e.setType(rs.getString(6));
                 e.setNb_participants(rs.getInt(7));
                 e.setNb_places(rs.getInt(8));
-                
+
                 list.add(e);
             }
-            
+
+        } catch (SQLException e) {
+
         }
-        catch(SQLException e){
-            
-        }
-        return list ;   
+        return list;
     }
-     public List<Evenement> trier() {
+
+    public List<Evenement> trier() {
         List<Evenement> list = new ArrayList<>();
-        try{
+        try {
             String req = "SELECT * FROM evenement order by date_d asc";
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
-            
-            while(rs.next()){
+
+            while (rs.next()) {
                 Evenement e = new Evenement();
                 e.setId(rs.getInt(1));
                 e.setNom(rs.getString(2));
                 e.setDate_d(rs.getDate(3).toLocalDate());
-                e.setDate_f(rs.getDate(4).toLocalDate()); 
+                e.setDate_f(rs.getDate(4).toLocalDate());
                 e.setLieu(rs.getString(5));
                 e.setType(rs.getString(6));
                 e.setNb_participants(rs.getInt(7));
                 e.setNb_places(rs.getInt(8));
                 list.add(e);
             }
-            
+
+        } catch (SQLException e) {
+
         }
-        catch(SQLException e){
-            
-        }
-        return list ;
+        return list;
     }
-   
-      public ArrayList<Integer> getCombo() {
+
+    public ArrayList<Integer> getCombo() {
         ArrayList<Integer> options = new ArrayList<>();
         String sql = "select id from evenement";
         Statement ste;
@@ -192,7 +193,8 @@ public class EvenementService {
         }
         return options;
     }
-      public ArrayList<Integer> getCombo1() {
+
+    public ArrayList<Integer> getCombo1() {
         ArrayList<Integer> options = new ArrayList<>();
         String sql = "select id from users";
         Statement ste;
@@ -207,22 +209,84 @@ public class EvenementService {
         }
         return options;
     }
-       public Evenement Chercher1 (int id) throws SQLException {
-  Evenement ess = new Evenement();
-    
-            String req = "SELECT nb_participants FROM evenement where id=?";
-             PreparedStatement ps = cnx.prepareStatement(req);
-             System.out.println("RECHERCHE...");
-             ps.setInt(1,id);
-            ResultSet rs = ps.executeQuery();
-            System.out.println(id);
-            while(rs.next()){
-               
-                ess.setNb_participants(rs.getInt(1)-1);
-               
-               
-            }
-      
-      return ess ;  
+
+    public Evenement Chercher1(int id) throws SQLException {
+        Evenement ess = new Evenement();
+
+        String req = "SELECT nb_participants FROM evenement where id=?";
+        PreparedStatement ps = cnx.prepareStatement(req);
+        System.out.println("RECHERCHE...");
+        ps.setInt(1, id);
+        ResultSet rs = ps.executeQuery();
+        System.out.println(id);
+        while (rs.next()) {
+
+            ess.setNb_participants(rs.getInt(1) - 1);
+
+        }
+
+        return ess;
     }
+
+    public void participer(Evenement c, int u) throws SQLException {
+        String req = "insert into participation (id_user_id , id_event_id ) values (?,?)";
+
+        try {
+
+            PreparedStatement pst = cnx.prepareStatement(req);
+
+            pst.setInt(1, u);
+            pst.setInt(2, c.getId());
+
+            pst.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(EvenementService.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+        String req1 = "UPDATE evenement SET nb_participants = ?,nb_places = ? WHERE id=?";
+        try {
+
+            PreparedStatement pst1 = cnx.prepareStatement(req1);
+
+            pst1.setInt(1, c.getNb_participants() - 1);
+            pst1.setInt(2, c.getNb_places()- 1);
+            pst1.setInt(3, c.getId());
+
+            pst1.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(EvenementService.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+        
+    }
+      public boolean verifierparticiper(Evenement e,int u) throws SQLException{
+       String req1 = "select * from participation where id_user_id=? AND id_event_id=?";
+           PreparedStatement ste = cnx.prepareStatement(req1);
+           ste.setInt(1, u);
+           ste.setInt(2, e.getId());
+           ResultSet rs = ste.executeQuery();
+     if(rs.next()){ 
+         return true;
+        
+    
+     }
+   else{
+           return false;
+           }
+     }
+        
+      public void supprimerparticipation (Evenement e,int u) throws SQLException {
+        
+            String req = "DELETE FROM participation WHERE id_user_id =? AND id_event_id=?";
+           PreparedStatement ste = cnx.prepareStatement(req);
+           ste.setInt(1, u);
+           ste.setInt(2, e.getId());
+        int executeUpdate = ste.executeUpdate();
+      
+    }
+
 }
+
+

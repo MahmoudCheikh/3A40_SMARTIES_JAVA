@@ -49,7 +49,6 @@ public class AfficherActiviteController implements Initializable {
     private VBox vboxActivite;
     @FXML
     private Button back;
-
     /**
      * Initializes the controller class.
      */
@@ -60,6 +59,7 @@ public class AfficherActiviteController implements Initializable {
         List<Activite> listA = tt.afficherActivite();
         Collections.reverse(listA);
         if (!listA.isEmpty()) {
+           
            
             for (Activite e : listA) {   
                 

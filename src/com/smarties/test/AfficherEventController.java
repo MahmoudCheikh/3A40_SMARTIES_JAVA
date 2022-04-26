@@ -7,6 +7,7 @@ import com.smarties.entities.Evenement;
 import com.smarties.services.EvenementService;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.Collections;
 import java.util.*;
 import java.util.Objects;
@@ -20,7 +21,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
@@ -28,9 +31,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 public class AfficherEventController implements Initializable {
-  public  Evenement currentEvenement;
+  public static Evenement currentEvenement;
   Activite a=new  Activite();
-
+ 
     @FXML
     private Text topText;
     @FXML
@@ -81,6 +84,20 @@ public class AfficherEventController implements Initializable {
                      }
                  }
              });
+            ((Button) innerContainer.lookup("#participer")).setOnAction((event) -> {
+                 try {
+                     participerevent(e);
+                 } catch (SQLException ex) {
+                     Logger.getLogger(AfficherEventController.class.getName()).log(Level.SEVERE, null, ex);
+                 }
+             });
+             ((Button) innerContainer.lookup("#nepasparticiper")).setOnAction((event) -> {
+                 try {
+                     nepasparticiperevent(e);
+                 } catch (SQLException ex) {
+                     Logger.getLogger(AfficherEventController.class.getName()).log(Level.SEVERE, null, ex);
+                 }
+             });
           } catch (IOException ex) {
             System.out.println(ex.getMessage());
        }
@@ -88,12 +105,52 @@ public class AfficherEventController implements Initializable {
     }
 
     private void AfficherAct(Activite a,Evenement e) throws IOException{
-        currentEvenement=e;
-     // if(a.getId()== currentEvenement.getId()){
+ 
+      
         AnchorPane xx;
         xx = FXMLLoader.load(getClass().getResource("AfficherActivite.fxml"));
         a1.getChildren().setAll(xx);
-       //}
+        
     
     }
+   
+   private void participerevent(Evenement e) throws SQLException{
+         EvenementService t=new EvenementService();
+       Boolean tr = true;
+      if(t.verifierparticiper(e,Smarties.user.getId())==tr){
+             
+             Alert alert = new Alert(Alert.AlertType.INFORMATION);
+             alert.setTitle("Information Dialog");
+             alert.setHeaderText(null);
+             alert.setContentText("vous participez deja a l'évenement "+e.getNom());
+             alert.showAndWait();}
+      else{
+             t.participer(e,Smarties.user.getId());
+             Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
+             alert1.setTitle("Information Dialog");
+             alert1.setHeaderText(null);
+             alert1.setContentText("vous participer maintenant a l'evenement "+e.getNom());
+             Optional<ButtonType> showAndWait = alert1.showAndWait();
+         }
+   }
+      private void nepasparticiperevent(Evenement e) throws SQLException{
+         EvenementService t=new EvenementService();
+       Boolean tr = false;
+      if(t.verifierparticiper(e,Smarties.user.getId())==tr){         
+             Alert alert = new Alert(Alert.AlertType.INFORMATION);
+             alert.setTitle("Information Dialog");
+             alert.setHeaderText(null);
+             alert.setContentText("vous devez deja participer a l'évenement "+e.getNom());
+             alert.showAndWait();}
+      else{
+      t.supprimerparticipation(e,Smarties.user.getId());
+      Alert alert = new Alert(Alert.AlertType.INFORMATION);
+             alert.setTitle("Information Dialog");
+             alert.setHeaderText(null);
+             alert.setContentText("vous ne participez plus a l'evenement "+e.getNom());
+             alert.showAndWait();
+      
+              }
+   }
+   
 }
