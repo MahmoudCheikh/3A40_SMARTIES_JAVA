@@ -151,7 +151,7 @@ public class CommandeService {
     public List<Commande> triercommande() {
         List<Commande> list = new ArrayList<>();
         try {
-            String req = "SELECT * FROM commande order by id asc";
+            String req = "SELECT * FROM commande order by id desc";
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
 
@@ -196,7 +196,7 @@ public class CommandeService {
             doc.add(new Paragraph(" "));
 
 
-            PdfPTable table = new PdfPTable(5);
+            PdfPTable table = new PdfPTable(6);
             table.setWidthPercentage(100);
             PdfPCell cell;
 

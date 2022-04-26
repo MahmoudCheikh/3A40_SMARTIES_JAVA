@@ -110,13 +110,19 @@ public class MesCommandesController implements Initializable {
         listcommandefront.setOnMouseClicked((event1) -> {
 
             int selectedNbProd = listcommandefront.getSelectionModel().getSelectedItem().getNbProduits();
-             int selectedidcom = listcommandefront.getSelectionModel().getSelectedItem().getIdUser();
+             int selectedidcom = listcommandefront.getSelectionModel().getSelectedItem().getId();
               int selectedidprod = listcommandefront.getSelectionModel().getSelectedItem().getIdProduit();
+              int selectedcommande = listcommandefront.getSelectionModel().getSelectedItem().getId();
+              //int selectdcombo = listcommandefront.getSelectionModel().getSelectedItem().getIdProduit();
 
+                      
 
             txtnbrproduitfront.setText(String.valueOf(selectedNbProd));
             txtidcom.setText(String.valueOf(selectedidcom));
             txtidprod.setText(String.valueOf(selectedidprod));
+            txtidfront.setText(String.valueOf(selectedcommande));
+           // selectdcombo.setText(String.valueOf(comboCommProdfront));
+
         });
     }
 
@@ -144,8 +150,7 @@ public class MesCommandesController implements Initializable {
                 Commande c = new Commande();
                     
                 int x2 = Integer.parseInt(txtnbrproduitfront.getText());
- System.out.println(" Achat Effecute !");
-        Notifications.create().title("Bonne Nouvelle").text("Votre Achat a été passé avec succes félicitation").darkStyle().position(Pos.BOTTOM_CENTER).showWarning();
+ 
         
                 //c.setIdUser(us.searchByMail(comboComm.getValue()));
                 c.setIdProduit(pr.searchByLib(comboCommProdfront.getValue()));
@@ -246,7 +251,7 @@ public class MesCommandesController implements Initializable {
 
     @FXML
     private void actcommande(ActionEvent event) {
-        ObservableList<Commande> items = FXCollections.observableArrayList();
+          ObservableList<Commande> items = FXCollections.observableArrayList();
         List<Commande> listcomm = cs.afficherCommande();
         for (Commande r : listcomm) {
             String ch = r.toString();
@@ -254,6 +259,7 @@ public class MesCommandesController implements Initializable {
         }
         listcommandefront.setItems(items);
     }
+
 
     @FXML
     private void pdf(ActionEvent event) throws DocumentException {
@@ -296,6 +302,8 @@ public class MesCommandesController implements Initializable {
         int id = Integer.parseInt(txtidcom.getText());
         int idprod = Integer.parseInt(txtidprod.getText());
         sa.ajouterAchat(id , idprod);
+        System.out.println(" Achat Effecute !");
+      Notifications.create().title("Bonne Nouvelle").text("Votre Achat a été passé avec succes félicitation").darkStyle().position(Pos.BOTTOM_CENTER).showWarning();
     }
 
 }

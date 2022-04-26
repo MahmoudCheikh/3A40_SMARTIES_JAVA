@@ -23,17 +23,17 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="467.0" prefWidth="731.0">
                      <children>
-                        <TextField fx:id="txtnbrproduitfront" layoutX="14.0" layoutY="182.0" prefHeight="25.0" prefWidth="218.0" promptText="Inserer Nbr Produit" style="-fx-background-color: #f00020;">
+                        <TextField fx:id="txtnbrproduitfront" layoutX="208.0" layoutY="97.0" prefHeight="25.0" prefWidth="218.0" promptText="Inserer Nbr Produit" style="-fx-background-color: #f00020;">
                            <effect>
                               <InnerShadow />
                            </effect>
                         </TextField>
-                        <ListView fx:id="listcommandefront" layoutX="254.0" layoutY="135.0" onMouseClicked="#getDataCommande" prefHeight="320.0" prefWidth="796.0" style="-fx-background-color: #f00020;">
+                        <ListView fx:id="listcommandefront" layoutX="19.0" layoutY="135.0" onMouseClicked="#getDataCommande" prefHeight="320.0" prefWidth="1031.0" style="-fx-background-color: #f00020;">
                            <effect>
                               <DropShadow />
                            </effect>
                         </ListView>
-                        <Button fx:id="btnajouterc" layoutX="14.0" layoutY="134.0" mnemonicParsing="false" onAction="#ajouterc" prefHeight="25.0" prefWidth="113.0" style="-fx-background-color: #f00020;" stylesheets="@../services/styleSmarties.css" text="Ajouter" textAlignment="CENTER" textFill="#f8f8f7">
+                        <Button fx:id="btnajouterc" layoutX="243.0" layoutY="41.0" mnemonicParsing="false" onAction="#ajouterc" prefHeight="25.0" prefWidth="113.0" style="-fx-background-color: #f00020;" stylesheets="@../services/styleSmarties.css" text="Commander " textAlignment="CENTER" textFill="#f8f8f7">
                            <font>
                               <Font name="Barlow Condensed Light" size="14.0" />
                            </font>
@@ -44,7 +44,7 @@
                               <DropShadow />
                            </effect>
                         </Button>
-                        <Button fx:id="btnupdatec" layoutX="754.0" layoutY="519.0" mnemonicParsing="false" onAction="#update" prefHeight="28.0" prefWidth="188.0" style="-fx-background-color: #f00020;" stylesheets="@../services/styleSmarties.css" text="Modifier Vos Commandes" textAlignment="CENTER" textFill="#f8f8f7">
+                        <Button fx:id="btnupdatec" layoutX="956.0" layoutY="520.0" mnemonicParsing="false" onAction="#update" prefHeight="28.0" prefWidth="188.0" style="-fx-background-color: #f00020;" stylesheets="@../services/styleSmarties.css" text="Modifier Vos Commandes" textAlignment="CENTER" textFill="#f8f8f7">
                            <font>
                               <Font name="Barlow Condensed Light" size="14.0" />
                            </font>
@@ -55,7 +55,7 @@
                               <DropShadow />
                            </effect>
                         </Button>
-                        <Button fx:id="btndeletec" layoutX="953.0" layoutY="519.0" mnemonicParsing="false" onAction="#deletec" prefHeight="28.0" prefWidth="176.0" style="-fx-background-color: #f00020;" stylesheets="@../services/styleSmarties.css" text="Supprimer Votre Commande" textAlignment="CENTER" textFill="#f8f8f7">
+                        <Button fx:id="btndeletec" layoutX="1159.0" layoutY="520.0" mnemonicParsing="false" onAction="#deletec" prefHeight="28.0" prefWidth="176.0" style="-fx-background-color: #f00020;" stylesheets="@../services/styleSmarties.css" text="Supprimer Votre Commande" textAlignment="CENTER" textFill="#f8f8f7">
                            <font>
                               <Font name="Barlow Condensed Light" size="14.0" />
                            </font>
@@ -66,12 +66,12 @@
                               <DropShadow />
                            </effect>
                         </Button>
-                        <TextField fx:id="txtidfront" layoutX="632.0" layoutY="521.0" prefHeight="25.0" prefWidth="109.0" style="-fx-background-color: #f00020;">
+                        <TextField fx:id="txtidfront" layoutX="1226.0" layoutY="487.0" prefHeight="25.0" prefWidth="109.0" style="-fx-background-color: #f00020;">
                            <effect>
                               <InnerShadow />
                            </effect>
                         </TextField>
-                        <Button fx:id="recherche" layoutX="34.0" layoutY="482.0" mnemonicParsing="false" onAction="#Rechercher" prefHeight="25.0" prefWidth="83.0" style="-fx-background-color: #f00020;" stylesheets="@../services/styleSmarties.css" text="Rechercher" textAlignment="CENTER" textFill="#f8f8f7">
+                        <Button fx:id="recherche" layoutX="151.0" layoutY="519.0" mnemonicParsing="false" onAction="#Rechercher" prefHeight="25.0" prefWidth="83.0" style="-fx-background-color: #f00020;" stylesheets="@../services/styleSmarties.css" text="Rechercher" textAlignment="CENTER" textFill="#f8f8f7">
                            <font>
                               <Font name="Barlow Condensed Light" size="14.0" />
                            </font>
@@ -82,7 +82,7 @@
                               <DropShadow />
                            </effect>
                         </Button>
-                        <TextField fx:id="rechcfront" layoutX="25.0" layoutY="520.0" prefHeight="25.0" prefWidth="415.0" style="-fx-background-color: #f00020;">
+                        <TextField fx:id="rechcfront" layoutX="25.0" layoutY="520.0" prefHeight="25.0" prefWidth="115.0" style="-fx-background-color: #f00020;">
                            <effect>
                               <InnerShadow />
                            </effect>
@@ -92,23 +92,7 @@
                               <Image url="@../images/sdsd.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="24.0" fitWidth="25.0" layoutX="22.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/70310.png" />
-                           </image>
-                           <effect>
-                              <DropShadow />
-                           </effect>
-                        </ImageView>
-                        <ImageView fitHeight="25.0" fitWidth="32.0" layoutX="762.0" layoutY="521.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/icone%20modif.png" />
-                           </image>
-                           <effect>
-                              <DropShadow />
-                           </effect>
-                        </ImageView>
-                        <Button fx:id="triid" layoutX="202.0" layoutY="484.0" mnemonicParsing="false" onAction="#triercommande" prefHeight="25.0" prefWidth="105.0" style="-fx-background-color: #f00020;" stylesheets="@../services/styleSmarties.css" text="      Trier Par Id" textFill="WHITE">
+                        <Button fx:id="triid" layoutX="30.0" layoutY="462.0" mnemonicParsing="false" onAction="#triercommande" prefHeight="25.0" prefWidth="146.0" style="-fx-background-color: #f00020;" stylesheets="@../services/styleSmarties.css" text="      Trier Vos Commande" textFill="WHITE">
                            <effect>
                               <DropShadow />
                            </effect>
@@ -116,7 +100,7 @@
                               <Font name="Barlow Condensed Light" size="12.0" />
                            </font>
                         </Button>
-                        <ImageView fitHeight="16.0" fitWidth="34.0" layoutX="205.0" layoutY="489.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="16.0" fitWidth="34.0" layoutX="34.0" layoutY="467.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/tri.png" />
                            </image>
@@ -124,7 +108,7 @@
                               <DropShadow />
                            </effect>
                         </ImageView>
-                        <Button fx:id="actc" layoutX="325.0" layoutY="484.0" mnemonicParsing="false" onAction="#actcommande" prefHeight="25.0" prefWidth="103.0" style="-fx-background-color: #f00020;" stylesheets="@../services/styleSmarties.css" text="    Actualsier" textFill="#f8f7f7">
+                        <Button fx:id="actc" layoutX="192.0" layoutY="462.0" mnemonicParsing="false" onAction="#actcommande" prefHeight="25.0" prefWidth="103.0" style="-fx-background-color: #f00020;" stylesheets="@../services/styleSmarties.css" text="    Actualsier" textFill="#f8f7f7">
                            <font>
                               <Font name="Barlow Condensed Light" size="12.0" />
                            </font>
@@ -132,7 +116,7 @@
                               <DropShadow />
                            </effect>
                         </Button>
-                        <ImageView fitHeight="22.0" fitWidth="20.0" layoutX="325.0" layoutY="487.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="22.0" fitWidth="20.0" layoutX="192.0" layoutY="465.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/png-transparent-computer-icons-synchronization-encapsulated-postscript-icon-design-update-button-angle-text-logo.png" />
                            </image>
@@ -140,7 +124,7 @@
                               <DropShadow />
                            </effect>
                         </ImageView>
-                        <Button fx:id="pdfgen" layoutX="1145.0" layoutY="508.0" mnemonicParsing="false" onAction="#pdf" prefHeight="50.0" prefWidth="207.0" style="-fx-background-color: #f00020;" stylesheets="@../services/styleSmarties.css" text="Facture En Pdf">
+                        <Button fx:id="pdfgen" layoutX="1103.0" layoutY="343.0" mnemonicParsing="false" onAction="#pdf" prefHeight="50.0" prefWidth="207.0" style="-fx-background-color: #f00020;" stylesheets="@../services/styleSmarties.css" text="Facture En Pdf">
                            <graphic>
                               <ImageView fitHeight="54.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -149,15 +133,13 @@
                               </ImageView>
                            </graphic>
                         </Button>
-                        <ComboBox fx:id="comboCommProdfront" layoutX="472.0" layoutY="520.0" prefWidth="150.0" promptText="Produits" style="-fx-background-color: #f00020;" stylesheets="@../services/styleSmarties.css" />
+                        <ComboBox fx:id="comboCommProdfront" layoutX="42.0" layoutY="97.0" prefWidth="150.0" promptText="Produits" style="-fx-background-color: #f00020;" stylesheets="@../services/styleSmarties.css" />
                         <Button fx:id="versachat" layoutX="707.0" layoutY="97.0" mnemonicParsing="false" onAction="#commachat" prefHeight="25.0" prefWidth="334.0" style="-fx-background-color: #f00020;" stylesheets="@../services/styleSmarties.css" text="Vers Achat" />
                         <ImageView fitHeight="55.0" fitWidth="294.0" layoutX="34.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/ahmed.png" />
                            </image>
                         </ImageView>
-                        <TextField fx:id="txtidcom" layoutX="937.0" layoutY="67.0" prefHeight="25.0" prefWidth="43.0" />
-                        <TextField fx:id="txtidprod" layoutX="1004.0" layoutY="67.0" prefHeight="25.0" prefWidth="47.0" />
                      </children>
                   </AnchorPane>
                </content>
@@ -197,13 +179,7 @@
             </Tab>
          </tabs>
       </TabPane>
-      <Button fx:id="actac" layoutX="1230.0" layoutY="-31.0" mnemonicParsing="false" onAction="#actachat" prefHeight="25.0" prefWidth="115.0" style="-fx-background-color: # #f00020;" stylesheets="@EvenementStyle.css" text="Actualiser" textFill="#fffdfd">
-         <font>
-            <Font name="Barlow Condensed Light" size="13.0" />
-         </font>
-         <effect>
-            <DropShadow />
-         </effect>
-      </Button>
+      <TextField fx:id="txtidcom" layoutX="1235.0" layoutY="-32.0" prefHeight="25.0" prefWidth="28.0" />
+      <TextField fx:id="txtidprod" layoutX="1298.0" layoutY="-32.0" prefHeight="25.0" prefWidth="28.0" />
    </children>
 </AnchorPane>
