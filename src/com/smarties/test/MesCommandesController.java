@@ -102,8 +102,14 @@ public class MesCommandesController implements Initializable {
         listachatfront.getItems().addAll(a2);
         // TODO
         comboCommProdfront.setItems(FXCollections.observableArrayList(cs.comboCommProd()));
-    }
+         //Pour L'affichge
 
+        
+    }
+    
+    
+
+    
     @FXML
     private void getDataCommande(MouseEvent event) {
         Commande com = new Commande();
@@ -127,7 +133,7 @@ public class MesCommandesController implements Initializable {
     }
 
     @FXML
-    private void ajouterc(ActionEvent event) throws SQLException {
+    private void ajouterc(ActionEvent event) throws SQLException, Exception {
         alert.setAlertType(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation");
         alert.setHeaderText(null);
@@ -160,11 +166,14 @@ public class MesCommandesController implements Initializable {
                 cs.ajouterCommande(c);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Success");
-                alert.setContentText("ajout effectué avec succé!");
+                alert.setContentText("ajout effectué avec succé , un mail sera envoyé!");
                 alert.show();
+                cs.sendMail("ahmedelmoez.noomen@esprit.tn");
+
 
             }
         }
+    
     }
 
     @FXML
@@ -208,6 +217,7 @@ public class MesCommandesController implements Initializable {
             alert.setContentText("modification effectuée!");
             alert.show();
         }
+    
     }
 
     @FXML
@@ -298,12 +308,15 @@ public class MesCommandesController implements Initializable {
     }
 
     @FXML
-    private void commachat(ActionEvent event) {
+    private void commachat(ActionEvent event) throws Exception {
         int id = Integer.parseInt(txtidcom.getText());
         int idprod = Integer.parseInt(txtidprod.getText());
         sa.ajouterAchat(id , idprod);
-        System.out.println(" Achat Effecute !");
+        System.out.println(" Achat Effecute Un Mail Sera Envoye Soon !");
       Notifications.create().title("Bonne Nouvelle").text("Votre Achat a été passé avec succes félicitation").darkStyle().position(Pos.BOTTOM_CENTER).showWarning();
+                      
+    
+
     }
 
 }

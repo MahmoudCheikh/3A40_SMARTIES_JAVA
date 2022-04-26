@@ -8,6 +8,7 @@ package com.smarties.services;
 import com.smarties.entities.Achat;
 import com.smarties.entities.Commande;
 import com.smarties.test.Smarties;
+import static com.smarties.test.Smarties.user;
 import com.smarties.tools.MaConnexion;
 import java.sql.Connection;
 import java.sql.Date;
@@ -131,8 +132,9 @@ public class AchatService {
                 ab.setIdUser(rs.getInt("id_user_id"));
                 ab.setIdProduit(rs.getInt("id_produit_id"));
 
-                // Date date = rs.getDate("date");
-                //p.setDate(date.toLocalDate());
+                 Date date = rs.getDate("date");
+                ab.setDate(date.toLocalDate());
+                
                 ab.setNomClient(rs.getString("nom_client"));
                 ab.setNumeroClient(rs.getInt("numero_client"));
 
@@ -185,9 +187,10 @@ public class AchatService {
             ste.setInt(1, (int) Smarties.user.getId());
             ste.setInt(2, (int) idProd);
             ste.setDate(3, Date.valueOf(LocalDate.now()));
-            ste.setString(4, Smarties.user.getNom() + " " + Smarties.user.getPrenom());
+            ste.setString(4,Smarties.user.getNom() + " " + Smarties.user.getPrenom());
+            
             ste.setInt(5, 1);
-
+            System.out.println(ste);
             ste.executeUpdate();
             System.out.println("Achat Ajoutée !!");
         } catch (SQLException ex) {

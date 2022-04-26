@@ -74,6 +74,7 @@ public class Achat {
 
     @Override
     public String toString() {
-        return "Achat"        +        "\nid="        +        id        +        "\nid_user="        + id_user +        "\nid_produit="        +        id_produit        + "\ndate=" +        date        + "\nnom_client="        +        nom_client        + "\nnumero_client="        +        numero_client        + "";
+        
+        return "Achat"        +        "\nNumero D'Achat   :"        +        id        +        "\nIdentifiant D'Utilisateur   :"        + id_user +        "\nIdentifiant Du Produit   :"        +        id_produit        + "\nDate D'Achat   :" +        date        + "\nNom Du Client   :"        +        nom_client        + "\nNumero Du Client   :"        +        numero_client        + "";
     }
 }

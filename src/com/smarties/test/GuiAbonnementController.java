@@ -77,7 +77,7 @@ public class GuiAbonnementController implements Initializable {
     private AbonnementService as = new AbonnementService();
     private LocationService loc = new LocationService();
     private UsersService us = new UsersService();
-      String path = "C:\\java\\3A40_SMARTIES_JAVA\\src\\com\\smarties\\services\\musique.mp3";  
+      String path = "C:\\3A40_SMARTIES_JAVA\\src\\com\\smarties\\musique.mp3";  
      Media media = new Media(new File(path).toURI().toString()); 
    MediaPlayer mediaPlayer = new MediaPlayer(media);  
     Alert alert = new Alert(Alert.AlertType.NONE);
@@ -210,7 +210,7 @@ public class GuiAbonnementController implements Initializable {
         ListLoc.getItems().addAll(l);*/
         TypeAbonCombo.getItems().addAll(typeAbonnement);
         ComboIDAb.setItems(FXCollections.observableArrayList(loc.getCombo()));
-       String path = "C:\\java\\3A40_SMARTIES_JAVA\\src\\com\\smarties\\services\\musique.mp3";  
+       String path = "C:\\3A40_SMARTIES_JAVA\\src\\com\\smarties\\musique.mp3";  
      Media media = new Media(new File(path).toURI().toString()); 
    MediaPlayer mediaPlayer = new MediaPlayer(media);  
 
