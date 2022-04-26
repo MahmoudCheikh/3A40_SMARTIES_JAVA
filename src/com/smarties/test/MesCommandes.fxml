@@ -108,7 +108,7 @@
                               <DropShadow />
                            </effect>
                         </Button>
-                        <Button fx:id="pdfgen" layoutX="1064.0" layoutY="343.0" mnemonicParsing="false" onAction="#pdf" prefHeight="50.0" prefWidth="291.0" style="-fx-background-color: #f00020;" stylesheets="@../services/styleSmarties.css" text="Facture En Pdf">
+                        <Button fx:id="pdfgen" layoutX="1064.0" layoutY="343.0" mnemonicParsing="false" onAction="#pdf" prefHeight="50.0" prefWidth="291.0" style="-fx-background-color: #f00020;" stylesheets="@EvenementStyle.css" text="Votre Commande En Pdf" textFill="#eee3e3">
                            <graphic>
                               <ImageView fitHeight="54.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -116,9 +116,15 @@
                                  </image>
                               </ImageView>
                            </graphic>
+                           <font>
+                              <Font name="Barlow Condensed Light" size="13.0" />
+                           </font>
                         </Button>
                         <ComboBox fx:id="comboCommProdfront" layoutX="42.0" layoutY="97.0" prefWidth="150.0" promptText="Produits" style="-fx-background-color: #f00020;" stylesheets="@../services/styleSmarties.css" />
-                        <Button fx:id="versachat" layoutX="707.0" layoutY="97.0" mnemonicParsing="false" onAction="#commachat" prefHeight="25.0" prefWidth="334.0" style="-fx-background-color: #f00020;" stylesheets="@../services/styleSmarties.css" text="Vers Achat" />
+                        <Button fx:id="versachat" layoutX="707.0" layoutY="97.0" mnemonicParsing="false" onAction="#commachat" prefHeight="25.0" prefWidth="334.0" style="-fx-background-color: #f00020;" stylesheets="@EvenementStyle.css" text="Acheter Votre Produit" textFill="#f2e8e8">
+                           <font>
+                              <Font name="Barlow Condensed Light" size="13.0" />
+                           </font></Button>
                         <ImageView fitHeight="95.0" fitWidth="163.0" layoutX="70.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/278955611_661434908638846_4703323274380555431_n.png" />
