@@ -84,7 +84,7 @@ public class GuiFrontController implements Initializable {
     @FXML
     private void GestionFavoris(ActionEvent event) throws IOException {
         AnchorPane xx;
-        xx = FXMLLoader.load(getClass().getResource("ModelFavoris.fxml"));
+        xx = FXMLLoader.load(getClass().getResource("GuiFavorisFront.fxml"));
         a1.getChildren().setAll(xx);
     }
 

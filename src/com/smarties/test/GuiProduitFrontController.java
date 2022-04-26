@@ -60,6 +60,8 @@ public class GuiProduitFrontController implements Initializable {
     private AnchorPane a1;
     @FXML
     private VBox vboxProd;
+    @FXML
+    private Text topText;
 
     /**
      * Initializes the controller class.
