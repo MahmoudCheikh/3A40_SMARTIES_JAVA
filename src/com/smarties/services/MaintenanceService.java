@@ -14,7 +14,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -29,18 +31,20 @@ public class MaintenanceService {
     }
 
     public void ajouterMaintenance(Maintenance m) {
-        String query = "insert into maintenance(id_produit_id,relation_id,reclamation_id,date_debut,date_fin,adresse,etat,description) values(?,?,?,?,?,?,?,?)";
+        String query = "insert into maintenance(id,id_produit_id,relation_id,reclamation_id,date_debut,date_fin,adresse,etat) values(?,?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement ste = cnx.prepareStatement(query);
-
-            ste.setInt(1, m.getId_produit_id());
-            ste.setInt(2, m.getRelation_id());
-            ste.setInt(3, m.getReclamation_id());
-            ste.setDate(4, Date.valueOf(m.getDate_debut()));
-            ste.setDate(5, Date.valueOf(m.getDate_fin()));
-            ste.setString(6, m.getAdresse());
-            ste.setString(7, m.getEtat());
+            
+            ste.setInt(1, m.getId());
+            ste.setInt(2, m.getId_produit_id());
+            ste.setInt(3, m.getRelation_id());
+            ste.setInt(4, m.getReclamation_id());
+            ste.setDate(5, Date.valueOf(m.getDate_debut()));
+            ste.setDate(6, Date.valueOf(m.getDate_fin()));
+            ste.setString(7, m.getAdresse());
             ste.setString(8, m.getDescription());
+            ste.setString(9, m.getEtat());
+
 
             ste.executeUpdate();
             System.out.println("Maintenance Ajouté");
@@ -61,7 +65,14 @@ public class MaintenanceService {
                 Maintenance m = new Maintenance();
                 m.setId(rs.getInt("Id"));
                 System.out.println(m.getId());
+                m.setId_produit_id(rs.getInt("Id_produit_id"));
+                System.out.println(m.getId_produit_id());
+                m.setRelation_id(rs.getInt("Relation_id"));
+                System.out.println(m.getRelation_id());
+                m.setReclamation_id(rs.getInt("Reclamation_id"));
+                System.out.println(m.getId());
                 m.setEtat(rs.getString("Etat"));
+                m.setAdresse(rs.getString("Adresse"));
                 m.setDescription(rs.getString("Description"));
                 Date date_debut = rs.getDate("date_debut");
                 m.setDate_debut(date_debut.toLocalDate());
@@ -124,8 +135,10 @@ public class MaintenanceService {
                 e.setId_produit_id(rs.getInt(2));
                 e.setRelation_id(rs.getInt(3));
                 e.setReclamation_id(rs.getInt(4));
-               // e.setDate_debut(rs.getDate(5));
-              //  e.setDate_fin(rs.getString(6));
+                Date date_debut = rs.getDate("date_debut");
+                e.setDate_debut(date_debut.toLocalDate());
+                Date date_fin = rs.getDate("date_fin");
+                e.setDate_fin(date_fin.toLocalDate());
                 e.setAdresse(rs.getString(7));
                 e.setEtat(rs.getString(8));
                 e.setDescription(rs.getString(8));
@@ -137,6 +150,12 @@ public class MaintenanceService {
 
         }
         return list;
+    }
+
+    public List<Maintenance> TriEtat() {
+        Comparator<Maintenance> comparator = Comparator.comparing(Maintenance::getEtat);
+        List<Maintenance> prd = afficherMaintenance();
+        return prd.stream().sorted(comparator).collect(Collectors.toList());
     }
 
 }

@@ -29,13 +29,14 @@ public class ReclamationService {
     }
 
     public void ajouterReclamation(Reclamation r) {
-        String query = "insert into reclamation (id_user_id ,description,date,objet) values(?,?,?,?)";
+        String query = "insert into reclamation (id,id_user_id ,description,date,objet) values(?,?,?,?,?)";
         try {
             PreparedStatement ste = cnx.prepareStatement(query);
-            ste.setInt(1, r.getId_user_id());
-            ste.setString(2, r.getDescription());
-            ste.setDate(3, Date.valueOf(r.getDate()));
-            ste.setString(4, r.getObjet());
+            ste.setInt(1, r.getId());
+            ste.setInt(2, r.getId_user_id());
+            ste.setString(3, r.getDescription());
+            ste.setDate(4, Date.valueOf(r.getDate()));
+            ste.setString(5, r.getObjet());
             ste.executeUpdate();
             System.out.println("Reclamation Ajoutée!");
         } catch (SQLException ex) {
@@ -53,11 +54,14 @@ public class ReclamationService {
             ResultSet rs = ste.executeQuery(sql);
             while (rs.next()) {
                 Reclamation r = new Reclamation();
-                r.setId(rs.getInt("id"));
+                r.setId(rs.getInt("Id"));
                 System.out.println(r.getId());
-                Date date = rs.getDate("date");
+                r.setId_user_id(rs.getInt("Id_user_id"));
+                System.out.println(r.getId_user_id());
+                Date date = rs.getDate("Date");
                 r.setDate(date.toLocalDate());
-                r.setDescription(rs.getString("description"));
+                r.setDescription(rs.getString("Description"));
+                r.setObjet(rs.getString("Objet"));
                 reclamations.add(r);
 
             }
@@ -114,7 +118,8 @@ public class ReclamationService {
                 Reclamation r = new Reclamation();
                 r.setId(rs.getInt(1));
                 r.setId_user_id(rs.getInt(2));
-              //  r.setDate(rs.getString(3));
+                Date date = rs.getDate("date");
+                r.setDate(date.toLocalDate());
                 r.setDescription(rs.getString(4));
                 r.setObjet(rs.getString(5));
 

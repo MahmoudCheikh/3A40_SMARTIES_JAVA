@@ -25,7 +25,7 @@ public class Maintenance {
 
     @Override
     public String toString() {
-        return "Maintenance{" + "id=" + id + ", id_produit_id=" + id_produit_id + ", relation_id=" + relation_id + ", reclamation_id=" + reclamation_id + ", date_debut=" + date_debut + ", date_fin=" + date_fin + ", adresse=" + adresse + ", etat=" + etat + ", description=" + description + '}';
+        return "" + "\nId Client           =     " + id + "\nId Produit        =     " + id_produit_id + "\nId Relation       =     " + relation_id + "\nId Reclamation         =     " + reclamation_id + "\nDate Debut       =     " + date_debut + "\nDate Fin         =     " + date_fin + "\nAdresse         =     " + adresse + "\nEtat         =     " + etat + "\nDescription      =     " + description ;
     }
 
     public int getId() {

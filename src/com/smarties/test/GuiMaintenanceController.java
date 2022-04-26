@@ -152,7 +152,7 @@ public class GuiMaintenanceController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Information Dialog");
             alert.setHeaderText(null);
-            alert.setContentText("l'etat doit etre terminé ou non terminé");
+            alert.setContentText("l'état doit etre terminé ou non terminé");
             alert.showAndWait();
 
         }
@@ -247,16 +247,6 @@ public class GuiMaintenanceController implements Initializable {
     }
 
     @FXML
-    private void chercher(ActionEvent event) {
-        MaintenanceService a = new MaintenanceService();
-        List<Maintenance> R = a.Chercher(textsupr.getText());
-        ObservableList<Maintenance> datalist = FXCollections.observableArrayList(R);
-        this.listmaintenance.setItems(datalist);
-        //refresh();
-
-    }
-
-    @FXML
     public void refreshTable() {
         List<Maintenance> maint = ms.afficherMaintenance();
         listmaintenance.getItems().clear();
@@ -264,7 +254,10 @@ public class GuiMaintenanceController implements Initializable {
 
     }
 
-    private void autofilll(MouseEvent event) {
+    @FXML
+    
+   
+    private void autofill(MouseEvent event) {
         Maintenance mainte = new Maintenance();
         listmaintenance.setOnMouseClicked((event1) -> {
             String selectedDes = listmaintenance.getSelectionModel().getSelectedItem().getDescription();
@@ -291,10 +284,11 @@ public class GuiMaintenanceController implements Initializable {
     }
 
     @FXML
-    private void chercher(KeyEvent event) {
+    private void chercher(ActionEvent event) {
+        MaintenanceService a = new MaintenanceService();
+        List<Maintenance> R = a.Chercher(textsupr.getText());
+        ObservableList<Maintenance> datalist = FXCollections.observableArrayList(R);
+        this.listmaintenance.setItems(datalist);
     }
 
-    @FXML
-    private void autofill(MouseEvent event) {
-    }
 }

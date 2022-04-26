@@ -21,7 +21,7 @@ public class Reclamation {
 
     @Override
     public String toString() {
-        return "Reclamation{" + "id=" + id + ", id_user_id=" + id_user_id + ", description=" + description + ", date=" + date + ", objet=" + objet + '}';
+        return "" + "\nId Reclamation        =     " + id + "\nId Client         =     " + id_user_id + "\nDescription         =     " + description + "\nDate         =     " + date + "\nObjet         =     " + objet ;
     }
 
     public int getId() {

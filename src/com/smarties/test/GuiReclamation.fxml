@@ -5,22 +5,28 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smarties.test.GuiReclamationController">
+<AnchorPane id="AnchorPane" prefHeight="509.0" prefWidth="926.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smarties.test.GuiReclamationController">
     <children>
-        <Button fx:id="btnAjouter" layoutX="73.0" layoutY="361.0" mnemonicParsing="false" onAction="#Ajouter" text="Ajouter" />
-        <ListView fx:id="listreclamationid" layoutX="242.0" layoutY="10.0" onMouseClicked="#autofillrec" prefHeight="294.0" prefWidth="736.0" />
-        <Button fx:id="btndelete" layoutX="438.0" layoutY="361.0" mnemonicParsing="false" onAction="#Supprimer" text="Supprimer" />
-        <TextField fx:id="txtdesc" alignment="CENTER" layoutX="41.0" layoutY="210.0" promptText="Description" />
-        <TextField fx:id="txtobjet" alignment="CENTER" layoutX="41.0" layoutY="142.0" promptText="Objet" />
+        <Button fx:id="btnAjouter" layoutX="299.0" layoutY="472.0" mnemonicParsing="false" onAction="#Ajouter" prefHeight="25.0" prefWidth="100.0" stylesheets="@EvenementStyle.css" text="Ajouter" />
+        <ListView fx:id="listreclamationid" layoutX="292.0" layoutY="113.0" onMouseClicked="#autofillrec" prefHeight="305.0" prefWidth="343.0" />
+        <Button fx:id="btndelete" layoutX="536.0" layoutY="472.0" mnemonicParsing="false" onAction="#Supprimer" prefHeight="25.0" prefWidth="100.0" stylesheets="@EvenementStyle.css" text="Supprimer" />
+        <TextField fx:id="txtdesc" alignment="CENTER" layoutX="35.0" layoutY="366.0" prefHeight="25.0" prefWidth="228.0" promptText="Description" stylesheets="@EvenementStyle%20-%20Copy.css" />
+        <TextField fx:id="txtobjet" alignment="CENTER" layoutX="35.0" layoutY="276.0" prefHeight="25.0" prefWidth="228.0" promptText="Objet" stylesheets="@EvenementStyle%20-%20Copy.css" />
         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-        <Button fx:id="btnmodify" layoutX="274.0" layoutY="361.0" mnemonicParsing="false" onAction="#Modifier" text="Modifier" />
-        <TextField fx:id="textId" alignment="CENTER" layoutX="41.0" layoutY="24.0" promptText="ID" />
-        <TextField fx:id="textiduser" alignment="CENTER" layoutX="41.0" layoutY="76.0" promptText="User" />
-        <TextField fx:id="txtdeleteid" alignment="CENTER" layoutX="438.0" layoutY="329.0" promptText="ID" />
-      <DatePicker fx:id="txtdat" layoutX="42.0" layoutY="266.0" promptText="Date" />
-      <Button fx:id="rechercherec" layoutX="519.0" layoutY="361.0" mnemonicParsing="false" onAction="#chercher" text="recherche" />
-      <Button fx:id="refreshrec" layoutX="676.0" layoutY="361.0" mnemonicParsing="false" onAction="#refreshTable" text="refresh" />
+        <Button fx:id="btnmodify" layoutX="421.0" layoutY="472.0" mnemonicParsing="false" onAction="#Modifier" prefHeight="25.0" prefWidth="100.0" stylesheets="@EvenementStyle.css" text="Modifier" />
+        <TextField fx:id="textId" alignment="CENTER" layoutX="37.0" layoutY="78.0" prefHeight="25.0" prefWidth="228.0" promptText="ID" styleClass="text-field" stylesheets="@EvenementStyle%20-%20Copy.css" />
+        <TextField fx:id="textiduser" alignment="CENTER" layoutX="35.0" layoutY="174.0" prefHeight="25.0" prefWidth="228.0" promptText="User" styleClass="text-field" stylesheets="@EvenementStyle%20-%20Copy.css" />
+        <TextField fx:id="txtdeleteid" alignment="CENTER" layoutX="293.0" layoutY="434.0" prefHeight="25.0" prefWidth="343.0" promptText="Chercher Reclamation" stylesheets="@EvenementStyle%20-%20Copy.css" />
+      <DatePicker fx:id="txtdat" layoutX="37.0" layoutY="472.0" prefHeight="25.0" prefWidth="228.0" promptText="                            Date" stylesheets="@EvenementStyle%20-%20Copy.css" />
+      <Button fx:id="rechercherec" layoutX="535.0" layoutY="78.0" mnemonicParsing="false" onAction="#chercher" prefHeight="25.0" prefWidth="100.0" stylesheets="@EvenementStyle.css" text="Recherche" />
+      <Button fx:id="refreshrec" layoutX="292.0" layoutY="78.0" mnemonicParsing="false" onAction="#refreshTable" prefHeight="25.0" prefWidth="100.0" stylesheets="@EvenementStyle.css" text="Actualiser" />
+      <Text fill="#e83e2b" layoutX="391.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reclamations">
+         <font>
+            <Font size="27.0" />
+         </font>
+      </Text>
     </children>
 </AnchorPane>

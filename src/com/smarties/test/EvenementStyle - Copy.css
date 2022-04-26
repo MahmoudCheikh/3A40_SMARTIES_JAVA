@@ -1,0 +1,71 @@
+
+.button{
+-fx-background-color :   #BF3C3C;
+-fx-text-fill: #FFFFFF;
+-fx-font-weight:bold;
+}
+
+.button:hover{
+-fx-background-color : #F35353;
+}
+
+.button:pressed{
+    -fx-background-color : #7F2828;
+}
+
+.list-cell:filled:selected:focused, .list-cell:filled:selected {
+    /* 3:, 4: */
+    -fx-background-color: linear-gradient(#333 0%, #777 25%, #aaa 75%, #eee 100%);
+    -fx-text-fill: white; /* 5 */
+}
+.list-cell { -fx-text-fill: black; /* 5 */ }
+.list-cell:odd { -fx-background-color: white; /* 1 */ }
+.list-cell:even { -fx-background-color: #ff7f50; /* for information */ }
+.list-cell:filled:hover { 
+    -fx-background-color: #00f; /* 2 */
+    -fx-text-fill: white; /* 5 */
+}
+
+.choice-box {
+  -fx-background-color: black;
+  -fx-mark-color: orange;
+}
+
+.choice-box > .label { -fx-text-fill: white; }
+
+.text-field {
+    -fx-background-color: #BF3C3C, -fx-background ;
+    -fx-background-insets: 0, 0 0 1 0 ;
+    -fx-background-radius: 0 ;
+    -fx-prompt-text-fill: #BF3C3C;
+}
+.text-field:focused {
+    -fx-background-color: -fx-focus-color, -fx-background ;
+}
+
+.date-picker:editable > .arrow-button > * {
+    -fx-opacity: 0; /* Set the node in the button to be visible */
+}
+
+.button7{
+    -fx-border-color: #BF3C3C;
+    -fx-border-width: 0;
+    -fx-background-radius: 0;
+    -fx-background-color: transparent;
+    -fx-font-family:"Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-size: 1em; /* 12 */
+    -fx-text-fill: #828282;
+}
+
+.button7:focused {
+    -fx-border-color: transparent, black;
+    -fx-border-width: 1, 1;
+    -fx-border-style: solid, segments(1, 2);
+    -fx-border-radius: 0, 0;
+    -fx-border-insets: 1 1 1 1, 0;
+}
+
+.button7:pressed {
+    -fx-background-color: black;
+    -fx-text-fill: white;
+}
