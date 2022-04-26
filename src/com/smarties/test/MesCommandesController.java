@@ -168,7 +168,7 @@ public class MesCommandesController implements Initializable {
                 alert.setTitle("Success");
                 alert.setContentText("ajout effectué avec succé , un mail sera envoyé!");
                 alert.show();
-                cs.sendMail("ahmedelmoez.noomen@esprit.tn");
+                cs.sendMail("hazem.rjeibi@esprit.tn");
 
 
             }

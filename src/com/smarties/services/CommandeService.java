@@ -11,6 +11,7 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
@@ -194,18 +195,18 @@ public class CommandeService {
             doc.open();
             doc.getHtmlStyleClass();
 
-//            Image img = Image.getInstance("C:\\3A40_SMARTIES_JAVA\\src\\com\\smarties\\imagesçaRoule.png");
-            // img.scaleAbsoluteWidth(300);
-            //  img.scaleAbsoluteHeight(92);
-            //  img.setAlignment(Image.ALIGN_CENTER);
-            //   doc.add(img);
+              Image img = Image.getInstance("C:\\3A40_SMARTIES_JAVA\\src\\com\\smarties\\images\\çaRoule.png");
+            img.scaleAbsoluteWidth(300);
+             img.scaleAbsoluteHeight(92);
+              img.setAlignment(Image.ALIGN_CENTER);
+             doc.add(img);
             doc.add(new Paragraph(" "));
             doc.add(new Paragraph(" "));
             doc.add(new Paragraph("                                                     Liste des Commande "));
             doc.add(new Paragraph(" "));
 
 
-            PdfPTable table = new PdfPTable(6);
+            PdfPTable table = new PdfPTable(4);
             table.setWidthPercentage(100);
             PdfPCell cell;
 
@@ -215,12 +216,12 @@ public class CommandeService {
             cell.setBackgroundColor(BaseColor.GRAY);
             table.addCell(cell);
             ////
-            cell = new PdfPCell(new Phrase("Identifiant D'Utilisateur", FontFactory.getFont("Comic Sans MS", 12)));
+            cell = new PdfPCell(new Phrase("Produit Achetee", FontFactory.getFont("Comic Sans MS", 12)));
             cell.setHorizontalAlignment(Element.ALIGN_CENTER);
             cell.setBackgroundColor(BaseColor.GRAY);
             table.addCell(cell);
             ///
-            cell = new PdfPCell(new Phrase("Identifiant Du Produit", FontFactory.getFont("Comic Sans MS", 12)));
+            cell = new PdfPCell(new Phrase("Prix", FontFactory.getFont("Comic Sans MS", 12)));
             cell.setHorizontalAlignment(Element.ALIGN_CENTER);
             cell.setBackgroundColor(BaseColor.GRAY);
             table.addCell(cell);
@@ -231,10 +232,7 @@ public class CommandeService {
             table.addCell(cell);
             
             
-             cell = new PdfPCell(new Phrase("Prix", FontFactory.getFont("Comic Sans MS", 12)));
-            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-            cell.setBackgroundColor(BaseColor.GRAY);
-            table.addCell(cell);
+          
             ///
             //////////////////////////////////////////////////////////////////////////////
             while (rs.next()) {
@@ -243,12 +241,12 @@ public class CommandeService {
                 cell.setBackgroundColor(BaseColor.GRAY);
                 table.addCell(cell);
                 //////
-                cell = new PdfPCell(new Phrase(rs.getString("id_user_id").toString(), FontFactory.getFont("Comic Sans MS", 12)));
+                cell = new PdfPCell(new Phrase(rs.getString("libelle").toString(), FontFactory.getFont("Comic Sans MS", 12)));
                 cell.setHorizontalAlignment(Element.ALIGN_CENTER);
                 cell.setBackgroundColor(BaseColor.GRAY);
                 table.addCell(cell);
                 ///////
-                cell = new PdfPCell(new Phrase(rs.getString("id_produit_id").toString(), FontFactory.getFont("Comic Sans MS", 12)));
+                cell = new PdfPCell(new Phrase(rs.getString("prix").toString(), FontFactory.getFont("Comic Sans MS", 12)));
                 cell.setHorizontalAlignment(Element.ALIGN_CENTER);
                 cell.setBackgroundColor(BaseColor.GRAY);
                 table.addCell(cell);
@@ -258,11 +256,7 @@ public class CommandeService {
                 cell.setBackgroundColor(BaseColor.GRAY);
                 table.addCell(cell);
                 ////////////
-                cell = new PdfPCell(new Phrase(rs.getString("prix").toString(), FontFactory.getFont("Comic Sans MS", 12)));
-                cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-                cell.setBackgroundColor(BaseColor.GRAY);
-                table.addCell(cell);
-                
+               
                 
             }
 
