@@ -61,7 +61,7 @@ public class GuiFrontController implements Initializable {
 
     @FXML
     private void forum(ActionEvent event) throws IOException {
-        ScrollPane xx;
+        AnchorPane xx;
         xx = FXMLLoader.load(getClass().getResource("GuiForumFront.fxml"));
         a1.getChildren().setAll(xx);
     }

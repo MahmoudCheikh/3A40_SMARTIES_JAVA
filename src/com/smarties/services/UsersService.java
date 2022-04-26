@@ -140,17 +140,20 @@ public class UsersService {
         PreparedStatement ste = cnx.prepareStatement(query);
         ste.setString(1, mail);
 
+
         ResultSet rs;
         rs = ste.executeQuery();
         rs.next();
-        c.setId(rs.getInt(1));
-        c.setEmail(rs.getString(2));
-        c.setAdresse(rs.getString(3));
-        c.setImage(rs.getString(4));
-        c.setNom(rs.getString(5));
-        c.setPassword(rs.getString(6));
-        c.setPrenom(rs.getString(7));
-        c.setRole(rs.getString(8));
+        c.setId(rs.getInt("id"));
+        c.setEmail(rs.getString("email"));
+        c.setAdresse(rs.getString("adresse"));
+        c.setImage(rs.getString("image"));
+        c.setNom(rs.getString("nom"));
+        c.setPassword(rs.getString("password"));
+        c.setPrenom(rs.getString("prenom"));
+        c.setRole(rs.getString("role"));
+
+		System.out.print(c);
         return c;
 
     }

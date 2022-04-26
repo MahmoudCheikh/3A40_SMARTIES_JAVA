@@ -12,6 +12,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -46,6 +49,12 @@ public class GuiSujetFrontController implements Initializable {
     private VBox paneMessage;
 
     MessageService messageService = new MessageService();
+    @FXML
+    private Button retour;
+    @FXML
+    private VBox mainVbox;
+    @FXML
+    private AnchorPane ap;
 
     /**
      * Initializes the controller class.
@@ -68,7 +77,7 @@ public class GuiSujetFrontController implements Initializable {
         } else {
 
         }
-        paneScroll.setContent(paneMessage); 
+        paneScroll.setContent(paneMessage);
 
     }
 
@@ -79,10 +88,8 @@ public class GuiSujetFrontController implements Initializable {
     public Parent makeMessage(Message message) {
         Parent innerContainer = null;
         try {
-            System.out.println("test");
             FXMLLoader loader = new FXMLLoader(getClass().getResource("ModelMessage.fxml"));
             innerContainer = loader.load();
-            System.out.println("test2");
 
             //  HBox innerContainer = ((HBox) ((AnchorPane) ((AnchorPane) parent).getChildren().get(0)).getChildren().get(0));
             ((Label) innerContainer.lookup("#txtMsgDate")).setText("Posté le: " + message.getDate().toString());
@@ -91,7 +98,13 @@ public class GuiSujetFrontController implements Initializable {
 
             if (Smarties.user.getId() == message.getIdUser()) {
                 ((Button) innerContainer.lookup("#btnMsgModifier")).setOnAction((event) -> modifierMessage(message));
-                ((Button) innerContainer.lookup("#btnMsgSupp")).setOnAction((event) -> supprimerMessage(message));
+                ((Button) innerContainer.lookup("#btnMsgSupp")).setOnAction((event) -> {
+                    try {
+                        supprimerMessage(message);
+                    } catch (IOException ex) {
+                        Logger.getLogger(GuiSujetFrontController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                });
 
             } else {
                 ((Button) innerContainer.lookup("#btnMsgModifier")).setVisible(false);
@@ -109,8 +122,20 @@ public class GuiSujetFrontController implements Initializable {
 
     }
 
-    public void supprimerMessage(Message message) {
+    public void supprimerMessage(Message message) throws IOException {
+        messageService.supprimerMessage(message.getId());
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("GuiSujetFront.fxml"));
+        ScrollPane vbox = loader.load();
+        mainVbox.getChildren().setAll(vbox);
 
+    }
+
+    @FXML
+    private void retour(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("GuiForumFront.fxml"));
+        GuiSujetFrontController.sujet = sujet;
+        AnchorPane vbox = loader.load();
+        ap.getChildren().setAll(vbox);
     }
 
 }

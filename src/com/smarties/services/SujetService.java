@@ -86,6 +86,7 @@ public class SujetService {
             ps.setString(2, c.getContenu());
 
             ps.setInt(3, c.getId());
+            
             System.out.println("Modification...");
             ps.executeUpdate();
 

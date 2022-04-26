@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -20,6 +21,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
 /**
@@ -35,6 +37,8 @@ public class GuiForumFrontController implements Initializable {
     private VBox mainVbox;
     @FXML
     private ScrollPane scroll;
+    @FXML
+    private AnchorPane ap;
 
     /**
      * Initializes the controller class.
@@ -73,8 +77,20 @@ public class GuiForumFrontController implements Initializable {
                 }
             });
             if (Smarties.user.getId() == sujet.getUserId()) {
-                ((Button) innerContainer.lookup("#modifier")).setOnAction((event) -> modifierSujet(sujet));
-                ((Button) innerContainer.lookup("#supprimer")).setOnAction((event) -> supprimerSujet(sujet));
+                ((Button) innerContainer.lookup("#modifier")).setOnAction((event) -> {
+                    try {
+                        modifierSujet(sujet);
+                    } catch (IOException ex) {
+                        Logger.getLogger(GuiForumFrontController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                });
+                ((Button) innerContainer.lookup("#supprimer")).setOnAction((event) -> {
+                    try {
+                        supprimerSujet(sujet);
+                    } catch (IOException ex) {
+                        Logger.getLogger(GuiForumFrontController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                });
 
             } else {
                 ((Button) innerContainer.lookup("#modifier")).setVisible(false);
@@ -91,14 +107,29 @@ public class GuiForumFrontController implements Initializable {
     public void afficherSujet(Sujet sujet) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("GuiSujetFront.fxml"));
         GuiSujetFrontController.sujet = sujet;
-        VBox vbox = loader.load();
-        mainVbox.getChildren().setAll(vbox);
+        AnchorPane vbox = loader.load();
+        ap.getChildren().setAll(vbox);
     }
 
-    public void modifierSujet(Sujet sujet) {
+    public void modifierSujet(Sujet sujet) throws IOException {
+        GuiSujetFrontUpdateController.sujet = sujet;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("GuiSujetFrontUpdate.fxml"));
+        AnchorPane vbox = loader.load();
+        ap.getChildren().setAll(vbox);
     }
 
-    public void supprimerSujet(Sujet sujet) {
+    public void supprimerSujet(Sujet sujet) throws IOException {
+        sujetService.supprimerSujet(sujet.getId());
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("GuiForumFront.fxml"));
+        AnchorPane vbox = loader.load();
+        ap.getChildren().setAll(vbox);
+    }
+
+    @FXML
+    private void ajouter(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("GuiSujetFrontAjouter.fxml"));
+        AnchorPane vbox = loader.load();
+        ap.getChildren().setAll(vbox);
     }
 
 }
