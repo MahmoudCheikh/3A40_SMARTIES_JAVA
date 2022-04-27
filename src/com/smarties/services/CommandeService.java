@@ -316,8 +316,8 @@ public class CommandeService {
          properties.put("mail.smtp.starttls.enable", "true");
          properties.put("mail.smtp.host", "smtp.gmail.com" );
            properties.put("mail.smtp.port", "587");
-           String MyAccountEmail="ahmedelmoez.noomen@esprit.tn"; 
-           String password ="Avicenne980";
+           String MyAccountEmail="roulece090@gmail.com"; 
+           String password ="ahmed123456789";
             Session session= Session.getDefaultInstance(properties,new Authenticator(){
            protected PasswordAuthentication getPasswordAuthentication()
            {
@@ -336,7 +336,7 @@ public class CommandeService {
             Message message =new MimeMessage(session);
             message.setFrom(new InternetAddress( MyAccountEmail));
             message.setRecipient(Message.RecipientType.TO,new InternetAddress( recipient) );
-            message.setSubject("Notification via votre application desktop");
+            message.setSubject("Ca Roule Commande ");
             message.setText("Bonjour Cher Client , \n Votre Commande A été Passe Avec Succes ! ");
             return message; 
         } catch (Exception ex) {

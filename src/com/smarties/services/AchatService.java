@@ -126,7 +126,6 @@ public class AchatService {
             ResultSet rs = st.executeQuery(req);
 
             while (rs.next()) {
-
                 Achat ab = new Achat();
                 ab.setId(rs.getInt("id"));
                 ab.setIdUser(rs.getInt("id_user_id"));
@@ -188,8 +187,8 @@ public class AchatService {
             ste.setInt(2, (int) idProd);
             ste.setDate(3, Date.valueOf(LocalDate.now()));
             ste.setString(4,Smarties.user.getNom() + " " + Smarties.user.getPrenom());
+            ste.setInt(5,Smarties.user.getId());
             
-            ste.setInt(5, 1);
             System.out.println(ste);
             ste.executeUpdate();
             System.out.println("Achat Ajoutée !!");

@@ -95,39 +95,45 @@ public class MesCommandesController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        ArrayList al = (ArrayList) cs.afficherCommande();
-        listcommandefront.getItems().addAll(al);
-
-        ArrayList a2 = (ArrayList) sa.afficherAchat();
-        listachatfront.getItems().addAll(a2);
+        ArrayList<Commande> al = (ArrayList) cs.afficherCommande();
+        ArrayList<Commande> test = new ArrayList();
+        for (Commande commande : al) {
+            if (commande.getIdUser() == Smarties.user.getId()) {
+                test.add(commande);
+            }
+        }
+        listcommandefront.getItems().addAll(test);
+/////////////////////////////////////////////////////////////////////////:
+        ArrayList<Achat> a2 = (ArrayList) sa.afficherAchat();
+         ArrayList<Achat> lol = new ArrayList();
+        for (Achat achat : a2) {
+            if (achat.getIdUser() == Smarties.user.getId()) {
+                lol.add(achat);
+            }
+        }
+        listachatfront.getItems().addAll(lol);
         // TODO
         comboCommProdfront.setItems(FXCollections.observableArrayList(cs.comboCommProd()));
-         //Pour L'affichge
+        //Pour L'affichge
 
-        
     }
-    
-    
 
-    
     @FXML
     private void getDataCommande(MouseEvent event) {
         Commande com = new Commande();
         listcommandefront.setOnMouseClicked((event1) -> {
 
             int selectedNbProd = listcommandefront.getSelectionModel().getSelectedItem().getNbProduits();
-             int selectedidcom = listcommandefront.getSelectionModel().getSelectedItem().getId();
-              int selectedidprod = listcommandefront.getSelectionModel().getSelectedItem().getIdProduit();
-              int selectedcommande = listcommandefront.getSelectionModel().getSelectedItem().getId();
-              //int selectdcombo = listcommandefront.getSelectionModel().getSelectedItem().getIdProduit();
-
-                      
+            int selectedidcom = listcommandefront.getSelectionModel().getSelectedItem().getId();
+            int selectedidprod = listcommandefront.getSelectionModel().getSelectedItem().getIdProduit();
+            int selectedcommande = listcommandefront.getSelectionModel().getSelectedItem().getId();
+            //int selectdcombo = listcommandefront.getSelectionModel().getSelectedItem().getIdProduit();
 
             txtnbrproduitfront.setText(String.valueOf(selectedNbProd));
             txtidcom.setText(String.valueOf(selectedidcom));
             txtidprod.setText(String.valueOf(selectedidprod));
             txtidfront.setText(String.valueOf(selectedcommande));
-           // selectdcombo.setText(String.valueOf(comboCommProdfront));
+            // selectdcombo.setText(String.valueOf(comboCommProdfront));
 
         });
     }
@@ -154,10 +160,9 @@ public class MesCommandesController implements Initializable {
                 alert.showAndWait();
             } else {
                 Commande c = new Commande();
-                    
+
                 int x2 = Integer.parseInt(txtnbrproduitfront.getText());
- 
-        
+
                 //c.setIdUser(us.searchByMail(comboComm.getValue()));
                 c.setIdProduit(pr.searchByLib(comboCommProdfront.getValue()));
 
@@ -168,12 +173,11 @@ public class MesCommandesController implements Initializable {
                 alert.setTitle("Success");
                 alert.setContentText("ajout effectué avec succé , un mail sera envoyé!");
                 alert.show();
-                cs.sendMail("hazem.rjeibi@esprit.tn");
-
+                cs.sendMail(Smarties.user.getEmail());
 
             }
         }
-    
+
     }
 
     @FXML
@@ -217,7 +221,7 @@ public class MesCommandesController implements Initializable {
             alert.setContentText("modification effectuée!");
             alert.show();
         }
-    
+
     }
 
     @FXML
@@ -253,31 +257,60 @@ public class MesCommandesController implements Initializable {
         CommandeService n = new CommandeService();
         // int price = Integer.parseInt(findAb.getText());
         List< Commande> R = n.triercommande();
-
-        ObservableList< Commande> datalist = FXCollections.observableArrayList(R);
+        ArrayList<Commande> test = new ArrayList();
+        for (Commande commande : R) {
+            if (commande.getIdUser() == Smarties.user.getId()) {
+                test.add(commande);
+            }
+        }
+        listcommandefront.getItems().addAll(test);
+        ObservableList< Commande> datalist = FXCollections.observableArrayList(test);
 
         listcommandefront.setItems(datalist);
     }
 
+    
+    @FXML
+    private void trierachatid(ActionEvent event) {
+        AchatService n = new AchatService();
+        // int price = Integer.parseInt(findAb.getText());
+        List< Achat> R = n.trierachatid();
+            ArrayList<Achat> lol = new ArrayList();
+            for (Achat achat : R) {
+            if (achat.getIdUser() == Smarties.user.getId()) {
+            lol.add(achat);
+            }
+        }
+        listachatfront.getItems().addAll(lol);
+        ObservableList< Achat> datalist = FXCollections.observableArrayList(lol);
+
+        listachatfront.setItems(datalist);
+    }
+
     @FXML
     private void actcommande(ActionEvent event) {
-          ObservableList<Commande> items = FXCollections.observableArrayList();
+        ObservableList<Commande> items = FXCollections.observableArrayList();
         List<Commande> listcomm = cs.afficherCommande();
-        for (Commande r : listcomm) {
+        ArrayList<Commande> test = new ArrayList();
+        for (Commande commande : listcomm) {
+            if (commande.getIdUser() == Smarties.user.getId()) {
+                test.add(commande);
+            }
+        }
+        for (Commande r : test) {
             String ch = r.toString();
             items.add(r);
         }
         listcommandefront.setItems(items);
     }
 
-
     @FXML
     private void pdf(ActionEvent event) throws DocumentException {
         cs.Gpdf();
-        Alert alert = new Alert(Alert.AlertType.ERROR);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Information Dialog");
         alert.setHeaderText(null);
-        alert.setContentText("fichiier importer en pdf   !");
+        alert.setContentText("Votre Commande est Prete En Pdf !");
         alert.showAndWait();
     }
 
@@ -296,26 +329,14 @@ public class MesCommandesController implements Initializable {
     private void actachat(ActionEvent event) {
     }
 
-    @FXML
-    private void trierachatid(ActionEvent event) {
-        AchatService n = new AchatService();
-        // int price = Integer.parseInt(findAb.getText());
-        List< Achat> R = n.trierachatid();
-
-        ObservableList< Achat> datalist = FXCollections.observableArrayList(R);
-
-        listachatfront.setItems(datalist);
-    }
-
+  
     @FXML
     private void commachat(ActionEvent event) throws Exception {
         int id = Integer.parseInt(txtidcom.getText());
         int idprod = Integer.parseInt(txtidprod.getText());
-        sa.ajouterAchat(id , idprod);
+        sa.ajouterAchat(id, idprod);
         System.out.println(" Achat Effecute Un Mail Sera Envoye Soon !");
-      Notifications.create().title("Bonne Nouvelle").text("Votre Achat a été passé avec succes félicitation").darkStyle().position(Pos.BOTTOM_CENTER).showWarning();
-                      
-    
+        Notifications.create().title("Bonne Nouvelle").text("Votre Achat a été passé avec succes félicitation").darkStyle().position(Pos.BOTTOM_CENTER).showWarning();
 
     }
 
