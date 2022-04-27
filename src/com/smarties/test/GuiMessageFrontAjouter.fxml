@@ -10,7 +10,7 @@
    <children>
       <Text layoutX="52.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Message:" />
       <TextArea fx:id="txtContenu" layoutX="52.0" layoutY="77.0" prefHeight="200.0" prefWidth="200.0" />
-      <Button layoutX="200.0" layoutY="285.0" mnemonicParsing="false" onAction="#ajouter" text="Ajouter" />
+      <Button layoutX="200.0" layoutY="285.0" mnemonicParsing="false" onAction="#ajouter" stylesheets="@../services/styleSmarties.css" text="Ajouter" />
       <Label fx:id="txtError" layoutX="63.0" layoutY="339.0" />
    </children>
 </AnchorPane>

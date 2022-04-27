@@ -9,7 +9,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="200.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smarties.test.ModelSingleSujetController">
    <children>
-      <Label fx:id="txtTitre" layoutX="55.0" layoutY="69.0" text="Titre" textFill="#e40707">
+      <Label fx:id="txtTitre" layoutX="55.0" layoutY="69.0" text="Titre">
          <stylesheets>
             <URL value="@../services/styleSmarties.css" />
             <URL value="@../services/news.css" />
@@ -17,7 +17,7 @@
          <font>
             <Font name="Barlow Condensed Light" size="16.0" />
          </font></Label>
-      <Label fx:id="txtContent" layoutX="56.0" layoutY="104.0" text="Contenu" textFill="#e40707">
+      <Label fx:id="txtContent" layoutX="56.0" layoutY="104.0" text="Contenu">
          <stylesheets>
             <URL value="@../services/styleSmarties.css" />
             <URL value="@../services/news.css" />
@@ -25,7 +25,7 @@
          <font>
             <Font name="Barlow Condensed Light" size="16.0" />
          </font></Label>
-      <Label fx:id="txtDate" layoutX="180.0" layoutY="23.0" text="Date" textFill="#e40707">
+      <Label fx:id="txtDate" layoutX="180.0" layoutY="23.0" text="Date">
          <stylesheets>
             <URL value="@../services/styleSmarties.css" />
             <URL value="@../services/news.css" />
@@ -33,7 +33,7 @@
          <font>
             <Font name="Barlow Condensed Light" size="16.0" />
          </font></Label>
-      <Label fx:id="txtUser" layoutX="300.0" layoutY="23.0" text="User" textFill="#e40707">
+      <Label fx:id="txtUser" layoutX="300.0" layoutY="23.0" text="User">
          <stylesheets>
             <URL value="@../services/styleSmarties.css" />
             <URL value="@../services/news.css" />

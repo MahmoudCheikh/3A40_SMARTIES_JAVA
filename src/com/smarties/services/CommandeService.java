@@ -182,7 +182,7 @@ public class CommandeService {
         return list;
     }
 
-    public void Gpdf() throws DocumentException {
+   public void Gpdf() throws DocumentException {
         Document doc = new Document();
         String sql = "select* from commande,"
                 + "produit";

@@ -20,12 +20,12 @@
                               <Label fx:id="txtContenu" layoutX="90.0" layoutY="81.0" text="txtContenu" />
                               <Label fx:id="txtDate" layoutX="303.0" layoutY="30.0" text="txtDate" />
                               <Label fx:id="txtTitre" layoutX="90.0" layoutY="56.0" text="txtTitre" />
-                              <Button fx:id="retour" layoutX="409.0" layoutY="98.0" mnemonicParsing="false" onAction="#retour" text="Retour" />
+                              <Button fx:id="retour" layoutX="409.0" layoutY="98.0" mnemonicParsing="false" onAction="#retour" stylesheets="@../services/styleSmarties.css" text="Retour" />
                            </children>
                         </AnchorPane>
                         <AnchorPane layoutY="199.0" prefHeight="28.0" prefWidth="288.0">
                            <children>
-                              <Button fx:id="ajouter" layoutX="14.0" layoutY="2.0" mnemonicParsing="false" onAction="#ajouter" text="ajouter" />
+                              <Button fx:id="ajouter" layoutX="14.0" layoutY="2.0" mnemonicParsing="false" onAction="#ajouter" stylesheets="@../services/styleSmarties.css" text="ajouter" />
                            </children>
                         </AnchorPane>
                         <ScrollPane fx:id="paneScroll" layoutY="230.0" prefHeight="375.0" prefWidth="1366.0">

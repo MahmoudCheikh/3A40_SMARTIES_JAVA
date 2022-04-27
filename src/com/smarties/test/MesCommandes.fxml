@@ -10,6 +10,9 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -120,7 +123,17 @@
                               <Font name="Barlow Condensed Light" size="13.0" />
                            </font>
                         </Button>
-                        <ComboBox fx:id="comboCommProdfront" layoutX="42.0" layoutY="97.0" prefWidth="150.0" promptText="Produits" style="-fx-background-color: #f00020;" stylesheets="@../services/styleSmarties.css" />
+                        <ComboBox fx:id="comboCommProdfront" layoutX="42.0" layoutY="97.0" prefWidth="150.0" promptText="Produits" style="-fx-background-color: #f00020;" stylesheets="@../services/styleSmarties.css">
+                           <effect>
+                              <Lighting>
+                                 <bumpInput>
+                                    <Shadow />
+                                 </bumpInput>
+                                 <light>
+                                    <Light.Distant color="#ffffffd9" />
+                                 </light>
+                              </Lighting>
+                           </effect></ComboBox>
                         <Button fx:id="versachat" layoutX="707.0" layoutY="97.0" mnemonicParsing="false" onAction="#commachat" prefHeight="25.0" prefWidth="334.0" style="-fx-background-color: #f00020;" stylesheets="@EvenementStyle.css" text="Acheter Votre Produit" textFill="#f2e8e8">
                            <font>
                               <Font name="Barlow Condensed Light" size="13.0" />
