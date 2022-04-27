@@ -77,9 +77,9 @@ public class GuiAbonnementController implements Initializable {
     private AbonnementService as = new AbonnementService();
     private LocationService loc = new LocationService();
     private UsersService us = new UsersService();
-      String path = "C:\\3A40_SMARTIES_JAVA\\src\\com\\smarties\\musique.mp3";  
+    String path = "C:\\java\\3A40_SMARTIES_JAVA\\src\\com\\smarties\\musique.mp3";  
      Media media = new Media(new File(path).toURI().toString()); 
-   MediaPlayer mediaPlayer = new MediaPlayer(media);  
+   MediaPlayer mediaPlayer = new MediaPlayer(media); 
     Alert alert = new Alert(Alert.AlertType.NONE);
     @FXML
     private TextField textIDAbonnement;
@@ -128,8 +128,6 @@ public class GuiAbonnementController implements Initializable {
     private ImageView img3;
     @FXML
     private ImageView img4;
-    @FXML
-    private Label wrong;
     @FXML
     private ImageView img5;
     @FXML
@@ -210,9 +208,12 @@ public class GuiAbonnementController implements Initializable {
         ListLoc.getItems().addAll(l);*/
         TypeAbonCombo.getItems().addAll(typeAbonnement);
         ComboIDAb.setItems(FXCollections.observableArrayList(loc.getCombo()));
-       String path = "C:\\3A40_SMARTIES_JAVA\\src\\com\\smarties\\musique.mp3";  
-     Media media = new Media(new File(path).toURI().toString()); 
-   MediaPlayer mediaPlayer = new MediaPlayer(media);  
+      /* String path = "C:\\java\\3A40_SMARTIES_JAVA\\src\\com\\smarties\\services\\musique.mp3";  
+       Media media = new Media(new File(path).toURI().toString()); 
+   MediaPlayer mediaPlayer = new MediaPlayer(media);  */
+    mediaPlayer.play();
+    
+      mediaPlayer.setVolume(0.5);
 
     }
 
@@ -288,6 +289,7 @@ public class GuiAbonnementController implements Initializable {
 
              textIDUserA.setText(" ");
              textPrixAb.setText(" ");
+           
           
            
         }
@@ -817,77 +819,17 @@ else {
 
     @FXML
     private void PlaySound(ActionEvent event) {
-            
-       
-       
-  /*           
-  
-  //Scanner scanner = new Scanner(System.in);
-  
-  File file = new File("C:\\Users\\ASUS\\Desktop\\musique.mp3");
-  AudioInputStream audioStream = null;
-        try {
-            audioStream = AudioSystem.getAudioInputStream(file);
-        } catch (UnsupportedAudioFileException ex) {
-            Logger.getLogger(GuiAbonnementController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(GuiAbonnementController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-  Clip clip = null;
-        try {
-            clip = AudioSystem.getClip();
-        } catch (LineUnavailableException ex) {
-            Logger.getLogger(GuiAbonnementController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            clip.open(audioStream);
-        } catch (LineUnavailableException ex) {
-            Logger.getLogger(GuiAbonnementController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(GuiAbonnementController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-  clip.start();
-        
-  Media buzzer;
-        buzzer = new Media(getClass().getResource("C:\\java\\3A40_SMARTIES_JAVA\\src\\com\\smarties\\services\\musique.mp3").toExternalForm());
-  MediaPlayer mediaPlayer = new MediaPlayer(buzzer);
-  mediaPlayer.setAutoPlay(true);  
-*/
-  //  String path = "C:\\Users\\ASUS\\Desktop\\musique.mp3";  
-   /* String path = "C:\\java\\3A40_SMARTIES_JAVA\\src\\com\\smarties\\services\\musique.mp3";  
-     Media media = new Media(new File(path).toURI().toString()); 
-       MediaPlayer mediaPlayer = new MediaPlayer(media);  */
            mediaPlayer.play();
-            mediaPlayer.setVolume(1);
+            mediaPlayer.setVolume(0.5);
     }
 
-    @FXML
-    private void stopSound(ActionEvent event) {
-        
-          
-           mediaPlayer.stop();
-         
-          
-    }
+  
 
     @FXML
     private void PauseSound(ActionEvent event) {
         mediaPlayer.pause();
     }
 
-    @FXML
-    private void volumeBas(ActionEvent event) {
-        mediaPlayer.setVolume(0.1);
-    }
-
-    @FXML
-    private void volumemoyen(ActionEvent event) {
-         mediaPlayer.setVolume(0.5);
-    }
-
-    @FXML
-    private void volumeHaut(ActionEvent event) {
-         mediaPlayer.setVolume(1);
-    }
+    
 
 }

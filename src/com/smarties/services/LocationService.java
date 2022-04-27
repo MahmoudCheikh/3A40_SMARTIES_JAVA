@@ -287,17 +287,17 @@ public class LocationService {
             doc.add(new Paragraph("                                                     Liste des locations "));
             doc.add(new Paragraph(" "));
 
-            PdfPTable table = new PdfPTable(6);
+            PdfPTable table = new PdfPTable(4);
             table.setWidthPercentage(100);
             PdfPCell cell;
 
             /////////////////////////////////////////////////////////////////
-            cell = new PdfPCell(new Phrase("ID Location", FontFactory.getFont("Comic Sans MS", 12)));
+           /* cell = new PdfPCell(new Phrase("ID Location", FontFactory.getFont("Comic Sans MS", 12)));
             cell.setHorizontalAlignment(Element.ALIGN_CENTER);
             cell.setBackgroundColor(BaseColor.GRAY);
-            table.addCell(cell);
+            table.addCell(cell);*/
             ////
-            cell = new PdfPCell(new Phrase("ID User", FontFactory.getFont("Comic Sans MS", 12)));
+            cell = new PdfPCell(new Phrase("Mail de l'utilisateur", FontFactory.getFont("Comic Sans MS", 12)));
             cell.setHorizontalAlignment(Element.ALIGN_CENTER);
             cell.setBackgroundColor(BaseColor.GRAY);
             table.addCell(cell);
@@ -317,41 +317,41 @@ public class LocationService {
             cell.setBackgroundColor(BaseColor.GRAY);
             table.addCell(cell);
             ///
-            cell = new PdfPCell(new Phrase("ID Abonnements", FontFactory.getFont("Comic Sans MS", 12)));
+           /* cell = new PdfPCell(new Phrase("ID Abonnements", FontFactory.getFont("Comic Sans MS", 12)));
             cell.setHorizontalAlignment(Element.ALIGN_CENTER);
             cell.setBackgroundColor(BaseColor.GRAY);
-            table.addCell(cell);
+            table.addCell(cell);*/
             //////////////////////////////////////////////////////////////////////////////
             while (rs.next()) {
-                cell = new PdfPCell(new Phrase(rs.getString("id").toString(), FontFactory.getFont("Comic Sans MS", 12)));
+               /* cell = new PdfPCell(new Phrase(rs.getString("id").toString(), FontFactory.getFont("Comic Sans MS", 12)));
                 cell.setHorizontalAlignment(Element.ALIGN_CENTER);
                 cell.setBackgroundColor(BaseColor.GRAY);
-                table.addCell(cell);
+                table.addCell(cell);*/
                 //////
                 cell = new PdfPCell(new Phrase(rs.getString("id_user_id").toString(), FontFactory.getFont("Comic Sans MS", 12)));
                 cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-                cell.setBackgroundColor(BaseColor.GRAY);
+                cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
                 table.addCell(cell);
                 ///////
                 cell = new PdfPCell(new Phrase(rs.getString("date").toString(), FontFactory.getFont("Comic Sans MS", 12)));
                 cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-                cell.setBackgroundColor(BaseColor.GRAY);
+                cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
                 table.addCell(cell);
                 ///////
                 cell = new PdfPCell(new Phrase(rs.getString("heure").toString(), FontFactory.getFont("Comic Sans MS", 12)));
                 cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-                cell.setBackgroundColor(BaseColor.GRAY);
+                cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
                 table.addCell(cell);
                 ////////////
                 cell = new PdfPCell(new Phrase(rs.getString("duree").toString(), FontFactory.getFont("Comic Sans MS", 12)));
                 cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-                cell.setBackgroundColor(BaseColor.GRAY);
+                cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
                 table.addCell(cell);
                 ///////
-                cell = new PdfPCell(new Phrase(rs.getString("id_abonnement_id").toString(), FontFactory.getFont("Comic Sans MS", 12)));
+              /*  cell = new PdfPCell(new Phrase(rs.getString("id_abonnement_id").toString(), FontFactory.getFont("Comic Sans MS", 12)));
                 cell.setHorizontalAlignment(Element.ALIGN_CENTER);
                 cell.setBackgroundColor(BaseColor.GRAY);
-                table.addCell(cell);
+                table.addCell(cell);*/
 
             }
 

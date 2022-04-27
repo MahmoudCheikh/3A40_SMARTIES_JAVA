@@ -99,11 +99,18 @@ public class GuiFrontController implements Initializable {
     }
 
     @FXML
-    private void FrontAbonnement(ActionEvent event) {
+    private void FrontAbonnement(ActionEvent event) throws IOException {
+         AnchorPane xx;
+        xx = FXMLLoader.load(getClass().getResource("GuiAbonnementFront.fxml"));
+        a1.getChildren().setAll(xx);
+        
     }
 
     @FXML
-    private void FrontLocation(ActionEvent event) {
+    private void FrontLocation(ActionEvent event) throws IOException {
+         AnchorPane xx;
+        xx = FXMLLoader.load(getClass().getResource("GuiLocationFront.fxml"));
+        a1.getChildren().setAll(xx);
     }
 
     @FXML
