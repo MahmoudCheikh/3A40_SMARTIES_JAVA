@@ -32,16 +32,27 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import static javafx.scene.input.KeyCode.C;
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 /**
  *
  * @author ASUS
  */
 public class LocationService {
+    
+
+   
 
     Connection cnx;
 
@@ -81,6 +92,32 @@ public class LocationService {
                 l.setId(rs.getInt("id"));
                 l.setIdUser(rs.getInt("id_user_id"));
                 l.setIdAbonnement(rs.getInt("id_abonnement_id"));
+                Date date = rs.getDate("date");
+                l.setDate(date.toLocalDate());
+                l.setHeure(rs.getString("heure"));
+                l.setDuree(rs.getFloat("duree"));
+
+                locations.add(l);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return locations;
+
+    }
+     public List<Location> afficherLocationFront() {
+        List<Location> locations = new ArrayList<>();
+        String sql = "select * from location";
+        Statement ste;
+        try {
+            ste = cnx.createStatement();
+            ResultSet rs = ste.executeQuery(sql);
+            while (rs.next()) {
+                Location l = new Location();
+                l.setId(rs.getInt("id"));
+             
+               // l.setIdAbonnement(rs.getInt("id_abonnement_id"));
                 Date date = rs.getDate("date");
                 l.setDate(date.toLocalDate());
                 l.setHeure(rs.getString("heure"));
@@ -398,5 +435,48 @@ public class LocationService {
         }
         return options;
     }*/
+      
+      
+    public void sendMailCode(String recipient) throws Exception {
+        Properties properties = new Properties();
+        properties.put("mail.smtp.auth", "true");
+        properties.put("mail.smtp.starttls.enable", "true");
+        properties.put("mail.smtp.host", "smtp.gmail.com");
+        properties.put("mail.smtp.port", "587");
+        String MyAccountEmail = "roulece090@gmail.com";
+        String password = "ahmed123456789";
+        Session session = Session.getDefaultInstance(properties, new Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(MyAccountEmail, password);
+            }
+
+        });
+
+        Message message = prepareMessage(session, MyAccountEmail, recipient);
+        Transport.send(message);
+        System.out.println("message sent successfully");
+
+    }
+
+    private Message prepareMessage(Session session, String MyAccountEmail, String recipient) {
+                 Random rand = new Random();
+      String alphabet = "abcd1235";
+     int longueur = alphabet.length();
+    for(int i = 0; i < 6; i++) {
+    int k = rand.nextInt(longueur);
+    String CODE =  alphabet.charAt(k)+" ";
+        try {
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(MyAccountEmail));
+            message.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
+            message.setSubject("Notification via votre application desktop");
+            message.setText(CODE);
+            return message;
+        } catch (Exception ex) {
+            Logger.getLogger(AbonnementService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
 
 }

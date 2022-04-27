@@ -84,6 +84,7 @@ public class GuiLocationFrontController implements Initializable {
     private AbonnementService as = new AbonnementService();
     private LocationService loc = new LocationService();
     Alert alert = new Alert(Alert.AlertType.NONE);
+     String CODE ="305494";
 
     @FXML
     private TextField TextHeureLoc;
@@ -98,8 +99,6 @@ public class GuiLocationFrontController implements Initializable {
     @FXML
     private DatePicker textDatePickLoc;
     @FXML
-    private ImageView img5;
-    @FXML
     private ImageView img8;
     @FXML
     private TextField findLoc;
@@ -113,6 +112,14 @@ public class GuiLocationFrontController implements Initializable {
     private ImageView refreesh;
     @FXML
     private Button pdf;
+    @FXML
+    private ImageView plusLoc;
+    @FXML
+    private Button Continuer;
+    @FXML
+    private TextField Code;
+    @FXML
+    private Label enterCode;
 
     /**
      * Initializes the controller class.
@@ -120,14 +127,11 @@ public class GuiLocationFrontController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
          ObservableList<Location> items = FXCollections.observableArrayList();
-            List<Location> listLOC = loc.afficherLocation();
+            List<Location> listLOC = loc.afficherLocationFront();
             for (Location r : listLOC) {
                  // System.out.println(Smarties.user.getId() + " " + r.getId_user_id());
-                 for(Abonnement a :as.getidabonnement())
-            if (a.getId() == r.getIdAbonnement()) {
-                String ch = r.toString();
-                items.add(r);
-            }
+                
+          
                 String ch = r.toString();
                 items.add(r);
             }
@@ -137,14 +141,60 @@ public class GuiLocationFrontController implements Initializable {
 
     @FXML
     private void AjouterLoaction(ActionEvent event) {
+          LocalDate today = LocalDate.now();
+        if(!Code.getText().equalsIgnoreCase(CODE))
+        {
+              Alert alert = new Alert(Alert.AlertType.INFORMATION);
+         alert.setTitle("Success");
+            alert.setContentText("le code est incorrect , reéssayer ! ");
+            alert.show();}
+         else if (textDatePickLoc.getValue().isBefore(today)) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("la date doit etre supérieure à celle d'aujourd'hui ! ");
+            alert.showAndWait();
+        }
+         else if (!(Pattern.matches("[0-9]*", TextDuree.getText()))) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("La durée de location  doit etre un nombre  !");
+            alert.showAndWait();
+        }
+        else {
          Location loc1 = new Location();
          LocalDate date = textDatePickLoc.getValue();
             loc1.setDate(date);
             loc1.setHeure(TextHeureLoc.getText());
               Float x4 = Float.parseFloat(TextDuree.getText());
                loc1.setDuree(x4);
+               loc1.setIdUser(0);
+               loc1.setIdAbonnement(26);
                 loc.ajouterLocation(loc1);
-    }
+                
+                 ObservableList<Location> items = FXCollections.observableArrayList();
+            List<Location> listLOC = loc.afficherLocationFront();
+            for (Location r : listLOC) {
+                 // System.out.println(Smarties.user.getId() + " " + r.getId_user_id());
+                
+           
+               
+                String ch = r.toString();
+                items.add(r);
+            }
+            ListLoc.setItems(items);
+              Alert alert = new Alert(Alert.AlertType.INFORMATION);
+             alert.setTitle("erreur");
+            alert.setContentText("Location ajoutée avec succés! ");
+            alert.show();
+            
+        }
+         TextDuree.setText("");
+         TextHeureLoc.setText("");
+         Code.setText("");
+    
+}
 
     @FXML
     private void SupprimerLocation(ActionEvent event) {
@@ -152,10 +202,50 @@ public class GuiLocationFrontController implements Initializable {
 
     @FXML
     private void GetListLoc(MouseEvent event) {
+          Location loc = new Location();
+        ListLoc.setOnMouseClicked((event1) -> {
+          
+            String selectedHeure = ListLoc.getSelectionModel().getSelectedItem().getHeure();
+            LocalDate selectedDate = ListLoc.getSelectionModel().getSelectedItem().getDate();
+            float selectedDuree = ListLoc.getSelectionModel().getSelectedItem().getDuree();
+           
+          
+
+      
+            textDatePickLoc.setValue(selectedDate);
+            TextDuree.setText(String.valueOf(selectedDuree));
+
+            TextHeureLoc.setText(selectedHeure);
+
+        });
+
     }
 
     @FXML
     private void ChercherDuree(ActionEvent event) {
+        if (findLoc.getText().isEmpty())
+{  Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("veuillez remplir le champs !");
+            alert.showAndWait();}
+else {
+        LocationService n = new LocationService();
+        float Duree = Float.parseFloat(findLoc.getText());
+        List< Location> R = n.ChercherDuree(Duree);
+        if (R.isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success");
+            alert.setContentText("  Desole !!  la location  que vous cherchez ayant cette duree  n'existe pas!");
+            alert.show();
+        } else {
+
+            ObservableList< Location> datalist = FXCollections.observableArrayList(R);
+
+            ListLoc.setItems(datalist);
+            findLoc.setText("");
+        }
+}
     }
 
     @FXML
@@ -164,6 +254,21 @@ public class GuiLocationFrontController implements Initializable {
 
     @FXML
     private void generatePDF(ActionEvent event) {
+    }
+
+    @FXML
+    private void Continuer(ActionEvent event) throws Exception {
+          enterCode.setVisible(true);
+       Code.setVisible(true);
+       AjoutLoc.setVisible(true);
+       plusLoc.setVisible(true);
+      
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success");
+            alert.setContentText("Pour continuer veuillez entrer le code envoyé à votre mail ! ");
+            alert.show();
+       loc.sendMailCode("fadwa.berrich@esprit.tn");
+      
     }
     
 }

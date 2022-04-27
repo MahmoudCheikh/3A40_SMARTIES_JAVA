@@ -70,6 +70,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Optional;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.embed.swing.SwingFXUtils;
@@ -225,7 +226,8 @@ public class GuiAbonnementFrontController implements Initializable {
             }
         }
         listAb.setItems(items);
-        btnSupprimerAb.setVisible(true);
+   
+        
         }
       
 
@@ -353,5 +355,9 @@ public class GuiAbonnementFrontController implements Initializable {
         window.showAndWait();
         
     }*/
+    
+ 
+     
+    
 
 }

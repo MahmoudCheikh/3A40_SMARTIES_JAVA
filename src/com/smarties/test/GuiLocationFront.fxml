@@ -18,24 +18,24 @@
    <children>
       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="656.0" prefWidth="990.0">
          <children>
-            <TextField fx:id="TextHeureLoc" layoutX="102.0" layoutY="135.0" prefHeight="25.0" prefWidth="105.0">
+            <TextField fx:id="TextHeureLoc" layoutX="104.0" layoutY="127.0" prefHeight="25.0" prefWidth="105.0">
                <effect>
                   <InnerShadow />
                </effect>
             </TextField>
             <Label layoutX="29.0" layoutY="94.0" text="Date" textFill="#b9936c" />
             <Label layoutX="25.0" layoutY="139.0" text="Heure" textFill="#b9936c" />
-            <Button fx:id="AjoutLoc" layoutX="102.0" layoutY="212.0" mnemonicParsing="false" onAction="#AjouterLoaction" prefHeight="31.0" prefWidth="104.0" style="-fx-background-color: #ff7f50;" text="         Ajouter ">
+            <Button fx:id="AjoutLoc" layoutX="81.0" layoutY="500.0" mnemonicParsing="false" onAction="#AjouterLoaction" prefHeight="31.0" prefWidth="175.0" style="-fx-background-color: #ff7f50;" text="         Ajouter une location" visible="false">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="suppLoc" layoutX="98.0" layoutY="350.0" mnemonicParsing="false" onAction="#SupprimerLocation" prefHeight="32.0" prefWidth="111.0" style="-fx-background-color: #ff7f50;" text="       Supprimer">
+            <Button fx:id="suppLoc" layoutX="508.0" layoutY="446.0" mnemonicParsing="false" onAction="#SupprimerLocation" prefHeight="32.0" prefWidth="111.0" style="-fx-background-color: #ff7f50;" text="       Supprimer">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <ListView fx:id="ListLoc" layoutX="370.0" layoutY="129.0" onMouseClicked="#GetListLoc" prefHeight="283.0" prefWidth="612.0" />
+            <ListView fx:id="ListLoc" layoutX="378.0" layoutY="150.0" onMouseClicked="#GetListLoc" prefHeight="283.0" prefWidth="527.0" />
             <Label layoutX="613.0" layoutY="14.0" prefHeight="27.0" prefWidth="237.0" text="      Liste des Locations ">
                <font>
                   <Font name="System Bold Italic" size="18.0" />
@@ -44,7 +44,7 @@
                   <DropShadow color="#ec9113" />
                </effect>
             </Label>
-            <Label layoutX="38.0" layoutY="219.0" text="Duree" textFill="#b9936c" />
+            <Label layoutX="38.0" layoutY="186.0" text="Duree" textFill="#b9936c" />
             <TextField fx:id="TextDuree" layoutX="102.0" layoutY="169.0" prefHeight="25.0" prefWidth="110.0">
                <effect>
                   <InnerShadow />
@@ -55,7 +55,7 @@
                   <InnerShadow />
                </effect>
             </DatePicker>
-            <ImageView fx:id="img5" fitHeight="27.0" fitWidth="31.0" layoutX="128.0" layoutY="214.0" opacity="0.76" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="plusLoc" fitHeight="27.0" fitWidth="31.0" layoutX="88.0" layoutY="502.0" opacity="0.76" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
                   <Image url="@../images/img1.jpg" />
                </image>
@@ -65,18 +65,13 @@
                   <Image url="@../images/liste.png" />
                </image>
             </ImageView>
-            <TextField fx:id="findLoc" layoutX="438.0" layoutY="466.0" />
-            <Button fx:id="findDuree" layoutX="438.0" layoutY="563.0" mnemonicParsing="false" onAction="#ChercherDuree" prefHeight="25.0" prefWidth="88.0" text=" Duree">
+            <TextField fx:id="findLoc" layoutX="619.0" layoutY="108.0" prefHeight="25.0" prefWidth="113.0" />
+            <Button fx:id="findDuree" layoutX="449.0" layoutY="108.0" mnemonicParsing="false" onAction="#ChercherDuree" prefHeight="25.0" prefWidth="149.0" text="Rechercher par Duree">
                <font>
                   <Font name="System Bold Italic" size="12.0" />
                </font>
             </Button>
-            <Text layoutX="304.0" layoutY="484.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rechercher par :" wrappingWidth="112.8568115234375">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Text>
-            <ImageView fx:id="loop" fitHeight="31.0" fitWidth="35.0" layoutX="269.0" layoutY="464.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="loop" fitHeight="31.0" fitWidth="35.0" layoutX="394.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/loop.png" />
                </image>
@@ -89,8 +84,8 @@
                   <Glow />
                </effect>
             </Text>
-            <Button fx:id="actuLOC" layoutX="424.0" layoutY="88.0" mnemonicParsing="false" onAction="#ActualiserLoc" prefHeight="30.0" prefWidth="78.0" text="Actualiser" />
-            <ImageView fx:id="refreesh" fitHeight="28.0" fitWidth="28.0" layoutX="388.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true">
+            <Button fx:id="actuLOC" layoutX="850.0" layoutY="41.0" mnemonicParsing="false" onAction="#ActualiserLoc" prefHeight="30.0" prefWidth="78.0" text="Actualiser" />
+            <ImageView fx:id="refreesh" fitHeight="28.0" fitWidth="28.0" layoutX="778.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/png-transparent-computer-icons-synchronization-encapsulated-postscript-icon-design-update-button-angle-text-logo.png" />
                </image>
@@ -101,6 +96,9 @@
                   <Image url="@../images/pdfFadwa.png" />
                </image>
             </ImageView>
+            <Button fx:id="Continuer" layoutX="105.0" layoutY="230.0" mnemonicParsing="false" onAction="#Continuer" prefHeight="25.0" prefWidth="105.0" text="Continuer" />
+            <TextField fx:id="Code" layoutX="184.0" layoutY="434.0" prefHeight="25.0" prefWidth="113.0" visible="false" />
+            <Label fx:id="enterCode" layoutX="41.0" layoutY="438.0" text="Veuillez enter le code :" visible="false" />
          </children>
          <effect>
             <InnerShadow />
