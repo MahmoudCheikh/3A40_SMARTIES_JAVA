@@ -118,9 +118,9 @@ public class GuiProduitFrontController implements Initializable {
                 public void handle(ActionEvent event) {
 
                     System.out.println(prod.getId());
-                    String id = null ;
+                    String id = null;
                     id = String.valueOf(prod.getId());
-                    if (fa.getIgnoreRepetetion(id)== false) {
+                    if (fa.getIgnoreRepetetion(id) == false) {
                         fa.ajouterFavoris(prod.getId());
                         Alert alert = new Alert(Alert.AlertType.INFORMATION);
                         alert.setTitle("Success");

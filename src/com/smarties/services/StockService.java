@@ -17,6 +17,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 /**
@@ -156,7 +158,6 @@ public class StockService {
         List<Stock> Stock = afficherStock();
         return Stock.stream().filter(b -> b.getQuantite() > 70).filter(b -> b.getQuantite() < 100).count();
     }
-    
 
     public ArrayList<String> getCombo() {
         ArrayList<String> options = new ArrayList<>();
@@ -173,6 +174,7 @@ public class StockService {
         }
         return options;
     }
+
     public int searchByLibS(String libelle) throws SQLException {
         Stock sto = new Stock();
         String req = "SELECT * FROM stock where id=?";
@@ -183,8 +185,8 @@ public class StockService {
         rs.next();
         return rs.getInt(1);
     }
-    
-        public boolean getIgnoreRepetetion(String libelle) {
+
+    public boolean getIgnoreRepetetion(String libelle) {
         boolean exist = false;
 
         try {
@@ -201,6 +203,36 @@ public class StockService {
             System.err.println(ex.getMessage());
         }
         return exist;
+
+    }
+
+    public Stock GetStockbyid(int b) throws SQLException {
+
+        //-------------------- Update ----------//
+        Stock s = new Stock();
+
+        String query = "select * from stock where id = ? ";
+        PreparedStatement ps;
+        try {
+            ps = MaConnexion.getInstance().getCnx().prepareCall(query);
+            ps.setInt(1, b);
+            ResultSet rest = ps.executeQuery();
+
+            while (rest.next()) {
+
+                s.setId(rest.getInt("id"));
+                s.setLibelle(rest.getString("libelle"));
+                s.setDisponibilite(rest.getString("disponibilite"));
+                s.setPrix(rest.getInt("prix"));
+                s.setQuantite(rest.getInt("quantite"));
+                s.setIdProduit(rest.getInt("id_produit_id"));
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ProduitService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return s;
 
     }
 }
