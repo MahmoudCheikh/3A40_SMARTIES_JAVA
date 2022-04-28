@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.String?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
@@ -346,6 +349,32 @@
                         <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="118.0" layoutY="309.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/imprimer.jpg" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab style="-fx-background-color: #ff7f50;" text="Stat">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <BarChart fx:id="barChart" alternativeColumnFillVisible="true" layoutX="99.0" layoutY="101.0" prefHeight="422.0" prefWidth="802.0">
+                           <xAxis>
+                              <CategoryAxis side="BOTTOM" fx:id="xAxis" />
+                           </xAxis>
+                           <yAxis>
+                              <NumberAxis fx:id="numberAxis" side="LEFT" />
+                           </yAxis>
+                        </BarChart>
+                        <Label layoutX="245.0" layoutY="66.0" prefHeight="35.0" prefWidth="741.0" text="Nombre d'Evenements planifiés Année : 2022" textFill="CORAL">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="92.0" fitWidth="83.0" layoutX="901.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/activite.png" />
                            </image>
                         </ImageView>
                      </children>

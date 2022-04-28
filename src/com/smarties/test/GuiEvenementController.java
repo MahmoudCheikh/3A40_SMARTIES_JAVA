@@ -55,11 +55,20 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.text.DateFormatSymbols;
+import java.util.Arrays;
+import java.util.Locale;
 import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import static javafx.collections.FXCollections.observableList;
+import javafx.geometry.Pos;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.ChoiceBox;
+import org.controlsfx.control.Notifications;
 /**
  * FXML Controller class
  *
@@ -161,7 +170,13 @@ public class GuiEvenementController implements Initializable {
     private Button recherchep;
     @FXML
     private Label lab;
-  
+    @FXML
+    private BarChart<String ,Integer> barChart;
+    @FXML
+    private NumberAxis numberAxis;
+    @FXML
+    private CategoryAxis xAxis;
+   private ObservableList<String> monthNames = FXCollections.observableArrayList();
    
 
     /**
@@ -181,7 +196,17 @@ public class GuiEvenementController implements Initializable {
         listidevent.setItems(langs);
         ObservableList<Integer> langs2 = FXCollections.observableArrayList(es.getCombo1());
         listiduser.setItems(langs2);
-    
+          // TODO
+          // Get an array with the FRENCH month names.
+        String[] months = DateFormatSymbols.getInstance(Locale.FRENCH).getMonths();
+        // Convert it to a list and add it to our ObservableList of months.
+        monthNames.addAll(Arrays.asList(months));
+        
+        // Assign the month names as categories for the horizontal axis.
+        xAxis.setCategories(monthNames);
+        xAxis.setLabel("mois");
+        numberAxis.setLabel("Nombre de Event");
+    setReclamationData(listevent.getItems());
 }
  
    private void refresh() {
@@ -279,10 +304,8 @@ public class GuiEvenementController implements Initializable {
         ev.setNb_places(x1);
         
         es.ajouterEvenement(ev);
-         Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
-            alert1.setTitle("Success");
-            alert1.setContentText(" Mail envoyé!");
-            alert1.show();   
+        
+          Notifications.create().title("mail envoyé").text("un mail est envoyé avec succés !").darkStyle().position(Pos.BOTTOM_CENTER).showWarning();
           Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Success");
             alert.setContentText("Evenement ajouté!");
@@ -818,7 +841,23 @@ public class GuiEvenementController implements Initializable {
           }
     }
     }
+public void setReclamationData(List<Evenement> t) {
+    	// Count the number of reviews in a specific month.
+        int[] monthCounter = new int[12];
+        for (Evenement p : t) {
+            int month = p.getDate_d().getMonthValue()-1;
+            monthCounter[month]++;
+        }
 
+        XYChart.Series<String, Integer> series = new XYChart.Series<>();
+        
+        // Create a XYChart.Data object for each month. Add it to the series.
+        for (int i = 0; i < monthCounter.length; i++) {
+        	series.getData().add(new XYChart.Data<>(monthNames.get(i), monthCounter[i]));
+        }
+        
+        barChart.getData().add(series);
+    }
   
 
 

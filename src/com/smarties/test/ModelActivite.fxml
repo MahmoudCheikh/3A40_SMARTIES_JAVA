@@ -35,11 +35,6 @@
                               <Font name="System Bold" size="15.0" />
                            </font>
                         </Text>
-                        <Text fx:id="imageactivitetxt" text="Image:" wrappingWidth="190">
-                           <font>
-                              <Font name="System Bold" size="15.0" />
-                           </font>
-                        </Text>
                      </children>
                   </VBox>
                   <VBox spacing="10.0" HBox.hgrow="ALWAYS">

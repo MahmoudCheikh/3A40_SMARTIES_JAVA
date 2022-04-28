@@ -1,9 +1,10 @@
 
 package com.smarties.test;
-
+import com.smarties.services.*;
 import com.mysql.jdbc.Constants;
 import com.smarties.entities.Activite;
 import com.smarties.entities.Evenement;
+import com.smarties.services.ActiviteService;
 import com.smarties.services.EvenementService;
 import java.io.IOException;
 import java.net.URL;
@@ -20,6 +21,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -33,7 +35,7 @@ import javafx.scene.text.Text;
 public class AfficherEventController implements Initializable {
   public static Evenement currentEvenement;
   Activite a=new  Activite();
- 
+
     @FXML
     private Text topText;
     @FXML
@@ -44,7 +46,7 @@ public class AfficherEventController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
- 
+     
         EvenementService tt = new EvenementService();
         List<Evenement> listE = tt.afficherEvenement();
         Collections.reverse(listE);
@@ -72,13 +74,13 @@ public class AfficherEventController implements Initializable {
             ((Text) innerContainer.lookup("#typetxt")).setText("Type:" + e.getType());
             ((Text) innerContainer.lookup("#nbparticipantstxt")).setText("Nombre de participants:" + e.getNb_participants());
             ((Text) innerContainer.lookup("#nbplacestxt")).setText("Nombre de places:" + e.getNb_places());
-          // ((Text) innerContainer.lookup("#createdAtText")).setText("CreatedAt : " + rdv.getCreatedAt());
-           // ((Text) innerContainer.lookup("#updatedAtText")).setText("UpdatedAt : " + rdv.getUpdatedAt());
-           ((Button) innerContainer.lookup("#afficherAct")).setOnAction(new EventHandler<ActionEvent>() {
+          
+            ((Button) innerContainer.lookup("#afficherAct")).setOnAction(new EventHandler<ActionEvent>() {
                  @Override
                  public void handle(ActionEvent event) {
                      try {
                          AfficherAct(a,e);
+                         System.out.println("id ="+e.getId());
                      } catch (IOException ex) {
                          Logger.getLogger(AfficherEventController.class.getName()).log(Level.SEVERE, null, ex);
                      }
@@ -87,10 +89,14 @@ public class AfficherEventController implements Initializable {
             ((Button) innerContainer.lookup("#participer")).setOnAction((event) -> {
                  try {
                      participerevent(e);
+                    
+                     
+                     
                  } catch (SQLException ex) {
                      Logger.getLogger(AfficherEventController.class.getName()).log(Level.SEVERE, null, ex);
                  }
              });
+            
              ((Button) innerContainer.lookup("#nepasparticiper")).setOnAction((event) -> {
                  try {
                      nepasparticiperevent(e);
@@ -104,14 +110,24 @@ public class AfficherEventController implements Initializable {
         return parent;
     }
 
-    private void AfficherAct(Activite a,Evenement e) throws IOException{
- 
-      
+    private void AfficherAct(Activite a,Evenement e) throws IOException{  
         AnchorPane xx;
-        xx = FXMLLoader.load(getClass().getResource("AfficherActivite.fxml"));
-        a1.getChildren().setAll(xx);
+             
+               ActiviteService tt = new ActiviteService();
+         
+         
+         List<Activite> listA = tt.afficherActiviteByEvenement(e.getId());
+           FXMLLoader loader = new FXMLLoader(getClass().getResource("AfficherActivite.fxml"));
         
-    
+            Parent parent = (Parent)loader.load();
+              AfficherActiviteController cont = loader.<AfficherActiviteController>getController();
+            cont.setIdEvenement(e.getId());
+            cont.setActiviteEvenement(listA);
+            System.out.println("eid "+e.getId());
+
+        xx = FXMLLoader.load(getClass().getResource("AfficherActivite.fxml"));  
+        
+        a1.getChildren().setAll(parent);     
     }
    
    private void participerevent(Evenement e) throws SQLException{
@@ -125,6 +141,7 @@ public class AfficherEventController implements Initializable {
              alert.setContentText("vous participez deja a l'évenement "+e.getNom());
              alert.showAndWait();}
       else{
+          //   t.sendSMS(e.getNom(),e.getDate_d().toString());
              t.participer(e,Smarties.user.getId());
              Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
              alert1.setTitle("Information Dialog");
@@ -152,5 +169,6 @@ public class AfficherEventController implements Initializable {
       
               }
    }
+      
    
 }

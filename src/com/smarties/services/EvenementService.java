@@ -19,6 +19,11 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import com.smarties.entities.Users;
+import com.twilio.Twilio;
+import javax.mail.Message;
+import javax.mail.Session;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 /**
  *
@@ -285,6 +290,33 @@ public class EvenementService {
            ste.setInt(2, e.getId());
         int executeUpdate = ste.executeUpdate();
       
+    }
+       private  Message prepareMessage(Session session,String MyAccountEmail, String recipient) {
+              
+        try {
+            Message message =new MimeMessage(session);
+            message.setFrom(new InternetAddress( MyAccountEmail));
+            message.setRecipient(Message.RecipientType.TO,new InternetAddress( recipient) );
+            message.setSubject("Notification via votre application desktop");
+            message.setText("Bonjour Cher Client , \n Votre Commande A été Passe Avec Succes ! ");
+            return message; 
+        } catch (Exception ex) {
+            Logger.getLogger(AbonnementService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+       public void sendSMS(String nom, String date)
+    {
+    
+       Twilio.init("AC1bfc52d30073068147b27bcfeae02c20", "626f9f30ef57e99f0239c2c46bff15e8");
+        com.twilio.rest.api.v2010.account.Message message = com.twilio.rest.api.v2010.account.Message.creator(
+                new com.twilio.type.PhoneNumber("+21623251728"),
+                new com.twilio.type.PhoneNumber("++17579095719 "),
+                "vous participez maintenant a l'evnement "+nom+" qui debute le "+date)
+            .create();
+
+        System.out.println(message.getSid());
+    
     }
 
 }
