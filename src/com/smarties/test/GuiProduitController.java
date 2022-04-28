@@ -5,6 +5,7 @@
  */
 package com.smarties.test;
 
+import com.itextpdf.text.DocumentException;
 import com.smarties.entities.Emplacement;
 import com.smarties.entities.Favoris;
 import com.smarties.entities.Produit;
@@ -200,6 +201,8 @@ public class GuiProduitController implements Initializable {
     private ImageView empIm;
     @FXML
     private ImageView favIm;
+    @FXML
+    private Button pdfStock;
 
     /**
      * Initializes the controller class.
@@ -1081,6 +1084,16 @@ new animatefx.animation.JackInTheBox(pieChart).play();
         pieChartProd.getData().setAll(new PieChart.Data("Velo", pr.SearchVelo()), new PieChart.Data("Piece de Rechange", pr.SearchPDR()),
                 new PieChart.Data("Accesssoire", pr.SearchAcc()));
         new animatefx.animation.FadeOutUp(veloImS).play();
+    }
+
+    @FXML
+    private void GenererPdfStock(ActionEvent event) throws DocumentException {
+                st.GeneratePDFStock();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Information Dialog");
+        alert.setHeaderText(null);
+        alert.setContentText("Votre Stock est Prete En Pdf !");
+        alert.showAndWait();
     }
 
 }

@@ -102,9 +102,8 @@ public class GuiProduitFrontController implements Initializable {
                 @Override
                 public void handle(ActionEvent event) {
                     try {
-
+                        QrCodeController.prod = prod;
                         String AllInfo = " Libelle: " + prod.getLibelle() + "\n Prix: " + prod.getPrix() + "\n Type: " + prod.getType() + "\n Description:  " + prod.getDescription() + prod.getId() + "";
-                        System.out.println(AllInfo);
                         generateQr(prod);
 
                     } catch (IOException ex) {

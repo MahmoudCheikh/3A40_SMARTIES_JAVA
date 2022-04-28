@@ -91,6 +91,7 @@
                            </image>
                         </ImageView>
                         <ComboBox fx:id="idProdSCombo" layoutX="39.0" layoutY="395.0" prefHeight="40.0" prefWidth="294.0" promptText="Produit" />
+                        <Button fx:id="pdfStock" layoutX="839.0" layoutY="527.0" mnemonicParsing="false" onAction="#GenererPdfStock" prefHeight="32.0" prefWidth="220.0" style="-fx-background-color: #ff7f50;" text="Genere Historique des stocks" />
                      </children></AnchorPane>
             </content>
           </Tab>

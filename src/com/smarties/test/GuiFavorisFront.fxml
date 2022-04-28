@@ -13,7 +13,7 @@
    <children>
       <AnchorPane layoutX="10.0" layoutY="10.0" prefWidth="990.0" style="-fx-background-color: #D0BE25;">
          <children>
-            <StackPane layoutX="-10.0" layoutY="-11.0" prefHeight="79.0" prefWidth="1230.0" style="-fx-background-color: #ff7f50;" AnchorPane.leftAnchor="-10.0" AnchorPane.rightAnchor="-370.0" AnchorPane.topAnchor="-11.0">
+            <StackPane layoutX="-10.0" layoutY="-11.0" prefHeight="79.0" prefWidth="1230.0" style="-fx-background-color: #BF3C3C;" AnchorPane.leftAnchor="-10.0" AnchorPane.rightAnchor="-370.0" AnchorPane.topAnchor="-11.0">
                <children>
                   <Text fx:id="topText" boundsType="LOGICAL_VERTICAL_CENTER" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste des Favoris" textAlignment="JUSTIFY" textOrigin="CENTER">
                      <font>
@@ -31,8 +31,12 @@
          <content>
             <AnchorPane prefHeight="672.0" prefWidth="1366.0">
                <children>
-                  <VBox fx:id="vboxFavoris" layoutY="-1.0" prefHeight="596.0" prefWidth="1366.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="-1.0" />
-                  <Button fx:id="refresh" mnemonicParsing="false" onAction="#refresh" text="Actualiser" />
+                  <VBox fx:id="vboxFavoris" layoutX="7.0" layoutY="16.0" prefHeight="596.0" prefWidth="1366.0" style="-fx-background-color: #ffffff;" stylesheets="@EvenementStyle.css" AnchorPane.bottomAnchor="-18.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="-9.0" AnchorPane.topAnchor="16.0" />
+                  <Button fx:id="refresh" mnemonicParsing="false" onAction="#refresh" prefHeight="31.0" prefWidth="207.0" style="-fx-background-color: #b51200;" text="Actualiser" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Button>
                </children>
             </AnchorPane>
          </content>

@@ -26,31 +26,35 @@ import javafx.scene.image.ImageView;
  * @author PC
  */
 public class QrCodeController implements Initializable {
-    Produit prod = new Produit();
+
+    static Produit prod;
     @FXML
     private ImageView QrCode;
-private Image genQRCodeImg; 
+    private Image genQRCodeImg;
+
     /**
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {                
-                String AllInfo = " Libelle: " + prod.getLibelle() + "\n Prix: " + prod.getPrix() + "\n Type: " + prod.getType() + "\n Description:  " + prod.getDescription() + "";
-                ////////////////////////:
-                System.out.println("" + AllInfo);
-                if (!AllInfo.isEmpty()) {
-                    String foregroundColor = "#2E3437";
-                    String backgroundColor = "#FFFFFF";
-                    genQRCodeImg = encode(AllInfo, Integer.parseInt("300"), Integer.parseInt("300"), foregroundColor, backgroundColor);
-                    if (genQRCodeImg != null) {
-                         QrCode.setImage(genQRCodeImg);
-                       
-                    }
-                   QrCode.setVisible(true);
-                    //showDialogCodeQR();
-                }
-    }  
-     public static Image encode(String data, int width, int height, String foregroundColor, String backgroundColor) {
+    public void initialize(URL url, ResourceBundle rb) {
+        String AllInfo = " Libelle: " + prod.getLibelle() + "\n Prix: " + prod.getPrix() + "\n Type: " + prod.getType() + "\n Description:  " + prod.getDescription() + "";
+        ////////////////////////:
+        System.out.println(AllInfo);
+        System.out.println("" + AllInfo);
+        if (!AllInfo.isEmpty()) {
+            String foregroundColor = "#2E3437";
+            String backgroundColor = "#FFFFFF";
+            genQRCodeImg = encode(AllInfo, Integer.parseInt("300"), Integer.parseInt("300"), foregroundColor, backgroundColor);
+            if (genQRCodeImg != null) {
+                QrCode.setImage(genQRCodeImg);
+
+            }
+            QrCode.setVisible(true);
+            //showDialogCodeQR();
+        }
+    }
+
+    public static Image encode(String data, int width, int height, String foregroundColor, String backgroundColor) {
         try {
             BitMatrix byteMatrix = new QRCodeWriter().encode(data, BarcodeFormat.QR_CODE, width, height);
             BufferedImage bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
@@ -71,6 +75,6 @@ private Image genQRCodeImg;
             ex.printStackTrace();
             return null;
         }
-    }  
-    
+    }
+
 }
