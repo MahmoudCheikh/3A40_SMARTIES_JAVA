@@ -95,7 +95,7 @@
                               <Image url="@../images/sdsd.png" />
                            </image>
                         </ImageView>
-                        <Button fx:id="triid" layoutX="26.0" layoutY="487.0" mnemonicParsing="false" onAction="#triercommande" prefHeight="25.0" prefWidth="133.0" style="-fx-background-color: #f00020;" stylesheets="@../services/styleSmarties.css" text="      Trier Vos Commande" textFill="WHITE">
+                        <Button fx:id="triid" layoutX="26.0" layoutY="487.0" mnemonicParsing="false" onAction="#triercommande" prefHeight="25.0" prefWidth="172.0" style="-fx-background-color: #f00020;" stylesheets="@../services/styleSmarties.css" text="      Trier Vos Commande" textFill="WHITE">
                            <effect>
                               <DropShadow />
                            </effect>
@@ -103,7 +103,7 @@
                               <Font name="Barlow Condensed Light" size="12.0" />
                            </font>
                         </Button>
-                        <Button fx:id="actc" layoutX="171.0" layoutY="487.0" mnemonicParsing="false" onAction="#actcommande" prefHeight="25.0" prefWidth="128.0" style="-fx-background-color: #f00020;" stylesheets="@../services/styleSmarties.css" text="Actualiser" textFill="#f8f7f7">
+                        <Button fx:id="actc" layoutX="208.0" layoutY="487.0" mnemonicParsing="false" onAction="#actcommande" prefHeight="25.0" prefWidth="128.0" style="-fx-background-color: #f00020;" stylesheets="@../services/styleSmarties.css" text="Actualiser" textFill="#f8f7f7">
                            <font>
                               <Font name="Barlow Condensed Light" size="12.0" />
                            </font>

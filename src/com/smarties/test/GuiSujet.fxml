@@ -29,10 +29,7 @@
                            <font>
                               <Font name="Barlow Condensed Light" size="20.0" />
                            </font></Label>
-                        <Button fx:id="btnSujetDelete" layoutX="201.0" layoutY="200.0" mnemonicParsing="false" onAction="#SujetDelete" style="-fx-background-color: #ff7f50;" text="Supprimer" textFill="#f2eaea">
-                           <effect>
-                              <DropShadow color="#f86801" />
-                           </effect>
+                        <Button fx:id="btnSujetDelete" layoutX="145.0" layoutY="272.0" mnemonicParsing="false" onAction="#SujetDelete" prefHeight="27.0" prefWidth="114.0" style="-fx-background-color: #ff7f50;" text="Supprimer" textFill="#f2eaea">
                            <font>
                               <Font name="Barlow Condensed Light" size="13.0" />
                            </font></Button>
@@ -62,7 +59,10 @@
                         <ComboBox fx:id="comboSujetId" layoutX="126.0" layoutY="165.0" prefWidth="150.0" />
                         <ComboBox layoutX="125.0" layoutY="123.0" prefWidth="150.0" />
                         <Label layoutX="81.0" layoutY="127.0" text="Archive" />
-                        <Button layoutX="279.0" layoutY="83.0" mnemonicParsing="false" onAction="#searchSujet" text="Search" />
+                        <Button layoutX="161.0" layoutY="223.0" mnemonicParsing="false" onAction="#searchSujet" prefHeight="25.0" prefWidth="77.0" style="-fx-background-color: #ff7f50;" stylesheets="@../services/styleSmarties.css" text="Search" textFill="#fff9f9">
+                           <font>
+                              <Font name="Barlow Condensed Light" size="14.0" />
+                           </font></Button>
                      </children>
                   </AnchorPane>
             </content>
@@ -71,10 +71,13 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="btnMessageDelete" layoutX="193.0" layoutY="176.0" mnemonicParsing="false" onAction="#MessageDelete" style="-fx-background-color: #ff7f50;" text="Supprimer" textFill="#fffdfd">
+                        <Button fx:id="btnMessageDelete" layoutX="154.0" layoutY="176.0" mnemonicParsing="false" onAction="#MessageDelete" style="-fx-background-color: #ff7f50;" stylesheets="@../services/styleSmarties.css" text="Supprimer" textFill="#fffdfd">
                            <effect>
                               <DropShadow />
-                           </effect></Button>
+                           </effect>
+                           <font>
+                              <Font name="Barlow Condensed Light" size="12.0" />
+                           </font></Button>
                         <Label layoutX="54.0" layoutY="61.0" text="ID User">
                            <font>
                               <Font name="Barlow Condensed Light" size="17.0" />
@@ -110,9 +113,18 @@
                         <ComboBox fx:id="messageBox" layoutX="115.0" layoutY="61.0" prefWidth="150.0" />
                         <ComboBox fx:id="messageComboSujetId" layoutX="115.0" layoutY="101.0" prefWidth="150.0" />
                         <ComboBox fx:id="messageComboId" layoutX="115.0" layoutY="136.0" prefWidth="150.0" />
-                        <Button layoutX="274.0" layoutY="61.0" mnemonicParsing="false" onAction="#msgSearchUser" text="Search" />
-                        <Button layoutX="274.0" layoutY="102.0" mnemonicParsing="false" onAction="#msgSearchSujet" text="Search" />
-                        <Button layoutX="111.0" layoutY="210.0" mnemonicParsing="false" onAction="#refreshmsg" text="Voir tous" />
+                        <Button layoutX="274.0" layoutY="61.0" mnemonicParsing="false" onAction="#msgSearchUser" style="-fx-background-color: #ff7f50;" stylesheets="@../services/styleSmarties.css" text="Search" textFill="#fff4f4">
+                           <font>
+                              <Font name="Barlow Condensed Light" size="13.0" />
+                           </font></Button>
+                        <Button layoutX="274.0" layoutY="102.0" mnemonicParsing="false" onAction="#msgSearchSujet" style="-fx-background-color: #ff7f50;" stylesheets="@../services/styleSmarties.css" text="Search" textFill="#fff4f4">
+                           <font>
+                              <Font name="Barlow Condensed Light" size="13.0" />
+                           </font></Button>
+                        <Button layoutX="121.0" layoutY="210.0" mnemonicParsing="false" onAction="#refreshmsg" prefHeight="27.0" prefWidth="144.0" style="-fx-background-color: #ff7f50;" stylesheets="@../services/styleSmarties.css" text="Voir tous" textFill="#fff4f4">
+                           <font>
+                              <Font name="Barlow Condensed Light" size="13.0" />
+                           </font></Button>
                      </children>
                   </AnchorPane>
             </content>

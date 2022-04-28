@@ -1,61 +1,86 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.net.URL?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="200.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smarties.test.ModelSingleSujetController">
    <children>
-      <Label fx:id="txtTitre" layoutX="55.0" layoutY="69.0" text="Titre">
+      <Label fx:id="txtTitre" layoutX="38.0" layoutY="69.0" text="Titre">
          <stylesheets>
             <URL value="@../services/styleSmarties.css" />
             <URL value="@../services/news.css" />
          </stylesheets>
          <font>
             <Font name="Barlow Condensed Light" size="16.0" />
-         </font></Label>
-      <Label fx:id="txtContent" layoutX="56.0" layoutY="104.0" text="Contenu">
+         </font>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor></Label>
+      <Label fx:id="txtContent" layoutX="34.0" layoutY="111.0" text="Contenu">
          <stylesheets>
             <URL value="@../services/styleSmarties.css" />
             <URL value="@../services/news.css" />
          </stylesheets>
          <font>
             <Font name="Barlow Condensed Light" size="16.0" />
-         </font></Label>
-      <Label fx:id="txtDate" layoutX="180.0" layoutY="23.0" text="Date">
+         </font>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor></Label>
+      <Label fx:id="txtDate" layoutX="164.0" layoutY="23.0" text="Date">
          <stylesheets>
             <URL value="@../services/styleSmarties.css" />
             <URL value="@../services/news.css" />
          </stylesheets>
          <font>
             <Font name="Barlow Condensed Light" size="16.0" />
-         </font></Label>
-      <Label fx:id="txtUser" layoutX="300.0" layoutY="23.0" text="User">
+         </font>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor></Label>
+      <Label fx:id="txtUser" layoutX="319.0" layoutY="23.0" text="User">
          <stylesheets>
             <URL value="@../services/styleSmarties.css" />
             <URL value="@../services/news.css" />
          </stylesheets>
          <font>
             <Font name="Barlow Condensed Light" size="16.0" />
-         </font></Label>
-      <Button fx:id="afficher" layoutX="510.0" layoutY="28.0" mnemonicParsing="false" onAction="#afficher" text="Afficher">
+         </font>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor></Label>
+      <Button fx:id="afficher" layoutX="451.0" layoutY="32.0" mnemonicParsing="false" onAction="#afficher" prefHeight="25.0" prefWidth="76.0" text="Afficher">
          <stylesheets>
             <URL value="@EvenementStyle.css" />
             <URL value="@../services/styleSmarties.css" />
          </stylesheets></Button>
-      <Button fx:id="modifier" layoutX="510.0" layoutY="65.0" mnemonicParsing="false" onAction="#modifier" text="Modifier">
+      <Button fx:id="modifier" layoutX="510.0" layoutY="142.0" mnemonicParsing="false" onAction="#modifier" prefHeight="25.0" prefWidth="76.0" text="Modifier">
          <stylesheets>
             <URL value="@EvenementStyle.css" />
             <URL value="@../services/styleSmarties.css" />
          </stylesheets></Button>
-      <Button fx:id="supprimer" layoutX="510.0" layoutY="100.0" mnemonicParsing="false" onAction="#supprimer" text="Supprimer">
+      <Button fx:id="supprimer" layoutX="399.0" layoutY="142.0" mnemonicParsing="false" onAction="#supprimer" prefHeight="25.0" prefWidth="76.0" text="Supprimer">
          <stylesheets>
             <URL value="@EvenementStyle.css" />
             <URL value="@../services/styleSmarties.css" />
          </stylesheets></Button>
+      <ImageView fitHeight="21.0" fitWidth="25.0" layoutX="143.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/mahmoudpic.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="21.0" fitWidth="45.0" layoutX="298.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/user_84308.png" />
+         </image>
+      </ImageView>
    </children>
    <stylesheets>
       <URL value="@../services/styleSmarties.css" />
