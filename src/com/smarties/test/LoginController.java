@@ -87,6 +87,13 @@ public class LoginController implements Initializable {
 
     @FXML
     private void resetpass(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("resetpass.fxml"));
+        try {
+            Parent root = loader.load();
+            txtemail.getScene().setRoot(root);
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     @FXML
@@ -103,6 +110,17 @@ public class LoginController implements Initializable {
     @FXML
     private void confirmer(ActionEvent event) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("confirmer.fxml"));
+        try {
+            Parent root = loader.load();
+            txtemail.getScene().setRoot(root);
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    @FXML
+    private void resetpasscode(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("resetpasscode.fxml"));
         try {
             Parent root = loader.load();
             txtemail.getScene().setRoot(root);

@@ -5,9 +5,11 @@
  */
 package com.smarties.test;
 
+import com.smarties.entities.Users;
 import com.smarties.services.UsersService;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,14 +24,14 @@ import javafx.scene.control.TextField;
  *
  * @author user
  */
-public class ConfirmerController implements Initializable {
+public class ResetpassController implements Initializable {
 
     UsersService usersService = new UsersService();
 
     @FXML
-    private TextField txtmail;
+    private TextField txtEmail;
     @FXML
-    private TextField txtcode;
+    private Button reset;
     @FXML
     private Button retour;
 
@@ -38,16 +40,17 @@ public class ConfirmerController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
     }
 
     @FXML
-    private void confirmer(ActionEvent event) {
-        usersService.confirmer(txtmail.getText(), Integer.parseInt(txtcode.getText()));
+    private void reset(ActionEvent event) throws SQLException {
+        Users user = usersService.getOne(txtEmail.getText());
+        usersService.reset(user);
+        
         FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
         try {
             Parent root = loader.load();
-            txtcode.getScene().setRoot(root);
+            txtEmail.getScene().setRoot(root);
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
@@ -58,10 +61,11 @@ public class ConfirmerController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
         try {
             Parent root = loader.load();
-            txtcode.getScene().setRoot(root);
+            txtEmail.getScene().setRoot(root);
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
+
     }
 
 }

@@ -53,8 +53,7 @@ public class GuiMessageFrontUpdateController implements Initializable {
         Message msg = message;
         msg.setContenu(txtContenu.getText());
         messageService.modifierMessage(msg);
-        
-        
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("GuiSujetFront.fxml"));
         AnchorPane vbox = loader.load();
         ap.getChildren().setAll(vbox);

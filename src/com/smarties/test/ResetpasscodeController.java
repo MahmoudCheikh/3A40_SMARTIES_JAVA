@@ -5,9 +5,11 @@
  */
 package com.smarties.test;
 
+import com.smarties.entities.Users;
 import com.smarties.services.UsersService;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,7 +24,7 @@ import javafx.scene.control.TextField;
  *
  * @author user
  */
-public class ConfirmerController implements Initializable {
+public class ResetpasscodeController implements Initializable {
 
     UsersService usersService = new UsersService();
 
@@ -31,6 +33,10 @@ public class ConfirmerController implements Initializable {
     @FXML
     private TextField txtcode;
     @FXML
+    private TextField txtpassword;
+    @FXML
+    private Button reset;
+    @FXML
     private Button retour;
 
     /**
@@ -38,16 +44,17 @@ public class ConfirmerController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
     }
 
     @FXML
-    private void confirmer(ActionEvent event) {
-        usersService.confirmer(txtmail.getText(), Integer.parseInt(txtcode.getText()));
+    private void reset(ActionEvent event) throws SQLException {
+        Users user = usersService.getOne(txtmail.getText());
+        usersService.resetCode(user,txtcode.getText(),txtpassword.getText());
+        
         FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
         try {
             Parent root = loader.load();
-            txtcode.getScene().setRoot(root);
+            txtmail.getScene().setRoot(root);
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
@@ -58,7 +65,7 @@ public class ConfirmerController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
         try {
             Parent root = loader.load();
-            txtcode.getScene().setRoot(root);
+            txtmail.getScene().setRoot(root);
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }

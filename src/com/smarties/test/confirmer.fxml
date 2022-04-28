@@ -5,13 +5,13 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: #BF3C3C;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="com.smarties.test.ConfirmerController">
+<AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: #BF3C3C;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smarties.test.ConfirmerController">
    <children>
       <Label layoutX="634.0" layoutY="384.0" text="Email" textFill="WHITE" />
       <Label layoutX="635.0" layoutY="425.0" text="Code" textFill="WHITE" />
       <TextField fx:id="txtmail" layoutX="666.0" layoutY="380.0" />
       <TextField fx:id="txtcode" layoutX="666.0" layoutY="421.0" />
-      <Button layoutX="706.0" layoutY="459.0" mnemonicParsing="false" onAction="#confirmer" text="Confirmer" />
+      <Button layoutX="666.0" layoutY="455.0" mnemonicParsing="false" onAction="#confirmer" text="Confirmer" />
+      <Button fx:id="retour" layoutX="763.0" layoutY="455.0" mnemonicParsing="false" onAction="#retour" text="Retour" />
    </children>
 </AnchorPane>

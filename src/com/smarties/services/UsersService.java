@@ -140,7 +140,6 @@ public class UsersService {
         PreparedStatement ste = cnx.prepareStatement(query);
         ste.setString(1, mail);
 
-
         ResultSet rs;
         rs = ste.executeQuery();
         rs.next();
@@ -153,7 +152,7 @@ public class UsersService {
         c.setPrenom(rs.getString("prenom"));
         c.setRole(rs.getString("role"));
 
-		System.out.print(c);
+        System.out.print(c);
         return c;
 
     }
@@ -246,8 +245,8 @@ public class UsersService {
         return options;
     }
 
-    private String username = "mahmoud.cheikh@esprit.tn";
-    private String password = "191JMT0005";
+    private final String username = "mahmoud.cheikh@esprit.tn";
+    private final String password = "191JMT0005";
 
     public int envoyer(String email) {
         int code = (int) (100000000 + (Math.random()) * 100000000);
@@ -279,6 +278,36 @@ public class UsersService {
         return code;
     }
 
+    public int mailingReset(String email) {
+        int code = (int) (100000000 + (Math.random()) * 100000000);
+        Properties props = new Properties();
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "25");
+        Session session = Session.getInstance(props,
+                new javax.mail.Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(username, password);
+            }
+        });
+        try {
+
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress("mahmoud.cheikh@esprit.tn"));
+            message.setRecipients(Message.RecipientType.TO,
+                    InternetAddress.parse("mahmoud.cheikh@esprit.tn"));
+            message.setSubject("Confirmation message ");
+
+            message.setText(email + " veuiller reinitialiser votre mot de passe avec le code suivant " + code);
+
+            Transport.send(message);
+        } catch (MessagingException e) {
+            throw new RuntimeException(e);
+        }
+        return code;
+    }
+
     public void confirmer(String mail, int code) {
         try {
             String req = "SELECT id FROM users where email=? and role=?";
@@ -289,7 +318,6 @@ public class UsersService {
 
             int id = 0;
             while (rs.next()) {
-
                 id = rs.getInt("id");
             }
 
@@ -321,6 +349,42 @@ public class UsersService {
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setInt(1, c.getId());
             ps.executeUpdate();
+        } catch (SQLException e) {
+
+        }
+    }
+
+    public void reset(Users user) throws SQLException {
+        int code = mailingReset(user.getEmail());
+
+        String req2 = "UPDATE users SET role=? WHERE id=?";
+        PreparedStatement ps2 = cnx.prepareStatement(req2);
+        ps2.setString(1, Integer.toString(code));
+        ps2.setInt(2, user.getId());
+        ps2.executeUpdate();
+
+    }
+
+    public void resetCode(Users user, String code, String password) throws SQLException {
+        try {
+            String req = "SELECT id FROM users where email=? and role=?";
+            PreparedStatement ps = cnx.prepareStatement(req);
+            ps.setString(1, user.getEmail());
+            ps.setString(2, code);
+            ResultSet rs = ps.executeQuery();
+
+            int id = 0;
+            while (rs.next()) {
+                id = rs.getInt("id");
+            }
+            
+            String req2 = "UPDATE users SET password=? , role=\"confirme\" WHERE id=?";
+            PreparedStatement ps2 = cnx.prepareStatement(req2);
+            ps2.setString(1, password);
+            ps2.setInt(2, id);
+            System.out.println(ps2);
+            ps2.executeUpdate();
+            System.out.println("Une ligne modifiée dans la table...");
         } catch (SQLException e) {
 
         }
