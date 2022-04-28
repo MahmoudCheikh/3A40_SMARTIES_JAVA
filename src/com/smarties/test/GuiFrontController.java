@@ -74,7 +74,7 @@ public class GuiFrontController implements Initializable {
     }
 
     @FXML
-    private void GestionSites(ActionEvent event) throws IOException {
+    private void GestionSites(ActionEvent event) throws IOException {   
         AnchorPane xx;
         xx = FXMLLoader.load(getClass().getResource("GuiSites.fxml"));
         a1.getChildren().setAll(xx);

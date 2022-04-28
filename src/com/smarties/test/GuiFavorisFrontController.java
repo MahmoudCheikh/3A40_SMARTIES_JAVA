@@ -54,6 +54,8 @@ public class GuiFavorisFrontController implements Initializable {
         public Produit currentproduit;
     FavorisService fa = new FavorisService();
     Favoris fav = new Favoris();
+    @FXML
+    private Button refresh;
     /**
      * Initializes the controller class.
      */
@@ -113,6 +115,13 @@ public Parent make(Favoris fav) throws SQLException {
    /* private void refresh() {
         List<Favoris> fav = fa.afficherFavoris();
     }*/
+
+    @FXML
+    private void refresh(ActionEvent event) throws IOException {
+                 AnchorPane xx;
+        xx = FXMLLoader.load(getClass().getResource("GuiFavorisFront.fxml"));
+        a1.getChildren().setAll(xx);
+    }
     
     
 }

@@ -52,6 +52,7 @@ import javax.swing.JOptionPane;
 //import com.itextpdf.text.pdf.PdfWriter;
 //import com.itextpdf.text.Document;
 //import com.itextpdf.text.Font;
+import javafx.scene.chart.XYChart;
 import com.lowagie.text.Element;
 import com.smarties.services.UsersService;
 import java.sql.SQLException;
@@ -500,7 +501,7 @@ new animatefx.animation.Pulse(listeProduit).play();
      */
     @FXML
     private void AjoutStock(ActionEvent event
-    ) throws SQLException {
+    ) throws SQLException, Exception {
 
         Stock sto = new Stock();
 
@@ -551,8 +552,16 @@ new animatefx.animation.Pulse(listeProduit).play();
                 st.ajouterStock(sto);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Success");
-                alert.setContentText("Ajout effectuée avec succé!");
+                alert.setContentText("Ajout effectuée avec succé!" );
                 alert.show();
+                if(sto.getQuantite()<=50){
+               st.sendMail(Smarties.user.getEmail());
+                Alert alert1 = new Alert(Alert.AlertType.ERROR);
+                alert1.setTitle("Information Dialog");
+                alert1.setHeaderText(null);
+                alert1.setContentText("le stock est épuisé ! un mail sera vous envoyé !");
+                alert1.showAndWait();
+                }
 
                 refresh1();
                 new animatefx.animation.FadeIn(listeS).play();

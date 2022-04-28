@@ -28,15 +28,18 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+
 
 /**
  * FXML Controller class
@@ -64,6 +67,7 @@ public class GuiSitesController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+
         // EmplacementService st = new EmplacementService();
         List<Emplacement> listEmp = em.afficherEmplacement();
         Collections.reverse(listEmp);
@@ -86,7 +90,7 @@ public class GuiSitesController implements Initializable {
 
     public Parent make(Emplacement emp) throws SQLException {
         Parent parent = null;
-                Stock s = st.GetStockbyid(emp.getStock());
+        Stock s = st.GetStockbyid(emp.getStock());
         try {
             parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("SitesModel.fxml")));
             HBox innerContainer = ((HBox) ((AnchorPane) ((AnchorPane) parent).getChildren().get(0)).getChildren().get(0));
@@ -97,12 +101,18 @@ public class GuiSitesController implements Initializable {
             ((Text) innerContainer.lookup("#QuantiteStock")).setText("Quantite disponible: " + s.getQuantite());
             ((Text) innerContainer.lookup("#prixStock")).setText("Prix en Gros: " + s.getPrix());
             //button Map
-            ((Button) innerContainer.lookup("#generateMap")).setOnAction(new EventHandler<ActionEvent>() {
+            /*((Button) innerContainer.lookup("#generateMap")).setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
-                    //generateMap(prod);
+
+                    try {
+                        generateMap(emp);
+                    } catch (IOException ex) {
+                        Logger.getLogger(GuiSitesController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
-            });
+
+            });*/
             //fin button QrCode
 
         } catch (IOException ex) {
@@ -110,11 +120,11 @@ public class GuiSitesController implements Initializable {
         }
         return parent;
     }
-        private void generateMap(Emplacement emp) throws IOException {
-        currentemp = emp;
-        /*AnchorPane xx;
-        xx = FXMLLoader.load(getClass().getResource("QrCode.fxml"));
-        a1.getChildren().setAll(xx);*/
 
-    }
+   /* private void generateMap(Emplacement emp) throws IOException {
+        AnchorPane xx;
+        xx = FXMLLoader.load(getClass().getResource("MapController.fxml"));
+        a1.getChildren().setAll(xx);
+
+    }*/
 }

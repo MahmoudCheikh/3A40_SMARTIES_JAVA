@@ -17,9 +17,17 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 /**
  *
@@ -235,4 +243,40 @@ public class StockService {
         return s;
 
     }
+      public void sendMail(String recipient) throws Exception {
+        Properties properties = new Properties();
+        properties.put("mail.smtp.auth", "true");
+        properties.put("mail.smtp.starttls.enable", "true");
+        properties.put("mail.smtp.host", "smtp.gmail.com");
+        properties.put("mail.smtp.port", "587");
+        String MyAccountEmail = "roulece090@gmail.com";
+        String password = "ahmed123456789";
+        Session session = Session.getDefaultInstance(properties, new Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(MyAccountEmail, password);
+            }
+
+        });
+
+        Message message = prepareMessage(session, MyAccountEmail, recipient);
+        Transport.send(message);
+        System.out.println("message sent successfully");
+
+    }
+
+    private Message prepareMessage(Session session, String MyAccountEmail, String recipient) {
+
+        try {
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(MyAccountEmail));
+            message.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
+            message.setSubject("Ca Roule Commande ");
+            message.setText("Hey Admine , \n Stock Limite Svp Contacter Votre Fournisseur ! ");
+            return message;
+        } catch (Exception ex) {
+            Logger.getLogger(AbonnementService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
 }
