@@ -28,7 +28,7 @@ public class Commande {
         Produit p;
         try {
             p = produitService.GetProdbyid(this.id_produit);
-            return "Commande" + "\n Numero De Commande          :         " + id + "\n Identifiant D'Utilisateur        :        " + id_user + "\n Identifiant Du Produit        :        " + id_produit + "\n Quantite Du Produit       :        " + nb_produits +         "\nNom Du Produit          :              "+  p.getLibelle() +         "\nPrix Du ¨Produit             :       "  +    p.getPrix();
+            return "Commande" + "\n Numero De Commande          :         " + id + "\n Votre Identifiant        :        " + id_user + "\n Identifiant Du Produit        :        " + id_produit + "\n Quantite Du Produit       :        " + nb_produits +         "\nNom Du Produit          :              "+  p.getLibelle() +         "\nPrix Du ¨Produit             :       "  +    p.getPrix();
 
         } catch (SQLException ex) {
             Logger.getLogger(Commande.class.getName()).log(Level.SEVERE, null, ex);
