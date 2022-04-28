@@ -86,6 +86,7 @@ import javafx.scene.web.WebView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import nl.captcha.Captcha;
+//import captcha.Captcha;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -103,10 +104,8 @@ public class GuiAbonnementFrontController implements Initializable {
     private AbonnementService as = new AbonnementService();
     private LocationService loc = new LocationService();
     Alert alert = new Alert(Alert.AlertType.NONE);
-     int etatrecaptcha = 0;
-    Stage window;
-    WebView webView2;
-    WebEngine webEngine;
+ 
+   
 
     private TextField textIDAbonnementFront;
     @FXML
@@ -145,6 +144,8 @@ public class GuiAbonnementFrontController implements Initializable {
     @FXML
     private TextField captchaTF;
       Captcha captcha;
+    @FXML
+    private TextField textIDAbonnement;
 
     /**
      * Initializes the controller class.
@@ -164,19 +165,7 @@ public class GuiAbonnementFrontController implements Initializable {
         captcha = setCaptcha();
         }
         listAb.setItems(items);
-        /*  window = new Stage();
-        webView2 = new WebView();
-        webEngine = webView2.getEngine();
-        window.setOnCloseRequest(e -> {
-            if (webEngine != null && webEngine.getTitle().contains("success")) {
-                etatrecaptcha = 1;
-                recaptchaCheckMark.setImage(new Image("C:\\Users\\ASUS\\Desktop\\checkMark.png"));
-            }
-            System.out.println("etat recaptcha=" + etatrecaptcha);
-        });
-        window.initModality(Modality.APPLICATION_MODAL);
-        window.setMinWidth(250);*/
-        // 
+        
        
     }
      public Captcha setCaptcha() {
@@ -251,7 +240,7 @@ public class GuiAbonnementFrontController implements Initializable {
 
     @FXML
     private void SupprimerAbonnementFront(ActionEvent event) {
-         int selectedId = listAb.getSelectionModel().getSelectedItem().getId();
+         //int selectedId = listAb.getSelectionModel().getSelectedItem().getId();
         alert.setAlertType(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation");
         alert.setHeaderText(null);
@@ -259,12 +248,13 @@ public class GuiAbonnementFrontController implements Initializable {
         Optional<ButtonType> action = alert.showAndWait();
         if (action.get() == ButtonType.OK) {
         
-            as.supprimerAbonnement(selectedId);
+              int id = Integer.parseInt(textIDAbonnement.getText());
+            as.supprimerAbonnement(id);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Success");
             alert.setContentText("Abonnement supprimé avec succés!");
             alert.show();
-            textIDAbonnementFront.setText(" ");
+           
 
             ObservableList<Abonnement> items = FXCollections.observableArrayList();
         List<Abonnement> listabb = as.afficherAbonnement();
@@ -293,8 +283,8 @@ public class GuiAbonnementFrontController implements Initializable {
 
     @FXML
     private void getListeAb(MouseEvent event) {
-        /* int selectedId = listAb.getSelectionModel().getSelectedItem().getId();
-          textIDAbonnementFront.setText(String.valueOf(selectedId));*/
+        int selectedId = listAb.getSelectionModel().getSelectedItem().getId();
+          textIDAbonnement.setText(String.valueOf(selectedId));
     }
 
 

@@ -19,6 +19,7 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.smarties.entities.Location;
 import com.smarties.tools.MaConnexion;
+import com.twilio.Twilio;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -289,20 +290,7 @@ public class LocationService {
         return list;
     }
 
-    /* public String getCaptcha()
-     {
-         char data []= {  'a', 'b','c','d','e','f', 'g','h','i','j', 'k', 'l','m','n','o','p', 'q','r','s','t','u', 'v','w','x','y','z','A', 'B','C','D','E','F', 'G','H','I','J', 'K', 'L','M','N','O','P', 'Q','R','S','T','U', 'V','W','X','Y','Z','0','1','2','3','4','5','6','7','8','9', '#','!','@','$','%','&','*'};
-     
-     char  index[]=new char[6];
-     Random r=new Random();
-     int i =0;
-     for(i=0;i<(index.length);i++)
-     {
-         int ran= r.nextInt(data.length);
-         index[i]=data[ran];
-     }
-     return new String(index);
-     } */
+    
     public void GeneratePDF() throws DocumentException {
         Document doc = new Document();
         String sql = "select* from location";
@@ -459,25 +447,66 @@ public class LocationService {
     }
 
     private Message prepareMessage(Session session, String MyAccountEmail, String recipient) {
-                 Random rand = new Random();
-      String alphabet = "abcd1235";
-     int longueur = alphabet.length();
-    for(int i = 0; i < 6; i++) {
-    int k = rand.nextInt(longueur);
-    String CODE =  alphabet.charAt(k)+" ";
+              
+    
         try {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(MyAccountEmail));
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
             message.setSubject("Notification via votre application desktop");
-            message.setText(CODE);
+            message.setText("votre code de verification est : 305494");
             return message;
         } catch (Exception ex) {
             Logger.getLogger(AbonnementService.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return null;
-    }
+    
         return null;
     }
 
+      
+    
+
+
+
+    
+    
+    
+    
+    
+ /*public  String GetCode()
+ {  
+           Random rand = new Random();
+      String alphabet = "abcd1235";
+     int longueur = alphabet.length();
+    for(int i = 0; i < 6; i++) {
+    int k = rand.nextInt(longueur);
+    String c =  alphabet.charAt(k)+" ";
+ }
+    return c;
+  
+
+
+}*/
+    
+    public void sensSMS()
+    {
+    
+    /* String ACCOUNT_SID = System.getenv("AC1bfc52d30073068147b27bcfeae02c20");
+    String AUTH_TOKEN = System.getenv("626f9f30ef57e99f0239c2c46bff15e8");*/
+
+   
+       Twilio.init("AC1bfc52d30073068147b27bcfeae02c20", "626f9f30ef57e99f0239c2c46bff15e8");
+        com.twilio.rest.api.v2010.account.Message message = com.twilio.rest.api.v2010.account.Message.creator(
+                new com.twilio.type.PhoneNumber("+21623251728"),
+                new com.twilio.type.PhoneNumber("++17579095719 "),
+                "location ajoute avec succes ")
+            .create();
+
+        System.out.println(message.getSid());
+    
+    }
+    
+    
 }
+
+

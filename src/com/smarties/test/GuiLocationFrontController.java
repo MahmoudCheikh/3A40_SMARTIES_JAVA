@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 package com.smarties.test;
+ import com.twilio.Twilio;
+import com.twilio.rest.api.v2010.account.Message;
+import com.twilio.type.PhoneNumber;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -120,6 +123,8 @@ public class GuiLocationFrontController implements Initializable {
     private TextField Code;
     @FXML
     private Label enterCode;
+    @FXML
+    private TextField textIdLocation;
 
     /**
      * Initializes the controller class.
@@ -184,12 +189,18 @@ public class GuiLocationFrontController implements Initializable {
                 items.add(r);
             }
             ListLoc.setItems(items);
+            
+            loc.sensSMS();
               Alert alert = new Alert(Alert.AlertType.INFORMATION);
              alert.setTitle("erreur");
             alert.setContentText("Location ajoutée avec succés! ");
             alert.show();
+           
             
         }
+        
+        
+       
          TextDuree.setText("");
          TextHeureLoc.setText("");
          Code.setText("");
@@ -198,26 +209,43 @@ public class GuiLocationFrontController implements Initializable {
 
     @FXML
     private void SupprimerLocation(ActionEvent event) {
+        
+          alert.setAlertType(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation");
+        alert.setHeaderText(null);
+        alert.setContentText("Voulez-vous vraiment supprimer cette location  ?");
+        Optional<ButtonType> action = alert.showAndWait();
+        if (action.get() == ButtonType.OK) {
+
+            int id = Integer.parseInt(textIdLocation.getText());
+            loc.supprimerLocation(id);
+            ObservableList<Location> items = FXCollections.observableArrayList();
+            List<Location> listLOC = loc.afficherLocation();
+            for (Location r : listLOC) {
+                String ch = r.toString();
+                items.add(r);
+            }
+            ListLoc.setItems(items);
+        } else {
+            ObservableList<Location> items = FXCollections.observableArrayList();
+            List<Location> listLOC = loc.afficherLocation();
+            for (Location r : listLOC) {
+                String ch = r.toString();
+                items.add(r);
+            }
+            ListLoc.setItems(items);
+        }
+           TextDuree.setText("");
+         TextHeureLoc.setText("");
+      
+         textIdLocation.setText("");
+
     }
 
     @FXML
     private void GetListLoc(MouseEvent event) {
-          Location loc = new Location();
-        ListLoc.setOnMouseClicked((event1) -> {
-          
-            String selectedHeure = ListLoc.getSelectionModel().getSelectedItem().getHeure();
-            LocalDate selectedDate = ListLoc.getSelectionModel().getSelectedItem().getDate();
-            float selectedDuree = ListLoc.getSelectionModel().getSelectedItem().getDuree();
-           
-          
-
-      
-            textDatePickLoc.setValue(selectedDate);
-            TextDuree.setText(String.valueOf(selectedDuree));
-
-            TextHeureLoc.setText(selectedHeure);
-
-        });
+            int selectedId = ListLoc.getSelectionModel().getSelectedItem().getId();
+            textIdLocation.setText(String.valueOf(selectedId));
 
     }
 

@@ -30,7 +30,7 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="btnSupprimerAb" layoutX="538.0" layoutY="420.0" mnemonicParsing="false" onAction="#SupprimerAbonnementFront" prefHeight="40.0" prefWidth="117.0" style="-fx-background-color: #ff7f50;" text="Désabonner">
+            <Button fx:id="btnSupprimerAb" layoutX="413.0" layoutY="420.0" mnemonicParsing="false" onAction="#SupprimerAbonnementFront" prefHeight="40.0" prefWidth="117.0" style="-fx-background-color: #ff7f50;" text="Désabonner">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
@@ -87,6 +87,7 @@
             <Label layoutX="41.0" layoutY="272.0" text="E-mail" />
             <ImageView fx:id="captchaIV" fitHeight="150.0" fitWidth="200.0" layoutX="22.0" layoutY="420.0" pickOnBounds="true" preserveRatio="true" />
             <TextField fx:id="captchaTF" layoutX="255.0" layoutY="495.0" />
+            <TextField fx:id="textIDAbonnement" layoutX="549.0" layoutY="428.0" />
          </children>
          <effect>
             <InnerShadow />

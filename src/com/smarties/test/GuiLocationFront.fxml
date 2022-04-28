@@ -99,6 +99,7 @@
             <Button fx:id="Continuer" layoutX="105.0" layoutY="230.0" mnemonicParsing="false" onAction="#Continuer" prefHeight="25.0" prefWidth="105.0" text="Continuer" />
             <TextField fx:id="Code" layoutX="184.0" layoutY="434.0" prefHeight="25.0" prefWidth="113.0" visible="false" />
             <Label fx:id="enterCode" layoutX="41.0" layoutY="438.0" text="Veuillez enter le code :" visible="false" />
+            <TextField fx:id="textIdLocation" layoutX="642.0" layoutY="455.0" />
          </children>
          <effect>
             <InnerShadow />

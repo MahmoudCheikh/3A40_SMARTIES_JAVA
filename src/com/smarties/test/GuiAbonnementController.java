@@ -648,7 +648,7 @@ public class GuiAbonnementController implements Initializable {
 
     @FXML
     private void ChercherDuree(ActionEvent event) {
-if (findLoc.getText().isEmpty())
+  if (findLoc.getText().isEmpty())
 {  Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Information Dialog");
             alert.setHeaderText(null);
@@ -768,10 +768,10 @@ else {
             LocalDate selectedDatef = listAb.getSelectionModel().getSelectedItem().getDateF();
             int selectedPrix = listAb.getSelectionModel().getSelectedItem().getPrix();
             int selectedId = listAb.getSelectionModel().getSelectedItem().getId();
-
+            textIDAbonnement.setText(String.valueOf(selectedId));
             TypeAbonCombo.setValue(selectedType);
             textIDUserA.setText(String.valueOf(selectedIdUser));
-            textIDAbonnement.setText(String.valueOf(selectedId));
+           
             datepickdeb.setValue(selectedDated);
             datepickfin.setValue(selectedDatef);
             textPrixAb.setText(String.valueOf(selectedPrix));
@@ -788,10 +788,10 @@ else {
             float selectedDuree = ListLoc.getSelectionModel().getSelectedItem().getDuree();
             int selectedIDABON = ListLoc.getSelectionModel().getSelectedItem().getIdAbonnement();
             int selectedId = ListLoc.getSelectionModel().getSelectedItem().getId();
-
+ textIdLocation.setText(String.valueOf(selectedId));
             ComboIDAb.setValue(String.valueOf(selectedIDABON));
             TextIdUserLoc.setText(String.valueOf(selectedIdUser));
-            textIdLocation.setText(String.valueOf(selectedId));
+           
             textDatePickLoc.setValue(selectedDate);
             TextDuree.setText(String.valueOf(selectedDuree));
 
