@@ -21,7 +21,6 @@ public class GuiSingleSujetController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
     }    
     
 }

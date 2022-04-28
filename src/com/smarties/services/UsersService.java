@@ -6,6 +6,7 @@
 package com.smarties.services;
 
 import com.smarties.entities.Users;
+import com.smarties.test.Smarties;
 import com.smarties.tools.MaConnexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -156,6 +157,30 @@ public class UsersService {
         return c;
 
     }
+    
+     public Users getById(int id) throws SQLException {
+        Users c = new Users();
+        String query = "select * from users where id=?";
+        PreparedStatement ste = cnx.prepareStatement(query);
+        ste.setInt(1, id);
+
+        ResultSet rs;
+        rs = ste.executeQuery();
+        rs.next();
+        c.setId(rs.getInt("id"));
+        c.setEmail(rs.getString("email"));
+        c.setAdresse(rs.getString("adresse"));
+        c.setImage(rs.getString("image"));
+        c.setNom(rs.getString("nom"));
+        c.setPassword(rs.getString("password"));
+        c.setPrenom(rs.getString("prenom"));
+        c.setRole(rs.getString("role"));
+
+        System.out.println(c);
+        return c;
+
+    }
+
 
     public List<Users> searchuser(String titreN) {
         List<Users> list = new ArrayList<>();
@@ -377,7 +402,7 @@ public class UsersService {
             while (rs.next()) {
                 id = rs.getInt("id");
             }
-            
+
             String req2 = "UPDATE users SET password=? , role=\"confirme\" WHERE id=?";
             PreparedStatement ps2 = cnx.prepareStatement(req2);
             ps2.setString(1, password);
@@ -390,4 +415,25 @@ public class UsersService {
         }
     }
 
+    public void updatePassword(Users user, String password) throws SQLException {
+        String req2 = "UPDATE users SET password=? WHERE id=?";
+        PreparedStatement ps2 = cnx.prepareStatement(req2);
+        ps2.setString(1, password);
+        ps2.setInt(2, Smarties.user.getId());
+        ps2.executeUpdate();
+        System.out.println("Une ligne modifiée dans la table...");
+    }
+
+    public void updateData(Users user) throws SQLException {
+        String req2 = "UPDATE users SET nom=? , prenom=? , adresse=? WHERE id=?";
+        PreparedStatement ps2 = cnx.prepareStatement(req2);
+        ps2.setString(1, user.getNom());
+        ps2.setString(2, user.getPrenom());
+        ps2.setString(3, user.getAdresse());
+        
+        ps2.setInt(4, user.getId());
+        System.out.println(ps2.toString());
+        ps2.executeUpdate();
+        System.out.println("Une ligne modifiée dans la table...");
+    }
 }

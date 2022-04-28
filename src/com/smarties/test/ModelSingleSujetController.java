@@ -40,8 +40,7 @@ public class ModelSingleSujetController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+    }
 
     @FXML
     private void afficher(ActionEvent event) {
@@ -54,5 +53,5 @@ public class ModelSingleSujetController implements Initializable {
     @FXML
     private void supprimer(ActionEvent event) {
     }
-    
+
 }

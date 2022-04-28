@@ -98,10 +98,12 @@ public class GuiSujetController implements Initializable {
 
         ObservableList<Sujet> items = FXCollections.observableArrayList();
         List<Sujet> lists = sujetsservice.afficherSujet();
-        for (Sujet r : lists) {
+        lists.stream().map((r) -> {
             String ch = r.toString();
+            return r;
+        }).forEachOrdered((r) -> {
             items.add(r);
-        }
+        });
         tableSujetList.setItems(items);
     }
 
@@ -109,10 +111,12 @@ public class GuiSujetController implements Initializable {
     private void actuas(ActionEvent event) {
         ObservableList<Sujet> items = FXCollections.observableArrayList();
         List<Sujet> lists = sujetsservice.afficherSujet();
-        for (Sujet r : lists) {
+        lists.stream().map((r) -> {
             String ch = r.toString();
+            return r;
+        }).forEachOrdered((r) -> {
             items.add(r);
-        }
+        });
         tableSujetList.setItems(items);
     }
 

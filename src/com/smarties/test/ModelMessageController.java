@@ -22,7 +22,7 @@ import javafx.scene.control.Label;
 public class ModelMessageController implements Initializable {
 
     static Message message;
-    
+
     @FXML
     private Label txtMsgUser;
     @FXML
@@ -40,7 +40,7 @@ public class ModelMessageController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
     @FXML
     private void modifier(ActionEvent event) {
@@ -49,5 +49,5 @@ public class ModelMessageController implements Initializable {
     @FXML
     private void supprimer(ActionEvent event) {
     }
-    
+
 }

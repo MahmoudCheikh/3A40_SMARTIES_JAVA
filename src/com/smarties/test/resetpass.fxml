@@ -5,12 +5,11 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: #BF3C3C;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="com.smarties.test.ResetpassController">
+<AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: #BF3C3C;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smarties.test.ResetpassController">
    <children>
       <TextField fx:id="txtEmail" layoutX="651.0" layoutY="359.0" />
       <Label layoutX="586.0" layoutY="363.0" text="Email" textFill="WHITE" />
-      <Button fx:id="reset" layoutX="651.0" layoutY="391.0" mnemonicParsing="false" onAction="#reset" text="Reset" />
-      <Button fx:id="retour" layoutX="748.0" layoutY="391.0" mnemonicParsing="false" onAction="#retour" text="Retour" />
+      <Button fx:id="reset" layoutX="651.0" layoutY="391.0" mnemonicParsing="false" onAction="#reset" style="-fx-background-color: #ff7f50;" text="Reset" textFill="WHITE" />
+      <Button fx:id="retour" layoutX="748.0" layoutY="391.0" mnemonicParsing="false" onAction="#retour" style="-fx-background-color: #ff7f50;" text="Retour" textFill="WHITE" />
    </children>
 </AnchorPane>

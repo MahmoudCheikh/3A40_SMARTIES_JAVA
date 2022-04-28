@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.smarties.test;
 
 import java.io.IOException;
@@ -14,7 +10,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 
 /**
@@ -38,7 +33,6 @@ public class GuiFrontController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
     }
 
     @FXML
@@ -48,7 +42,6 @@ public class GuiFrontController implements Initializable {
             Parent root = loader.load();
             btnlogout.getScene().setRoot(root);
         } catch (IOException ex) {
-            System.out.println(ex.getMessage());
         }
     }
 
@@ -81,7 +74,10 @@ public class GuiFrontController implements Initializable {
     }
 
     @FXML
-    private void GestionProfil(ActionEvent event) {
+    private void GestionProfil(ActionEvent event) throws IOException {
+         AnchorPane xx;
+        xx = FXMLLoader.load(getClass().getResource("GuiMonProfil.fxml"));
+        a1.getChildren().setAll(xx);
     }
 
     @FXML

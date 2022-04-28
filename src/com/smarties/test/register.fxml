@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
@@ -21,7 +22,6 @@
             <Label layoutX="573.0" layoutY="449.0" text="Captcha" textFill="WHITE" />
             <TextField fx:id="txtRegisterCaptcha" layoutX="625.0" layoutY="445.0" />
             <TextField fx:id="txtRegisterMail" layoutX="625.0" layoutY="265.0" />
-            <TextField fx:id="txtRegisterPass" layoutX="625.0" layoutY="301.0" />
             <TextField fx:id="txtRegisterNom" layoutX="625.0" layoutY="336.0" />
             <TextField fx:id="txtRegisterPrenom" layoutX="625.0" layoutY="372.0" />
             <TextField fx:id="txtRegisterAdresse" layoutX="625.0" layoutY="410.0" />
@@ -38,6 +38,8 @@
                   <Image url="@../images/çaRoule.png" />
                </image>
             </ImageView>
+            <ImageView fx:id="captchaIV" fitHeight="68.0" fitWidth="200.0" layoutX="780.0" layoutY="423.0" pickOnBounds="true" preserveRatio="true" />
+            <PasswordField fx:id="txtRegisterPass" layoutX="625.0" layoutY="301.0" />
          </children>
       </AnchorPane>
    </center>

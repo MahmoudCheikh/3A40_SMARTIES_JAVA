@@ -60,20 +60,24 @@ public class GuiUsersController implements Initializable {
     private void actuser(ActionEvent event) {
         ObservableList<Users> items = FXCollections.observableArrayList();
         List<Users> listusers = us.afficherUser();
-        for (Users r : listusers) {
+        listusers.stream().map((r) -> {
             String ch = r.toString();
+            return r;
+        }).forEachOrdered((r) -> {
             items.add(r);
-        }
+        });
         tableuserslist.setItems(items);
     }
-    
+
     private void actualiser() {
         ObservableList<Users> items = FXCollections.observableArrayList();
         List<Users> listusers = us.afficherUser();
-        for (Users r : listusers) {
+        listusers.stream().map((r) -> {
             String ch = r.toString();
+            return r;
+        }).forEachOrdered((r) -> {
             items.add(r);
-        }
+        });
         tableuserslist.setItems(items);
     }
 

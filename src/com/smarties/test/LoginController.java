@@ -16,6 +16,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
@@ -52,36 +53,43 @@ public class LoginController implements Initializable {
 
     @FXML
     private void login(ActionEvent event) throws SQLException, IOException {
-        String mail = txtemail.getText();
-        String pass = txtpass.getText();
-        Users user = new Users();
-        user.setEmail(mail);
-        user.setPassword(pass);
-        int test = us.login(user);
-        if (test == 1) {
 
-            user = us.getOne(mail);
-            Smarties.user = user;
-            if (Smarties.user.getId() == 45) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("GuiBack.fxml"));
-                try {
-                    Parent root = loader.load();
-                    txtemail.getScene().setRoot(root);
-                } catch (IOException ex) {
-                    System.out.println(ex.getMessage());
-                }
-            } else {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("GuiFront.fxml"));
-                try {
-                    Parent root = loader.load();
-                    txtemail.getScene().setRoot(root);
-                } catch (IOException ex) {
-                    System.out.println(ex.getMessage());
-                }
-            }
-
+        if (txtemail.getText().isEmpty() || txtpass.getText().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("champs manquants !");
+            alert.showAndWait();
         } else {
-            txterror.setText("Verifiez les champs");
+            String mail = txtemail.getText();
+            String pass = txtpass.getText();
+            Users user = new Users();
+            user.setEmail(mail);
+            user.setPassword(pass);
+            int test = us.login(user);
+            if (test == 1) {
+
+                user = us.getOne(mail);
+                Smarties.user = user;
+                if (Smarties.user.getId() == 45) {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("GuiBack.fxml"));
+                    try {
+                        Parent root = loader.load();
+                        txtemail.getScene().setRoot(root);
+                    } catch (IOException ex) {
+                    }
+                } else {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("GuiFront.fxml"));
+                    try {
+                        Parent root = loader.load();
+                        txtemail.getScene().setRoot(root);
+                    } catch (IOException ex) {
+                    }
+                }
+
+            } else {
+                //txterror.setText("Verifiez les champs");
+            }
         }
     }
 
@@ -92,7 +100,6 @@ public class LoginController implements Initializable {
             Parent root = loader.load();
             txtemail.getScene().setRoot(root);
         } catch (IOException ex) {
-            System.out.println(ex.getMessage());
         }
     }
 
@@ -103,7 +110,6 @@ public class LoginController implements Initializable {
             Parent root = loader.load();
             txtemail.getScene().setRoot(root);
         } catch (IOException ex) {
-            System.out.println(ex.getMessage());
         }
     }
 
@@ -114,7 +120,6 @@ public class LoginController implements Initializable {
             Parent root = loader.load();
             txtemail.getScene().setRoot(root);
         } catch (IOException ex) {
-            System.out.println(ex.getMessage());
         }
     }
 
@@ -125,7 +130,6 @@ public class LoginController implements Initializable {
             Parent root = loader.load();
             txtemail.getScene().setRoot(root);
         } catch (IOException ex) {
-            System.out.println(ex.getMessage());
         }
     }
 
