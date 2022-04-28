@@ -18,6 +18,8 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.smarties.entities.Commande;
+import com.smarties.entities.Produit;
+import com.smarties.test.Smarties;
 import com.smarties.tools.MaConnexion;
 import java.awt.Desktop;
 import java.io.File;
@@ -42,10 +44,10 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-
 public class CommandeService {
 
     Connection cnx;
+    ProduitService produitService = new ProduitService();
 
     public CommandeService() {
         cnx = MaConnexion.getInstance().getCnx();
@@ -66,7 +68,6 @@ public class CommandeService {
         }
 
     }
-  
 
     public List<Commande> afficherCommande() {
         List<Commande> Commandes = new ArrayList<>();
@@ -182,11 +183,9 @@ public class CommandeService {
         return list;
     }
 
-   public void Gpdf() throws DocumentException {
+    public void Gpdf() throws DocumentException {
         Document doc = new Document();
-        String sql = "select* from commande,"
-                + "produit";
-       
+        String sql = "select * from commande";
 
         try {
             Statement prepared = cnx.prepareStatement(sql);
@@ -195,23 +194,22 @@ public class CommandeService {
             doc.open();
             doc.getHtmlStyleClass();
 
-              Image img = Image.getInstance("C:\\3A40_SMARTIES_JAVA\\src\\com\\smarties\\images\\çaRoule.png");
+            Image img = Image.getInstance("C:\\3A40_SMARTIES_JAVA\\src\\com\\smarties\\images\\çaRoule.png");
             img.scaleAbsoluteWidth(300);
-             img.scaleAbsoluteHeight(92);
-              img.setAlignment(Image.ALIGN_CENTER);
-             doc.add(img);
+            img.scaleAbsoluteHeight(92);
+            img.setAlignment(Image.ALIGN_CENTER);
+            doc.add(img);
             doc.add(new Paragraph(" "));
             doc.add(new Paragraph(" "));
             doc.add(new Paragraph("                                                     Liste des Commande "));
             doc.add(new Paragraph(" "));
-
 
             PdfPTable table = new PdfPTable(4);
             table.setWidthPercentage(100);
             PdfPCell cell;
 
             /////////////////////////////////////////////////////////////////
-            cell = new PdfPCell(new Phrase("Numero De Commande", FontFactory.getFont("Comic Sans MS", 12)));
+            cell = new PdfPCell(new Phrase("Numero Du Commande", FontFactory.getFont("Comic Sans MS", 12)));
             cell.setHorizontalAlignment(Element.ALIGN_CENTER);
             cell.setBackgroundColor(BaseColor.GRAY);
             table.addCell(cell);
@@ -230,34 +228,36 @@ public class CommandeService {
             cell.setHorizontalAlignment(Element.ALIGN_CENTER);
             cell.setBackgroundColor(BaseColor.GRAY);
             table.addCell(cell);
-            
-            
-          
+
             ///
             //////////////////////////////////////////////////////////////////////////////
             while (rs.next()) {
-                cell = new PdfPCell(new Phrase(rs.getString("id").toString(), FontFactory.getFont("Comic Sans MS", 12)));
-                cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-                cell.setBackgroundColor(BaseColor.GRAY);
-                table.addCell(cell);
-                //////
-                cell = new PdfPCell(new Phrase(rs.getString("libelle").toString(), FontFactory.getFont("Comic Sans MS", 12)));
-                cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-                cell.setBackgroundColor(BaseColor.GRAY);
-                table.addCell(cell);
-                ///////
-                cell = new PdfPCell(new Phrase(rs.getString("prix").toString(), FontFactory.getFont("Comic Sans MS", 12)));
-                cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-                cell.setBackgroundColor(BaseColor.GRAY);
-                table.addCell(cell);
-                ///////
-                cell = new PdfPCell(new Phrase(rs.getString("nb_produits").toString(), FontFactory.getFont("Comic Sans MS", 12)));
-                cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-                cell.setBackgroundColor(BaseColor.GRAY);
-                table.addCell(cell);
-                ////////////
-               
-                
+                if (rs.getInt("id_user_id") == Smarties.user.getId()) {
+
+                    Produit p = produitService.GetProdbyid(rs.getInt("id_produit_id"));
+                    
+                    cell = new PdfPCell(new Phrase(rs.getString("id").toString(), FontFactory.getFont("Comic Sans MS", 12)));
+                    cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                    cell.setBackgroundColor(BaseColor.GRAY);
+                    table.addCell(cell);
+                    //////
+                    cell = new PdfPCell(new Phrase(p.getLibelle(), FontFactory.getFont("Comic Sans MS", 12)));
+                    cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                    cell.setBackgroundColor(BaseColor.GRAY);
+                    table.addCell(cell);
+                    ///////
+                    cell = new PdfPCell(new Phrase(Float.toString(p.getPrix()), FontFactory.getFont("Comic Sans MS", 12)));
+                    cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                    cell.setBackgroundColor(BaseColor.GRAY);
+                    table.addCell(cell);
+                    ///////
+                    cell = new PdfPCell(new Phrase(rs.getString("nb_produits").toString(), FontFactory.getFont("Comic Sans MS", 12)));
+                    cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                    cell.setBackgroundColor(BaseColor.GRAY);
+                    table.addCell(cell);
+                    ////////////
+
+                }
             }
 
             doc.add(table);
@@ -274,7 +274,6 @@ public class CommandeService {
             Logger.getLogger(LocationService.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        
     }
 
     public ArrayList<String> comboComm() {
@@ -308,42 +307,41 @@ public class CommandeService {
         }
         return options;
     }
-    
-     public void  sendMail(String recipient) throws Exception
-         {  
-         Properties properties =new Properties();
-         properties.put("mail.smtp.auth", "true");
-         properties.put("mail.smtp.starttls.enable", "true");
-         properties.put("mail.smtp.host", "smtp.gmail.com" );
-           properties.put("mail.smtp.port", "587");
-           String MyAccountEmail="roulece090@gmail.com"; 
-           String password ="ahmed123456789";
-            Session session= Session.getDefaultInstance(properties,new Authenticator(){
-           protected PasswordAuthentication getPasswordAuthentication()
-           {
-           return new PasswordAuthentication(MyAccountEmail,password);}
-            
-            });
-         
-               Message message= prepareMessage(session,MyAccountEmail,recipient); 
-               Transport.send(message);
-               System.out.println("message sent successfully");
-         
-         }
-          private  Message prepareMessage(Session session,String MyAccountEmail, String recipient) {
-              
+
+    public void sendMail(String recipient) throws Exception {
+        Properties properties = new Properties();
+        properties.put("mail.smtp.auth", "true");
+        properties.put("mail.smtp.starttls.enable", "true");
+        properties.put("mail.smtp.host", "smtp.gmail.com");
+        properties.put("mail.smtp.port", "587");
+        String MyAccountEmail = "roulece090@gmail.com";
+        String password = "ahmed123456789";
+        Session session = Session.getDefaultInstance(properties, new Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(MyAccountEmail, password);
+            }
+
+        });
+
+        Message message = prepareMessage(session, MyAccountEmail, recipient);
+        Transport.send(message);
+        System.out.println("message sent successfully");
+
+    }
+
+    private Message prepareMessage(Session session, String MyAccountEmail, String recipient) {
+
         try {
-            Message message =new MimeMessage(session);
-            message.setFrom(new InternetAddress( MyAccountEmail));
-            message.setRecipient(Message.RecipientType.TO,new InternetAddress( recipient) );
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(MyAccountEmail));
+            message.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
             message.setSubject("Ca Roule Commande ");
             message.setText("Bonjour Cher Client , \n Votre Commande A été Passe Avec Succes ! ");
-            return message; 
+            return message;
         } catch (Exception ex) {
             Logger.getLogger(AbonnementService.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
-    
 
 }
