@@ -16,36 +16,36 @@
 
 <AnchorPane id="AnchorPane" prefHeight="648.0" prefWidth="990.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smarties.test.GuiLocationFrontController">
    <children>
-      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="656.0" prefWidth="990.0">
+      <AnchorPane layoutX="-14.0" minHeight="0.0" minWidth="0.0" prefHeight="656.0" prefWidth="990.0" stylesheets="@abonnementstyle.css">
          <children>
-            <TextField fx:id="TextHeureLoc" layoutX="104.0" layoutY="127.0" prefHeight="25.0" prefWidth="105.0">
+            <TextField fx:id="TextHeureLoc" layoutX="102.0" layoutY="127.0" prefHeight="25.0" prefWidth="105.0">
                <effect>
                   <InnerShadow />
                </effect>
             </TextField>
             <Label layoutX="29.0" layoutY="94.0" text="Date" textFill="#b9936c" />
             <Label layoutX="25.0" layoutY="139.0" text="Heure" textFill="#b9936c" />
-            <Button fx:id="AjoutLoc" layoutX="81.0" layoutY="500.0" mnemonicParsing="false" onAction="#AjouterLoaction" prefHeight="31.0" prefWidth="175.0" style="-fx-background-color: #ff7f50;" text="         Ajouter une location" visible="false">
+            <Button fx:id="AjoutLoc" layoutX="81.0" layoutY="500.0" mnemonicParsing="false" onAction="#AjouterLoaction" prefHeight="31.0" prefWidth="175.0" style="-fx-background-color: #979A9A;" text=" Ajouter une location" visible="false">
                <font>
-                  <Font name="System Bold" size="12.0" />
+                  <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="suppLoc" layoutX="508.0" layoutY="446.0" mnemonicParsing="false" onAction="#SupprimerLocation" prefHeight="32.0" prefWidth="111.0" style="-fx-background-color: #ff7f50;" text="       Supprimer">
+            <Button fx:id="suppLoc" layoutX="508.0" layoutY="446.0" mnemonicParsing="false" onAction="#SupprimerLocation" prefHeight="32.0" prefWidth="111.0" style="-fx-background-color: #979A9A;" text="   Supprimer">
                <font>
-                  <Font name="System Bold" size="12.0" />
+                  <Font name="System Bold" size="14.0" />
                </font>
             </Button>
             <ListView fx:id="ListLoc" layoutX="378.0" layoutY="150.0" onMouseClicked="#GetListLoc" prefHeight="283.0" prefWidth="527.0" />
-            <Label layoutX="613.0" layoutY="14.0" prefHeight="27.0" prefWidth="237.0" text="      Liste des Locations ">
+            <Label layoutX="495.0" layoutY="33.0" prefHeight="27.0" prefWidth="237.0" text="        Liste des Locations        ">
                <font>
                   <Font name="System Bold Italic" size="18.0" />
                </font>
                <effect>
-                  <DropShadow color="#ec9113" />
+                  <DropShadow color="#df130f" />
                </effect>
             </Label>
             <Label layoutX="38.0" layoutY="186.0" text="Duree" textFill="#b9936c" />
-            <TextField fx:id="TextDuree" layoutX="102.0" layoutY="169.0" prefHeight="25.0" prefWidth="110.0">
+            <TextField fx:id="TextDuree" layoutX="102.0" layoutY="169.0" prefHeight="25.0" prefWidth="105.0">
                <effect>
                   <InnerShadow />
                </effect>
@@ -55,23 +55,13 @@
                   <InnerShadow />
                </effect>
             </DatePicker>
-            <ImageView fx:id="plusLoc" fitHeight="27.0" fitWidth="31.0" layoutX="88.0" layoutY="502.0" opacity="0.76" pickOnBounds="true" preserveRatio="true" visible="false">
-               <image>
-                  <Image url="@../images/img1.jpg" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="img8" fitHeight="38.0" fitWidth="33.0" layoutX="598.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/liste.png" />
-               </image>
-            </ImageView>
-            <TextField fx:id="findLoc" layoutX="619.0" layoutY="108.0" prefHeight="25.0" prefWidth="113.0" />
-            <Button fx:id="findDuree" layoutX="449.0" layoutY="108.0" mnemonicParsing="false" onAction="#ChercherDuree" prefHeight="25.0" prefWidth="149.0" text="Rechercher par Duree">
+            <TextField fx:id="findLoc" layoutX="619.0" layoutY="108.0" prefHeight="25.0" prefWidth="120.0" />
+            <Button fx:id="findDuree" layoutX="431.0" layoutY="108.0" mnemonicParsing="false" onAction="#ChercherDuree" prefHeight="30.0" prefWidth="167.0" style="-fx-background-color: #979A9A;" text="Rechercher par Duree">
                <font>
-                  <Font name="System Bold Italic" size="12.0" />
+                  <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <ImageView fx:id="loop" fitHeight="31.0" fitWidth="35.0" layoutX="394.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="loop" fitHeight="31.0" fitWidth="35.0" layoutX="389.0" layoutY="109.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/loop.png" />
                </image>
@@ -84,22 +74,16 @@
                   <Glow />
                </effect>
             </Text>
-            <Button fx:id="actuLOC" layoutX="850.0" layoutY="41.0" mnemonicParsing="false" onAction="#ActualiserLoc" prefHeight="30.0" prefWidth="78.0" text="Actualiser" />
-            <ImageView fx:id="refreesh" fitHeight="28.0" fitWidth="28.0" layoutX="778.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/png-transparent-computer-icons-synchronization-encapsulated-postscript-icon-design-update-button-angle-text-logo.png" />
-               </image>
-            </ImageView>
-            <Button fx:id="pdf" layoutX="825.0" layoutY="91.0" mnemonicParsing="false" onAction="#generatePDF" text="Generer un fichier PDF" />
-            <ImageView fitHeight="32.0" fitWidth="42.0" layoutX="788.0" layoutY="88.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/pdfFadwa.png" />
-               </image>
-            </ImageView>
-            <Button fx:id="Continuer" layoutX="105.0" layoutY="230.0" mnemonicParsing="false" onAction="#Continuer" prefHeight="25.0" prefWidth="105.0" text="Continuer" />
-            <TextField fx:id="Code" layoutX="184.0" layoutY="434.0" prefHeight="25.0" prefWidth="113.0" visible="false" />
-            <Label fx:id="enterCode" layoutX="41.0" layoutY="438.0" text="Veuillez enter le code :" visible="false" />
-            <TextField fx:id="textIdLocation" layoutX="642.0" layoutY="455.0" />
+            <Button fx:id="Continuer" layoutX="94.0" layoutY="230.0" mnemonicParsing="false" onAction="#Continuer" prefHeight="31.0" prefWidth="120.0" style="-fx-background-color: #979A9A;" text="Continuer">
+               <font>
+                  <Font name="Arial" size="14.0" />
+               </font></Button>
+            <TextField fx:id="Code" layoutX="214.0" layoutY="434.0" prefHeight="25.0" prefWidth="135.0" visible="false" />
+            <Label fx:id="enterCode" layoutX="31.0" layoutY="437.0" text="Veuillez enter le code :" visible="false">
+               <font>
+                  <Font name="Arial Black" size="13.0" />
+               </font></Label>
+            <TextField fx:id="textIdLocation" layoutX="628.0" layoutY="450.0" />
          </children>
          <effect>
             <InnerShadow />

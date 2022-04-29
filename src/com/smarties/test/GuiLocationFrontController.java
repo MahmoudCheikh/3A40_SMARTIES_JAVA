@@ -102,20 +102,11 @@ public class GuiLocationFrontController implements Initializable {
     @FXML
     private DatePicker textDatePickLoc;
     @FXML
-    private ImageView img8;
-    @FXML
     private TextField findLoc;
     @FXML
     private Button findDuree;
     @FXML
     private ImageView loop;
-    @FXML
-    private Button actuLOC;
-    @FXML
-    private ImageView refreesh;
-    @FXML
-    private Button pdf;
-    @FXML
     private ImageView plusLoc;
     @FXML
     private Button Continuer;
@@ -276,26 +267,20 @@ else {
 }
     }
 
-    @FXML
-    private void ActualiserLoc(ActionEvent event) {
-    }
-
-    @FXML
-    private void generatePDF(ActionEvent event) {
-    }
 
     @FXML
     private void Continuer(ActionEvent event) throws Exception {
           enterCode.setVisible(true);
        Code.setVisible(true);
        AjoutLoc.setVisible(true);
-       plusLoc.setVisible(true);
+     
       
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+         Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Success");
             alert.setContentText("Pour continuer veuillez entrer le code envoyé à votre mail ! ");
             alert.show();
-       loc.sendMailCode("fadwa.berrich@esprit.tn");
+           loc.sendMailCode("fadwa.berrich@esprit.tn");
+          
       
     }
     

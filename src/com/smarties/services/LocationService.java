@@ -441,7 +441,7 @@ public class LocationService {
         });
 
         Message message = prepareMessage(session, MyAccountEmail, recipient);
-        Transport.send(message);
+    Transport.send(message);
         System.out.println("message sent successfully");
 
     }
@@ -470,24 +470,6 @@ public class LocationService {
 
     
     
-    
-    
-    
- /*public  String GetCode()
- {  
-           Random rand = new Random();
-      String alphabet = "abcd1235";
-     int longueur = alphabet.length();
-    for(int i = 0; i < 6; i++) {
-    int k = rand.nextInt(longueur);
-    String c =  alphabet.charAt(k)+" ";
- }
-    return c;
-  
-
-
-}*/
-    
     public void sensSMS()
     {
     
@@ -502,7 +484,7 @@ public class LocationService {
                 "location ajoute avec succes ")
             .create();
 
-        System.out.println(message.getSid());
+        System.out.println("twilioo");
     
     }
     

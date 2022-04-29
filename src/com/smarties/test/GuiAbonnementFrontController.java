@@ -120,17 +120,11 @@ public class GuiAbonnementFrontController implements Initializable {
     @FXML
     private DatePicker datepickfinF;
     @FXML
-    private ImageView img1;
-    @FXML
-    private ImageView img4;
-    @FXML
     private TextField findAb;
     @FXML
     private Button findType;
     @FXML
     private ImageView loop;
-    @FXML
-    private Button excel;
     @FXML
     private ComboBox<String> TypeAbonComboFront;
     private String[] typeAbonnement = {"VIP", "Gold", "Silver"};
@@ -188,6 +182,7 @@ public class GuiAbonnementFrontController implements Initializable {
 
     @FXML
     private void AjouterAbonnementFront(ActionEvent event) throws Exception {
+        LocalDate today = LocalDate.now();
         Abonnement ab = new Abonnement();
         LocalDate datedeb = datepickdebF.getValue();
         LocalDate datefin = datepickfinF.getValue();
@@ -202,7 +197,26 @@ public class GuiAbonnementFrontController implements Initializable {
             captcha = setCaptcha();
             captchaTF.setText("");
           
-        } else {
+        }
+        else if ((datepickdebF.getValue().getYear() > datepickfinF.getValue().getYear()) || (datepickdebF.getValue().getMonthValue() > datepickfinF.getValue().getMonthValue()) || (datepickdebF.getValue().getDayOfMonth() > datepickfinF.getValue().getDayOfMonth())) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("la date debut doit etre inferieur a la date fin !");
+            alert.showAndWait();
+        } else if (datepickdebF.getValue().isBefore(today)) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("la date début doit etre supérieure à celle d'aujourd'hui ! ");
+            alert.showAndWait();
+        }else {
+            if (TypeAbonComboFront.getValue().equalsIgnoreCase("VIP"))
+            {ab.setPrix(100);}
+            else if(TypeAbonComboFront.getValue().equalsIgnoreCase("Gold"))
+                 {ab.setPrix(50);}
+             else if(TypeAbonComboFront.getValue().equalsIgnoreCase("Silver"))
+                 {ab.setPrix(25);}
         as.ajouterAbonnement(ab);
          as.sendMail(mailAbonne.getText());
         ObservableList<Abonnement> items = FXCollections.observableArrayList();
@@ -323,28 +337,6 @@ public class GuiAbonnementFrontController implements Initializable {
    
    
 
-    @FXML
-    private void generExcel(ActionEvent event) {
-    }
-
-  /*  private void Recaptcha(MouseEvent event) {
-          webView2.setPrefSize(400, 500);
-        webEngine.setUserAgent("use required / intended UA string");
-        webEngine.load("http://localhost/TunisiaBonPlan2-integration/web/app_dev.php/clientelle/recaptchaJAVA.html");
-
-        Button closeButton = new Button("Fermer");
-        closeButton.setOnAction(e -> window.close());
-
-        VBox layout = new VBox(10);
-        layout.getChildren().addAll(webView2);
-        layout.setAlignment(Pos.CENTER);
-
-        //Display window and wait for it to be closed before returning
-        Scene scene = new Scene(layout);
-        window.setScene(scene);
-        window.showAndWait();
-        
-    }*/
     
  
      

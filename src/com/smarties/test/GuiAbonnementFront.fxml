@@ -16,37 +16,43 @@
 
 <AnchorPane id="AnchorPane" prefHeight="645.0" prefWidth="1055.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smarties.test.GuiAbonnementFrontController">
    <children>
-      <AnchorPane layoutX="36.0" layoutY="6.0" minHeight="0.0" minWidth="0.0" prefHeight="634.0" prefWidth="1065.0">
+      <AnchorPane layoutY="6.0" minHeight="0.0" minWidth="0.0" prefHeight="634.0" prefWidth="1101.0">
          <children>
-            <Label layoutX="30.0" layoutY="115.0" text="Type" textFill="#b9936c">
+            <Label layoutX="30.0" layoutY="115.0" text="Type" textFill="#141413">
                <font>
                   <Font name="Dubai Regular" size="12.0" />
                </font>
             </Label>
-            <Label layoutX="11.0" layoutY="169.0" text="Date debut " textFill="#b9936c" />
-            <Label layoutX="21.0" layoutY="219.0" text="Date fin" textFill="#b9936c" />
-            <Button fx:id="btnAjouterAbFront" layoutX="122.0" layoutY="346.0" mnemonicParsing="false" onAction="#AjouterAbonnementFront" prefHeight="41.0" prefWidth="118.0" style="-fx-background-color: #ff7f50;" text="           Abonner">
+            <Label layoutX="23.0" layoutY="169.0" text="Date debut " textFill="#141413" />
+            <Label layoutX="21.0" layoutY="219.0" text="Date fin" textFill="#383735" />
+            <Button fx:id="btnAjouterAbFront" layoutX="116.0" layoutY="538.0" mnemonicParsing="false" onAction="#AjouterAbonnementFront" prefHeight="41.0" prefWidth="118.0" style="-fx-background-color: #979A9A;" text=" Abonner" textFill="#090909">
                <font>
-                  <Font name="System Bold" size="12.0" />
+                  <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btnSupprimerAb" layoutX="413.0" layoutY="420.0" mnemonicParsing="false" onAction="#SupprimerAbonnementFront" prefHeight="40.0" prefWidth="117.0" style="-fx-background-color: #ff7f50;" text="Désabonner">
+            <Button fx:id="btnSupprimerAb" layoutX="413.0" layoutY="420.0" mnemonicParsing="false" onAction="#SupprimerAbonnementFront" prefHeight="40.0" prefWidth="117.0" style="-fx-background-color: #979A9A;" text="Désabonner">
                <font>
-                  <Font name="System Bold" size="12.0" />
+                  <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <ListView fx:id="listAb" layoutX="357.0" layoutY="125.0" onMouseClicked="#getListeAb" prefHeight="286.0" prefWidth="479.0" />
-            <Label layoutX="549.0" layoutY="20.0" text="Liste des Abonnements">
+            <ListView fx:id="listAb" layoutX="357.0" layoutY="125.0" onMouseClicked="#getListeAb" prefHeight="286.0" prefWidth="479.0" stylesheets="@abonnementstyle.css" />
+            <Label layoutX="484.0" layoutY="31.0" prefHeight="27.0" prefWidth="226.0" text="   Liste des Abonnements">
                <font>
                   <Font name="System Bold Italic" size="18.0" />
                </font>
                <effect>
-                  <DropShadow color="#ec9113" />
+                  <DropShadow color="#830707" />
                </effect>
             </Label>
             <Label fx:id="wrong" layoutX="23.0" layoutY="44.0" prefHeight="23.0" prefWidth="250.0" textFill="#eb0b0b" />
-            <DatePicker fx:id="datepickdebF" layoutX="104.0" layoutY="165.0" prefHeight="25.0" prefWidth="143.0" />
-            <DatePicker fx:id="datepickfinF" layoutX="104.0" layoutY="215.0" prefHeight="25.0" prefWidth="143.0" />
+            <DatePicker fx:id="datepickdebF" layoutX="104.0" layoutY="165.0" prefHeight="25.0" prefWidth="143.0">
+               <effect>
+                  <InnerShadow color="#242323" />
+               </effect></DatePicker>
+            <DatePicker fx:id="datepickfinF" layoutX="104.0" layoutY="215.0" prefHeight="25.0" prefWidth="143.0">
+               <effect>
+                  <InnerShadow color="#242323" />
+               </effect></DatePicker>
             <Label layoutX="42.0" layoutY="61.0" prefHeight="28.0" prefWidth="209.0" text="Veuillez remplir ce formulaire ">
                <font>
                   <Font name="System Bold" size="14.0" />
@@ -55,43 +61,42 @@
                   <Glow />
                </effect>
             </Label>
-            <ImageView fx:id="img1" fitHeight="29.0" fitWidth="42.0" layoutX="133.0" layoutY="352.0" opacity="0.62" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/img1.jpg" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="img4" fitHeight="39.0" fitWidth="31.0" layoutX="502.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/liste.png" />
-               </image>
-            </ImageView>
-            <TextField fx:id="findAb" layoutX="595.0" layoutY="84.0" prefHeight="31.0" prefWidth="132.0" />
-            <Button fx:id="findType" layoutX="413.0" layoutY="83.0" mnemonicParsing="false" onAction="#ChercherType" prefHeight="32.0" prefWidth="154.0" text="Rechercher par type ">
+            <TextField fx:id="findAb" layoutX="595.0" layoutY="84.0" prefHeight="22.0" prefWidth="149.0">
+               <effect>
+                  <InnerShadow />
+               </effect></TextField>
+            <Button fx:id="findType" layoutX="394.0" layoutY="75.0" mnemonicParsing="false" onAction="#ChercherType" prefHeight="41.0" prefWidth="173.0" style="-fx-background-color: #979A9A;" text="Rechercher par type ">
                <font>
-                  <Font name="System Bold" size="12.0" />
+                  <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <ImageView fx:id="loop" fitHeight="33.0" fitWidth="39.0" layoutX="363.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="loop" fitHeight="33.0" fitWidth="39.0" layoutX="347.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/loop.png" />
                </image>
             </ImageView>
-            <Button fx:id="excel" layoutX="836.0" layoutY="77.0" mnemonicParsing="false" onAction="#generExcel" text="Generer un Fichier Excel" />
-            <ComboBox fx:id="TypeAbonComboFront" layoutX="103.0" layoutY="113.0" prefHeight="25.0" prefWidth="143.0" />
-            <ImageView fitHeight="30.0" fitWidth="36.0" layoutX="797.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/excelFadwa.jpeg" />
-               </image>
-            </ImageView>
-            <TextField fx:id="mailAbonne" layoutX="100.0" layoutY="268.0" />
-            <Label layoutX="41.0" layoutY="272.0" text="E-mail" />
-            <ImageView fx:id="captchaIV" fitHeight="150.0" fitWidth="200.0" layoutX="22.0" layoutY="420.0" pickOnBounds="true" preserveRatio="true" />
-            <TextField fx:id="captchaTF" layoutX="255.0" layoutY="495.0" />
-            <TextField fx:id="textIDAbonnement" layoutX="549.0" layoutY="428.0" />
+            <ComboBox fx:id="TypeAbonComboFront" layoutX="103.0" layoutY="113.0" prefHeight="25.0" prefWidth="143.0">
+               <effect>
+                  <InnerShadow color="#242323" />
+               </effect></ComboBox>
+            <TextField fx:id="mailAbonne" layoutX="100.0" layoutY="268.0">
+               <effect>
+                  <InnerShadow color="#242323" />
+               </effect></TextField>
+            <Label layoutX="25.0" layoutY="272.0" text="E-mail" />
+            <ImageView fx:id="captchaIV" fitHeight="150.0" fitWidth="200.0" layoutX="76.0" layoutY="317.0" pickOnBounds="true" preserveRatio="true">
+               <effect>
+                  <InnerShadow />
+               </effect></ImageView>
+            <TextField fx:id="captchaTF" layoutX="100.0" layoutY="480.0">
+               <effect>
+                  <InnerShadow />
+               </effect></TextField>
+            <TextField fx:id="textIDAbonnement" layoutX="549.0" layoutY="428.0">
+               <effect>
+                  <InnerShadow />
+               </effect></TextField>
          </children>
-         <effect>
-            <InnerShadow />
-         </effect>
       </AnchorPane>
    </children>
 </AnchorPane>
