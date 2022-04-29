@@ -101,18 +101,22 @@ public class GuiSitesController implements Initializable {
             ((Text) innerContainer.lookup("#QuantiteStock")).setText("Quantite disponible: " + s.getQuantite());
             ((Text) innerContainer.lookup("#prixStock")).setText("Prix en Gros: " + s.getPrix());
             //button Map
-            /*((Button) innerContainer.lookup("#generateMap")).setOnAction(new EventHandler<ActionEvent>() {
+            ((Button) innerContainer.lookup("#generateMap")).setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
-
                     try {
-                        generateMap(emp);
-                    } catch (IOException ex) {
+                        em.sendMail(Smarties.user.getEmail(),emp.getLieu(),emp.getCapacite());
+                        Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
+                        alert1.setTitle("Information Dialog");
+                        alert1.setHeaderText(null);
+                        alert1.setContentText("Les Informations de ce site sont envoyé par mail !");
+                        alert1.showAndWait();
+                    } catch (Exception ex) {
                         Logger.getLogger(GuiSitesController.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
 
-            });*/
+            });
             //fin button QrCode
 
         } catch (IOException ex) {
@@ -121,10 +125,5 @@ public class GuiSitesController implements Initializable {
         return parent;
     }
 
-   /* private void generateMap(Emplacement emp) throws IOException {
-        AnchorPane xx;
-        xx = FXMLLoader.load(getClass().getResource("MapController.fxml"));
-        a1.getChildren().setAll(xx);
 
-    }*/
 }

@@ -3,15 +3,17 @@
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="1366.0" stylesheets="@../../../../../../utils/MainStyle.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="438.0" prefWidth="1409.0" stylesheets="@../../../../../../utils/MainStyle.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane layoutX="30.0" layoutY="30.0" style="-fx-background-color: white;" styleClass="window-rounded" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="30.0">
          <effect>
@@ -25,18 +27,47 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </HBox.margin>
                      <children>
-                        <Text fx:id="libellePF" fill="#838383" text="Nom du Produit:" wrappingWidth="319.0" />
-                        <Text fx:id="prixPF" fill="#838383" fontSmoothingType="LCD" text="Prix : " wrappingWidth="298.0" />
-                        <Text fx:id="typePF" fill="#838383" text="Type :" wrappingWidth="298.0" />
-                        <Text fx:id="descPF" fill="#838383" text="Description : " wrappingWidth="297.0" />
+                        <Label prefHeight="21.0" prefWidth="507.0" />
+                        <Text fx:id="libellePF" fill="#bf3c3c" smooth="false" text="Nom du Produit:" wrappingWidth="353.16357421875">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </VBox.margin></Text>
+                        <Text fx:id="prixPF" fill="#bf3c3c" fontSmoothingType="LCD" text="Prix : " wrappingWidth="352.0">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </VBox.margin></Text>
+                        <Text fx:id="typePF" fill="#bf3c3c" text="Type :" wrappingWidth="352.0">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </VBox.margin></Text>
+                        <Text fx:id="descPF" fill="#bf3c3c" text="Description : " wrappingWidth="371.0">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </VBox.margin></Text>
                      </children>
                   </VBox>
+                  <Pane prefWidth="1.0" style="-fx-background-color: gray;">
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
+                     </HBox.margin></Pane>
                   <VBox spacing="10.0" HBox.hgrow="ALWAYS">
                      <HBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </HBox.margin>
                      <children>
-                        <ImageView fx:id="imagePF" fitHeight="356.0" fitWidth="603.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="imagePF" fitHeight="356.0" fitWidth="579.0" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </VBox>
                   <Pane prefWidth="1.0" style="-fx-background-color: gray;" HBox.hgrow="NEVER">
@@ -44,17 +75,28 @@
                         <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
                      </HBox.margin>
                   </Pane>
-                  <VBox>
+                  <VBox prefHeight="356.0" prefWidth="303.0">
                      <HBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </HBox.margin>
                      <children>
-                        <Button fx:id="favorisFront" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="65.0" prefWidth="236.0" style="-fx-background-color: #ff7f50;" text="+ Favoris">
+                        <Label prefHeight="58.0" prefWidth="326.0" />
+                        <Button fx:id="favorisFront" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="65.0" prefWidth="240.0" style="-fx-background-color: #BF3C3C;" text="+ Favoris" textFill="WHITE">
                            <VBox.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </VBox.margin>
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
                         </Button>
-                        <Button fx:id="generateQr" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="59.0" prefWidth="241.0" style="-fx-background-color: #ff7f50;" text="Generer QrCode" />
+                        <Label prefHeight="40.0" prefWidth="291.0" />
+                        <Button fx:id="generateQr" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="65.0" prefWidth="240.0" style="-fx-background-color: #BF3C3C;" text="Génerer QrCode" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </VBox.margin></Button>
                      </children>
                   </VBox>
                </children>

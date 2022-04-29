@@ -12,7 +12,7 @@
    <children>
       <AnchorPane layoutX="10.0" layoutY="10.0" prefWidth="990.0" style="-fx-background-color: #D0BE25;">
          <children>
-            <StackPane layoutX="-10.0" layoutY="-11.0" prefHeight="79.0" prefWidth="1230.0" style="-fx-background-color: #ff7f50;" AnchorPane.leftAnchor="-10.0" AnchorPane.rightAnchor="-370.0" AnchorPane.topAnchor="-11.0">
+            <StackPane layoutX="-10.0" layoutY="-11.0" prefHeight="79.0" prefWidth="1230.0" style="-fx-background-color: #BF3C3C;" AnchorPane.leftAnchor="-10.0" AnchorPane.rightAnchor="-370.0" AnchorPane.topAnchor="-11.0">
                <children>
                   <Text fx:id="topText" boundsType="LOGICAL_VERTICAL_CENTER" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste des Emplacements" textAlignment="JUSTIFY" textOrigin="CENTER">
                      <font>

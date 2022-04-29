@@ -125,12 +125,14 @@ public class GuiProduitFrontController implements Initializable {
                         alert.setTitle("Success");
                         alert.setContentText("Favoris Ajouté avec succés!");
                         alert.show();
+                        new animatefx.animation.Bounce(vboxProd).play();
                     } else {
                         Alert alert = new Alert(Alert.AlertType.ERROR);
                         alert.setTitle("Information Dialog");
                         alert.setHeaderText(null);
                         alert.setContentText("le produit deja favoris !");
                         alert.showAndWait();
+                        new animatefx.animation.Shake(vboxProd).play();
                     }
                 }
             });
@@ -146,6 +148,7 @@ public class GuiProduitFrontController implements Initializable {
         AnchorPane xx;
         xx = FXMLLoader.load(getClass().getResource("QrCode.fxml"));
         a1.getChildren().setAll(xx);
+        new animatefx.animation.Pulse(a1).play();
 
     }
 

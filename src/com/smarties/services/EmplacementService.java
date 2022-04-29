@@ -16,7 +16,17 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 /**
  *
@@ -135,5 +145,41 @@ public class EmplacementService {
             System.out.println(ex.getMessage());
         }
         return options;
+    }
+        
+              public void sendMail(String recipient,String lieu,int cap) throws Exception {
+        Properties properties = new Properties();
+        properties.put("mail.smtp.auth", "true");
+        properties.put("mail.smtp.starttls.enable", "true");
+        properties.put("mail.smtp.host", "smtp.gmail.com");
+        properties.put("mail.smtp.port", "587");
+        String MyAccountEmail = "roulece090@gmail.com";
+        String password = "ahmed123456789";
+        Session session = Session.getDefaultInstance(properties, new Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(MyAccountEmail, password);
+            }
+
+        });
+
+        Message message = prepareMessage(session, MyAccountEmail, recipient,lieu,cap);
+        Transport.send(message);
+        System.out.println("message sent successfully");
+
+    }
+
+    private Message prepareMessage(Session session, String MyAccountEmail, String recipient,String lieu,int cap) {
+//Emplacement emp = new Emplacement();
+        try {
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(MyAccountEmail));
+            message.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
+            message.setSubject("Les Sites De çaRoule ! ");
+            message.setText("Merci pour Votre demande des information , \n 1) le site  est : "+lieu+" \n 2) La Capacité de ce Site est : "+cap+" \n 3) Vous pouvez Consulter la map : https://www.google.com/maps/place/"+lieu+"/ \n Merci Pour Votre confiance ...");
+            return message;
+        } catch (Exception ex) {
+            Logger.getLogger(AbonnementService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 }

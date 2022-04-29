@@ -136,12 +136,6 @@ public class GuiProduitController implements Initializable {
     @FXML
     private ListView<Emplacement> listeEmp;
     @FXML
-    private ComboBox<String> userF;
-    @FXML
-    private ComboBox<String> produitF;
-    @FXML
-    private Button btnAjoutFav;
-    @FXML
     private Button btnSupprimerFav;
     @FXML
     private ListView<Favoris> listefav;
@@ -174,7 +168,7 @@ public class GuiProduitController implements Initializable {
     private ComboBox<String> comboType;
     private String[] typeProduit = {"Velo", "Piece de Rechange", "Accesssoire"};
     private String[] disponibilite = {"Disponible", "Indisponible"};
-    private String[] lieuEmplacement = {"Ariana", "Béja", "Ben Arous", "Bizerte", "Gabes", "Gafsa", "Jendouba", "Kairouan", "Kasserine", "Kebili", "La Manouba", "Le Kef", "Mahdia", "Médenine", "Monastir", "Nabeul", "Sfax", "Sidi Bouzid", "Siliana", "Sousse", "Tataouine", "Tozeur", "Tunis", "Zaghouan"};
+    private String[] lieuEmplacement = {"Ariana", "Béja", "Ben+Arous", "Bizerte", "Gabes", "Gafsa", "Jendouba", "Kairouan", "Kasserine", "Kebili", "La Manouba", "Le Kef", "Mahdia", "Médenine", "Monastir", "Nabeul", "Sfax", "Sidi Bouzid", "Siliana", "Sousse", "Tataouine", "Tozeur", "Tunis", "Zaghouan"};
     @FXML
     private TextField typeProd;
     @FXML
@@ -237,8 +231,6 @@ public class GuiProduitController implements Initializable {
         lieuE.getItems().addAll(lieuEmplacement);
         idProdSCombo.setItems(FXCollections.observableArrayList(st.getCombo()));
         idSECombo.setItems(FXCollections.observableArrayList(em.getCombo()));
-        userF.setItems(FXCollections.observableArrayList(fa.getComboUser()));
-        produitF.setItems(FXCollections.observableArrayList(fa.getComboProd()));
 
         new animatefx.animation.RollIn(veloIm).play();
         new animatefx.animation.FadeIn(listeProduit).play();
@@ -869,7 +861,7 @@ new animatefx.animation.Pulse(empIm).play();
      * ***********************************
      * GESTION DES FAVORIS ************************************
      */
-    @FXML
+   /* @FXML
     private void AjouterFavoris(ActionEvent event) throws SQLException {
 
         Favoris fav = new Favoris();
@@ -897,7 +889,7 @@ new animatefx.animation.Pulse(empIm).play();
             
             refresh3();
         }
-    }
+    }*/
 
     @FXML
     private void SupprimerFavoris(ActionEvent even) {

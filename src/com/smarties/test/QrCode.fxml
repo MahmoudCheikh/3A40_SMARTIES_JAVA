@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smarties.test.QrCodeController">
+<AnchorPane id="AnchorPane" prefHeight="732.0" prefWidth="1127.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smarties.test.QrCodeController">
    <children>
-      <ImageView fx:id="QrCode" fitHeight="312.0" fitWidth="389.0" layoutX="151.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true" />
-      <Label layoutX="241.0" layoutY="14.0" text="Scan this QrCode" />
+      <ImageView fx:id="QrCode" fitHeight="593.0" fitWidth="827.0" layoutX="137.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true" />
+      <Label layoutX="314.0" layoutY="48.0" text="Scanner le QR code !" textFill="#b50101">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font></Label>
    </children>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
 </AnchorPane>

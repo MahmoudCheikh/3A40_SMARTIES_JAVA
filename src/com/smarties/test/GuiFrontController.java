@@ -64,6 +64,7 @@ public class GuiFrontController implements Initializable {
         AnchorPane xx;
         xx = FXMLLoader.load(getClass().getResource("GuiProduitFront.fxml"));
         a1.getChildren().setAll(xx);
+        new animatefx.animation.Pulse(a1).play();
     }
 
     @FXML
@@ -71,6 +72,7 @@ public class GuiFrontController implements Initializable {
         AnchorPane xx;
         xx = FXMLLoader.load(getClass().getResource("GuiSites.fxml"));
         a1.getChildren().setAll(xx);
+        new animatefx.animation.Pulse(a1).play();
     }
 
     @FXML
@@ -85,6 +87,7 @@ public class GuiFrontController implements Initializable {
         AnchorPane xx;
         xx = FXMLLoader.load(getClass().getResource("GuiFavorisFront.fxml"));
         a1.getChildren().setAll(xx);
+        new animatefx.animation.Pulse(a1).play();
     }
 
     @FXML

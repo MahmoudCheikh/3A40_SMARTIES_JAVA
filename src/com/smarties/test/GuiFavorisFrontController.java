@@ -16,6 +16,7 @@ import java.sql.SQLException;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,7 +31,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -43,7 +46,7 @@ import javafx.scene.layout.HBox;
 public class GuiFavorisFrontController implements Initializable {
 
     ProduitService produitService = new ProduitService();
-    
+    Alert alert = new Alert(Alert.AlertType.NONE);
     @FXML
     private AnchorPane a1;
     @FXML
@@ -78,7 +81,7 @@ public class GuiFavorisFrontController implements Initializable {
             StackPane stackPane = new StackPane();
             stackPane.setAlignment(Pos.CENTER);
             stackPane.setPrefHeight(200);
-            stackPane.getChildren().add(new Text("Aucune donnée"));
+            stackPane.getChildren().add(new Text("Aucune donnée ! Veuillez Ajouter des Favoris depuis la section PRODUITS !"));
             vboxFavoris.getChildren().add(stackPane);
         }
 
@@ -99,8 +102,24 @@ public Parent make(Favoris fav) throws SQLException {
             ((Button) innerContainer.lookup("#supprimerFav")).setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
+                            alert.setAlertType(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation");
+        alert.setHeaderText(null);
+        alert.setContentText("vous-etes sur de supprimer cet Element Favoris !");
 
-                    fa.supprimerFavoris(fav.getId());
+        Optional<ButtonType> action = alert.showAndWait();
+
+        if (action.get() == ButtonType.OK) {
+
+
+            fa.supprimerFavoris(fav.getId());
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success");
+            alert.setContentText("Favoris supprimé! Veuillez Actualiser la Page !");
+            alert.show();
+            new animatefx.animation.Shake(vboxFavoris).play();
+        }
+               
                     //refresh();
                 }
             });
@@ -121,6 +140,7 @@ public Parent make(Favoris fav) throws SQLException {
                  AnchorPane xx;
         xx = FXMLLoader.load(getClass().getResource("GuiFavorisFront.fxml"));
         a1.getChildren().setAll(xx);
+        new animatefx.animation.Bounce(a1).play();
     }
     
     
