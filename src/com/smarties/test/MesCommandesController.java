@@ -225,14 +225,16 @@ public class MesCommandesController implements Initializable {
     }
 
     @FXML
-    private void deletec(ActionEvent event) {
+    private void deletec(ActionEvent event) throws Exception {
         int id = Integer.parseInt(txtidfront.getText());
         cs.supprimerCommande(id);
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Success");
-        alert.setContentText("Commande supprimé!");
+        alert.setContentText("Commande supprimé!Un Mail Sera Enovyé");
         alert.show();
+        cs.mailing(Smarties.user.getEmail());
+
         ObservableList<Commande> items = FXCollections.observableArrayList();
         List<Commande> listcomm = cs.afficherCommande();
         for (Commande r : listcomm) {

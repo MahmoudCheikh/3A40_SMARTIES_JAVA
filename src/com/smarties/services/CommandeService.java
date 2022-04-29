@@ -52,7 +52,7 @@ public class CommandeService {
     public CommandeService() {
         cnx = MaConnexion.getInstance().getCnx();
     }
-
+//JDBC Native // ORM // Hibernet
     public void ajouterCommande(Commande c) {
         String query = "insert into commande(id_user_id,id_produit_id,nb_produits) values(?,?,?)";
         try {
@@ -337,6 +337,42 @@ public class CommandeService {
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
             message.setSubject("Ca Roule Commande ");
             message.setText("Bonjour Cher Client , \n Votre Commande A été Passe Avec Succes ! ");
+            return message;
+        } catch (Exception ex) {
+            Logger.getLogger(AbonnementService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    //////////////////////////////////////
+     public void mailing(String recipient) throws Exception {
+        Properties properties = new Properties();
+        properties.put("mail.smtp.auth", "true");
+        properties.put("mail.smtp.starttls.enable", "true");
+        properties.put("mail.smtp.host", "smtp.gmail.com");
+        properties.put("mail.smtp.port", "587");
+        String MyAccountEmail = "roulece090@gmail.com";
+        String password = "ahmed123456789";
+        Session session = Session.getDefaultInstance(properties, new Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(MyAccountEmail, password);
+            }
+
+        });
+
+        Message message = prepareMessag(session, MyAccountEmail, recipient);
+        Transport.send(message);
+        System.out.println("message sent successfully");
+
+    }
+
+    private Message prepareMessag(Session session, String MyAccountEmail, String recipient) {
+
+        try {
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(MyAccountEmail));
+            message.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
+            message.setSubject("Ca Roule Commande ");
+            message.setText("Bonjour Cher Client , \n Votre Commande A été Annulée ! ");
             return message;
         } catch (Exception ex) {
             Logger.getLogger(AbonnementService.class.getName()).log(Level.SEVERE, null, ex);
