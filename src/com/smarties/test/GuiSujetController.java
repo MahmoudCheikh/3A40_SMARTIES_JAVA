@@ -72,6 +72,16 @@ public class GuiSujetController implements Initializable {
         messageComboId.setItems(FXCollections.observableArrayList(messageService.getCombo()));
         messageComboSujetId.setItems(FXCollections.observableArrayList(sujetsservice.getCombo()));
         messageBox.setItems(FXCollections.observableArrayList(usersService.getCombo()));
+/*
+        List<Sujet> sujets = sujetsservice.afficherSujet();
+        ArrayList<Integer> al = new ArrayList<>();
+        ArrayList<Integer> al2 = new ArrayList<>();
+
+        for (Sujet sujet : sujets) {
+            if (al.contains(sujet.getUserId())) {
+                al2.set(0, al2.get)  al2.get(al.indexOf(sujet.getUserId()))
+            }
+        }*/
 
     }
 

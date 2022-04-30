@@ -68,7 +68,7 @@ public class ResetpasscodeController implements Initializable {
                 alert.setHeaderText(null);
                 alert.setContentText("champs manquants !");
                 alert.showAndWait();
-            } else if ((!(Pattern.matches("[0-9]*", txtmail.getText())))
+            } else if ((!(Pattern.matches("^(.+)@(.+)$", txtmail.getText())))
                     || (!(Pattern.matches("[0-9]*", txtcode.getText())))
                     || (!(Pattern.matches("[A-Za-z0-9]*", txtpassword.getText())))) {
                 alert.setAlertType(Alert.AlertType.ERROR);

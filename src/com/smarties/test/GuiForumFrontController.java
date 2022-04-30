@@ -83,17 +83,24 @@ public class GuiForumFrontController implements Initializable {
             innerContainer = loader.load();
 
             Users user = usersService.getById(sujet.getUserId());
-            //  HBox innerContainer = ((HBox) ((AnchorPane) ((AnchorPane) parent).getChildren().get(0)).getChildren().get(0));
+
             ((Label) innerContainer.lookup("#txtDate")).setText("Posté le: " + sujet.getDate().toString());
-            ((Label) innerContainer.lookup("#txtUser")).setText("User : " + user.getEmail());
+            ((Label) innerContainer.lookup("#txtUser")).setText("User : " + user.getNom() + " " + user.getPrenom());
             ((Label) innerContainer.lookup("#txtTitre")).setText("Titre : " + sujet.getTitre());
-            ((Label) innerContainer.lookup("#txtContent")).setText("Contenu : " + sujet.getContenu());
+            
+           // ((Text) innerContainer.lookup("#txtVues")).setText("Titre : " + sujet.getTitre());
+          //  ((Text) innerContainer.lookup("#txtTitre")).setText("Titre : " + sujet.getTitre());
+
+            if (sujet.getContenu().length() > 20) {
+                ((Label) innerContainer.lookup("#txtContent")).setText("Contenu : " + sujet.getContenu().substring(0, 20) + "...");
+            } else {
+                ((Label) innerContainer.lookup("#txtContent")).setText("Contenu : " + sujet.getContenu());
+            }
 
             ((Button) innerContainer.lookup("#afficher")).setOnAction((event) -> {
                 try {
                     afficherSujet(sujet);
                 } catch (IOException ex) {
-                    Logger.getLogger(GuiForumFrontController.class.getName()).log(Level.SEVERE, null, ex);
                 }
             });
             if (Smarties.user.getId() == sujet.getUserId()) {
@@ -106,14 +113,12 @@ public class GuiForumFrontController implements Initializable {
                         try {
                             modifierSujet(sujet);
                         } catch (IOException ex) {
-                            Logger.getLogger(GuiForumFrontController.class.getName()).log(Level.SEVERE, null, ex);
                         }
                     });
                     ((Button) innerContainer.lookup("#supprimer")).setOnAction((event) -> {
                         try {
                             supprimerSujet(sujet);
                         } catch (IOException ex) {
-                            Logger.getLogger(GuiForumFrontController.class.getName()).log(Level.SEVERE, null, ex);
                         }
                     });
                 }

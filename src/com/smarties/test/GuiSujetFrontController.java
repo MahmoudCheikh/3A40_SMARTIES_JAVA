@@ -7,10 +7,12 @@ package com.smarties.test;
 
 import com.smarties.entities.Message;
 import com.smarties.entities.Sujet;
+import com.smarties.entities.Users;
 import com.smarties.services.MessageService;
 import com.smarties.services.UsersService;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -28,6 +30,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 
 /**
  * FXML Controller class
@@ -43,7 +46,7 @@ public class GuiSujetFrontController implements Initializable {
     @FXML
     private Label txtUser;
     @FXML
-    private Label txtContenu;
+    private Text txtContenu;
     @FXML
     private Label txtDate;
     @FXML
@@ -68,16 +71,28 @@ public class GuiSujetFrontController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        txtUser.setText(Integer.toString(sujet.getId()));
-        txtDate.setText(sujet.getDate().toString());
-        txtTitre.setText(sujet.getTitre());
+
+        Users user = new Users();
+
+        try {
+            user = usersService.getById(this.sujet.getUserId());
+        } catch (SQLException ex) {
+        }
+
+        txtUser.setText("Posté par : " + user.getNom() + " " + user.getPrenom());
+        txtDate.setText("Posté le " + sujet.getDate().toString());
+        txtTitre.setText("Titre : " + sujet.getTitre());
+        txtContenu.setWrappingWidth(550);
         txtContenu.setText(sujet.getContenu());
 
         List<Message> listMessage = messageService.afficherMessage();
 
         if (!listMessage.isEmpty()) {
             listMessage.stream().filter((message) -> (message.getIdSujet() == GuiSujetFrontController.sujet.getId())).forEachOrdered((message) -> {
-                paneMessage.getChildren().add(makeMessage(message));
+                try {
+                    paneMessage.getChildren().add(makeMessage(message));
+                } catch (SQLException ex) {
+                }
             });
         } else {
 
@@ -90,18 +105,29 @@ public class GuiSujetFrontController implements Initializable {
         this.sujet = sujet;
     }
 
-    public Parent makeMessage(Message message) {
+    public Parent makeMessage(Message message) throws SQLException {
         Parent innerContainer = null;
+
         try {
+
+            Users user = new Users();
+
+            user = usersService.getById(message.getIdUser());
+
             FXMLLoader loader = new FXMLLoader(getClass().getResource("ModelMessage.fxml"));
             innerContainer = loader.load();
 
             ((Label) innerContainer.lookup("#txtMsgDate")).setText("Posté le: " + message.getDate().toString());
-            ((Label) innerContainer.lookup("#txtMsgUser")).setText("User : " + message.getIdUser());
-            ((Label) innerContainer.lookup("#txtMsgContent")).setText("Contenu : " + message.getContenu());
+
+            ((Label) innerContainer.lookup("#txtMsgUser")).setText("Posté par : " + user.getNom() + " " + user.getPrenom());
+
+            ((Text) innerContainer.lookup("#txtMsgContent")).setText("Contenu : " + message.getContenu());
 
             if (Smarties.user.getId() == message.getIdUser()) {
                 if (Smarties.user.getImage().equals("ban")) {
+                    ajouter.setText("banni");
+                    ajouter.setOnAction((event) -> {
+                    });
                     ((Button) innerContainer.lookup("#btnMsgModifier")).setText("banni");
                     ((Button) innerContainer.lookup("#btnMsgSupp")).setText("banni");
                 } else {
@@ -109,14 +135,14 @@ public class GuiSujetFrontController implements Initializable {
                         try {
                             modifierMessage(message);
                         } catch (IOException ex) {
-                            Logger.getLogger(GuiSujetFrontController.class.getName()).log(Level.SEVERE, null, ex);
+
                         }
                     });
                     ((Button) innerContainer.lookup("#btnMsgSupp")).setOnAction((event) -> {
                         try {
                             supprimerMessage(message);
                         } catch (IOException ex) {
-                            Logger.getLogger(GuiSujetFrontController.class.getName()).log(Level.SEVERE, null, ex);
+
                         }
                     });
                 }

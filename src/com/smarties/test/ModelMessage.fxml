@@ -5,18 +5,19 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane id="AnchorPane" prefHeight="162.0" prefWidth="449.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smarties.test.ModelMessageController">
    <children>
-      <Label fx:id="txtMsgUser" layoutX="37.0" layoutY="73.0" text="UserName" />
-      <Label fx:id="txtMsgContent" layoutX="37.0" layoutY="113.0" text="Content" />
+      <Label fx:id="txtMsgUser" layoutX="35.0" layoutY="40.0" text="UserName" />
       <ImageView fitHeight="55.0" fitWidth="56.0" layoutX="381.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/icons-logos-emojis-user-icon-png-transparent-11563566676e32kbvynug.png" />
          </image>
       </ImageView>
-      <Label fx:id="txtMsgDate" layoutX="40.0" layoutY="31.0" text="Date" />
-      <Button fx:id="btnMsgModifier" layoutX="275.0" layoutY="123.0" mnemonicParsing="false" onAction="#modifier" prefHeight="25.0" prefWidth="76.0" stylesheets="@../services/styleSmarties.css" text="Modifer" />
+      <Label fx:id="txtMsgDate" layoutX="35.0" layoutY="23.0" text="Date" />
+      <Button fx:id="btnMsgModifier" layoutX="363.0" layoutY="90.0" mnemonicParsing="false" onAction="#modifier" prefHeight="25.0" prefWidth="76.0" stylesheets="@../services/styleSmarties.css" text="Modifer" />
       <Button fx:id="btnMsgSupp" layoutX="363.0" layoutY="123.0" mnemonicParsing="false" onAction="#supprimer" prefHeight="25.0" prefWidth="76.0" stylesheets="@../services/styleSmarties.css" text="Supprimer" />
+      <Text fx:id="txtMsgContent" layoutX="35.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Content" />
    </children>
 </AnchorPane>

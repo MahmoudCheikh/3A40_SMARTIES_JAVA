@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.text.Text;
 
 /**
  * FXML Controller class
@@ -34,6 +35,10 @@ public class ModelSingleSujetController implements Initializable {
     private Button modifier;
     @FXML
     private Button supprimer;
+    @FXML
+    private Text txtVues;
+    @FXML
+    private Text txtRep;
 
     /**
      * Initializes the controller class.
