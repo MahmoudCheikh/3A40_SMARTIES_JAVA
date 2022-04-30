@@ -113,11 +113,17 @@ public class GuiFrontController implements Initializable {
     }
 
     @FXML
-    private void FrontReclamation(ActionEvent event) {
+    private void FrontReclamation(ActionEvent event) throws IOException {
+        AnchorPane xx;
+        xx = FXMLLoader.load(getClass().getResource("GuiReclamationFront.fxml"));
+        a1.getChildren().setAll(xx);
     }
 
     @FXML
-    private void FrontMaintenance(ActionEvent event) {
+    private void FrontMaintenance(ActionEvent event) throws IOException {
+        AnchorPane xx;
+        xx = FXMLLoader.load(getClass().getResource("GuiMaintenanceFront.fxml"));
+        a1.getChildren().setAll(xx);
     }
 
 }

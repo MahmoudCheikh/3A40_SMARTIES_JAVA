@@ -32,7 +32,7 @@
       <DatePicker fx:id="textdatefi" layoutX="33.0" layoutY="434.0" prefHeight="25.0" prefWidth="216.0" promptText="                        Date Fin" styleClass="text-field" stylesheets="@EvenementStyle%20-%20Copy.css" />
       <Button fx:id="rechbtn" layoutX="310.0" layoutY="52.0" mnemonicParsing="false" onAction="#chercher" prefHeight="25.0" prefWidth="106.0" stylesheets="@EvenementStyle.css" text="Recherche" />
       <Button fx:id="refre" layoutX="478.0" layoutY="52.0" mnemonicParsing="false" onAction="#refreshTable" prefHeight="25.0" prefWidth="106.0" stylesheets="@EvenementStyle.css" text="Actualiser" />
-      <Button fx:id="trimaint" layoutX="666.0" layoutY="52.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="106.0" stylesheets="@EvenementStyle%20-%20Copy.css" text="Trier" />
+      <Button fx:id="trimaint" layoutX="666.0" layoutY="52.0" mnemonicParsing="false" onAction="#TrierEtat" prefHeight="25.0" prefWidth="106.0" stylesheets="@EvenementStyle%20-%20Copy.css" text="Trier" />
       <Text blendMode="DARKEN" fill="#e83e2b" fontSmoothingType="LCD" layoutX="330.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MAINTENANCES" wrappingWidth="201.236328125">
          <font>
             <Font size="27.0" />
@@ -48,5 +48,6 @@
             </DisplacementMap>
          </effect>
       </Text>
+      <Button layoutX="602.0" layoutY="52.0" mnemonicParsing="false" text="pdf" />
    </children>
 </AnchorPane>

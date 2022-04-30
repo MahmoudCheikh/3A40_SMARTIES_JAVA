@@ -5,6 +5,7 @@
  */
 package com.smarties.test;
 
+import com.itextpdf.text.DocumentException;
 import com.smarties.entities.Reclamation;
 import com.smarties.services.ReclamationService;
 import java.io.IOException;
@@ -13,6 +14,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Pattern;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,6 +23,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
@@ -27,25 +32,19 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
  *
  * @author Administrator
  */
-public class GuiReclamationController implements Initializable {
+public class GuiReclamationFrontController implements Initializable {
 
     ReclamationService rs = new ReclamationService();
 
     @FXML
-    private Button btnAjouter;
-    @FXML
     private ListView<Reclamation> listreclamationid;
-    @FXML
-    private Button btndelete;
-    @FXML
-    private Button btnmodify;
-    @FXML
     private TextField txtdeleteid;
     @FXML
     private TextField txtobjet;
@@ -54,23 +53,21 @@ public class GuiReclamationController implements Initializable {
     @FXML
     private DatePicker txtdat;
     @FXML
-    private TextField textId;
-    @FXML
-    private TextField textiduser;
-    @FXML
-    private Button rechercherec;
-    @FXML
     private Button refreshrec;
     @FXML
-    private AnchorPane apchart;
+    private Button btnAjouter;
+    @FXML
+    private AnchorPane a1;
     List<Reclamation> rec = rs.afficherReclamation();
+    @FXML
+    private AnchorPane apchart;
+
     
 
     /**
      * Initializes the controller class.
      */
     @Override
-
     public void initialize(URL url, ResourceBundle rb) {
         ArrayList ar = (ArrayList) rs.afficherReclamation();
         listreclamationid.getItems().addAll(ar);
@@ -82,29 +79,10 @@ public class GuiReclamationController implements Initializable {
 
         Reclamation rec = new Reclamation();
 
-        if ((txtobjet.getText().equals("")) || (txtdesc.getText().equals("")) || (txtdat.getValue().equals("")) || (textId.getText().equals("")) || (textiduser.getText().equals(""))) {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Information Dialog");
-            alert.setHeaderText(null);
-            alert.setContentText("champs manquants !");
-            alert.showAndWait();
-        } else if (!(Pattern.matches("[0-9]*", textId.getText()))) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Information Dialog");
-            alert.setHeaderText(null);
-            alert.setContentText("ID doit etre de type Int !");
-            alert.showAndWait();
-        }
-
         rec.setObjet(txtobjet.getText());
         rec.setDescription(txtdesc.getText());
         LocalDate date1 = txtdat.getValue();
         rec.setDate(date1);
-        int id = Integer.parseInt(textId.getText());
-        int idu = Integer.parseInt(textiduser.getText());
-
-        rec.setId(id);
-        rec.setId_user_id(idu);
 
         rs.ajouterReclamation(rec);
 
@@ -123,54 +101,6 @@ public class GuiReclamationController implements Initializable {
 
     }
 
-    @FXML
-    private void Modifier(ActionEvent event) {
-
-        Reclamation rec = new Reclamation();
-
-        rec.setObjet(txtobjet.getText());
-        rec.setDescription(txtdesc.getText());
-        LocalDate date1 = txtdat.getValue();
-        rec.setDate(date1);
-        int id1 = Integer.parseInt(textId.getText());
-        int idu1 = Integer.parseInt(textiduser.getText());
-
-        rec.setId(id1);
-        rec.setId_user_id(idu1);
-
-        rs.modifierReclamation(rec);
-
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Success");
-        alert.setContentText("Reclamation Modifié!");
-        alert.show();
-        ObservableList<Reclamation> items = FXCollections.observableArrayList();
-        List<Reclamation> listreclamationid = rs.afficherReclamation();
-        for (Reclamation r : listreclamationid) {
-            String ch = r.toString();
-            items.add(r);
-        }
-
-        this.listreclamationid.setItems(items);
-
-    }
-
-    @FXML
-    private void Supprimer(ActionEvent event) {
-        int id = Integer.parseInt(txtdeleteid.getText());
-        rs.supprimerReclamation(id);
-        ObservableList<Reclamation> items = FXCollections.observableArrayList();
-        List<Reclamation> listreclamationid = rs.afficherReclamation();
-        for (Reclamation r : listreclamationid) {
-            String ch = r.toString();
-            items.add(r);
-        }
-
-        this.listreclamationid.setItems(items);
-
-    }
-
-    @FXML
     private void chercher(ActionEvent event) {
         ReclamationService a = new ReclamationService();
         List<Reclamation> R = a.Chercher(txtdeleteid.getText());
@@ -193,32 +123,26 @@ public class GuiReclamationController implements Initializable {
         Reclamation reclam = new Reclamation();
         listreclamationid.setOnMouseClicked((event1) -> {
             String selectedDes1 = listreclamationid.getSelectionModel().getSelectedItem().getDescription();
-            Integer selectedId1 = listreclamationid.getSelectionModel().getSelectedItem().getId();
-            Integer selectedIduser = listreclamationid.getSelectionModel().getSelectedItem().getId_user_id();
             LocalDate selectedDate = listreclamationid.getSelectionModel().getSelectedItem().getDate();
             String selectedobjet = listreclamationid.getSelectionModel().getSelectedItem().getObjet();
 
             txtdesc.setText(selectedDes1);
             txtobjet.setText(selectedobjet);
-            textId.setText(String.valueOf(selectedId1));
-            textiduser.setText(String.valueOf(selectedIduser));
             txtdat.setValue(selectedDate);
         });
     }
 
     @FXML
-    private void Showchart(ActionEvent event) throws IOException {
-
-        ObservableList<Reclamation> data = FXCollections.observableArrayList(rec);
-        FXMLLoader chart2 = new FXMLLoader(getClass().getResource("Chart.fxml"));
-
-        AnchorPane root = chart2.load();
-
-        ChartController controller = chart2.getController();
-        controller.setReclamationData(data);
-
-        apchart.getChildren().setAll(root);
-
+    private void pdf(ActionEvent event) throws DocumentException {
+       // rs.Gpdf();
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Information Dialog");
+        alert.setHeaderText(null);
+        alert.setContentText("fichiier importer en pdf   !");
+        alert.showAndWait();
     }
 
 }
+
+
+

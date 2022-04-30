@@ -5,13 +5,19 @@
  */
 package com.smarties.entities;
 
+import com.smarties.services.UsersService;
+import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author PC
  */
 public class Reclamation {
+    
+    UsersService usersService = new UsersService();
     
      int id;
      int id_user_id ;
@@ -21,7 +27,13 @@ public class Reclamation {
 
     @Override
     public String toString() {
-        return "" + "\nId Reclamation        =     " + id + "\nId Client         =     " + id_user_id + "\nDescription         =     " + description + "\nDate         =     " + date + "\nObjet         =     " + objet ;
+            Users user = new Users();
+        try {
+            user = usersService.getById(this.getId_user_id());
+        } catch (SQLException ex) {
+            Logger.getLogger(Reclamation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return  "" + "\nId Reclamation        =     " + id + "\nNom Client =     " + user.getNom() + "\nPrenom Client =     " + user.getPrenom()+  "\nDescription         =     " + description + "\nDate         =     " + date + "\nObjet         =     " + objet ;
     }
 
     public int getId() {

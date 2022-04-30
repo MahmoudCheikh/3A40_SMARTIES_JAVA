@@ -5,8 +5,26 @@
  */
 package com.smarties.services;
 
+import com.itextpdf.text.BadElementException;
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 import com.smarties.entities.Maintenance;
+import com.smarties.test.Smarties;
 import com.smarties.tools.MaConnexion;
+import java.awt.Desktop;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -16,7 +34,17 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 /**
  *
@@ -34,7 +62,7 @@ public class MaintenanceService {
         String query = "insert into maintenance(id,id_produit_id,relation_id,reclamation_id,date_debut,date_fin,adresse,etat) values(?,?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement ste = cnx.prepareStatement(query);
-            
+
             ste.setInt(1, m.getId());
             ste.setInt(2, m.getId_produit_id());
             ste.setInt(3, m.getRelation_id());
@@ -44,7 +72,6 @@ public class MaintenanceService {
             ste.setString(7, m.getAdresse());
             ste.setString(8, m.getDescription());
             ste.setString(9, m.getEtat());
-
 
             ste.executeUpdate();
             System.out.println("Maintenance Ajouté");
@@ -157,5 +184,125 @@ public class MaintenanceService {
         List<Maintenance> prd = afficherMaintenance();
         return prd.stream().sorted(comparator).collect(Collectors.toList());
     }
+
+    public void sendMail(String recipient) throws Exception {
+        Properties properties = new Properties();
+        properties.put("mail.smtp.auth", "true");
+        properties.put("mail.smtp.starttls.enable", "true");
+        properties.put("mail.smtp.host", "smtp.gmail.com");
+        properties.put("mail.smtp.port", "587");
+        String MyAccountEmail = "roulece090@gmail.com";
+        String password = "ahmed123456789";
+        Session session = Session.getDefaultInstance(properties, new Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(MyAccountEmail, password);
+            }
+
+        });
+
+        Message message = prepareMessage(session, MyAccountEmail, recipient);
+        Transport.send(message);
+        System.out.println("message sent successfully");
+
+    }
+
+    private Message prepareMessage(Session session, String MyAccountEmail, String recipient) {
+
+        try {
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(MyAccountEmail));
+            message.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
+            message.setSubject("Ca Roule Maintenance ");
+            message.setText("Bonjour Cher Client , \nVotre maintenance A été Passe Avec Succes ! ");
+            return message;
+        } catch (Exception ex) {
+            Logger.getLogger(AbonnementService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    /*  
+    public void Gpdf() throws DocumentException {
+        Document doc = new Document();
+        String sql = "select * from commande";
+
+        try {
+            Statement prepared = cnx.prepareStatement(sql);
+            ResultSet rs = prepared.executeQuery(sql);
+            PdfWriter.getInstance(doc, new FileOutputStream("F:\\Users\\\\Administrator\\Documents\\hazem Pdf\\maintenance.pdf"));
+            doc.open();
+            doc.getHtmlStyleClass();
+
+            Image img = Image.getInstance("F:\\JAVA\\3A40_SMARTIES_JAVA\\src\\com\\smarties\\images\\çaRoule.png");
+            img.scaleAbsoluteWidth(300);
+            img.scaleAbsoluteHeight(92);
+            img.setAlignment(Image.ALIGN_CENTER);
+            doc.add(img);
+            doc.add(new Paragraph(" "));
+            doc.add(new Paragraph(" "));
+            doc.add(new Paragraph("                                                     Liste des maintenances "));
+            doc.add(new Paragraph(" "));
+
+            PdfPTable table = new PdfPTable(4);
+            table.setWidthPercentage(100);
+            PdfPCell cell;
+
+            /////////////////////////////////////////////////////////////////
+            cell = new PdfPCell(new Phrase("ID maintenance", FontFactory.getFont("Comic Sans MS", 12)));
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell.setBackgroundColor(BaseColor.GRAY);
+            table.addCell(cell);
+            ////
+            cell = new PdfPCell(new Phrase("Description", FontFactory.getFont("Comic Sans MS", 12)));
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell.setBackgroundColor(BaseColor.GRAY);
+            table.addCell(cell);
+            ///
+            cell = new PdfPCell(new Phrase("Etat", FontFactory.getFont("Comic Sans MS", 12)));
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell.setBackgroundColor(BaseColor.GRAY);
+            table.addCell(cell);
+            ///
+            //////////////////////////////////////////////////////////////////////////////
+            while (rs.next()) {
+                if (rs.getInt("id_user_id") == Smarties.user.getId()) {
+
+                    Maintenance m = MaintenanceService.getReclamation_id(m.getInt("id_produit_id"));
+
+                    cell = new PdfPCell(new Phrase(rs.getString("id").toString(), FontFactory.getFont("Comic Sans MS", 12)));
+                    cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                    cell.setBackgroundColor(BaseColor.GRAY);
+                    table.addCell(cell);
+                    //////
+                    cell = new PdfPCell(new Phrase(p.getLibelle(), FontFactory.getFont("Comic Sans MS", 12)));
+                    cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                    cell.setBackgroundColor(BaseColor.GRAY);
+                    table.addCell(cell);
+                    ///////
+                    cell = new PdfPCell(new Phrase(Float.toString(p.getPrix()), FontFactory.getFont("Comic Sans MS", 12)));
+                    cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                    cell.setBackgroundColor(BaseColor.GRAY);
+                    table.addCell(cell);
+                    ////////////
+
+                }
+            }
+
+            doc.add(table);
+            doc.close();
+            Desktop.getDesktop().open(new File("F:\\Users\\\\Administrator\\Documents\\hazem Pdf\\maintenance.pdf"));
+
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(LocationService.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (BadElementException ex) {
+            Logger.getLogger(LocationService.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(LocationService.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(LocationService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+    
+     */
 
 }

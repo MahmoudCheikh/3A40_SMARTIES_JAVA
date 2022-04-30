@@ -1,11 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DisplacementMap?>
+<?import javafx.scene.effect.FloatMap?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1">
-    
+<AnchorPane id="AnchorPane" prefHeight="667.0" prefWidth="1324.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smarties.test.GuiMaintenanceController">
+   <children>
+      <ListView fx:id="listmaintenance" layoutX="96.0" layoutY="143.0" onMouseClicked="#autofill" prefHeight="297.0" prefWidth="1114.0" styleClass="list-cell" stylesheets="@EvenementStyle%20-%20Copy.css" />
+      <TextField fx:id="textsupr" alignment="CENTER" layoutX="96.0" layoutY="457.0" onKeyPressed="#chercher" prefHeight="25.0" prefWidth="1114.0" promptText="Chercher Maintenance" styleClass="text-field" stylesheets="@EvenementStyle%20-%20Copy.css" />
+      <Button fx:id="rechbtn" layoutX="432.0" layoutY="526.0" mnemonicParsing="false" onAction="#chercher" prefHeight="25.0" prefWidth="106.0" stylesheets="@EvenementStyle.css" text="Recherche" />
+      <Button fx:id="refre" layoutX="600.0" layoutY="526.0" mnemonicParsing="false" onAction="#refreshTable" prefHeight="25.0" prefWidth="106.0" stylesheets="@EvenementStyle.css" text="Actualiser" />
+      <Button fx:id="trimaint" layoutX="763.0" layoutY="526.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="106.0" stylesheets="@EvenementStyle%20-%20Copy.css" text="Trier" />
+      <Text blendMode="DARKEN" fill="#e83e2b" fontSmoothingType="LCD" layoutX="544.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MAINTENANCES" wrappingWidth="238.236328125">
+         <font>
+            <Font name="MS PGothic" size="32.0" />
+         </font>
+         <effect>
+            <DisplacementMap>
+               <mapData>
+                  <FloatMap />
+               </mapData>
+               <input>
+                  <Glow />
+               </input>
+            </DisplacementMap>
+         </effect>
+      </Text>
+   </children>
 </AnchorPane>

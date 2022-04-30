@@ -25,6 +25,8 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
@@ -69,6 +71,8 @@ public class GuiMaintenanceController implements Initializable {
     private Button rechbtn;
     @FXML
     private Button refre;
+    @FXML
+    private Button trimaint;
 
     /**
      * Initializes the controller class.
@@ -90,7 +94,6 @@ public class GuiMaintenanceController implements Initializable {
     @FXML
     private void Ajouter(ActionEvent event) {
         LocalDate now = LocalDate.now();
-        Maintenance mai = new Maintenance();
 
         if ((txtid.getText().equals("")) || (txtidprod.getText().equals("")) || (txtrelation.getText().equals("")) || (txtrecid.getText().equals("")) || (textdatedeb.getValue().equals("")) || (textdatefi.getValue().equals("")) || (textadres.getText().equals("")) || (textdescri.getText().equals("")) || (textetat.getText().equals(""))) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -154,47 +157,59 @@ public class GuiMaintenanceController implements Initializable {
             alert.setHeaderText(null);
             alert.setContentText("l'état doit etre terminé ou non terminé");
             alert.showAndWait();
+        } else {
+            Maintenance mai = new Maintenance();
+            int id = Integer.parseInt(txtid.getText());
+            int idp = Integer.parseInt(txtidprod.getText());
+            int idr = Integer.parseInt(txtrelation.getText());
+            int idre = Integer.parseInt(txtrecid.getText());
+
+            mai.setId(id);
+            mai.setId_produit_id(idp);
+            mai.setRelation_id(idr);
+            mai.setReclamation_id(idre);
+
+            LocalDate dated = textdatedeb.getValue();
+            LocalDate datef = textdatefi.getValue();
+            mai.setDate_debut(dated);
+            mai.setDate_fin(datef);
+            mai.setAdresse(textadres.getText());
+            mai.setDescription(textdescri.getText());
+            mai.setEtat(textetat.getText());
+
+            ms.ajouterMaintenance(mai);
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success");
+            alert.setContentText("Maintenance ajouté!");
+            alert.show();
+
+            try {
+                ms.sendMail(Smarties.user.getEmail());
+            } catch (Exception ex) {
+                Logger.getLogger(GuiMaintenanceController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            Alert alert1 = new Alert(Alert.AlertType.ERROR);
+            alert1.setTitle("Information Dialog");
+            alert1.setHeaderText(null);
+            alert1.setContentText("Un mail sera envoyé !");
+            alert1.showAndWait();
+
+            ObservableList<Maintenance> items = FXCollections.observableArrayList();
+            List<Maintenance> listmaintenance = ms.afficherMaintenance();
+            for (Maintenance r : listmaintenance) {
+                String ch = r.toString();
+                items.add(r);
+            }
+
+            this.listmaintenance.setItems(items);
 
         }
-
-        int id = Integer.parseInt(txtid.getText());
-        int idp = Integer.parseInt(txtidprod.getText());
-        int idr = Integer.parseInt(txtrelation.getText());
-        int idre = Integer.parseInt(txtrecid.getText());
-
-        mai.setId(id);
-        mai.setId_produit_id(idp);
-        mai.setRelation_id(idr);
-        mai.setReclamation_id(idre);
-
-        LocalDate dated = textdatedeb.getValue();
-        LocalDate datef = textdatefi.getValue();
-        mai.setDate_debut(dated);
-        mai.setDate_fin(datef);
-        mai.setAdresse(textadres.getText());
-        mai.setDescription(textdescri.getText());
-        mai.setEtat(textetat.getText());
-
-        ms.ajouterMaintenance(mai);
-
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Success");
-        alert.setContentText("Maintenance ajouté!");
-        alert.show();
-        // refresh();
-        ObservableList<Maintenance> items = FXCollections.observableArrayList();
-        List<Maintenance> listmaintenance = ms.afficherMaintenance();
-        for (Maintenance r : listmaintenance) {
-            String ch = r.toString();
-            items.add(r);
-        }
-
-        this.listmaintenance.setItems(items);
-
     }
 
     @FXML
-    private void Modifier1(ActionEvent event) {
+    private void Modifier1(ActionEvent event
+    ) {
         Maintenance mai = new Maintenance();
         Maintenance ma = listmaintenance.getSelectionModel().getSelectedItem();
         int id1 = Integer.parseInt(txtid.getText());
@@ -228,7 +243,8 @@ public class GuiMaintenanceController implements Initializable {
     }
 
     @FXML
-    private void Supprimer(ActionEvent event) {
+    private void Supprimer(ActionEvent event
+    ) {
         int id = Integer.parseInt(textsupr.getText());
         ms.supprimerMaintenance(id);
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -255,9 +271,9 @@ public class GuiMaintenanceController implements Initializable {
     }
 
     @FXML
-    
-   
-    private void autofill(MouseEvent event) {
+
+    private void autofill(MouseEvent event
+    ) {
         Maintenance mainte = new Maintenance();
         listmaintenance.setOnMouseClicked((event1) -> {
             String selectedDes = listmaintenance.getSelectionModel().getSelectedItem().getDescription();
@@ -284,11 +300,24 @@ public class GuiMaintenanceController implements Initializable {
     }
 
     @FXML
-    private void chercher(ActionEvent event) {
+    private void chercher(ActionEvent event
+    ) {
         MaintenanceService a = new MaintenanceService();
         List<Maintenance> R = a.Chercher(textsupr.getText());
         ObservableList<Maintenance> datalist = FXCollections.observableArrayList(R);
         this.listmaintenance.setItems(datalist);
+    }
+
+    @FXML
+    private void TrierEtat(ActionEvent event
+    ) {
+        List<Maintenance> trie11 = ms.TriEtat();
+        listmaintenance.getItems().clear();
+        listmaintenance.getItems().addAll(trie11);
+    }
+
+    @FXML
+    private void chercher(KeyEvent event) {
     }
 
 }
