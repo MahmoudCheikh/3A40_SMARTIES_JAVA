@@ -3,11 +3,10 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="142.0" prefWidth="601.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="com.smarties.test.GuiSingleSujetController">
+<AnchorPane id="AnchorPane" prefHeight="142.0" prefWidth="601.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smarties.test.GuiSingleSujetController">
    <children>
       <Label fx:id="txtDate" layoutX="223.0" layoutY="25.0" text="txtUser" />
-      <Label layoutX="339.0" layoutY="25.0" prefHeight="0.0" prefWidth="39.0" text="txtDate" />
+      <Label layoutX="339.0" layoutY="25.0" prefHeight="21.0" prefWidth="73.0" text="txtDate" />
       <Label fx:id="txtCotent" layoutX="26.0" layoutY="77.0" text="txtCotent" />
    </children>
 </AnchorPane>

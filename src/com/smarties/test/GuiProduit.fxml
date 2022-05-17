@@ -14,13 +14,13 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smarties.test.GuiProduitController">
+<AnchorPane id="AnchorPane" prefHeight="832.0" prefWidth="1713.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smarties.test.GuiProduitController">
    <children>
-      <TabPane layoutY="-1.0" prefHeight="600.0" prefWidth="1100.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane layoutY="-1.0" prefHeight="746.0" prefWidth="1461.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
           <Tab text="Produit">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="561.0" prefWidth="1088.0" style="-fx-background-color: #ffffff;">
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="683.0" prefWidth="1286.0" style="-fx-background-color: #98938b;">
                      <children>
                         <ImageView fx:id="veloIm" fitHeight="150.0" fitWidth="200.0" layoutX="693.0" layoutY="-9.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -32,37 +32,37 @@
                         <TextField fx:id="descProd" layoutX="60.0" layoutY="186.0" prefHeight="146.0" prefWidth="290.0" promptText="Description" />
                         <TextField fx:id="imageProd" layoutX="60.0" layoutY="126.0" prefHeight="40.0" prefWidth="290.0" promptText="Image" />
                         <TextField fx:id="libelleProd" layoutX="60.0" layoutY="56.0" prefHeight="40.0" prefWidth="290.0" promptText="Libelle" />
-                        <Button fx:id="btnAjoutProd" layoutX="55.0" layoutY="479.0" mnemonicParsing="false" onAction="#AjoutProd" prefHeight="50.0" prefWidth="300.0" style="-fx-background-color: #ff7f50;" text="+ Ajouter">
+                        <Button fx:id="btnAjoutProd" layoutX="55.0" layoutY="479.0" mnemonicParsing="false" onAction="#AjoutProd" prefHeight="50.0" prefWidth="300.0" style="-fx-background-color: #515151;" text="+ Ajouter" textFill="#aceb1e">
                            <font>
-                              <Font name="Bell MT" size="15.0" />
+                              <Font name="Bell MT Bold" size="15.0" />
                            </font>
                         </Button>
-                        <Button fx:id="btnModifierProd" layoutX="771.0" layoutY="479.0" mnemonicParsing="false" onAction="#ModifierProd" prefHeight="50.0" prefWidth="220.0" style="-fx-background-color: #ff7f50;" text="Modifier">
+                        <Button fx:id="btnModifierProd" layoutX="771.0" layoutY="479.0" mnemonicParsing="false" onAction="#ModifierProd" prefHeight="50.0" prefWidth="220.0" style="-fx-background-color: #515151;" text="Modifier" textFill="#aceb1e">
                            <font>
-                              <Font name="Bell MT" size="15.0" />
+                              <Font name="Bell MT Bold" size="15.0" />
                            </font>
                         </Button>
-                        <Button fx:id="btnSupprimerProd" layoutX="509.0" layoutY="480.0" mnemonicParsing="false" onAction="#SupprimerProd" prefHeight="50.0" prefWidth="220.0" style="-fx-background-color: #ff7f50;" text="Supprimer">
+                        <Button fx:id="btnSupprimerProd" layoutX="509.0" layoutY="480.0" mnemonicParsing="false" onAction="#SupprimerProd" prefHeight="50.0" prefWidth="220.0" style="-fx-background-color: #515151;" text="Supprimer" textFill="#aceb1e">
                            <font>
-                              <Font name="Bell MT" size="15.0" />
+                              <Font name="Bell MT Bold" size="15.0" />
                            </font>
                         </Button>
                         <ListView fx:id="listeProduit" layoutX="396.0" layoutY="102.0" onMouseClicked="#getDataProduit" prefHeight="330.0" prefWidth="680.0" />
                         <TextField fx:id="searchProLib" layoutX="866.0" layoutY="30.0" onAction="#searchProduitLibelle" prefHeight="15.0" prefWidth="210.0" promptText="RECHERCHE PAR LIBELLE" />
-                        <Button fx:id="btnTRI" layoutX="396.0" layoutY="72.0" mnemonicParsing="false" onAction="#TrierProduitPrix" prefHeight="29.0" prefWidth="113.0" style="-fx-background-color: #ff7f50;" text="TRIER PRIX">
+                        <Button fx:id="btnTRI" layoutX="396.0" layoutY="72.0" mnemonicParsing="false" onAction="#TrierProduitPrix" prefHeight="29.0" prefWidth="113.0" style="-fx-background-color: #515151;" text="TRIER PRIX" textFill="#aceb1e">
                            <font>
-                              <Font name="Bell MT" size="15.0" />
+                              <Font name="Bell MT Bold" size="15.0" />
                            </font>
                         </Button>
-                        <Button fx:id="btnTRIType" layoutX="524.0" layoutY="72.0" mnemonicParsing="false" onAction="#TrierProduitType" prefHeight="29.0" prefWidth="117.0" style="-fx-background-color: #ff7f50;" text="TRIER TYPE">
+                        <Button fx:id="btnTRIType" layoutX="524.0" layoutY="72.0" mnemonicParsing="false" onAction="#TrierProduitType" prefHeight="29.0" prefWidth="117.0" style="-fx-background-color: #515151;" text="TRIER TYPE" textFill="#aceb1e">
                            <font>
-                              <Font name="Bell MT" size="15.0" />
+                              <Font name="Bell MT Bold" size="15.0" />
                            </font>
                         </Button>
                         <TextField fx:id="searchProType" layoutX="866.0" layoutY="66.0" onAction="#searchProduitType" prefHeight="19.0" prefWidth="210.0" promptText="RECHERCHE PAR TYPE" />
-                        <Button fx:id="upload" layoutX="278.0" layoutY="125.0" mnemonicParsing="false" onAction="#uploadImage" prefHeight="40.0" prefWidth="72.0" style="-fx-background-color: #ff7f50;" text="UpLoad">
+                        <Button fx:id="upload" layoutX="278.0" layoutY="125.0" mnemonicParsing="false" onAction="#uploadImage" prefHeight="40.0" prefWidth="72.0" style="-fx-background-color: #515151;" text="UpLoad" textFill="#aceb1e">
                            <font>
-                              <Font name="Bell MT" size="15.0" />
+                              <Font name="Bell MT Bold" size="15.0" />
                            </font>
                         </Button>
                         <ComboBox fx:id="comboType" layoutX="60.0" layoutY="422.0" prefHeight="41.0" prefWidth="289.0" promptText="Type" />
@@ -72,18 +72,18 @@
           </Tab>
           <Tab text="Stock">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #ffffff;">
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #98938b;">
                      <children>
                         <TextField fx:id="libS" layoutX="39.0" layoutY="178.0" prefHeight="40.0" prefWidth="290.0" promptText="Libelle" />
                         <TextField fx:id="quantiteS" layoutX="39.0" layoutY="288.0" prefHeight="40.0" prefWidth="290.0" promptText="Quantité" />
                         <TextField fx:id="prixS" layoutX="39.0" layoutY="230.0" prefHeight="40.0" prefWidth="290.0" promptText="Prix" />
-                        <Button fx:id="btnAjoutS" layoutX="21.0" layoutY="470.0" mnemonicParsing="false" onAction="#AjoutStock" prefHeight="50.0" prefWidth="327.0" style="-fx-background-color: #ff7f50;" text="+ Ajouter" />
-                        <Button fx:id="btnModifierS" layoutX="733.0" layoutY="432.0" mnemonicParsing="false" onAction="#ModifierStock" prefHeight="50.0" prefWidth="220.0" style="-fx-background-color: #ff7f50;" text="Modifier" />
-                        <Button fx:id="btnSupprimerS" layoutX="440.0" layoutY="432.0" mnemonicParsing="false" onAction="#SupprimerStock" prefHeight="50.0" prefWidth="220.0" style="-fx-background-color: #ff7f50;" text="Supprimer" />
+                        <Button fx:id="btnAjoutS" layoutX="21.0" layoutY="470.0" mnemonicParsing="false" onAction="#AjoutStock" prefHeight="50.0" prefWidth="327.0" style="-fx-background-color: #515151;" text="+ Ajouter" textFill="#aceb1e" />
+                        <Button fx:id="btnModifierS" layoutX="733.0" layoutY="432.0" mnemonicParsing="false" onAction="#ModifierStock" prefHeight="50.0" prefWidth="220.0" style="-fx-background-color: #515151;" text="Modifier" textFill="#aceb1e" />
+                        <Button fx:id="btnSupprimerS" layoutX="440.0" layoutY="432.0" mnemonicParsing="false" onAction="#SupprimerStock" prefHeight="50.0" prefWidth="220.0" style="-fx-background-color: #515151;" text="Supprimer" textFill="#aceb1e" />
                         <ListView fx:id="listeS" layoutX="366.0" layoutY="83.0" onMouseClicked="#getDataStock" prefHeight="330.0" prefWidth="680.0" />
                         <TextField fx:id="searchSto" layoutX="836.0" layoutY="39.0" onAction="#searchStock" prefHeight="25.0" prefWidth="210.0" promptText="RECHERCHE PAR LIBELLE" />
-                        <Button fx:id="triQ" layoutX="366.0" layoutY="52.0" mnemonicParsing="false" onAction="#trierStockQuantite" style="-fx-background-color: #ff7f50;" text=" TRIER QUANTITE" />
-                        <Button fx:id="TriD" layoutX="514.0" layoutY="52.0" mnemonicParsing="false" onAction="#TrierStockDisponibilite" style="-fx-background-color: #ff7f50;" text="TRIER DISPONIBILTE" />
+                        <Button fx:id="triQ" layoutX="366.0" layoutY="52.0" mnemonicParsing="false" onAction="#trierStockQuantite" style="-fx-background-color: #515151;" text=" TRIER QUANTITE" textFill="#aceb1e" />
+                        <Button fx:id="TriD" layoutX="514.0" layoutY="52.0" mnemonicParsing="false" onAction="#TrierStockDisponibilite" style="-fx-background-color: #515151;" text="TRIER DISPONIBILTE" textFill="#aceb1e" />
                         <ComboBox fx:id="dispoS" layoutX="40.0" layoutY="340.0" prefHeight="41.0" prefWidth="289.0" promptText="Disponibilité" />
                         <ImageView fx:id="StockIm" fitHeight="150.0" fitWidth="200.0" layoutX="98.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -91,25 +91,25 @@
                            </image>
                         </ImageView>
                         <ComboBox fx:id="idProdSCombo" layoutX="39.0" layoutY="395.0" prefHeight="40.0" prefWidth="294.0" promptText="Produit" />
-                        <Button fx:id="pdfStock" layoutX="839.0" layoutY="527.0" mnemonicParsing="false" onAction="#GenererPdfStock" prefHeight="32.0" prefWidth="220.0" style="-fx-background-color: #ff7f50;" text="Genere Historique des stocks" />
+                        <Button fx:id="pdfStock" layoutX="839.0" layoutY="527.0" mnemonicParsing="false" onAction="#GenererPdfStock" prefHeight="32.0" prefWidth="220.0" style="-fx-background-color: #515151;" text="Genere Historique des stocks" textFill="#aceb1e" />
                      </children></AnchorPane>
             </content>
           </Tab>
             <Tab text="Statistiques">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #98938b;">
                      <children>
                         <PieChart fx:id="pieChart" layoutX="573.0" layoutY="116.0" prefHeight="420.0" prefWidth="520.0" />
-                        <Button fx:id="stat" layoutX="775.0" layoutY="66.0" mnemonicParsing="false" onAction="#generateStat" prefHeight="42.0" prefWidth="167.0" style="-fx-background-color: #ff7f50;" text="Génerer Statistiques " />
-                        <Button fx:id="statProd" layoutX="182.0" layoutY="66.0" mnemonicParsing="false" onAction="#generateStatProd" prefHeight="42.0" prefWidth="188.0" style="-fx-background-color: #ff7f50;" text="Génerer Statistiques " />
+                        <Button fx:id="stat" layoutX="775.0" layoutY="66.0" mnemonicParsing="false" onAction="#generateStat" prefHeight="42.0" prefWidth="167.0" style="-fx-background-color: #515151;" text="Génerer Statistiques " textFill="#aceb1e" />
+                        <Button fx:id="statProd" layoutX="182.0" layoutY="66.0" mnemonicParsing="false" onAction="#generateStatProd" prefHeight="42.0" prefWidth="188.0" style="-fx-background-color: #515151;" text="Génerer Statistiques " textFill="#aceb1e" />
                         <PieChart fx:id="pieChartProd" layoutX="14.0" layoutY="116.0" prefHeight="420.0" prefWidth="520.0" />
                         <Line endX="-100.0" endY="417.0" layoutX="651.0" layoutY="118.0" startX="-100.0" />
-                        <Label layoutX="89.0" layoutY="23.0" text="Les Produits Les Plus Courants " textFill="#a10000">
+                        <Label layoutX="89.0" layoutY="23.0" text="Les Produits Les Plus Courants " textFill="#a00000">
                            <font>
                               <Font size="30.0" />
                            </font>
                         </Label>
-                        <Label layoutX="636.0" layoutY="23.0" text="Les Quantités des Produits Stockés" textFill="#a10000">
+                        <Label layoutX="636.0" layoutY="23.0" text="Les Quantités des Produits Stockés" textFill="#a00000">
                            <font>
                               <Font size="30.0" />
                            </font>
@@ -130,16 +130,16 @@
             </Tab>
             <Tab text="Emplacement">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #98938b;">
                      <children>
                         <TextField fx:id="capaciteE" layoutX="28.0" layoutY="223.0" prefHeight="40.0" prefWidth="290.0" promptText="Capacite" />
-                        <Button fx:id="btnAjoutEmp" layoutX="25.0" layoutY="340.0" mnemonicParsing="false" onAction="#AjouterEmplacement" prefHeight="50.0" prefWidth="303.0" style="-fx-background-color: #ff7f50;" text="+ Ajouter" />
-                        <Button fx:id="btnModifierEmp" layoutX="709.0" layoutY="440.0" mnemonicParsing="false" onAction="#ModifierEmplacement" prefHeight="50.0" prefWidth="220.0" style="-fx-background-color: #ff7f50;" text="Modifier" />
-                        <Button fx:id="btnSupprimerEmp" layoutX="403.0" layoutY="440.0" mnemonicParsing="false" onAction="#SupprimerEmplacement" prefHeight="50.0" prefWidth="220.0" style="-fx-background-color: #ff7f50;" text="Supprimer" />
+                        <Button fx:id="btnAjoutEmp" layoutX="25.0" layoutY="340.0" mnemonicParsing="false" onAction="#AjouterEmplacement" prefHeight="50.0" prefWidth="303.0" style="-fx-background-color: #515151;" text="+ Ajouter" textFill="#aceb1e" />
+                        <Button fx:id="btnModifierEmp" layoutX="709.0" layoutY="440.0" mnemonicParsing="false" onAction="#ModifierEmplacement" prefHeight="50.0" prefWidth="220.0" style="-fx-background-color: #515151;" text="Modifier" textFill="#aceb1e" />
+                        <Button fx:id="btnSupprimerEmp" layoutX="403.0" layoutY="440.0" mnemonicParsing="false" onAction="#SupprimerEmplacement" prefHeight="50.0" prefWidth="220.0" style="-fx-background-color: #515151;" text="Supprimer" textFill="#aceb1e" />
                         <ListView fx:id="listeEmp" layoutX="349.0" layoutY="83.0" onMouseClicked="#getDataEmp" prefHeight="330.0" prefWidth="680.0" />
                         <TextField fx:id="searchEmp" layoutX="819.0" layoutY="29.0" onAction="#searchEmplacement" prefHeight="25.0" prefWidth="210.0" promptText="RECHERCHE PAR LIEU" />
-                        <Button fx:id="triE" layoutX="349.0" layoutY="52.0" mnemonicParsing="false" onAction="#TrierEmpLieu" style="-fx-background-color: #ff7f50;" text="TRIER LIEU" />
-                        <Button fx:id="triC" layoutX="449.0" layoutY="52.0" mnemonicParsing="false" onAction="#TrierEmpCapacite" style="-fx-background-color: #ff7f50;" text="TRIER CAPACITE" />
+                        <Button fx:id="triE" layoutX="349.0" layoutY="52.0" mnemonicParsing="false" onAction="#TrierEmpLieu" style="-fx-background-color: #515151;" text="TRIER LIEU" textFill="#aceb1e" />
+                        <Button fx:id="triC" layoutX="449.0" layoutY="52.0" mnemonicParsing="false" onAction="#TrierEmpCapacite" style="-fx-background-color: #515151;" text="TRIER CAPACITE" textFill="#aceb1e" />
                         <ComboBox fx:id="lieuE" layoutX="29.0" layoutY="173.0" prefHeight="41.0" prefWidth="289.0" promptText="Lieu" />
                         <ImageView fx:id="empIm" fitHeight="150.0" fitWidth="200.0" layoutX="94.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -153,9 +153,9 @@
             </Tab>
             <Tab text="Favoris">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #98938b;">
                      <children>
-                        <Button fx:id="btnSupprimerFav" layoutX="340.0" layoutY="365.0" mnemonicParsing="false" onAction="#SupprimerFavoris" prefHeight="49.0" prefWidth="739.0" style="-fx-background-color: #ff7f50;" text="Supprimer" />
+                        <Button fx:id="btnSupprimerFav" layoutX="340.0" layoutY="365.0" mnemonicParsing="false" onAction="#SupprimerFavoris" prefHeight="49.0" prefWidth="739.0" style="-fx-background-color: #515151;" text="Supprimer" textFill="#aceb1e" />
                         <ListView fx:id="listefav" layoutX="336.0" layoutY="21.0" prefHeight="330.0" prefWidth="740.0" />
                         <Label fx:id="cds3" layoutX="15.0" layoutY="14.0" prefHeight="56.0" prefWidth="252.0" textFill="#bc0000" />
                         <ImageView fx:id="favIm" fitHeight="311.0" fitWidth="296.0" layoutX="48.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">

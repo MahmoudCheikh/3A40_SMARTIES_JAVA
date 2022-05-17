@@ -17,31 +17,31 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smarties.test.GuiSujetController">
+<AnchorPane id="AnchorPane" prefHeight="799.0" prefWidth="1338.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smarties.test.GuiSujetController">
    <children>
-      <TabPane prefHeight="600.0" prefWidth="1000.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <TabPane prefHeight="799.0" prefWidth="1338.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
           <Tab text="Sujet">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #98938b;">
                      <children>
-                        <ListView fx:id="tableSujetList" layoutX="339.0" layoutY="52.0" onMouseClicked="#getDataSujet" prefHeight="434.0" prefWidth="631.0" style="-fx-background-color: #ff7f50;">
+                        <ListView fx:id="tableSujetList" layoutX="339.0" layoutY="52.0" onMouseClicked="#getDataSujet" prefHeight="434.0" prefWidth="631.0" style="-fx-background-color: #515151;">
                            <effect>
                               <DropShadow />
                            </effect></ListView>
-                        <Label layoutX="54.0" layoutY="80.0" text="Id User">
+                        <Label layoutX="33.0" layoutY="80.0" text="Id User">
                            <font>
                               <Font name="Barlow Condensed Light" size="20.0" />
                            </font></Label>
-                        <Button fx:id="btnSujetDelete" layoutX="145.0" layoutY="272.0" mnemonicParsing="false" onAction="#SujetDelete" prefHeight="27.0" prefWidth="114.0" style="-fx-background-color: #ff7f50;" text="Supprimer" textFill="#f2eaea">
+                        <Button fx:id="btnSujetDelete" layoutX="97.0" layoutY="279.0" mnemonicParsing="false" onAction="#SujetDelete" prefHeight="29.0" prefWidth="195.0" style="-fx-background-color: #515151;" text="Supprimer" textFill="#aceb1e">
                            <font>
                               <Font name="Barlow Condensed Light" size="13.0" />
                            </font></Button>
-                        <Label layoutX="86.0" layoutY="162.0" text="ID">
+                        <Label layoutX="70.0" layoutY="162.0" text="ID">
                            <font>
                               <Font name="Barlow Condensed Light" size="20.0" />
                            </font></Label>
-                        <Label layoutX="17.0" layoutY="14.0" prefHeight="39.0" prefWidth="126.0" text="Sujet " textFill="#fc9b00">
+                        <Label layoutX="17.0" layoutY="14.0" prefHeight="39.0" prefWidth="126.0" text="Sujet " textFill="#aceb1e">
                            <font>
                               <Font name="Cambria Math" size="30.0" />
                            </font>
@@ -58,12 +58,15 @@
                               <Image url="@../images/Forum-PNG-Free-Download.png" />
                            </image>
                         </ImageView>
-                        <Button fx:id="acts" layoutX="885.0" layoutY="491.0" mnemonicParsing="false" onAction="#actuas" style="-fx-background-color: #ff7f50;" stylesheets="@EvenementStyle.css" text="Actualiser" />
-                        <ComboBox fx:id="comboSujetUser" layoutX="125.0" layoutY="83.0" prefWidth="150.0" />
-                        <ComboBox fx:id="comboSujetId" layoutX="126.0" layoutY="165.0" prefWidth="150.0" />
-                        <ComboBox layoutX="125.0" layoutY="123.0" prefWidth="150.0" />
-                        <Label layoutX="81.0" layoutY="127.0" text="Archive" />
-                        <Button layoutX="161.0" layoutY="223.0" mnemonicParsing="false" onAction="#searchSujet" prefHeight="25.0" prefWidth="77.0" style="-fx-background-color: #ff7f50;" stylesheets="@../services/styleSmarties.css" text="Search" textFill="#fff9f9">
+                        <Button fx:id="acts" layoutX="793.0" layoutY="491.0" mnemonicParsing="false" onAction="#actuas" prefHeight="31.0" prefWidth="182.0" style="-fx-background-color: #515151;" stylesheets="@EvenementStyle.css" text="Actualiser" />
+                        <ComboBox fx:id="comboSujetUser" layoutX="125.0" layoutY="83.0" prefHeight="31.0" prefWidth="184.0" />
+                        <ComboBox fx:id="comboSujetId" layoutX="126.0" layoutY="165.0" prefHeight="31.0" prefWidth="183.0" />
+                        <ComboBox layoutX="125.0" layoutY="123.0" prefHeight="31.0" prefWidth="183.0" />
+                        <Label layoutX="31.0" layoutY="127.0" text="Archive">
+                           <font>
+                              <Font size="20.0" />
+                           </font></Label>
+                        <Button layoutX="96.0" layoutY="230.0" mnemonicParsing="false" onAction="#searchSujet" prefHeight="30.0" prefWidth="195.0" style="-fx-background-color: #515151;" stylesheets="@../services/styleSmarties.css" text="Search" textFill="#fff9f9">
                            <font>
                               <Font name="Barlow Condensed Light" size="14.0" />
                            </font></Button>
@@ -73,9 +76,9 @@
           </Tab>
           <Tab text="Message">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #98938b;">
                      <children>
-                        <Button fx:id="btnMessageDelete" layoutX="154.0" layoutY="176.0" mnemonicParsing="false" onAction="#MessageDelete" style="-fx-background-color: #ff7f50;" stylesheets="@../services/styleSmarties.css" text="Supprimer" textFill="#fffdfd">
+                        <Button fx:id="btnMessageDelete" layoutX="65.0" layoutY="202.0" mnemonicParsing="false" onAction="#MessageDelete" prefHeight="35.0" prefWidth="191.0" style="-fx-background-color: #515151;" stylesheets="@../services/styleSmarties.css" text="Supprimer" textFill="#fffdfd">
                            <effect>
                               <DropShadow />
                            </effect>
@@ -94,11 +97,11 @@
                            <font>
                               <Font name="Barlow Condensed Light" size="17.0" />
                            </font></Label>
-                        <ListView fx:id="tableMessagelist" layoutX="337.0" layoutY="55.0" onMouseClicked="#getDataMessage" prefHeight="440.0" prefWidth="632.0" style="-fx-background-color: #ff7f50;">
+                        <ListView fx:id="tableMessagelist" layoutX="409.0" layoutY="55.0" onMouseClicked="#getDataMessage" prefHeight="440.0" prefWidth="632.0" style="-fx-background-color: #515151;">
                            <effect>
                               <DropShadow />
                            </effect></ListView>
-                        <Label layoutX="11.0" layoutY="12.0" prefHeight="44.0" prefWidth="126.0" text="Message" textFill="#f89203">
+                        <Label layoutX="11.0" layoutY="12.0" prefHeight="44.0" prefWidth="126.0" text="Message" textFill="#aceb1e">
                            <font>
                               <Font name="Cambria Math" size="27.0" />
                            </font>
@@ -111,21 +114,21 @@
                            </effect></Label>
                         <ImageView fitHeight="149.0" fitWidth="261.0" layoutX="83.0" layoutY="346.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../images/51-512118_message-icon-message-icon-png-black.jpg" />
+                              <Image url="@../images/51-512118_message-icon-message-icon-png-black.png" />
                            </image>
                         </ImageView>
                         <ComboBox fx:id="messageBox" layoutX="115.0" layoutY="61.0" prefWidth="150.0" />
                         <ComboBox fx:id="messageComboSujetId" layoutX="115.0" layoutY="101.0" prefWidth="150.0" />
                         <ComboBox fx:id="messageComboId" layoutX="115.0" layoutY="136.0" prefWidth="150.0" />
-                        <Button layoutX="274.0" layoutY="61.0" mnemonicParsing="false" onAction="#msgSearchUser" style="-fx-background-color: #ff7f50;" stylesheets="@../services/styleSmarties.css" text="Search" textFill="#fff4f4">
+                        <Button layoutX="274.0" layoutY="61.0" mnemonicParsing="false" onAction="#msgSearchUser" prefHeight="29.0" prefWidth="125.0" style="-fx-background-color: #515151;" stylesheets="@../services/styleSmarties.css" text="Search" textFill="#fff4f4">
                            <font>
                               <Font name="Barlow Condensed Light" size="13.0" />
                            </font></Button>
-                        <Button layoutX="274.0" layoutY="102.0" mnemonicParsing="false" onAction="#msgSearchSujet" style="-fx-background-color: #ff7f50;" stylesheets="@../services/styleSmarties.css" text="Search" textFill="#fff4f4">
+                        <Button layoutX="273.0" layoutY="102.0" mnemonicParsing="false" onAction="#msgSearchSujet" prefHeight="29.0" prefWidth="128.0" style="-fx-background-color: #515151;" stylesheets="@../services/styleSmarties.css" text="Search" textFill="#fff4f4">
                            <font>
                               <Font name="Barlow Condensed Light" size="13.0" />
                            </font></Button>
-                        <Button layoutX="121.0" layoutY="210.0" mnemonicParsing="false" onAction="#refreshmsg" prefHeight="27.0" prefWidth="144.0" style="-fx-background-color: #ff7f50;" stylesheets="@../services/styleSmarties.css" text="Voir tous" textFill="#fff4f4">
+                        <Button layoutX="60.0" layoutY="246.0" mnemonicParsing="false" onAction="#refreshmsg" prefHeight="34.0" prefWidth="194.0" style="-fx-background-color: #515151;" stylesheets="@../services/styleSmarties.css" text="Voir tous" textFill="#fff4f4">
                            <font>
                               <Font name="Barlow Condensed Light" size="13.0" />
                            </font></Button>
@@ -135,14 +138,14 @@
           </Tab>
             <Tab text="Statistiques">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="760.0" prefWidth="1584.0" style="-fx-background-color: #98938b;">
                      <children>
-                        <Label layoutX="56.0" layoutY="29.0" text="Statistiques sujet utilisateurs">
+                        <Label layoutX="56.0" layoutY="29.0" text="Statistiques sujet utilisateurs" textFill="#aceb1e">
                            <font>
                               <Font size="24.0" />
                            </font>
                         </Label>
-                        <Label layoutX="569.0" layoutY="29.0" text="Statistiques message utilisateurs">
+                        <Label layoutX="569.0" layoutY="29.0" text="Statistiques message utilisateurs" textFill="#aceb1e">
                            <font>
                               <Font size="24.0" />
                            </font>

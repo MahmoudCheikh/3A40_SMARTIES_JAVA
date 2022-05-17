@@ -12,9 +12,9 @@
    <children>
       <AnchorPane layoutX="10.0" layoutY="10.0" prefWidth="990.0" style="-fx-background-color: #D0BE25;">
          <children>
-            <StackPane layoutX="-10.0" layoutY="-11.0" prefHeight="79.0" prefWidth="1230.0" style="-fx-background-color: #BF3C3C;" AnchorPane.leftAnchor="-10.0" AnchorPane.rightAnchor="-370.0" AnchorPane.topAnchor="-11.0">
+            <StackPane layoutX="-10.0" layoutY="-11.0" prefHeight="79.0" prefWidth="1230.0" style="-fx-background-color: #111318;" AnchorPane.leftAnchor="-10.0" AnchorPane.rightAnchor="-370.0" AnchorPane.topAnchor="-11.0">
                <children>
-                  <Text fx:id="topText" boundsType="LOGICAL_VERTICAL_CENTER" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste des Produits" textAlignment="JUSTIFY" textOrigin="CENTER">
+                  <Text fx:id="topText" boundsType="LOGICAL_VERTICAL_CENTER" fill="#aceb1e" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste des Produits" textAlignment="JUSTIFY" textOrigin="CENTER">
                      <font>
                         <Font name="Arial Bold" size="23.0" />
                      </font>
@@ -28,7 +28,7 @@
             <Insets />
          </opaqueInsets>
          <content>
-            <AnchorPane prefHeight="672.0" prefWidth="1366.0">
+            <AnchorPane prefHeight="672.0" prefWidth="1366.0" style="-fx-background-color: #98938b;">
                <children>
                   <VBox fx:id="vboxProd" layoutY="-1.0" prefHeight="596.0" prefWidth="1366.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="-1.0" />
                </children>

@@ -4,16 +4,29 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: #BF3C3C;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smarties.test.ResetpasscodeController">
+<AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: #111318;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smarties.test.ResetpasscodeController">
    <children>
-      <Label layoutX="537.0" layoutY="316.0" text="Email" textFill="WHITE" />
-      <Label layoutX="537.0" layoutY="350.0" text="Code" textFill="WHITE" />
-      <Label layoutX="526.0" layoutY="384.0" text="Password" textFill="WHITE" />
-      <TextField fx:id="txtmail" layoutX="581.0" layoutY="312.0" />
-      <TextField fx:id="txtcode" layoutX="581.0" layoutY="346.0" />
-      <TextField fx:id="txtpassword" layoutX="581.0" layoutY="380.0" />
-      <Button fx:id="reset" layoutX="581.0" layoutY="411.0" mnemonicParsing="false" onAction="#reset" style="-fx-background-color: #ff7f50;" text="Reset" textFill="WHITE" />
-      <Button fx:id="retour" layoutX="678.0" layoutY="411.0" mnemonicParsing="false" onAction="#retour" style="-fx-background-color: #ff7f50;" text="Retour" textFill="WHITE" />
+      <Label layoutX="507.0" layoutY="281.0" text="Email" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Label>
+      <Label layoutX="507.0" layoutY="332.0" text="Code" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Label>
+      <Label layoutX="496.0" layoutY="378.0" text="Password" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Label>
+      <TextField fx:id="txtmail" layoutX="581.0" layoutY="277.0" prefHeight="35.0" prefWidth="260.0" />
+      <TextField fx:id="txtcode" layoutX="581.0" layoutY="328.0" prefHeight="35.0" prefWidth="260.0" />
+      <TextField fx:id="txtpassword" layoutX="581.0" layoutY="372.0" prefHeight="35.0" prefWidth="260.0" />
+      <Button fx:id="reset" layoutX="427.0" layoutY="467.0" mnemonicParsing="false" onAction="#reset" prefHeight="40.0" prefWidth="260.0" style="-fx-background-color: #515151;" text="Reset" textFill="#aceb1e">
+         <font>
+            <Font size="18.0" />
+         </font></Button>
+      <Button fx:id="retour" layoutX="727.0" layoutY="463.0" mnemonicParsing="false" onAction="#retour" prefHeight="40.0" prefWidth="260.0" style="-fx-background-color: #515151;" text="Retour" textFill="#aceb1e" />
    </children>
 </AnchorPane>

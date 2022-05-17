@@ -12,9 +12,9 @@
    <children>
       <AnchorPane layoutY="-1.0" prefHeight="71.0" prefWidth="1289.0" style="-fx-background-color: #D0BE25;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-1.0">
          <children>
-            <StackPane prefHeight="70.0" prefWidth="1361.0" style="-fx-background-color: #BF3C3C;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-37.0" AnchorPane.topAnchor="0.0">
+            <StackPane prefHeight="70.0" prefWidth="1361.0" style="-fx-background-color: #13161E;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-37.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Text fx:id="topText" boundsType="LOGICAL_VERTICAL_CENTER" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste des Evenements" textAlignment="JUSTIFY" textOrigin="CENTER">
+                  <Text fx:id="topText" boundsType="LOGICAL_VERTICAL_CENTER" fill="#aceb1e" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste des Evenements" textAlignment="JUSTIFY" textOrigin="CENTER">
                      <font>
                         <Font name="Arial Bold" size="23.0" />
                      </font>
@@ -32,7 +32,7 @@
                <children>
                   <VBox fx:id="vboxevent" layoutX="-2.0" prefHeight="572.0" prefWidth="1362.0" AnchorPane.bottomAnchor="-2.0" AnchorPane.leftAnchor="-2.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <VBox fx:id="vboxxx" prefHeight="566.0" prefWidth="1322.0" />
+                        <VBox fx:id="vboxxx" prefHeight="573.0" prefWidth="1472.0" style="-fx-background-color: #98938b;" />
                      </children></VBox>
                </children>
             </AnchorPane>

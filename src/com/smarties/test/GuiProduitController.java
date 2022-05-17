@@ -64,6 +64,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -197,6 +198,9 @@ public class GuiProduitController implements Initializable {
     private ImageView favIm;
     @FXML
     private Button pdfStock;
+    private File selectedFile;
+    public static String imgUploadDir = "C:\\xampp\\htdocs\\symfonyProject\\public\\uploads\\image";
+    private String path;
 
     /**
      * Initializes the controller class.
@@ -271,12 +275,30 @@ public class GuiProduitController implements Initializable {
      */
     @FXML
     private void uploadImage(ActionEvent event) throws FileNotFoundException {
-        JFileChooser chooser = new JFileChooser();
+        /*JFileChooser chooser = new JFileChooser();
         chooser.showOpenDialog(null);
         File f = chooser.getSelectedFile();
         String Filename = f.getAbsolutePath();
-        imageProd.setText(Filename);
+        imageProd.setText(Filename);*/
+        FileChooser chooser = new FileChooser();
+        chooser.setInitialDirectory(new File(System.getProperty("user.home") ));
+        chooser.setTitle("Veuillez choisir l'image");
+        chooser.getExtensionFilters().addAll(
+                //new FileChooser.ExtensionFilter("Image", ".jpg", ".png"),
+                new FileChooser.ExtensionFilter("PNG", "*.png"),
+                new FileChooser.ExtensionFilter("JPG", "*.jpg")
+        );
+        selectedFile = chooser.showOpenDialog(null);
+
+        if (selectedFile != null) {
+
+            path = selectedFile.getName();
+//    
+           // Image.setText(path);
+            Image imagea = new Image(selectedFile.toURI().toString());
+          // imageView.setImage(imagea) ;
     }
+    }   
 
     @FXML
     private void AjoutProd(ActionEvent event) throws IOException {

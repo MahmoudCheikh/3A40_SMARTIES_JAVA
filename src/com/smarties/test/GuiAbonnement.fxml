@@ -19,13 +19,13 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="731.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smarties.test.GuiAbonnementController">
+<AnchorPane id="AnchorPane" prefHeight="916.0" prefWidth="1520.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smarties.test.GuiAbonnementController">
    <children>
-      <TabPane layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane layoutX="10.0" layoutY="10.0" prefHeight="830.0" prefWidth="1308.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <tabs>
             <Tab text="Gestion Abonnements ">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="1014.0">
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="791.0" prefWidth="1398.0" style="-fx-background-color: #98938b;">
                      <children>
                         <TextField fx:id="textIDAbonnement" layoutX="101.0" layoutY="419.0" prefHeight="25.0" prefWidth="121.0">
                            <effect>
@@ -51,25 +51,25 @@
                         <Label layoutX="8.0" layoutY="208.0" text="Date debut " textFill="#b9936c" />
                         <Label layoutX="19.0" layoutY="247.0" text="Date fin" textFill="#b9936c" />
                         <Label layoutX="30.0" layoutY="290.0" text="Prix" textFill="#b9936c" />
-                        <Button fx:id="btnAjouterAb" layoutX="104.0" layoutY="341.0" mnemonicParsing="false" onAction="#AjouterAbonnement" prefHeight="41.0" prefWidth="118.0" style="-fx-background-color: #ff7f50;" text="    Ajouter">
+                        <Button fx:id="btnAjouterAb" layoutX="104.0" layoutY="341.0" mnemonicParsing="false" onAction="#AjouterAbonnement" prefHeight="41.0" prefWidth="118.0" style="-fx-background-color: #515151;" text="    Ajouter" textFill="#aceb1e">
                            <font>
-                              <Font name="System Bold" size="12.0" />
+                              <Font name="System Bold" size="15.0" />
                            </font></Button>
-                        <Button fx:id="btnSupprimerAb" layoutX="21.0" layoutY="487.0" mnemonicParsing="false" onAction="#SupprimerAbonnement" prefHeight="40.0" prefWidth="117.0" style="-fx-background-color: #ff7f50;" text="    Supprimer">
+                        <Button fx:id="btnSupprimerAb" layoutX="21.0" layoutY="487.0" mnemonicParsing="false" onAction="#SupprimerAbonnement" prefHeight="40.0" prefWidth="117.0" style="-fx-background-color: #515151;" text="    Supprimer" textFill="#aceb1e">
                            <font>
-                              <Font name="System Bold" size="12.0" />
+                              <Font name="System Bold" size="15.0" />
                            </font></Button>
                         <ListView fx:id="listAb" layoutX="357.0" layoutY="125.0" onMouseClicked="#getListeAb" prefHeight="286.0" prefWidth="631.0" />
-                        <Label layoutX="549.0" layoutY="20.0" text="Liste des Abonnements">
+                        <Label layoutX="549.0" layoutY="20.0" text="Liste des Abonnements" textFill="#aceb1e">
                            <font>
                               <Font name="System Bold Italic" size="18.0" />
                            </font>
                            <effect>
                               <DropShadow color="#ec9113" />
                            </effect></Label>
-                        <Button fx:id="btnModifierAb" layoutX="167.0" layoutY="488.0" mnemonicParsing="false" onAction="#ModifierAbonnement" prefHeight="38.0" prefWidth="107.0" style="-fx-background-color: #ff7f50;" text="    Modifier">
+                        <Button fx:id="btnModifierAb" layoutX="167.0" layoutY="488.0" mnemonicParsing="false" onAction="#ModifierAbonnement" prefHeight="38.0" prefWidth="107.0" style="-fx-background-color: #515151;" text="    Modifier" textFill="#aceb1e">
                            <font>
-                              <Font name="System Bold" size="12.0" />
+                              <Font name="System Bold" size="15.0" />
                            </font></Button>
                         <DatePicker fx:id="datepickdeb" layoutX="103.0" layoutY="204.0" prefHeight="25.0" prefWidth="118.0" />
                         <DatePicker fx:id="datepickfin" layoutX="103.0" layoutY="243.0" prefHeight="25.0" prefWidth="119.0" />
@@ -97,19 +97,22 @@
                            </image>
                         </ImageView>
                         <TextField fx:id="findAb" layoutX="500.0" layoutY="483.0" prefHeight="31.0" prefWidth="132.0" />
-                        <Button fx:id="findType" layoutX="357.0" layoutY="531.0" mnemonicParsing="false" onAction="#ChercherType" prefHeight="32.0" prefWidth="89.0" text="Type">
+                        <Button fx:id="findType" layoutX="357.0" layoutY="531.0" mnemonicParsing="false" onAction="#ChercherType" prefHeight="32.0" prefWidth="89.0" style="-fx-background-color: #515151;" text="Type" textFill="#aceb1e">
                            <font>
-                              <Font name="System Bold" size="12.0" />
+                              <Font name="System Bold" size="15.0" />
                            </font></Button>
-                        <Button fx:id="findPrix" layoutX="356.0" layoutY="589.0" mnemonicParsing="false" onAction="#ChercherPrix" prefHeight="30.0" prefWidth="91.0" text=" Prix">
+                        <Button fx:id="findPrix" layoutX="356.0" layoutY="589.0" mnemonicParsing="false" onAction="#ChercherPrix" prefHeight="30.0" prefWidth="91.0" style="-fx-background-color: #515151;" text=" Prix" textFill="#aceb1e">
                            <font>
-                              <Font name="System Bold" size="12.0" />
+                              <Font name="System Bold" size="15.0" />
                            </font></Button>
-                        <Button fx:id="triPrix" layoutX="675.0" layoutY="534.0" mnemonicParsing="false" onAction="#TrierPrix" prefHeight="25.0" prefWidth="76.0" text=" Prix">
+                        <Button fx:id="triPrix" layoutX="675.0" layoutY="534.0" mnemonicParsing="false" onAction="#TrierPrix" prefHeight="25.0" prefWidth="76.0" style="-fx-background-color: #515151;" text=" Prix" textFill="#aceb1e">
                            <font>
-                              <Font name="System Bold" size="12.0" />
+                              <Font name="System Bold" size="15.0" />
                            </font></Button>
-                        <Button fx:id="triIDUSER" layoutX="675.0" layoutY="579.0" mnemonicParsing="false" onAction="#trierIDUSER" prefHeight="25.0" prefWidth="90.0" text="Id user " />
+                        <Button fx:id="triIDUSER" layoutX="675.0" layoutY="579.0" mnemonicParsing="false" onAction="#trierIDUSER" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: #515151;" text="Id user " textFill="#aceb1e">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font></Button>
                         <Text layoutX="363.0" layoutY="496.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rechercher par :">
                            <font>
                               <Font name="System Bold Italic" size="14.0" />
@@ -135,13 +138,19 @@
                               <Image url="@../images/tri.png" />
                            </image>
                         </ImageView>
-                        <Button fx:id="actuAB" layoutX="431.0" layoutY="71.0" mnemonicParsing="false" onAction="#ActualiserAb" prefHeight="32.0" prefWidth="87.0" text="Actualiser" />
+                        <Button fx:id="actuAB" layoutX="431.0" layoutY="71.0" mnemonicParsing="false" onAction="#ActualiserAb" prefHeight="32.0" prefWidth="87.0" style="-fx-background-color: #515151;" text="Actualiser" textFill="#aceb1e">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font></Button>
                         <ImageView fx:id="refresh" fitHeight="29.0" fitWidth="29.0" layoutX="387.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/png-transparent-computer-icons-synchronization-encapsulated-postscript-icon-design-update-button-angle-text-logo.png" />
                            </image>
                         </ImageView>
-                        <Button fx:id="excel" layoutX="843.0" layoutY="75.0" mnemonicParsing="false" onAction="#generExcel" text="Generer un Fichier Excel" />
+                        <Button fx:id="excel" layoutX="843.0" layoutY="75.0" mnemonicParsing="false" onAction="#generExcel" style="-fx-background-color: #515151;" text="Generer un Fichier Excel" textFill="#aceb1e">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font></Button>
                         <ImageView fx:id="imgg" fitHeight="31.0" fitWidth="29.0" layoutX="25.0" layoutY="492.0" opacity="0.83" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/sssssssss.jpg" />
@@ -153,15 +162,21 @@
                               <Image url="@../images/excelFadwa.jpeg" />
                            </image>
                         </ImageView>
-                        <Button layoutX="43.0" layoutY="21.0" mnemonicParsing="false" onAction="#PlaySound" prefHeight="25.0" prefWidth="57.0" text="Jouer">
+                        <Button layoutX="43.0" layoutY="21.0" mnemonicParsing="false" onAction="#PlaySound" prefHeight="25.0" prefWidth="57.0" style="-fx-background-color: #515151;" text="Jouer" textFill="#aceb1e">
                            <effect>
                               <InnerShadow />
                            </effect>
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
                         </Button>
-                        <Button layoutX="118.0" layoutY="21.0" mnemonicParsing="false" onAction="#PauseSound" prefHeight="25.0" prefWidth="60.0" text="Pause">
+                        <Button layoutX="118.0" layoutY="21.0" mnemonicParsing="false" onAction="#PauseSound" prefHeight="25.0" prefWidth="60.0" style="-fx-background-color: #515151;" text="Pause" textFill="#aceb1e">
                            <effect>
                               <InnerShadow />
                            </effect>
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
                         </Button>
                         <ImageView fitHeight="27.0" fitWidth="25.0" layoutX="10.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -177,7 +192,7 @@
             </Tab>
             <Tab text="Gestion Locations ">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="990.0">
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="990.0" style="-fx-background-color: #98938b;">
                      <children>
                         <TextField fx:id="textIdLocation" layoutX="86.0" layoutY="373.0" prefHeight="25.0" prefWidth="111.0">
                            <effect>
@@ -196,20 +211,20 @@
                         <Label layoutX="25.0" layoutY="139.0" text="Heure" textFill="#b9936c" />
                         <Label layoutX="8.0" layoutY="184.0" prefHeight="17.0" prefWidth="93.0" text="Id Abonnement" textFill="#b9936c" />
                         <Label layoutX="23.0" layoutY="230.0" text="ID User" textFill="#b9936c" />
-                        <Button fx:id="AjoutLoc" layoutX="89.0" layoutY="323.0" mnemonicParsing="false" onAction="#AjouterLoaction" prefHeight="31.0" prefWidth="104.0" style="-fx-background-color: #ff7f50;" text="         Ajouter ">
+                        <Button fx:id="AjoutLoc" layoutX="89.0" layoutY="323.0" mnemonicParsing="false" onAction="#AjouterLoaction" prefHeight="31.0" prefWidth="104.0" style="-fx-background-color: #515151;" text="         Ajouter " textFill="#aceb1e">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font></Button>
-                        <Button fx:id="suppLoc" layoutX="7.0" layoutY="425.0" mnemonicParsing="false" onAction="#SupprimerLocation" prefHeight="32.0" prefWidth="111.0" style="-fx-background-color: #ff7f50;" text="       Supprimer">
+                        <Button fx:id="suppLoc" layoutX="7.0" layoutY="425.0" mnemonicParsing="false" onAction="#SupprimerLocation" prefHeight="32.0" prefWidth="111.0" style="-fx-background-color: #515151;" text="       Supprimer" textFill="#aceb1e">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font></Button>
-                        <Button fx:id="modifLoc" layoutX="134.0" layoutY="423.0" mnemonicParsing="false" onAction="#ModifierLocation" prefHeight="33.0" prefWidth="103.0" style="-fx-background-color: #ff7f50;" text="   Modifier">
+                        <Button fx:id="modifLoc" layoutX="134.0" layoutY="423.0" mnemonicParsing="false" onAction="#ModifierLocation" prefHeight="33.0" prefWidth="103.0" style="-fx-background-color: #515151;" text="   Modifier" textFill="#aceb1e">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font></Button>
                         <ListView fx:id="ListLoc" layoutX="370.0" layoutY="129.0" onMouseClicked="#GetListLoc" prefHeight="283.0" prefWidth="612.0" />
-                        <Label layoutX="613.0" layoutY="14.0" prefHeight="27.0" prefWidth="237.0" text="      Liste des Locations ">
+                        <Label layoutX="613.0" layoutY="14.0" prefHeight="27.0" prefWidth="237.0" text="      Liste des Locations " textFill="#aceb1e">
                            <font>
                               <Font name="System Bold Italic" size="18.0" />
                            </font>
@@ -241,12 +256,12 @@
                            </image>
                         </ImageView>
                         <TextField fx:id="findLoc" layoutX="438.0" layoutY="466.0" />
-                        <Button fx:id="findDuree" layoutX="438.0" layoutY="563.0" mnemonicParsing="false" onAction="#ChercherDuree" prefHeight="25.0" prefWidth="88.0" text=" Duree">
+                        <Button fx:id="findDuree" layoutX="438.0" layoutY="563.0" mnemonicParsing="false" onAction="#ChercherDuree" prefHeight="25.0" prefWidth="88.0" style="-fx-background-color: #515151;" text=" Duree" textFill="#aceb1e">
                            <font>
                               <Font name="System Bold Italic" size="12.0" />
                            </font>
                         </Button>
-                        <Button fx:id="findID" layoutX="438.0" layoutY="516.0" mnemonicParsing="false" onAction="#ChercherID" prefHeight="25.0" prefWidth="89.0" text="Location" />
+                        <Button fx:id="findID" layoutX="438.0" layoutY="516.0" mnemonicParsing="false" onAction="#ChercherID" prefHeight="25.0" prefWidth="89.0" style="-fx-background-color: #515151;" text="Location" textFill="#aceb1e" />
                         <Text layoutX="304.0" layoutY="484.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rechercher par :" wrappingWidth="112.8568115234375">
                            <font>
                               <Font name="System Bold" size="14.0" />
@@ -262,8 +277,8 @@
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Text>
-                        <Button fx:id="triDuree" layoutX="752.0" layoutY="563.0" mnemonicParsing="false" onAction="#TrierDuree" prefHeight="25.0" prefWidth="103.0" text="Durée" />
-                        <Button fx:id="triIdAb" layoutX="754.0" layoutY="516.0" mnemonicParsing="false" onAction="#TrierIdAB" text="Id Abonnement" />
+                        <Button fx:id="triDuree" layoutX="752.0" layoutY="563.0" mnemonicParsing="false" onAction="#TrierDuree" prefHeight="25.0" prefWidth="103.0" style="-fx-background-color: #515151;" text="Durée" textFill="#aceb1e" />
+                        <Button fx:id="triIdAb" layoutX="754.0" layoutY="516.0" mnemonicParsing="false" onAction="#TrierIdAB" style="-fx-background-color: #515151;" text="Id Abonnement" textFill="#aceb1e" />
                         <ImageView fx:id="IMG" fitHeight="29.0" fitWidth="27.0" layoutX="9.0" layoutY="425.0" opacity="0.64" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/sssssssss.jpg" />
@@ -286,13 +301,13 @@
                               <Glow />
                            </effect>
                         </Text>
-                        <Button fx:id="actuLOC" layoutX="424.0" layoutY="88.0" mnemonicParsing="false" onAction="#ActualiserLoc" prefHeight="30.0" prefWidth="78.0" text="Actualiser" />
+                        <Button fx:id="actuLOC" layoutX="424.0" layoutY="88.0" mnemonicParsing="false" onAction="#ActualiserLoc" prefHeight="30.0" prefWidth="78.0" style="-fx-background-color: #515151;" text="Actualiser" textFill="#aceb1e" />
                         <ImageView fx:id="refreesh" fitHeight="28.0" fitWidth="28.0" layoutX="388.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/png-transparent-computer-icons-synchronization-encapsulated-postscript-icon-design-update-button-angle-text-logo.png" />
                            </image>
                         </ImageView>
-                        <Button fx:id="pdf" layoutX="825.0" layoutY="91.0" mnemonicParsing="false" onAction="#generatePDF" text="Generer un fichier PDF" />
+                        <Button fx:id="pdf" layoutX="825.0" layoutY="91.0" mnemonicParsing="false" onAction="#generatePDF" style="-fx-background-color: #515151;" text="Generer un fichier PDF" textFill="#aceb1e" />
                         <ImageView fitHeight="32.0" fitWidth="42.0" layoutX="788.0" layoutY="88.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/pdfFadwa.png" />
@@ -308,7 +323,7 @@
             </Tab>
             <Tab text="Statistiques Types">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #98938b;">
                      <children>
                         <AnchorPane layoutX="76.0" layoutY="76.0" prefHeight="484.0" prefWidth="649.0">
                            <children>
@@ -319,7 +334,7 @@
                               </PieChart>
                            </children>
                         </AnchorPane>
-                        <Button fx:id="sttat" layoutX="262.0" layoutY="34.0" mnemonicParsing="false" onAction="#StatiistiqueAB" text="Afficher les Statstiques " />
+                        <Button fx:id="sttat" layoutX="262.0" layoutY="34.0" mnemonicParsing="false" onAction="#StatiistiqueAB" style="-fx-background-color: #515151;" text="Afficher les Statstiques " textFill="#aceb1e" />
                         <ImageView fitHeight="26.0" fitWidth="37.0" layoutX="225.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/statttfadwa.png" />
@@ -331,10 +346,10 @@
             </Tab>
             <Tab text="Statistiques Prix">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #98938b;">
                      <children>
                         <PieChart fx:id="piechaaart2" layoutX="119.0" layoutY="123.0" />
-                        <Button layoutX="279.0" layoutY="42.0" mnemonicParsing="false" onAction="#sattistiquePrix" prefHeight="37.0" prefWidth="141.0" text="Afficher les statistiques " />
+                        <Button layoutX="279.0" layoutY="42.0" mnemonicParsing="false" onAction="#sattistiquePrix" prefHeight="37.0" prefWidth="141.0" style="-fx-background-color: #515151;" text="Afficher les statistiques " textFill="#aceb1e" />
                         <ImageView fx:id="chaaart" fitHeight="34.0" fitWidth="35.0" layoutX="239.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/statttfadwa.png" />

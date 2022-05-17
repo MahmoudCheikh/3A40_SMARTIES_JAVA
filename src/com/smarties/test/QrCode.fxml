@@ -6,10 +6,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="732.0" prefWidth="1127.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smarties.test.QrCodeController">
+<AnchorPane id="AnchorPane" prefHeight="865.0" prefWidth="1513.0" style="-fx-background-color: #98938b;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smarties.test.QrCodeController">
    <children>
-      <ImageView fx:id="QrCode" fitHeight="593.0" fitWidth="827.0" layoutX="137.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true" />
-      <Label layoutX="314.0" layoutY="48.0" text="Scanner le QR code !" textFill="#b50101">
+      <ImageView fx:id="QrCode" fitHeight="593.0" fitWidth="827.0" layoutX="343.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" />
+      <Label layoutX="524.0" layoutY="41.0" text="Scanner le QR code !" textFill="#a00000">
          <font>
             <Font name="System Bold" size="24.0" />
          </font></Label>

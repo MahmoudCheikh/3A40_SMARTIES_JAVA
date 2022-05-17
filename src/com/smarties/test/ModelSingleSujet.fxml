@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="200.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smarties.test.ModelSingleSujetController">
+<AnchorPane id="AnchorPane" prefHeight="200.0" prefWidth="1439.0" style="-fx-background-color: #98938b;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smarties.test.ModelSingleSujetController">
    <children>
       <Label fx:id="txtTitre" layoutX="38.0" layoutY="69.0" text="Titre" textOverrun="CLIP">
          <font>
@@ -40,17 +40,13 @@
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor></Label>
-      <Button fx:id="afficher" layoutX="498.0" layoutY="39.0" mnemonicParsing="false" onAction="#afficher" prefHeight="25.0" prefWidth="76.0" text="Afficher">
+      <Button fx:id="afficher" layoutX="498.0" layoutY="39.0" mnemonicParsing="false" onAction="#afficher" prefHeight="31.0" prefWidth="288.0" style="-fx-background-color: #515151;" text="Afficher" textFill="#aceb1e" />
+      <Button fx:id="modifier" layoutX="498.0" layoutY="69.0" mnemonicParsing="false" onAction="#modifier" prefHeight="31.0" prefWidth="288.0" text="Modifier">
          <stylesheets>
             <URL value="@EvenementStyle.css" />
             <URL value="@../services/styleSmarties.css" />
          </stylesheets></Button>
-      <Button fx:id="modifier" layoutX="498.0" layoutY="69.0" mnemonicParsing="false" onAction="#modifier" prefHeight="25.0" prefWidth="76.0" text="Modifier">
-         <stylesheets>
-            <URL value="@EvenementStyle.css" />
-            <URL value="@../services/styleSmarties.css" />
-         </stylesheets></Button>
-      <Button fx:id="supprimer" layoutX="498.0" layoutY="99.0" mnemonicParsing="false" onAction="#supprimer" prefHeight="25.0" prefWidth="76.0" text="Supprimer">
+      <Button fx:id="supprimer" layoutX="498.0" layoutY="99.0" mnemonicParsing="false" onAction="#supprimer" prefHeight="31.0" prefWidth="288.0" text="Supprimer">
          <stylesheets>
             <URL value="@EvenementStyle.css" />
             <URL value="@../services/styleSmarties.css" />

@@ -14,9 +14,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="645.0" prefWidth="1055.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smarties.test.GuiAbonnementFrontController">
+<AnchorPane id="AnchorPane" prefHeight="795.0" prefWidth="1440.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smarties.test.GuiAbonnementFrontController">
    <children>
-      <AnchorPane layoutY="6.0" minHeight="0.0" minWidth="0.0" prefHeight="634.0" prefWidth="1101.0">
+      <AnchorPane layoutY="2.0" minHeight="0.0" minWidth="0.0" prefHeight="795.0" prefWidth="1440.0" style="-fx-background-color: #98938b;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Label layoutX="30.0" layoutY="115.0" text="Type" textFill="#141413">
                <font>
@@ -25,18 +25,18 @@
             </Label>
             <Label layoutX="23.0" layoutY="169.0" text="Date debut " textFill="#141413" />
             <Label layoutX="21.0" layoutY="219.0" text="Date fin" textFill="#383735" />
-            <Button fx:id="btnAjouterAbFront" layoutX="116.0" layoutY="538.0" mnemonicParsing="false" onAction="#AjouterAbonnementFront" prefHeight="41.0" prefWidth="118.0" style="-fx-background-color: #979A9A;" text=" Abonner" textFill="#090909">
+            <Button fx:id="btnAjouterAbFront" layoutX="116.0" layoutY="538.0" mnemonicParsing="false" onAction="#AjouterAbonnementFront" prefHeight="41.0" prefWidth="118.0" style="-fx-background-color: #515151;" text=" Abonner" textFill="#aceb1e">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btnSupprimerAb" layoutX="413.0" layoutY="420.0" mnemonicParsing="false" onAction="#SupprimerAbonnementFront" prefHeight="40.0" prefWidth="117.0" style="-fx-background-color: #979A9A;" text="Désabonner">
+            <Button fx:id="btnSupprimerAb" layoutX="413.0" layoutY="420.0" mnemonicParsing="false" onAction="#SupprimerAbonnementFront" prefHeight="40.0" prefWidth="117.0" style="-fx-background-color: #515151;" text="Désabonner" textFill="#aceb1e">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
             <ListView fx:id="listAb" layoutX="357.0" layoutY="125.0" onMouseClicked="#getListeAb" prefHeight="286.0" prefWidth="479.0" stylesheets="@abonnementstyle.css" />
-            <Label layoutX="484.0" layoutY="31.0" prefHeight="27.0" prefWidth="226.0" text="   Liste des Abonnements">
+            <Label layoutX="484.0" layoutY="31.0" prefHeight="27.0" prefWidth="226.0" text="   Liste des Abonnements" textFill="#aceb1e">
                <font>
                   <Font name="System Bold Italic" size="18.0" />
                </font>
@@ -65,7 +65,7 @@
                <effect>
                   <InnerShadow />
                </effect></TextField>
-            <Button fx:id="findType" layoutX="394.0" layoutY="75.0" mnemonicParsing="false" onAction="#ChercherType" prefHeight="41.0" prefWidth="173.0" style="-fx-background-color: #979A9A;" text="Rechercher par type ">
+            <Button fx:id="findType" layoutX="394.0" layoutY="75.0" mnemonicParsing="false" onAction="#ChercherType" prefHeight="41.0" prefWidth="173.0" style="-fx-background-color: #515151;" text="Rechercher par type " textFill="#aceb1e">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>

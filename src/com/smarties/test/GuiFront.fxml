@@ -19,20 +19,20 @@
 
     </center>
     <top>
-        <AnchorPane prefHeight="38.0" prefWidth="1366.0" BorderPane.alignment="CENTER">
+        <AnchorPane prefHeight="38.0" prefWidth="1366.0" style="-fx-background-color: #111318;" BorderPane.alignment="CENTER">
          <children>
-                <Button fx:id="btnproduitsF" mnemonicParsing="false" onAction="#GestionProduit" prefHeight="36.0" prefWidth="90.0" stylesheets="@EvenementStyle.css" text="Produits" />
-            <Button layoutX="90.0" mnemonicParsing="false" onAction="#GestionSites" prefHeight="36.0" prefWidth="90.0" stylesheets="@EvenementStyle.css" text="Les Sites" />
-            <Button fx:id="evenement" layoutX="180.0" mnemonicParsing="false" onAction="#evenement" prefHeight="36.0" prefWidth="90.0" stylesheets="@EvenementStyle.css" text="Evenements" />
-            <Button layoutX="270.0" mnemonicParsing="false" onAction="#forum" prefHeight="36.0" prefWidth="90.0" stylesheets="@EvenementStyle.css" text="Forum" />
-            <Button layoutX="360.0" mnemonicParsing="false" onAction="#GestionProfil" prefHeight="36.0" prefWidth="90.0" stylesheets="@EvenementStyle.css" text="Mon Profil" />
-            <Button layoutX="450.0" mnemonicParsing="false" onAction="#GestionFavoris" prefHeight="36.0" prefWidth="90.0" stylesheets="@EvenementStyle.css" text="Mes Favoris" />
-            <Button layoutX="540.0" mnemonicParsing="false" onAction="#FrontCommandes" prefHeight="36.0" prefWidth="131.0" stylesheets="@EvenementStyle.css" text="Mes Commandes" />
-            <Button layoutX="670.0" mnemonicParsing="false" onAction="#FrontAbonnement" prefHeight="36.0" prefWidth="90.0" stylesheets="@EvenementStyle.css" text="Abonnement" />
-            <Button layoutX="759.0" mnemonicParsing="false" onAction="#FrontLocation" prefHeight="36.0" prefWidth="90.0" stylesheets="@EvenementStyle.css" text="Locations" />
-            <Button layoutX="848.0" mnemonicParsing="false" onAction="#FrontReclamation" prefHeight="36.0" prefWidth="112.0" stylesheets="@EvenementStyle.css" text="Reclamation" />
-            <Button layoutX="958.0" mnemonicParsing="false" onAction="#FrontMaintenance" prefHeight="36.0" prefWidth="143.0" stylesheets="@EvenementStyle.css" text="Maintenances" />
-            <Button fx:id="btnlogout" layoutX="1218.0" mnemonicParsing="false" onAction="#logout" prefHeight="36.0" prefWidth="148.0" stylesheets="@EvenementStyle.css" text="Deconnexion" />
+                <Button fx:id="btnproduitsF" mnemonicParsing="false" onAction="#GestionProduit" prefHeight="36.0" prefWidth="90.0" style="-fx-background-color: #515151;" stylesheets="@EvenementStyle.css" text="Produits" />
+            <Button layoutX="90.0" mnemonicParsing="false" onAction="#GestionSites" prefHeight="36.0" prefWidth="90.0" style="-fx-background-color: #515151;" stylesheets="@EvenementStyle.css" text="Les Sites" />
+            <Button fx:id="evenement" layoutX="180.0" mnemonicParsing="false" onAction="#evenement" prefHeight="36.0" prefWidth="90.0" style="-fx-background-color: #515151;" stylesheets="@EvenementStyle.css" text="Evenements" />
+            <Button layoutX="270.0" mnemonicParsing="false" onAction="#forum" prefHeight="36.0" prefWidth="90.0" style="-fx-background-color: #515151;" stylesheets="@EvenementStyle.css" text="Forum" />
+            <Button layoutX="360.0" mnemonicParsing="false" onAction="#GestionProfil" prefHeight="36.0" prefWidth="90.0" style="-fx-background-color: #515151;" stylesheets="@EvenementStyle.css" text="Mon Profil" />
+            <Button layoutX="450.0" mnemonicParsing="false" onAction="#GestionFavoris" prefHeight="36.0" prefWidth="90.0" style="-fx-background-color: #515151;" stylesheets="@EvenementStyle.css" text="Mes Favoris" />
+            <Button layoutX="540.0" mnemonicParsing="false" onAction="#FrontCommandes" prefHeight="36.0" prefWidth="131.0" style="-fx-background-color: #515151;" stylesheets="@EvenementStyle.css" text="Mes Commandes" />
+            <Button layoutX="670.0" mnemonicParsing="false" onAction="#FrontAbonnement" prefHeight="36.0" prefWidth="90.0" style="-fx-background-color: #515151;" stylesheets="@EvenementStyle.css" text="Abonnement" />
+            <Button layoutX="759.0" mnemonicParsing="false" onAction="#FrontLocation" prefHeight="36.0" prefWidth="90.0" style="-fx-background-color: #515151;" stylesheets="@EvenementStyle.css" text="Locations" />
+            <Button layoutX="848.0" mnemonicParsing="false" onAction="#FrontReclamation" prefHeight="36.0" prefWidth="112.0" style="-fx-background-color: #515151;" stylesheets="@EvenementStyle.css" text="Reclamation" />
+            <Button layoutX="958.0" mnemonicParsing="false" onAction="#FrontMaintenance" prefHeight="36.0" prefWidth="143.0" style="-fx-background-color: #515151;" stylesheets="@EvenementStyle.css" text="Maintenances" />
+            <Button fx:id="btnlogout" layoutX="1218.0" mnemonicParsing="false" onAction="#logout" prefHeight="36.0" prefWidth="148.0" style="-fx-background-color: #515151;" stylesheets="@EvenementStyle.css" text="Deconnexion" />
          </children>
         </AnchorPane>
     </top>

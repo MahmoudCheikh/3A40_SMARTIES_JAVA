@@ -3,8 +3,8 @@
 
 
 .button{
--fx-background-color :   #BF3C3C;
--fx-text-fill: #FFFFFF;
+-fx-background-color :    #111318;
+-fx-text-fill: #aceb1e;
 -fx-font-weight:bold;
 }
 
@@ -66,7 +66,7 @@
 .table-view .cell{
    -fx-cell-size: 30;
  -fx-alignment: center-left;
-  -fx-text-fill: #000000;
+  -fx-text-fill: #aceb1e;
  -fx-alignment: CENTER_LEFT;}
 
 .table-row-cell:selected {
@@ -154,7 +154,7 @@
 .table-view1 .cell{
    -fx-cell-size: 30;
  -fx-alignment: center-left;
-  -fx-text-fill: #000000;
+  -fx-text-fill:  #111318;
   -fx-background-color: #D2D2D2;
  -fx-alignment: CENTER_LEFT;}
 

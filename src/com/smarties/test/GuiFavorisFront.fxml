@@ -9,13 +9,13 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" fx:id="a1" prefHeight="672.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smarties.test.GuiFavorisFrontController">
+<AnchorPane id="AnchorPane" fx:id="a1" prefHeight="802.0" prefWidth="1378.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smarties.test.GuiFavorisFrontController">
    <children>
       <AnchorPane layoutX="10.0" layoutY="10.0" prefWidth="990.0" style="-fx-background-color: #D0BE25;">
          <children>
-            <StackPane layoutX="-10.0" layoutY="-11.0" prefHeight="79.0" prefWidth="1230.0" style="-fx-background-color: #BF3C3C;" AnchorPane.leftAnchor="-10.0" AnchorPane.rightAnchor="-370.0" AnchorPane.topAnchor="-11.0">
+            <StackPane layoutX="-10.0" layoutY="-11.0" prefHeight="79.0" prefWidth="1230.0" style="-fx-background-color: #111318;" AnchorPane.leftAnchor="-10.0" AnchorPane.rightAnchor="-370.0" AnchorPane.topAnchor="-11.0">
                <children>
-                  <Text fx:id="topText" boundsType="LOGICAL_VERTICAL_CENTER" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste des Favoris" textAlignment="JUSTIFY" textOrigin="CENTER">
+                  <Text fx:id="topText" boundsType="LOGICAL_VERTICAL_CENTER" fill="#aceb1e" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste des Favoris" textAlignment="JUSTIFY" textOrigin="CENTER">
                      <font>
                         <Font name="Arial Bold" size="23.0" />
                      </font>
@@ -24,15 +24,15 @@
             </StackPane>
          </children>
       </AnchorPane>
-      <ScrollPane fitToHeight="true" fitToWidth="true" layoutY="77.0" maxHeight="-Infinity" maxWidth="-Infinity" pannable="true" prefHeight="596.0" prefWidth="1366.0" style="-fx-background-color: transparent;">
+      <ScrollPane fitToHeight="true" fitToWidth="true" layoutY="78.0" maxHeight="-Infinity" maxWidth="-Infinity" pannable="true" prefHeight="724.0" prefWidth="1370.0" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="78.0">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
          <content>
             <AnchorPane prefHeight="672.0" prefWidth="1366.0">
                <children>
-                  <VBox fx:id="vboxFavoris" layoutX="7.0" layoutY="16.0" prefHeight="596.0" prefWidth="1366.0" style="-fx-background-color: #ffffff;" stylesheets="@EvenementStyle.css" AnchorPane.bottomAnchor="-18.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="-9.0" AnchorPane.topAnchor="16.0" />
-                  <Button fx:id="refresh" mnemonicParsing="false" onAction="#refresh" prefHeight="31.0" prefWidth="207.0" style="-fx-background-color: #b51200;" text="Actualiser" textFill="WHITE">
+                  <VBox fx:id="vboxFavoris" layoutX="-4.0" layoutY="-1.0" prefHeight="722.0" prefWidth="1370.0" style="-fx-background-color: #98938b;" stylesheets="@EvenementStyle.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="0.0" />
+                  <Button fx:id="refresh" mnemonicParsing="false" onAction="#refresh" prefHeight="31.0" prefWidth="207.0" style="-fx-background-color: #111318;" text="Actualiser" textFill="#aceb1e">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>

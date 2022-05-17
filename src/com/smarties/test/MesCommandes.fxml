@@ -18,15 +18,15 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smarties.test.MesCommandesController">
+<AnchorPane id="AnchorPane" prefHeight="728.0" prefWidth="1604.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smarties.test.MesCommandesController">
    <children>
-      <TabPane prefHeight="600.0" prefWidth="1366.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <TabPane prefHeight="728.0" prefWidth="1604.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <tabs>
             <Tab text="Commande">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="467.0" prefWidth="731.0">
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="467.0" prefWidth="731.0" style="-fx-background-color: #98938b;">
                      <children>
-                        <TextField fx:id="txtnbrproduitfront" layoutX="208.0" layoutY="97.0" prefHeight="25.0" prefWidth="218.0" promptText="Inserer Nbr Produit" style="-fx-background-color: #f00020;">
+                        <TextField fx:id="txtnbrproduitfront" layoutX="208.0" layoutY="97.0" prefHeight="25.0" prefWidth="218.0" promptText="Inserer Nbr Produit" style="-fx-background-color: #515151;">
                            <effect>
                               <InnerShadow />
                            </effect>
@@ -36,7 +36,7 @@
                               <DropShadow />
                            </effect>
                         </ListView>
-                        <Button fx:id="btnajouterc" layoutX="178.0" layoutY="40.0" mnemonicParsing="false" onAction="#ajouterc" prefHeight="25.0" prefWidth="113.0" style="-fx-background-color: #f00020;" stylesheets="@../services/styleSmarties.css" text="Commander " textAlignment="CENTER" textFill="#f8f8f7">
+                        <Button fx:id="btnajouterc" layoutX="178.0" layoutY="40.0" mnemonicParsing="false" onAction="#ajouterc" prefHeight="25.0" prefWidth="113.0" style="-fx-background-color: #515151;" stylesheets="@../services/styleSmarties.css" text="Commander " textAlignment="CENTER" textFill="#f8f8f7">
                            <font>
                               <Font name="Barlow Condensed Light" size="14.0" />
                            </font>
@@ -47,7 +47,7 @@
                               <DropShadow />
                            </effect>
                         </Button>
-                        <Button fx:id="btnupdatec" layoutX="519.0" layoutY="96.0" mnemonicParsing="false" onAction="#update" prefHeight="28.0" prefWidth="180.0" style="-fx-background-color: #f00020;" stylesheets="@../services/styleSmarties.css" text="Modifier Vos Commandes" textAlignment="CENTER" textFill="#f8f8f7">
+                        <Button fx:id="btnupdatec" layoutX="519.0" layoutY="96.0" mnemonicParsing="false" onAction="#update" prefHeight="28.0" prefWidth="180.0" style="-fx-background-color: #515151;" stylesheets="@../services/styleSmarties.css" text="Modifier Vos Commandes" textAlignment="CENTER" textFill="#f8f8f7">
                            <font>
                               <Font name="Barlow Condensed Light" size="14.0" />
                            </font>
@@ -58,7 +58,7 @@
                               <DropShadow />
                            </effect>
                         </Button>
-                        <Button fx:id="btndeletec" layoutX="1060.0" layoutY="400.0" mnemonicParsing="false" onAction="#deletec" prefHeight="42.0" prefWidth="298.0" style="-fx-background-color: #f00020;" stylesheets="@../services/styleSmarties.css" text="Supprimer Votre Commande" textAlignment="CENTER" textFill="#f8f8f7">
+                        <Button fx:id="btndeletec" layoutX="1060.0" layoutY="400.0" mnemonicParsing="false" onAction="#deletec" prefHeight="42.0" prefWidth="298.0" style="-fx-background-color: #515151;" stylesheets="@../services/styleSmarties.css" text="Supprimer Votre Commande" textAlignment="CENTER" textFill="#f8f8f7">
                            <font>
                               <Font name="Barlow Condensed Light" size="14.0" />
                            </font>
@@ -74,7 +74,7 @@
                               <InnerShadow />
                            </effect>
                         </TextField>
-                        <Button fx:id="recherche" layoutX="151.0" layoutY="531.0" mnemonicParsing="false" onAction="#Rechercher" prefHeight="25.0" prefWidth="83.0" style="-fx-background-color: #f00020;" stylesheets="@../services/styleSmarties.css" text="Rechercher" textAlignment="CENTER" textFill="#f8f8f7">
+                        <Button fx:id="recherche" layoutX="151.0" layoutY="531.0" mnemonicParsing="false" onAction="#Rechercher" prefHeight="25.0" prefWidth="83.0" style="-fx-background-color: #515151;" stylesheets="@../services/styleSmarties.css" text="Rechercher" textAlignment="CENTER" textFill="#f8f8f7">
                            <font>
                               <Font name="Barlow Condensed Light" size="14.0" />
                            </font>
@@ -85,7 +85,7 @@
                               <DropShadow />
                            </effect>
                         </Button>
-                        <TextField fx:id="rechcfront" layoutX="19.0" layoutY="533.0" prefHeight="25.0" prefWidth="115.0" style="-fx-background-color: #f00020;">
+                        <TextField fx:id="rechcfront" layoutX="19.0" layoutY="533.0" prefHeight="25.0" prefWidth="115.0" style="-fx-background-color: #515151;">
                            <effect>
                               <InnerShadow />
                            </effect>
@@ -95,7 +95,7 @@
                               <Image url="@../images/sdsd.png" />
                            </image>
                         </ImageView>
-                        <Button fx:id="triid" layoutX="26.0" layoutY="487.0" mnemonicParsing="false" onAction="#triercommande" prefHeight="25.0" prefWidth="172.0" style="-fx-background-color: #f00020;" stylesheets="@../services/styleSmarties.css" text="      Trier Vos Commande" textFill="WHITE">
+                        <Button fx:id="triid" layoutX="26.0" layoutY="487.0" mnemonicParsing="false" onAction="#triercommande" prefHeight="25.0" prefWidth="172.0" style="-fx-background-color: #515151;" stylesheets="@../services/styleSmarties.css" text="      Trier Vos Commande" textFill="WHITE">
                            <effect>
                               <DropShadow />
                            </effect>
@@ -103,7 +103,7 @@
                               <Font name="Barlow Condensed Light" size="12.0" />
                            </font>
                         </Button>
-                        <Button fx:id="actc" layoutX="208.0" layoutY="487.0" mnemonicParsing="false" onAction="#actcommande" prefHeight="25.0" prefWidth="128.0" style="-fx-background-color: #f00020;" stylesheets="@../services/styleSmarties.css" text="Actualiser" textFill="#f8f7f7">
+                        <Button fx:id="actc" layoutX="208.0" layoutY="487.0" mnemonicParsing="false" onAction="#actcommande" prefHeight="25.0" prefWidth="128.0" style="-fx-background-color: #515151;" stylesheets="@../services/styleSmarties.css" text="Actualiser" textFill="#f8f7f7">
                            <font>
                               <Font name="Barlow Condensed Light" size="12.0" />
                            </font>
@@ -111,7 +111,7 @@
                               <DropShadow />
                            </effect>
                         </Button>
-                        <Button fx:id="pdfgen" layoutX="1064.0" layoutY="343.0" mnemonicParsing="false" onAction="#pdf" prefHeight="50.0" prefWidth="291.0" style="-fx-background-color: #f00020;" stylesheets="@EvenementStyle.css" text="Votre Commande En Pdf" textFill="#eee3e3">
+                        <Button fx:id="pdfgen" layoutX="1064.0" layoutY="343.0" mnemonicParsing="false" onAction="#pdf" prefHeight="50.0" prefWidth="291.0" style="-fx-background-color: #515151;" stylesheets="@EvenementStyle.css" text="Votre Commande En Pdf" textFill="#eee3e3">
                            <graphic>
                               <ImageView fitHeight="54.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -123,7 +123,7 @@
                               <Font name="Barlow Condensed Light" size="13.0" />
                            </font>
                         </Button>
-                        <ComboBox fx:id="comboCommProdfront" layoutX="42.0" layoutY="97.0" prefWidth="150.0" promptText="Produits" style="-fx-background-color: #f00020;" stylesheets="@../services/styleSmarties.css">
+                        <ComboBox fx:id="comboCommProdfront" layoutX="42.0" layoutY="97.0" prefWidth="150.0" promptText="Produits" style="-fx-background-color: #ffffff;" stylesheets="@../services/styleSmarties.css">
                            <effect>
                               <Lighting>
                                  <bumpInput>
@@ -134,7 +134,7 @@
                                  </light>
                               </Lighting>
                            </effect></ComboBox>
-                        <Button fx:id="versachat" layoutX="707.0" layoutY="97.0" mnemonicParsing="false" onAction="#commachat" prefHeight="25.0" prefWidth="334.0" style="-fx-background-color: #f00020;" stylesheets="@EvenementStyle.css" text="Acheter Votre Produit" textFill="#f2e8e8">
+                        <Button fx:id="versachat" layoutX="707.0" layoutY="97.0" mnemonicParsing="false" onAction="#commachat" prefHeight="25.0" prefWidth="334.0" style="-fx-background-color: #515151;" stylesheets="@EvenementStyle.css" text="Acheter Votre Produit" textFill="#f2e8e8">
                            <font>
                               <Font name="Barlow Condensed Light" size="13.0" />
                            </font></Button>
@@ -149,7 +149,7 @@
             </Tab>
             <Tab fx:id="btndeleteachat" text="Achat">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="391.0" prefWidth="686.0">
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="682.0" prefWidth="1366.0" style="-fx-background-color: #98938b;">
                      <children>
                         <ListView fx:id="listachatfront" layoutX="19.0" layoutY="106.0" onMouseClicked="#getDataAchat" prefHeight="334.0" prefWidth="1314.0" style="-fx-background-color: # #f00020;">
                            <effect>
@@ -157,7 +157,7 @@
                            </effect>
                         </ListView>
                         <Label layoutX="100.0" layoutY="291.0" prefHeight="17.0" prefWidth="42.0" />
-                        <Button fx:id="trierachat" layoutX="34.0" layoutY="461.0" mnemonicParsing="false" onAction="#trierachatid" prefHeight="25.0" prefWidth="253.0" style="-fx-background-color: # #f00020;" stylesheets="@EvenementStyle.css" text="Trier Et Actualiser" textFill="WHITE">
+                        <Button fx:id="trierachat" layoutX="34.0" layoutY="461.0" mnemonicParsing="false" onAction="#trierachatid" prefHeight="25.0" prefWidth="253.0" style="-fx-background-color: #515151;" stylesheets="@EvenementStyle.css" text="Trier Et Actualiser" textFill="WHITE">
                            <graphic>
                               <ImageView fitHeight="14.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                                  <image>

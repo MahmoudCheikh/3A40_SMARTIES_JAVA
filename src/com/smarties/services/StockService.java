@@ -414,10 +414,10 @@ public class StockService {
             //////////////////////////////////////////////////////////////////////////////
             while (rs.next()) {
               
-                cell = new PdfPCell(new Phrase(rs.getString("id_produit_id").toString(), FontFactory.getFont("Comic Sans MS", 12)));
+                /*cell = new PdfPCell(new Phrase(rs.getString("id_produit_id").toString(), FontFactory.getFont("Comic Sans MS", 12)));
                 cell.setHorizontalAlignment(Element.ALIGN_CENTER);
                 cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
-                table.addCell(cell);
+                table.addCell(cell);*/
                 ///////
                 cell = new PdfPCell(new Phrase(rs.getString("libelle").toString(), FontFactory.getFont("Comic Sans MS", 12)));
                 cell.setHorizontalAlignment(Element.ALIGN_CENTER);

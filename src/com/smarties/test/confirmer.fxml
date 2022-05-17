@@ -4,14 +4,21 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: #BF3C3C;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smarties.test.ConfirmerController">
+<AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: #111318;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smarties.test.ConfirmerController">
    <children>
-      <Label layoutX="634.0" layoutY="384.0" text="Email" textFill="WHITE" />
-      <Label layoutX="635.0" layoutY="425.0" text="Code" textFill="WHITE" />
-      <TextField fx:id="txtmail" layoutX="666.0" layoutY="380.0" />
-      <TextField fx:id="txtcode" layoutX="666.0" layoutY="421.0" />
-      <Button layoutX="666.0" layoutY="455.0" mnemonicParsing="false" onAction="#confirmer" text="Confirmer" />
-      <Button fx:id="retour" layoutX="763.0" layoutY="455.0" mnemonicParsing="false" onAction="#retour" text="Retour" />
+      <Label layoutX="570.0" layoutY="374.0" text="EMAIL" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Label>
+      <Label layoutX="571.0" layoutY="428.0" text="CODE" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Label>
+      <TextField fx:id="txtmail" layoutX="666.0" layoutY="364.0" prefHeight="45.0" prefWidth="280.0" />
+      <TextField fx:id="txtcode" layoutX="666.0" layoutY="421.0" prefHeight="40.0" prefWidth="280.0" />
+      <Button layoutX="558.0" layoutY="509.0" mnemonicParsing="false" onAction="#confirmer" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #515151;" text="CONFIRMER" textFill="#aceb1e" />
+      <Button fx:id="retour" layoutX="794.0" layoutY="509.0" mnemonicParsing="false" onAction="#retour" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #515151;" text="RETOUR" textFill="#aceb1e" />
    </children>
 </AnchorPane>

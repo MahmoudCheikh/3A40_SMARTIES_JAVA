@@ -14,9 +14,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="648.0" prefWidth="990.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smarties.test.GuiLocationFrontController">
+<AnchorPane id="AnchorPane" prefHeight="823.0" prefWidth="1368.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smarties.test.GuiLocationFrontController">
    <children>
-      <AnchorPane layoutX="-14.0" minHeight="0.0" minWidth="0.0" prefHeight="656.0" prefWidth="990.0" stylesheets="@abonnementstyle.css">
+      <AnchorPane layoutX="-14.0" minHeight="0.0" minWidth="0.0" prefHeight="823.0" prefWidth="1154.0" style="-fx-background-color: #98938b;" stylesheets="@abonnementstyle.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="0.0">
          <children>
             <TextField fx:id="TextHeureLoc" layoutX="102.0" layoutY="127.0" prefHeight="25.0" prefWidth="105.0">
                <effect>
@@ -30,13 +30,13 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="suppLoc" layoutX="508.0" layoutY="446.0" mnemonicParsing="false" onAction="#SupprimerLocation" prefHeight="32.0" prefWidth="111.0" style="-fx-background-color: #979A9A;" text="   Supprimer">
+            <Button fx:id="suppLoc" layoutX="508.0" layoutY="446.0" mnemonicParsing="false" onAction="#SupprimerLocation" prefHeight="32.0" prefWidth="111.0" style="-fx-background-color: #515151;" text="   Supprimer" textFill="#aceb1e">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
             <ListView fx:id="ListLoc" layoutX="378.0" layoutY="150.0" onMouseClicked="#GetListLoc" prefHeight="283.0" prefWidth="527.0" />
-            <Label layoutX="495.0" layoutY="33.0" prefHeight="27.0" prefWidth="237.0" text="        Liste des Locations        ">
+            <Label layoutX="495.0" layoutY="33.0" prefHeight="27.0" prefWidth="237.0" text="        Liste des Locations        " textFill="#aceb1e">
                <font>
                   <Font name="System Bold Italic" size="18.0" />
                </font>
@@ -56,7 +56,7 @@
                </effect>
             </DatePicker>
             <TextField fx:id="findLoc" layoutX="619.0" layoutY="108.0" prefHeight="25.0" prefWidth="120.0" />
-            <Button fx:id="findDuree" layoutX="431.0" layoutY="108.0" mnemonicParsing="false" onAction="#ChercherDuree" prefHeight="30.0" prefWidth="167.0" style="-fx-background-color: #979A9A;" text="Rechercher par Duree">
+            <Button fx:id="findDuree" layoutX="431.0" layoutY="108.0" mnemonicParsing="false" onAction="#ChercherDuree" prefHeight="30.0" prefWidth="167.0" style="-fx-background-color: #515151;" text="Rechercher par Duree" textFill="#aceb1e">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
@@ -74,7 +74,7 @@
                   <Glow />
                </effect>
             </Text>
-            <Button fx:id="Continuer" layoutX="94.0" layoutY="230.0" mnemonicParsing="false" onAction="#Continuer" prefHeight="31.0" prefWidth="120.0" style="-fx-background-color: #979A9A;" text="Continuer">
+            <Button fx:id="Continuer" layoutX="94.0" layoutY="230.0" mnemonicParsing="false" onAction="#Continuer" prefHeight="31.0" prefWidth="120.0" style="-fx-background-color: #515151;" text="Continuer" textFill="#aceb1e">
                <font>
                   <Font name="Arial" size="14.0" />
                </font></Button>
