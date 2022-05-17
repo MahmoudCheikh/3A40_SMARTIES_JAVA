@@ -93,8 +93,14 @@ public class GuiProduitFrontController implements Initializable {
             HBox innerContainer = ((HBox) ((AnchorPane) ((AnchorPane) parent).getChildren().get(0)).getChildren().get(0));
             ((Text) innerContainer.lookup("#libellePF")).setText("Nom du Produit: " + prod.getLibelle());
             ((Text) innerContainer.lookup("#prixPF")).setText("Prix en Dt: " + prod.getPrix() + " .DT");
-            Image img = new Image(new FileInputStream(prod.getImage()));
-            ((ImageView) innerContainer.lookup("#imagePF")).setImage(img);
+            /*Image img = new Image(new FileInputStream(prod.getImage()));
+            ((ImageView) innerContainer.lookup("#imagePF")).setImage(img);*/
+            File imageFile = new File(GuiProduitController.imgUploadDir + "/" + prod.getImage());
+        Image imagea = new Image(imageFile.toURI().toString());
+
+            ((ImageView) innerContainer.lookup("#imagePF")).setImage(imagea);
+
+        
             ((Text) innerContainer.lookup("#typePF")).setText("Type du Produit: " + prod.getType());
             ((Text) innerContainer.lookup("#descPF")).setText("Description: " + prod.getDescription());
             //button QRcode 

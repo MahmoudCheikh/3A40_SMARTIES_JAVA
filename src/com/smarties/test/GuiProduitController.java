@@ -199,7 +199,7 @@ public class GuiProduitController implements Initializable {
     @FXML
     private Button pdfStock;
     private File selectedFile;
-    public static String imgUploadDir = "C:\\xampp\\htdocs\\symfonyProject\\public\\uploads\\image";
+    public static String imgUploadDir = "C:\\xampp\\htdocs\\PI_3A40_21_SMARTIES\\pi\\public\\img\\bike";
     private String path;
 
     /**
@@ -275,7 +275,7 @@ public class GuiProduitController implements Initializable {
      */
     @FXML
     private void uploadImage(ActionEvent event) throws FileNotFoundException {
-        /*JFileChooser chooser = new JFileChooser();
+       /* JFileChooser chooser = new JFileChooser();
         chooser.showOpenDialog(null);
         File f = chooser.getSelectedFile();
         String Filename = f.getAbsolutePath();
@@ -294,7 +294,7 @@ public class GuiProduitController implements Initializable {
 
             path = selectedFile.getName();
 //    
-           // Image.setText(path);
+           imageProd.setText(path);
             Image imagea = new Image(selectedFile.toURI().toString());
           // imageView.setImage(imagea) ;
     }
