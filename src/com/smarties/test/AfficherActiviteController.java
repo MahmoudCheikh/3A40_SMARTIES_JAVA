@@ -79,8 +79,12 @@ public class AfficherActiviteController implements Initializable {
            // ((Text) innerContainer.lookup("#imageactivitetxt")).setText("image:" + e.getImage());
             //JFileChooser chooser=new JFileChooser();
        
-            Image img =new Image(new FileInputStream(e.getImage()));
-            ((ImageView) innerContainer.lookup("#image")).setImage(img);
+            /*Image img =new Image(new FileInputStream(e.getImage()));
+            ((ImageView) innerContainer.lookup("#image")).setImage(img);*/
+                        File imageFile = new File(GuiProduitController.imgUploadDir + "/" + e.getImage());
+        Image imagea = new Image(imageFile.toURI().toString());
+
+            ((ImageView) innerContainer.lookup("#image")).setImage(imagea);
         
                  } catch (IOException ex) {
             System.out.println(ex.getMessage());

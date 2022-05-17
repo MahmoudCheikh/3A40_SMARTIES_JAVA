@@ -68,6 +68,7 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.ChoiceBox;
+import javafx.stage.FileChooser;
 import org.controlsfx.control.Notifications;
 /**
  * FXML Controller class
@@ -178,7 +179,9 @@ public class GuiEvenementController implements Initializable {
     private CategoryAxis xAxis;
    private ObservableList<String> monthNames = FXCollections.observableArrayList();
    
-
+    private File selectedFile;
+    public static String imgUploadDir = "C:\\xampp\\htdocs\\PI_3A40_21_SMARTIES\\pi\\public\\img\\bike";
+    private String path;
     /**
      * Initializes the controller class.
      */
@@ -678,14 +681,34 @@ public class GuiEvenementController implements Initializable {
 
     @FXML
     private void uploadimage(ActionEvent event) throws FileNotFoundException {
-        JFileChooser chooser=new JFileChooser();
+       /* JFileChooser chooser=new JFileChooser();
         chooser.showOpenDialog(null); 
         File f=chooser.getSelectedFile(); 
         String Filename=f.getAbsolutePath(); 
         txtimage.setText(Filename);
         Image image =new Image(new FileInputStream(f));
         img.setImage(image);
-        imgview.setVisible(false);
+        imgview.setVisible(false);*/
+       
+       
+               FileChooser chooser = new FileChooser();
+        chooser.setInitialDirectory(new File(System.getProperty("user.home") ));
+        chooser.setTitle("Veuillez choisir l'image");
+        chooser.getExtensionFilters().addAll(
+                //new FileChooser.ExtensionFilter("Image", ".jpg", ".png"),
+                new FileChooser.ExtensionFilter("PNG", "*.png"),
+                new FileChooser.ExtensionFilter("JPG", "*.jpg")
+        );
+        selectedFile = chooser.showOpenDialog(null);
+
+        if (selectedFile != null) {
+
+            path = selectedFile.getName();
+//    
+           txtimage.setText(path);
+            Image imagea = new Image(selectedFile.toURI().toString());
+           img.setImage(imagea) ;
+    }
             
     }
 
