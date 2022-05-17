@@ -16,8 +16,8 @@
          </image>
       </ImageView>
       <Label fx:id="txtMsgDate" layoutX="35.0" layoutY="23.0" text="Date" />
-      <Button fx:id="btnMsgModifier" layoutX="598.0" layoutY="92.0" mnemonicParsing="false" onAction="#modifier" prefHeight="31.0" prefWidth="240.0" stylesheets="@../services/styleSmarties.css" text="Modifer" />
-      <Button fx:id="btnMsgSupp" layoutX="598.0" layoutY="125.0" mnemonicParsing="false" onAction="#supprimer" prefHeight="31.0" prefWidth="240.0" stylesheets="@../services/styleSmarties.css" text="Supprimer" />
+      <Button fx:id="btnMsgModifier" layoutX="598.0" layoutY="92.0" mnemonicParsing="false" onAction="#modifier" prefHeight="31.0" prefWidth="240.0" style="-fx-background-color: #515151;" text="Modifer" textFill="#aceb1e" />
+      <Button fx:id="btnMsgSupp" layoutX="598.0" layoutY="125.0" mnemonicParsing="false" onAction="#supprimer" prefHeight="31.0" prefWidth="240.0" style="-fx-background-color: #515151;" text="Supprimer" textFill="#aceb1e" />
       <Text fx:id="txtMsgContent" layoutX="35.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Content" />
    </children>
 </AnchorPane>

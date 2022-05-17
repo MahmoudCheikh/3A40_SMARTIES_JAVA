@@ -190,11 +190,11 @@ public class CommandeService {
         try {
             Statement prepared = cnx.prepareStatement(sql);
             ResultSet rs = prepared.executeQuery(sql);
-            PdfWriter.getInstance(doc, new FileOutputStream("C:\\Users\\Ahmed Elmoez\\Documents\\Ahmed Pdf\\Commande.pdf"));
+            PdfWriter.getInstance(doc, new FileOutputStream("C:\\Commande.pdf"));
             doc.open();
             doc.getHtmlStyleClass();
 
-            Image img = Image.getInstance("C:\\3A40_SMARTIES_JAVA\\src\\com\\smarties\\images\\çaRoule.png");
+            Image img = Image.getInstance("C:\\java\\3A40_SMARTIES_JAVA\\src\\com\\smarties\\images\\çaRoule.png");
             img.scaleAbsoluteWidth(300);
             img.scaleAbsoluteHeight(92);
             img.setAlignment(Image.ALIGN_CENTER);
@@ -262,7 +262,7 @@ public class CommandeService {
 
             doc.add(table);
             doc.close();
-            Desktop.getDesktop().open(new File("C:\\Users\\Ahmed Elmoez\\Documents\\Ahmed Pdf\\Commande.pdf"));
+            Desktop.getDesktop().open(new File("C:\\Commande.pdf"));
 
         } catch (FileNotFoundException ex) {
             Logger.getLogger(LocationService.class.getName()).log(Level.SEVERE, null, ex);

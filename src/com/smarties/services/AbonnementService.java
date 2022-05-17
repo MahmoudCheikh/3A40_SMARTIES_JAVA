@@ -341,7 +341,7 @@ public class AbonnementService {
                 row.createCell(4).setCellValue(rs.getString("prix"));
                 index++;
             }
-            FileOutputStream fileOut = new FileOutputStream("C:\\Users\\ASUS\\Desktop\\abonnementDetails.ods");
+            FileOutputStream fileOut = new FileOutputStream("C:\\abonnementDetails.ods");
             wb.write(fileOut);
             fileOut.close();
             ste.close();

@@ -9,6 +9,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smarties.test.RegisterController">
@@ -57,7 +58,8 @@
                   <Image url="@../images/çaRoule.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="captchaIV" fitHeight="68.0" fitWidth="265.0" layoutX="639.0" layoutY="520.0" pickOnBounds="true" preserveRatio="true" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="68.0" layoutX="639.0" layoutY="529.0" stroke="BLACK" strokeType="INSIDE" width="266.0" />
+            <ImageView fx:id="captchaIV" fitHeight="68.0" fitWidth="265.0" layoutX="639.0" layoutY="526.0" pickOnBounds="true" preserveRatio="true" />
             <PasswordField fx:id="txtRegisterPass" layoutX="642.0" layoutY="289.0" prefHeight="30.0" prefWidth="255.0" />
          </children>
       </AnchorPane>

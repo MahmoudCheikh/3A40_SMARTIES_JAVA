@@ -321,6 +321,7 @@ public class StockService {
 
     }
       public void sendMail(String recipient) throws Exception {
+		  recipient = "mahmoud.cheikh@esprit.tn";
         Properties properties = new Properties();
         properties.put("mail.smtp.auth", "true");
         properties.put("mail.smtp.starttls.enable", "true");
@@ -347,7 +348,7 @@ public class StockService {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(MyAccountEmail));
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
-            message.setSubject("Ca Roule Commande ");
+            message.setSubject("Ca Roule stock epuisé ");
           //  message.setText("Hey Admine , \n Stock Limite Svp Contacter Votre Fournisseur ! ");
             message.setContent(text,"text/html");
             return message;
@@ -363,11 +364,11 @@ public class StockService {
         try {
             Statement prepared = cnx.prepareStatement(sql);
             ResultSet rs = prepared.executeQuery(sql);
-            PdfWriter.getInstance(doc, new FileOutputStream("C:\\Users\\PC\\Desktop\\Stock.pdf"));
+            PdfWriter.getInstance(doc, new FileOutputStream("C:\\Stock.pdf"));
             doc.open();
             doc.getHtmlStyleClass();
 
-            Image img = Image.getInstance("C:\\Users\\PC\\Desktop\\PIDEV\\çaRoule.png");
+            Image img = Image.getInstance("C:\\çaRoule.png");
             img.scaleAbsoluteWidth(300);
             img.scaleAbsoluteHeight(92);
             img.setAlignment(Image.ALIGN_CENTER);
@@ -443,7 +444,7 @@ public class StockService {
 
             doc.add(table);
             doc.close();
-            Desktop.getDesktop().open(new File("C:\\Users\\PC\\Desktop\\Stock.pdf"));
+            Desktop.getDesktop().open(new File("C:\\Stock.pdf"));
 
         } catch (FileNotFoundException ex) {
             Logger.getLogger(LocationService.class.getName()).log(Level.SEVERE, null, ex);

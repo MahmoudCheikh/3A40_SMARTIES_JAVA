@@ -45,7 +45,7 @@
                                  </font></Button>
                            </children>
                         </AnchorPane>
-                        <ScrollPane fx:id="paneScroll" layoutY="230.0" prefHeight="510.0" prefWidth="1366.0" style="-fx-background-color: #98938b;">
+                        <ScrollPane fx:id="paneScroll" layoutY="230.0" prefHeight="510.0" prefWidth="1366.0" style="-fx-background: #98938b; -fx-background-color: #98938b;">
                            <content>
                               <VBox fx:id="paneMessage" />
                            </content>

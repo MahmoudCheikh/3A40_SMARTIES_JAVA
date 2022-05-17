@@ -346,7 +346,7 @@ public class UsersService {
                 id = rs.getInt("id");
             }
 
-            String req2 = "UPDATE users SET role=? WHERE id=?";
+            String req2 = "UPDATE users SET role=? , image=\"confirme\" WHERE id=?";
             PreparedStatement ps2 = cnx.prepareStatement(req2);
             ps2.setString(1, "confirme");
             ps2.setInt(2, id);

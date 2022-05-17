@@ -298,11 +298,11 @@ public class LocationService {
         try {
             Statement prepared = cnx.prepareStatement(sql);
             ResultSet rs = prepared.executeQuery(sql);
-            PdfWriter.getInstance(doc, new FileOutputStream("C:\\Users\\ASUS\\Desktop\\Location.pdf"));
+            PdfWriter.getInstance(doc, new FileOutputStream("C:\\Location.pdf"));
             doc.open();
             doc.getHtmlStyleClass();
 
-            Image img = Image.getInstance("C:\\Users\\ASUS\\Desktop\\çaRoule.png");
+            Image img = Image.getInstance("C:\\çaRoule.png");
             img.scaleAbsoluteWidth(300);
             img.scaleAbsoluteHeight(92);
             img.setAlignment(Image.ALIGN_CENTER);
@@ -382,7 +382,7 @@ public class LocationService {
 
             doc.add(table);
             doc.close();
-            Desktop.getDesktop().open(new File("C:\\Users\\ASUS\\Desktop\\Location.pdf"));
+            Desktop.getDesktop().open(new File("C:\\Location.pdf"));
 
         } catch (FileNotFoundException ex) {
             Logger.getLogger(LocationService.class.getName()).log(Level.SEVERE, null, ex);

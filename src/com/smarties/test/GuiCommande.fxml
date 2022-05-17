@@ -18,13 +18,13 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="763.0" prefWidth="1215.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smarties.test.GuiCommandeController">
+<AnchorPane id="AnchorPane" prefHeight="840.0" prefWidth="1297.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smarties.test.GuiCommandeController">
    <children>
       <TabPane prefHeight="547.0" prefWidth="975.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <tabs>
             <Tab text="Commande">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="611.0" prefWidth="968.0" style="-fx-background-color: #98938b;">
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="778.0" prefWidth="1239.0" style="-fx-background-color: #98938b;">
                      <children>
                         <TextField fx:id="txtnbrproduit" layoutX="215.0" layoutY="85.0" prefHeight="25.0" prefWidth="123.0" style="-fx-background-color: #515151;">
                            <effect>

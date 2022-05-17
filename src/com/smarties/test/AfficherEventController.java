@@ -141,7 +141,7 @@ public class AfficherEventController implements Initializable {
              alert.setContentText("vous participez deja a l'évenement "+e.getNom());
              alert.showAndWait();}
       else{
-          //   t.sendSMS(e.getNom(),e.getDate_d().toString());
+          t.sendSMS(e.getNom(),e.getDate_d().toString());
              t.participer(e,Smarties.user.getId());
              Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
              alert1.setTitle("Information Dialog");

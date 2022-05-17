@@ -100,7 +100,7 @@ try {
 Message message = new MimeMessage(session);
 message.setFrom(new InternetAddress("mohamedaziz.jaziri1@esprit.tn"));
 message.setRecipients(Message.RecipientType.TO,
-InternetAddress.parse("mohamedaziz.jaziri1@esprit.tn"));
+InternetAddress.parse("mahmoud.cheikh@esprit.tn"));
 message.setSubject("Ca Roule EVENT "+nom+"");
 message.setContent(text,"text/html");
 // Etape 3 : Envoyer le message

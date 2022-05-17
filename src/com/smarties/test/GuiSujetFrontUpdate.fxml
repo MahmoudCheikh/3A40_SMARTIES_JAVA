@@ -6,13 +6,13 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" fx:id="ap" prefHeight="721.0" prefWidth="1445.0" style="-fx-background-color: #98938b;" stylesheets="@../services/styleSmarties.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smarties.test.GuiSujetFrontUpdateController">
+<AnchorPane id="AnchorPane" fx:id="ap" prefHeight="721.0" prefWidth="1445.0" style="-fx-background-color: #98938b;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smarties.test.GuiSujetFrontUpdateController">
    <children>
-      <Label layoutX="51.0" layoutY="38.0" text="Titre" />
-      <Label layoutX="373.0" layoutY="82.0" text="Contenu" />
+      <Label layoutX="59.0" layoutY="50.0" text="Titre" />
+      <Label layoutX="59.0" layoutY="85.0" text="Contenu" />
       <Label fx:id="txtError" layoutX="79.0" layoutY="333.0" />
-      <TextArea fx:id="txtContenu" layoutX="373.0" layoutY="116.0" prefHeight="246.0" prefWidth="769.0" />
-      <TextField fx:id="txtTitre" layoutX="93.0" layoutY="34.0" />
-      <Button fx:id="update" layoutX="747.0" layoutY="378.0" mnemonicParsing="false" onAction="#update" prefHeight="39.0" prefWidth="395.0" text="Modifier" />
+      <TextArea fx:id="txtContenu" layoutX="59.0" layoutY="119.0" prefHeight="246.0" prefWidth="769.0" />
+      <TextField fx:id="txtTitre" layoutX="101.0" layoutY="46.0" />
+      <Button fx:id="update" layoutX="433.0" layoutY="381.0" mnemonicParsing="false" onAction="#update" prefHeight="39.0" prefWidth="395.0" style="-fx-background-color: #515151;" text="Modifier" textFill="#aceb1e" />
    </children>
 </AnchorPane>

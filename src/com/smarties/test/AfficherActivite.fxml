@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
@@ -13,7 +12,7 @@
    <children>
       <AnchorPane prefHeight="70.0" prefWidth="719.0" style="-fx-background-color: #D0BE25;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="81.0" AnchorPane.topAnchor="0.0">
          <children>
-            <StackPane layoutX="-2.0" prefHeight="70.0" prefWidth="735.0" style="-fx-background-color: #13161E;" AnchorPane.leftAnchor="-2.0" AnchorPane.rightAnchor="-14.0" AnchorPane.topAnchor="0.0">
+            <StackPane layoutX="-2.0" prefHeight="70.0" prefWidth="1365.0" style="-fx-background-color: #13161E;" AnchorPane.leftAnchor="-2.0" AnchorPane.rightAnchor="-79.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Text fx:id="topText" boundsType="LOGICAL_VERTICAL_CENTER" fill="#aceb1e" fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste des Activites" textAlignment="JUSTIFY" textOrigin="CENTER">
                      <font>
@@ -36,10 +35,5 @@
             </AnchorPane>
          </content>
       </ScrollPane>
-      <Button fx:id="back" layoutX="1314.0" layoutY="20.0" mnemonicParsing="false" onAction="#back" style="-fx-background-color: #111318;" stylesheets="@EvenementStyle.css" text="back">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Button>
    </children>
 </AnchorPane>

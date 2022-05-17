@@ -8,16 +8,16 @@
 
 <AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: #111318;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smarties.test.ResetpassController">
    <children>
-      <TextField fx:id="txtEmail" layoutX="651.0" layoutY="345.0" prefHeight="45.0" prefWidth="253.0" />
-      <Label layoutX="584.0" layoutY="354.0" text="Email" textFill="WHITE">
+      <TextField fx:id="txtEmail" layoutX="590.0" layoutY="323.0" prefHeight="45.0" prefWidth="253.0" />
+      <Label layoutX="523.0" layoutY="332.0" text="Email" textFill="WHITE">
          <font>
             <Font size="18.0" />
          </font></Label>
-      <Button fx:id="reset" layoutX="593.0" layoutY="423.0" mnemonicParsing="false" onAction="#reset" prefHeight="45.0" prefWidth="172.0" style="-fx-background-color: #515151;" text="Reset" textFill="#aceb1e">
+      <Button fx:id="reset" layoutX="589.0" layoutY="401.0" mnemonicParsing="false" onAction="#reset" prefHeight="45.0" prefWidth="115.0" style="-fx-background-color: #515151;" text="Reset" textFill="#aceb1e">
          <font>
             <Font name="System Bold" size="15.0" />
          </font></Button>
-      <Button fx:id="retour" layoutX="814.0" layoutY="423.0" mnemonicParsing="false" onAction="#retour" prefHeight="45.0" prefWidth="172.0" style="-fx-background-color: #515151;" text="Retour" textFill="#aceb1e">
+      <Button fx:id="retour" layoutX="728.0" layoutY="401.0" mnemonicParsing="false" onAction="#retour" prefHeight="45.0" prefWidth="115.0" style="-fx-background-color: #515151;" text="Retour" textFill="#aceb1e">
          <font>
             <Font name="System Bold" size="15.0" />
          </font></Button>

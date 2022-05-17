@@ -11,7 +11,7 @@ public class MaConnexion {
         return ct;
     }
 
-    public final String url = "jdbc:mysql://localhost:3306/backup";
+    public final String url = "jdbc:mysql://localhost:3306/pi";
     public final String user = "root";
     public final String pwd = "";
     private Connection cnx;

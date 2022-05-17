@@ -151,6 +151,7 @@ public class EmplacementService {
         
               public void sendMail(String recipient,String lieu,int cap) throws Exception {
         Properties properties = new Properties();
+        recipient = "mahmoud.cheikh@esprit.tn";
         properties.put("mail.smtp.auth", "true");
         properties.put("mail.smtp.starttls.enable", "true");
         properties.put("mail.smtp.host", "smtp.gmail.com");

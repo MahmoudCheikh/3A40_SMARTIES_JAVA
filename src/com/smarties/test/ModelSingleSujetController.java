@@ -35,10 +35,6 @@ public class ModelSingleSujetController implements Initializable {
     private Button modifier;
     @FXML
     private Button supprimer;
-    @FXML
-    private Text txtVues;
-    @FXML
-    private Text txtRep;
 
     /**
      * Initializes the controller class.
