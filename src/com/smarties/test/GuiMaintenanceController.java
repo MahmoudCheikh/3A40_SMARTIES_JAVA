@@ -95,17 +95,11 @@ public class GuiMaintenanceController implements Initializable {
     private void Ajouter(ActionEvent event) {
         LocalDate now = LocalDate.now();
 
-        if ((txtid.getText().equals("")) || (txtidprod.getText().equals("")) || (txtrelation.getText().equals("")) || (txtrecid.getText().equals("")) || (textdatedeb.getValue().equals("")) || (textdatefi.getValue().equals("")) || (textadres.getText().equals("")) || (textdescri.getText().equals("")) || (textetat.getText().equals(""))) {
+        if ((txtidprod.getText().equals("")) || (txtrelation.getText().equals("")) || (txtrecid.getText().equals("")) || (textdatedeb.getValue().equals("")) || (textdatefi.getValue().equals("")) || (textadres.getText().equals("")) || (textdescri.getText().equals("")) || (textetat.getText().equals(""))) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Information Dialog");
             alert.setHeaderText(null);
             alert.setContentText("champs manquants !");
-            alert.showAndWait();
-        } else if (!(Pattern.matches("[0-9]*", txtid.getText()))) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Information Dialog");
-            alert.setHeaderText(null);
-            alert.setContentText("ID doit etre de type Int !");
             alert.showAndWait();
         } else if (!(Pattern.matches("[0-9]*", txtidprod.getText()))) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -159,12 +153,10 @@ public class GuiMaintenanceController implements Initializable {
             alert.showAndWait();
         } else {
             Maintenance mai = new Maintenance();
-            int id = Integer.parseInt(txtid.getText());
             int idp = Integer.parseInt(txtidprod.getText());
             int idr = Integer.parseInt(txtrelation.getText());
             int idre = Integer.parseInt(txtrecid.getText());
 
-            mai.setId(id);
             mai.setId_produit_id(idp);
             mai.setRelation_id(idr);
             mai.setReclamation_id(idre);
@@ -245,7 +237,7 @@ public class GuiMaintenanceController implements Initializable {
     @FXML
     private void Supprimer(ActionEvent event
     ) {
-        int id = Integer.parseInt(textsupr.getText());
+        int id = Integer.parseInt(txtid.getText());
         ms.supprimerMaintenance(id);
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Success");

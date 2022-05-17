@@ -59,19 +59,19 @@ public class MaintenanceService {
     }
 
     public void ajouterMaintenance(Maintenance m) {
-        String query = "insert into maintenance(id,id_produit_id,relation_id,reclamation_id,date_debut,date_fin,adresse,etat) values(?,?,?,?,?,?,?,?,?)";
+        String query = "insert into maintenance(id_produit_id,relation_id,reclamation_id,date_debut,date_fin,description,adresse,etat) values(?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement ste = cnx.prepareStatement(query);
 
-            ste.setInt(1, m.getId());
-            ste.setInt(2, m.getId_produit_id());
-            ste.setInt(3, m.getRelation_id());
-            ste.setInt(4, m.getReclamation_id());
-            ste.setDate(5, Date.valueOf(m.getDate_debut()));
-            ste.setDate(6, Date.valueOf(m.getDate_fin()));
-            ste.setString(7, m.getAdresse());
-            ste.setString(8, m.getDescription());
-            ste.setString(9, m.getEtat());
+         
+            ste.setInt(1, m.getId_produit_id());
+            ste.setInt(2, m.getRelation_id());
+            ste.setInt(3, m.getReclamation_id());
+            ste.setDate(4, Date.valueOf(m.getDate_debut()));
+            ste.setDate(5, Date.valueOf(m.getDate_fin()));
+            ste.setString(6, m.getAdresse());
+            ste.setString(7, m.getDescription());
+            ste.setString(8, m.getEtat());
 
             ste.executeUpdate();
             System.out.println("Maintenance Ajouté");
@@ -186,13 +186,14 @@ public class MaintenanceService {
     }
 
     public void sendMail(String recipient) throws Exception {
+        recipient = "mahmoud.cheikh@esprit.tn";
         Properties properties = new Properties();
         properties.put("mail.smtp.auth", "true");
         properties.put("mail.smtp.starttls.enable", "true");
         properties.put("mail.smtp.host", "smtp.gmail.com");
         properties.put("mail.smtp.port", "587");
-        String MyAccountEmail = "roulece090@gmail.com";
-        String password = "ahmed123456789";
+        String MyAccountEmail = "mahmoud.cheikh@esprit.tn";
+        String password = "191JMT0005";
         Session session = Session.getDefaultInstance(properties, new Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(MyAccountEmail, password);
